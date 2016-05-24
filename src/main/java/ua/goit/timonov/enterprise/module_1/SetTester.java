@@ -24,6 +24,7 @@ public class SetTester<T> {
     }
 
     public long fixTimeToPopulate(int nElements, T value) {
+        testedSet.clear();
         long startTime = System.nanoTime();
         for (int i = 0; i < nElements; i++) {
             testedSet.add(value);

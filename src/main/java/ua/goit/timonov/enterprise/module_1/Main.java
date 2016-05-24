@@ -10,18 +10,17 @@ public class Main {
     public static final int SET_1000K = 1000000;
 
     public static void main(String[] args) {
+        TestExecutor executor = new TestExecutor();
+        executor.runListTest(SET_10K);
+        executor.runSetTest(SET_10K);
 
-        TestExecutor executor = new TestExecutor(SET_10K);
-        executor.runListTestWithNumber();
-        executor.runSetTestWithNumber();
+        executor.runListTest(SET_100K);
+        executor.runSetTest(SET_100K);
 
-        executor = new TestExecutor(SET_100K);
-        executor.runListTestWithNumber();
-        executor.runSetTestWithNumber();
+        executor.runListTest(SET_1000K);
+        executor.runSetTest(SET_1000K);
 
-        executor = new TestExecutor(SET_1000K);
-        executor.runListTestWithNumber();
-        executor.runSetTestWithNumber();
+        executor.printTableToConsole();
+        executor.printTableToFile();
     }
-
 }

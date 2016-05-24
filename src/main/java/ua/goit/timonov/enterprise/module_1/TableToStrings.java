@@ -1,21 +1,31 @@
 package ua.goit.timonov.enterprise.module_1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Alex on 24.05.2016.
  */
-public class DataTable {
+public class TableToStrings {
     public static final int N_OF_HYPHENS_IN_TABLE = 101;
     public static final int N_BORDERS = 2;
     public static final char BORDER = '|';
     public static final char SPACE = ' ';
     public static final char HYPHEN = '-';
+    public static final String EMPTY_STRING = "";
+
+    private List<String> tableInStrings = new ArrayList<>();
+
+    public List<String> getTableInStrings() {
+        return tableInStrings;
+    }
 
     public void printTableHead(int nElements) {
-        System.out.println(printHyphenLine());
-        System.out.println(printTableHeader("Results of tests with : " + nElements + " elements"));
-        System.out.println(printHyphenLine());
-        System.out.println(printColumnHeaders());
-        System.out.println(printHyphenLine());
+        tableInStrings.add(printHyphenLine());
+        tableInStrings.add(printTableHeader("Results of tests with : " + nElements + " elements"));
+        tableInStrings.add(printHyphenLine());
+        tableInStrings.add(printColumnHeaders());
+        tableInStrings.add(printHyphenLine());
     }
 
     private String printColumnHeaders() {
@@ -57,8 +67,8 @@ public class DataTable {
     }
 
     public void printListResults(ResultsOfListTest listResult) {
-        System.out.println(printLineListResults(listResult));
-        System.out.println(printHyphenLine());
+        tableInStrings.add(printLineListResults(listResult));
+        tableInStrings.add(printHyphenLine());
     }
 
     private String printLineListResults(ResultsOfListTest listResult) {
@@ -76,8 +86,8 @@ public class DataTable {
     }
 
     public void printListResults(ResultsOfSetTest setResult) {
-        System.out.println(printLineSetResults(setResult));
-        System.out.println(printHyphenLine());
+        tableInStrings.add(printLineSetResults(setResult));
+        tableInStrings.add(printHyphenLine());
     }
 
     private String printLineSetResults(ResultsOfSetTest setResult) {
@@ -92,5 +102,9 @@ public class DataTable {
         sb.append(BORDER).append("                ");
         sb.append(BORDER);
         return sb.toString();
+    }
+
+    public void addEmptyString() {
+        tableInStrings.add(EMPTY_STRING);
     }
 }

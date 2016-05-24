@@ -51,7 +51,6 @@ public class ResultsOfListTest {
     public long getTimeIteratorRemove() {
         return timeIteratorRemove;
     }
-
     public void runListTests(List<Object> testedList, int nElements) {
         ListTester listTester = new ListTester(testedList);
         timePopulate = listTester.findTimeOfPopulate(nElements, DEFAULT_VALUE);

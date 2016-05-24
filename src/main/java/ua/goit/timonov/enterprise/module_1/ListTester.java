@@ -14,6 +14,7 @@ public class ListTester<T> {
         this.testedList = testedList;
     }
 
+    // TODO something with repetitions!
     public long findTimeOfPopulate(int nElements, T value) {
         long averageTime = 0;
         for (int i = 0; i < REPETITIONS; i++) {
@@ -24,6 +25,7 @@ public class ListTester<T> {
     }
 
     public long fixTimeToPopulate(int nElements, T value) {
+        testedList.clear();
         long startTime = System.nanoTime();
         for (int i = 0; i < nElements; i++) {
             testedList.add(value);
