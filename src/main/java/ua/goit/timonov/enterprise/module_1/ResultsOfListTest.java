@@ -51,8 +51,10 @@ public class ResultsOfListTest {
     public long getTimeIteratorRemove() {
         return timeIteratorRemove;
     }
-    public void runListTests(List<Object> testedList, int nElements) {
+    public void makeListTests(List<Object> testedList, int nElements) {
         ListTester listTester = new ListTester(testedList);
+
+
         timePopulate = listTester.findTimeOfPopulate(nElements, DEFAULT_VALUE);
         timeAdd = listTester.findTimeOfAdd(nElements, DEFAULT_VALUE);
         timeGet = listTester.findTimeOfGet(nElements);
@@ -60,5 +62,10 @@ public class ResultsOfListTest {
         timeContains = listTester.findTimeOfContains(nElements, DEFAULT_VALUE);
         timeIteratorAdd = listTester.findTimeOfListIteratorAdd(nElements, DEFAULT_VALUE);
         timeIteratorRemove = listTester.findTimeOfIteratorRemove(nElements);
+
+
+        TestFactory factory = new TestFactory();
+        Test test = factory.getTest(TestedOperation.ADD);
+        timePopulate =
     }
 }

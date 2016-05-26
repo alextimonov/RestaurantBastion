@@ -38,7 +38,7 @@ public class ResultsOfSetTest {
         return timeContains;
     }
 
-    public void runSetTests(Set<Object> testedSet, int nElements) {
+    public void makeSetTests(Set<Object> testedSet, int nElements) {
         SetTester setTester = new SetTester(testedSet);
         timePopulate = setTester.findTimeOfPopulate(nElements, DEFAULT_VALUE);
         timeAdd = setTester.findTimeOfAdd(nElements, DEFAULT_VALUE);

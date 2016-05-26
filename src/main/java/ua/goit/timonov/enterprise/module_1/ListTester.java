@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Class with fixing time of operations with list
+ * Class to measure time of operations with list
  */
 public class ListTester<T> {
-    public static final int REPETITIONS = 20;
+    public static final int REPETITIONS = 100;
     private List<T> testedList;
 
     public ListTester(List<T> testedList) {
