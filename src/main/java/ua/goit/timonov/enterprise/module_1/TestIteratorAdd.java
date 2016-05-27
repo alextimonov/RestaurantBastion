@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Created by Alex on 27.05.2016.
+ * Implementation of operation iterator.add(value) for list
  */
 public class TestIteratorAdd <T> extends TestList {
     public <T> TestIteratorAdd(List<T> collection, int nElements) {

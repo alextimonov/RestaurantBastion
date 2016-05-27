@@ -1,7 +1,8 @@
 package ua.goit.timonov.enterprise.module_1;
 
 /**
- * Created by Alex on 22.05.2016.
+ * App for measure time of different operations with collections
+ * (ArrayList, LinkedList, HashSet, TreeSet). Main class executes tests for different number of elements
  */
 public class Main {
 
@@ -11,15 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         TestExecutor executor = new TestExecutor();
-        executor.runListTest(SET_10K);
-        executor.runSetTest(SET_10K);
-
-        executor.runListTest(SET_100K);
-        executor.runSetTest(SET_100K);
-
-        executor.runListTest(SET_1000K);
-        executor.runSetTest(SET_1000K);
-
+        executor.runTest(SET_10K);
+        executor.runTest(SET_100K);
+        executor.runTest(SET_1000K);
         executor.printTableToConsole();
         executor.printTableToFile();
     }

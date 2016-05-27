@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_1;
 import java.util.Set;
 
 /**
- * Created by Alex on 27.05.2016.
+ * Implementation of operation remove(value) for Set
  */
 public class TestSetRemove extends TestSet {
     public TestSetRemove(Set collection, int nElements) {

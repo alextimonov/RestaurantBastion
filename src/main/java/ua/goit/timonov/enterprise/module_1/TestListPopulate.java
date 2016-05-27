@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_1;
 import java.util.List;
 
 /**
- * Created by Alex on 26.05.2016.
+ * Implementation of operation populate() for list
  */
 public class TestListPopulate extends TestList {
 

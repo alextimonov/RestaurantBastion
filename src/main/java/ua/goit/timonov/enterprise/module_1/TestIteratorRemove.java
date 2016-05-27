@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * Created by Alex on 27.05.2016.
+ * Implementation of operation iterator.remove() for list
  */
 public class TestIteratorRemove<T> extends TestList {
 

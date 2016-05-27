@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_1;
 import java.util.Set;
 
 /**
- * Created by Alex on 27.05.2016.
+ * Implementation of operation populate for Set
  */
 public class TestSetPopulate extends TestSet {
     public <T> TestSetPopulate(Set collection, int nElements) {

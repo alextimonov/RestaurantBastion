@@ -1,58 +1,57 @@
 package ua.goit.timonov.enterprise.module_1;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by Alex on 24.05.2016.
+ * Control execution class - starts measuring and output
  */
-public class TestExecutor {
-    private List<Object> arrayList = new ArrayList<>();
-    private List<Object> linkedList = new LinkedList<>();
-    private MultiTestList arrayListMultiTest;
-    private MultiTestList linkedListMultiTest;
+public class TestExecutor <T> {
 
-    private Set<Object> hashSet = new HashSet<>();
-    private Set<Object> treeSet = new TreeSet<>();
-    private MultiTestSet hashSetMultiTest;
-    private MultiTestSet treeSetMultiTest;
+    /* tested collections */
+    private List<T> arrayList = new ArrayList<>();
+    private List<T> linkedList = new LinkedList<>();
+    private Set<T> hashSet = new HashSet<>();
+    private Set<T> treeSet = new TreeSet<>();
 
+    /* list of nultitests for tested collections */
+    private List<MultiTest> allTests;
+
+    /* converter of results to list of Strings */
     private TableToStrings tableToStrings = new TableToStrings();
 
-    public void runListTest(int nElements) {
-        arrayListMultiTest = new MultiTestList(arrayList, nElements);
-        linkedListMultiTest = new MultiTestList(linkedList, nElements);
-
-        arrayListMultiTest.makeListTests(arrayList, nElements);
-        linkedListMultiTest.makeListTests(linkedList, nElements);
-
-        tableToStrings.printTableHead(nElements);
-        tableToStrings.printListResults(arrayListMultiTest);
-        tableToStrings.printListResults(linkedListMultiTest);
+    /**
+     * runs test execution for collection
+     * @param nElements     number of elements in the collection
+     */
+    public void runTest(int nElements) {
+        createListOfMultiTests(nElements);
+        for (MultiTest multiTest : allTests) {
+            multiTest.makeScheduleOfTests();
+            multiTest.runTests();
+        }
+        tableToStrings.makeResultsTable(nElements, allTests);
     }
 
-    public void runSetTest(int nElements) {
-        hashSetMultiTest = new MultiTestSet(hashSet, nElements);
-        treeSetMultiTest = new MultiTestSet(treeSet, nElements);
-
-        hashSetMultiTest.makeSetTests(hashSet, nElements);
-        treeSetMultiTest.makeSetTests(treeSet, nElements);
-
-        tableToStrings.printListResults(hashSetMultiTest);
-        tableToStrings.printListResults(treeSetMultiTest);
-        tableToStrings.addEmptyString();
+    // creates list of tests for collections
+    private void createListOfMultiTests(int nElements) {
+        allTests = new ArrayList<>();
+        allTests.add(new MultiTestList(arrayList, nElements));
+        allTests.add(new MultiTestList(linkedList, nElements));
+        allTests.add(new MultiTestSet(hashSet, nElements));
+        allTests.add(new MultiTestSet(treeSet, nElements));
     }
 
+    /**
+     * invokes method for print string list with results to console
+     */
     public void printTableToConsole() {
         Printer.printToConsole(tableToStrings.getTableInStrings());
     }
 
+    /**
+     * invokes method for print results to file
+     */
     public void printTableToFile() {
-        try {
-            Printer.printToFile(tableToStrings.getTableInStrings());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        Printer.printToFile(tableToStrings.getTableInStrings());
     }
 }

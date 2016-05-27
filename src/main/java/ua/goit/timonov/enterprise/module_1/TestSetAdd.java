@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_1;
 import java.util.Set;
 
 /**
- * Created by Alex on 27.05.2016.
+ * Implementation of operation add(value) for Set
  */
 public class TestSetAdd extends TestSet {
     public <T> TestSetAdd(Set collection, int nElements) {

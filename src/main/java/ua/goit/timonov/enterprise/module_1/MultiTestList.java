@@ -1,28 +1,22 @@
 package ua.goit.timonov.enterprise.module_1;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
- * Created by Alex on 24.05.2016.
+ * Class that invokes tests for different operations with List (can be ArrayList or LinkedList)
  */
-public class MultiTestList<T> {
+public class MultiTestList<T> extends MultiTest {
+    /* tested list */
     private List<T> collection;
-    int nElements;
-    private List<TestList> tests = new ArrayList<>();
 
     public MultiTestList(List<T> collection, int nElements) {
+        super(nElements);
         this.collection = collection;
-        this.nElements = nElements;
     }
 
-    public void makeListTests(List<T> testedSet, int nElements) {
-        makeScheduleOfTests();
-        tests.forEach(TestList::makeTest);
-    }
-
-    private void makeScheduleOfTests() {
+    // adds different types of test to schedule
+    @Override
+    protected void makeScheduleOfTests() {
         tests.add(new TestListPopulate(collection, nElements));
         tests.add(new TestListAdd(collection, nElements));
         tests.add(new TestListGet(collection, nElements));
@@ -32,14 +26,10 @@ public class MultiTestList<T> {
         tests.add(new TestIteratorRemove(collection, nElements));
     }
 
-    public long getResultTime(int i) {
-        return tests.get(i).getElapsedTime();
-    }
-
-    public int getNTests() {
-        return tests.size();
-    }
-
+    /**
+     * returns name of tested collection
+     * @return          String with name of tested collection
+     */
     public String getCollectionName() {
         return collection.getClass().getSimpleName();
     }
