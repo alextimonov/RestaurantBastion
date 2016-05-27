@@ -18,6 +18,7 @@ public class SwingMain {
                 frame.setTitle("Collection testing");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });

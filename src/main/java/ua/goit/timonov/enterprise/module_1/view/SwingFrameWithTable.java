@@ -14,15 +14,19 @@ public class SwingFrameWithTable extends JFrame {
     public static final int SET_10K = 10000;
     public static final int SET_100K = 100000;
     public static final int SET_1000K = 1000000;
+    public static final int ROWS = 5;
+    public static final int COLUMNS = 8;
 
     private JTable table;
 
     public SwingFrameWithTable() throws HeadlessException {
-        table = new JTable(5, 8);
-        String[] columnNames = {"Collection Type", ""};
+        table = new JTable(ROWS, COLUMNS);
+        String[] columnNames = {"Type", "populate", "add", "get", "remove", "contains", "iterator.add", "iterator.remove"};
+        for (int j = 0; j < table.getColumnCount(); j++) {
+            table.setValueAt(columnNames[j], 0, j);
+        }
 
         add(table, BorderLayout.NORTH);
-
         JPanel buttonPanel = new JPanel();
 
         makeButton(buttonPanel, SET_10K);
