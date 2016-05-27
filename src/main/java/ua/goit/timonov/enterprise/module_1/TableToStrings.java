@@ -7,12 +7,13 @@ import java.util.List;
  * Created by Alex on 24.05.2016.
  */
 public class TableToStrings {
-    public static final int N_OF_HYPHENS_IN_TABLE = 101;
+    public static final int N_OF_HYPHENS_IN_TABLE = 137;
     public static final int N_BORDERS = 2;
     public static final char BORDER = '|';
     public static final char SPACE = ' ';
     public static final char HYPHEN = '-';
     public static final String EMPTY_STRING = "";
+    public static final int COLUMN_WIDTH = 16;
 
     private List<String> tableInStrings = new ArrayList<>();
 
@@ -30,12 +31,12 @@ public class TableToStrings {
 
     private String printColumnHeaders() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(BORDER).append("  Type    ");
-        sb.append(BORDER).append(" populate ");
-        sb.append(BORDER).append("    add   ");
-        sb.append(BORDER).append("    get   ");
-        sb.append(BORDER).append("   remove ");
-        sb.append(BORDER).append(" contains ");
+        sb.append(BORDER).append("      Type      ");
+        sb.append(BORDER).append("    populate    ");
+        sb.append(BORDER).append("       add      ");
+        sb.append(BORDER).append("       get      ");
+        sb.append(BORDER).append("      remove    ");
+        sb.append(BORDER).append("    contains    ");
         sb.append(BORDER).append(" iterator.add   ");
         sb.append(BORDER).append("iterator.remove ");
         sb.append(BORDER);
@@ -66,23 +67,27 @@ public class TableToStrings {
         return sb.toString();
     }
 
-    public void printListResults(ResultsOfListTest listResult) {
-        tableInStrings.add(printLineListResults(listResult));
+    public void printListResults(MultiTestList multiTestList) {
+        tableInStrings.add(printLineListResults(multiTestList));
         tableInStrings.add(printHyphenLine());
     }
 
-    private String printLineListResults(ResultsOfListTest listResult) {
+    private String printLineListResults(MultiTestList multiTestList) {
         StringBuilder sb = new StringBuilder();
-        sb.append(BORDER).append(listResult.getType());
-        sb.append(BORDER).append(String.format("%10d", listResult.getTimePopulate()));
-        sb.append(BORDER).append(String.format("%10d", listResult.getTimeAdd()));
-        sb.append(BORDER).append(String.format("%10d", listResult.getTimeGet()));
-        sb.append(BORDER).append(String.format("%10d", listResult.getTimeRemove()));
-        sb.append(BORDER).append(String.format("%10d", listResult.getTimeContains()));
-        sb.append(BORDER).append(String.format("%16d", listResult.getTimeIteratorAdd()));
-        sb.append(BORDER).append(String.format("%16d", listResult.getTimeIteratorRemove()));
+        sb.append(BORDER).append(getCollectionNameWithIndent(multiTestList));
+        for (int i = 0; i < multiTestList.getNTests(); i++) {
+            sb.append(BORDER).append(String.format("%16d", multiTestList.getResultTime(i)));
+        }
         sb.append(BORDER);
         return sb.toString();
+    }
+
+    private String getCollectionNameWithIndent(MultiTestList multiTestList) {
+        String name = multiTestList.getCollectionName();
+        for (int i = name.length(); i < COLUMN_WIDTH; i++) {
+            name += " ";
+        }
+        return name;
     }
 
     public void printListResults(ResultsOfSetTest setResult) {

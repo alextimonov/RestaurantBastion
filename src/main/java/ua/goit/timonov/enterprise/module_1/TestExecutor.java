@@ -9,8 +9,8 @@ import java.util.*;
 public class TestExecutor {
     private List<Object> arrayList = new ArrayList<>();
     private List<Object> linkedList = new LinkedList<>();
-    private ResultsOfListTest arrayListResult = new ResultsOfListTest("ArrayList ");
-    private ResultsOfListTest linkedListResult = new ResultsOfListTest("LinkedList");
+    private MultiTestList arrayListMultiTest;
+    private MultiTestList linkedListMultiTest;
 
     private Set<Object> hashSet = new HashSet<>();
     private Set<Object> treeSet = new TreeSet<>();
@@ -20,12 +20,15 @@ public class TestExecutor {
     private TableToStrings tableToStrings = new TableToStrings();
 
     public void runListTest(int nElements) {
-        arrayListResult.makeListTests(arrayList, nElements);
-        linkedListResult.makeListTests(linkedList, nElements);
+        arrayListMultiTest = new MultiTestList(arrayList, nElements);
+        linkedListMultiTest = new MultiTestList(linkedList, nElements);
+
+        arrayListMultiTest.makeListTests(arrayList, nElements);
+        linkedListMultiTest.makeListTests(linkedList, nElements);
 
         tableToStrings.printTableHead(nElements);
-        tableToStrings.printListResults(arrayListResult);
-        tableToStrings.printListResults(linkedListResult);
+        tableToStrings.printListResults(arrayListMultiTest);
+        tableToStrings.printListResults(linkedListMultiTest);
     }
 
     public void runSetTest(int nElements) {
