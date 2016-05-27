@@ -2,12 +2,12 @@ package ua.goit.timonov.enterprise.module_1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Alex on 24.05.2016.
  */
 public class MultiTestList<T> {
-//    private String type;
     private List<T> collection;
     int nElements;
     private List<TestList> tests = new ArrayList<>();
@@ -17,7 +17,7 @@ public class MultiTestList<T> {
         this.nElements = nElements;
     }
 
-    public void makeListTests(List<Object> testedList, int nElements) {
+    public void makeListTests(List<T> testedSet, int nElements) {
         makeScheduleOfTests();
         tests.forEach(TestList::makeTest);
     }

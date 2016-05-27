@@ -14,8 +14,8 @@ public class TestExecutor {
 
     private Set<Object> hashSet = new HashSet<>();
     private Set<Object> treeSet = new TreeSet<>();
-    private ResultsOfSetTest hashSetResult = new ResultsOfSetTest(" HashSet  ");
-    private ResultsOfSetTest treeSetResult = new ResultsOfSetTest(" TreeSet  ");
+    private MultiTestSet hashSetMultiTest;
+    private MultiTestSet treeSetMultiTest;
 
     private TableToStrings tableToStrings = new TableToStrings();
 
@@ -32,11 +32,14 @@ public class TestExecutor {
     }
 
     public void runSetTest(int nElements) {
-        hashSetResult.makeSetTests(hashSet, nElements);
-        treeSetResult.makeSetTests(treeSet, nElements);
+        hashSetMultiTest = new MultiTestSet(hashSet, nElements);
+        treeSetMultiTest = new MultiTestSet(treeSet, nElements);
 
-        tableToStrings.printListResults(hashSetResult);
-        tableToStrings.printListResults(treeSetResult);
+        hashSetMultiTest.makeSetTests(hashSet, nElements);
+        treeSetMultiTest.makeSetTests(treeSet, nElements);
+
+        tableToStrings.printListResults(hashSetMultiTest);
+        tableToStrings.printListResults(treeSetMultiTest);
         tableToStrings.addEmptyString();
     }
 

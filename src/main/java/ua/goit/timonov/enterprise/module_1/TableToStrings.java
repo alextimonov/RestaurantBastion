@@ -14,6 +14,7 @@ public class TableToStrings {
     public static final char HYPHEN = '-';
     public static final String EMPTY_STRING = "";
     public static final int COLUMN_WIDTH = 16;
+    public static final String EMPTY_CELL = "                ";
 
     private List<String> tableInStrings = new ArrayList<>();
 
@@ -90,23 +91,31 @@ public class TableToStrings {
         return name;
     }
 
-    public void printListResults(ResultsOfSetTest setResult) {
+    public void printListResults(MultiTestSet setResult) {
         tableInStrings.add(printLineSetResults(setResult));
         tableInStrings.add(printHyphenLine());
     }
 
-    private String printLineSetResults(ResultsOfSetTest setResult) {
+    private String printLineSetResults(MultiTestSet multiTestSet) {
         StringBuilder sb = new StringBuilder();
-        sb.append(BORDER).append(setResult.getType());
-        sb.append(BORDER).append(String.format("%10d", setResult.getTimePopulate()));
-        sb.append(BORDER).append(String.format("%10d", setResult.getTimeAdd()));
-        sb.append(BORDER).append("          ");
-        sb.append(BORDER).append(String.format("%10d", setResult.getTimeRemove()));
-        sb.append(BORDER).append(String.format("%10d", setResult.getTimeContains()));
-        sb.append(BORDER).append("                ");
-        sb.append(BORDER).append("                ");
+        sb.append(BORDER).append(getCollectionNameWithIndent(multiTestSet));
+        sb.append(BORDER).append(String.format("%16d", multiTestSet.getResultTime(0)));
+        sb.append(BORDER).append(String.format("%16d", multiTestSet.getResultTime(1)));
+        sb.append(BORDER).append(EMPTY_CELL);
+        sb.append(BORDER).append(String.format("%16d", multiTestSet.getResultTime(2)));
+        sb.append(BORDER).append(String.format("%16d", multiTestSet.getResultTime(3)));
+        sb.append(BORDER).append(EMPTY_CELL);
+        sb.append(BORDER).append(EMPTY_CELL);
         sb.append(BORDER);
         return sb.toString();
+    }
+
+    private String getCollectionNameWithIndent(MultiTestSet multiTestSet) {
+        String name = multiTestSet.getCollectionName();
+        for (int i = name.length(); i < COLUMN_WIDTH; i++) {
+            name += " ";
+        }
+        return name;
     }
 
     public void addEmptyString() {
