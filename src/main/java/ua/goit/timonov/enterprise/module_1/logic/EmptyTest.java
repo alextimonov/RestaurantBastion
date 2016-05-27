@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
 /**
  * Class with "empty test" as there are no operations get(), iterator.add(), iterator.remove for Sets

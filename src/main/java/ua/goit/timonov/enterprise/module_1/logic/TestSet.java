@@ -1,26 +1,25 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
- * Abstract class with methods for tests with lists
+ * Abstract class with methods for tests with sets
  */
-public abstract class TestList<T> implements Test {
+abstract class TestSet<T> implements Test {
 
-    /* tested list */
-    protected List<T> collection;
+    /* tested Set */
+    protected Set<T> collection;
     /* number of elements */
     protected int nElements;
     /* generator of pseudorandom numbers */
-    protected Random rand;
+    protected Random rand = new Random();
     /* measured time for test execution */
     private long averageTime;
 
-    public TestList(List<T> collection, int nElements) {
+    public TestSet(Set<T> collection, int nElements) {
         this.collection = collection;
         this.nElements = nElements;
-        rand = new Random();
     }
 
     /**
@@ -46,10 +45,9 @@ public abstract class TestList<T> implements Test {
      * @return          elapsed time for current repetition
      */
     public long fixTimeOfOperation() {
-        int index = rand.nextInt(nElements);
         int value = rand.nextInt(Integer.MAX_VALUE);
         long startTime = System.nanoTime();
-        makeOperation(index, value);
+        makeOperation(value);
         long finishTime = System.nanoTime();
         return finishTime - startTime;
     }
@@ -59,7 +57,14 @@ public abstract class TestList<T> implements Test {
      * @param index     index of element to add, remove etc.
      * @param value     value of added element, element to find etc.
      */
-    public void makeOperation(int index, int value) {
+    public void makeOperation(int value, int index) {
+        makeOperation(value);
     }
 
+    /**
+     * makes once only one type of operation
+     * @param value     value of added element, element to find etc.
+     */
+    protected void makeOperation(int value) {
+    }
 }

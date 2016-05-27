@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public abstract class MultiTest<T> {
     /**
      * adds different types of test to schedule
      */
-    protected abstract void makeScheduleOfTests();
+    public abstract void makeScheduleOfTests();
 
     /**
      * returns time result of required test

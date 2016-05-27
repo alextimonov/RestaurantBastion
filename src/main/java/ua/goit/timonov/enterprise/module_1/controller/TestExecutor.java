@@ -1,5 +1,12 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.controller;
 
+import ua.goit.timonov.enterprise.module_1.logic.MultiTest;
+import ua.goit.timonov.enterprise.module_1.logic.MultiTestList;
+import ua.goit.timonov.enterprise.module_1.logic.MultiTestSet;
+import ua.goit.timonov.enterprise.module_1.view.Printer;
+import ua.goit.timonov.enterprise.module_1.view.TableToStrings;
+
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -13,7 +20,7 @@ public class TestExecutor <T> {
     private Set<T> hashSet = new HashSet<>();
     private Set<T> treeSet = new TreeSet<>();
 
-    /* list of nultitests for tested collections */
+    /* list of multi tests for tested collections */
     private List<MultiTest> allTests;
 
     /* converter of results to list of Strings */
@@ -53,5 +60,20 @@ public class TestExecutor <T> {
      */
     public void printTableToFile() {
         Printer.printToFile(tableToStrings.getTableInStrings());
+    }
+
+    public void printToFrameTable(JTable table) {
+        String[] columnNames = {"Type", "populate", "add", "get", "remove", "contains", "iterator.add", "iterator.remove"};
+        for (int j = 0; j < table.getColumnCount(); j++) {
+            table.setValueAt(columnNames[j], 0, j);
+        }
+        int row = 0;
+        for (MultiTest multiTest : allTests) {
+            table.setValueAt(multiTest.getCollectionName(), row + 1, 0);
+            for (int j = 0; j < multiTest.getNTests(); j++) {
+                table.setValueAt(multiTest.getResultTime(j), row + 1, j + 1);
+            }
+            row++;
+        }
     }
 }

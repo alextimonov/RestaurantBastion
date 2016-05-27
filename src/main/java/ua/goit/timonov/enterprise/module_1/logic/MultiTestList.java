@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class MultiTestList<T> extends MultiTest {
 
     // adds different types of test to schedule
     @Override
-    protected void makeScheduleOfTests() {
+    public void makeScheduleOfTests() {
         tests.add(new TestListPopulate(collection, nElements));
         tests.add(new TestListAdd(collection, nElements));
         tests.add(new TestListGet(collection, nElements));

@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.view;
 
 import java.io.*;
 import java.util.List;

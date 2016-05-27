@@ -1,4 +1,6 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.view;
+
+import ua.goit.timonov.enterprise.module_1.logic.MultiTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,15 +80,19 @@ public class TableToStrings {
     // prepares string with headers
     private String printColumnHeaders() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(BORDER).append("      Type      ");
-        sb.append(BORDER).append("    populate    ");
-        sb.append(BORDER).append("       add      ");
-        sb.append(BORDER).append("       get      ");
-        sb.append(BORDER).append("      remove    ");
-        sb.append(BORDER).append("    contains    ");
-        sb.append(BORDER).append(" iterator.add   ");
-        sb.append(BORDER).append("iterator.remove ");
+        String[] columnNames = {"Type", "populate", "add", "get", "remove", "contains", "iterator.add", "iterator.remove"};
+        for (String columnName : columnNames) {
+            sb.append(BORDER).append(SPACE).append(columnName).append(getSpaces(columnName, COLUMN_WIDTH));
+        }
         sb.append(BORDER);
+        return sb.toString();
+    }
+
+    private String getSpaces(String columnName, int columnWidth) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < columnWidth - columnName.length() - 1; i++) {
+            sb.append(SPACE);
+        }
         return sb.toString();
     }
 

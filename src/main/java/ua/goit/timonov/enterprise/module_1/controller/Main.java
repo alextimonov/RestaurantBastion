@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.controller;
 
 /**
  * App for measure time of different operations with collections

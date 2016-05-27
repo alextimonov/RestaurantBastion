@@ -1,11 +1,11 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
 /**
  * Interface with methods for each test
  */
 public interface Test {
     /* number of test repetitions */
-    int REPETITIONS = 100;
+    int REPETITIONS = 10;
     /**
      * @return      measured time for this test
      */

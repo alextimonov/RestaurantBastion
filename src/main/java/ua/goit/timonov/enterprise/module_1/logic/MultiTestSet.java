@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.module_1;
+package ua.goit.timonov.enterprise.module_1.logic;
 
 import java.util.Set;
 
@@ -15,7 +15,7 @@ public class MultiTestSet<T> extends MultiTest {
     }
 
     // adds different types of test to schedule
-    protected void makeScheduleOfTests() {
+    public void makeScheduleOfTests() {
         tests.add(new TestSetPopulate(collection, nElements));
         tests.add(new TestSetAdd(collection, nElements));
         tests.add(new EmptyTest());
