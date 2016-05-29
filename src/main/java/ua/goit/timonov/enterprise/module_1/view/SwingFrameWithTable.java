@@ -3,9 +3,13 @@ package ua.goit.timonov.enterprise.module_1.view;
 import ua.goit.timonov.enterprise.module_1.controller.TestExecutor;
 
 import javax.swing.*;
+import javax.swing.event.TableColumnModelListener;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 /**
  * Created by Alex on 27.05.2016.
@@ -25,10 +29,12 @@ public class SwingFrameWithTable extends JFrame {
         for (int j = 0; j < table.getColumnCount(); j++) {
             table.setValueAt(columnNames[j], 0, j);
         }
+//        TableColumn tableColumn = new TableColumn();
+        TableColumn column = table.getColumnModel().getColumn(COLUMNS - 1);
+        column.setPreferredWidth(90);
 
         add(table, BorderLayout.NORTH);
         JPanel buttonPanel = new JPanel();
-
         makeButton(buttonPanel, SET_10K);
         makeButton(buttonPanel, SET_100K);
         makeButton(buttonPanel, SET_1000K);
