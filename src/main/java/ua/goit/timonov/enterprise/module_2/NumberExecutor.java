@@ -29,7 +29,7 @@ public class NumberExecutor implements Executor<Number> {
      * @param task      given task
      */
     @Override
-    public void addTask(Task task) {
+    public void addTask(Task<? extends Number> task) {
         if (executeWasInvoked) {
             throw new ExecuteWasInvokedException(task.toString() + " can't be added!");
         }
@@ -45,7 +45,7 @@ public class NumberExecutor implements Executor<Number> {
      * @param validator         given validator
      */
     @Override
-    public void addTask(Task task, Validator validator) {
+    public void addTask(Task<? extends Number> task, Validator<? super Number> validator) {
         if (executeWasInvoked) {
             throw new ExecuteWasInvokedException(task.toString() + " can't be added!");
         }
@@ -66,20 +66,20 @@ public class NumberExecutor implements Executor<Number> {
     }
 
     // executes task and save its result to appropriate list with results
-    private void executeTask(Task task, Validator validator) {
+    private void executeTask(Task<? extends Number> task, Validator<Number> validator) {
         try {
             task.execute();
-            Number result = (Number) task.getResult();
+            Number result = task.getResult();
             addResultToApropriateList(validator, result);
         }
         catch (TaskOverflowDataTypeException e) {
-            Number result = (Number) task.getResult();
+            Number result = task.getResult();
             invalidResults.add(result);
         }
     }
 
     // adds result to appropriate lits with results
-    private void addResultToApropriateList(Validator validator, Number result) {
+    private void addResultToApropriateList(Validator<Number>  validator, Number result) {
         if (validator.isValid(result)) {
             validResults.add(result);
         }
@@ -93,7 +93,7 @@ public class NumberExecutor implements Executor<Number> {
      * @return      list of valid results
      */
     @Override
-    public List getValidResults() {
+    public List<Number> getValidResults() {
         if (executeWasInvoked == false)
             throw new ExecuteWasNotInvokedException("Method execute() hasn't been invoked!");
         return validResults;
@@ -104,7 +104,7 @@ public class NumberExecutor implements Executor<Number> {
      * @return      list of invalid results
      */
     @Override
-    public List getInvalidResults() {
+    public List<Number> getInvalidResults() {
         if (executeWasInvoked == false)
             throw new ExecuteWasNotInvokedException("Method execute() hasn't been invoked!");
         return invalidResults;

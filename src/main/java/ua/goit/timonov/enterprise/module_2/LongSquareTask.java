@@ -5,8 +5,8 @@ import java.util.Random;
 /**
  * Task with long integer values, multiplication by multiplier
  */
-public class LongTask implements Task<Long> {
-    public static final int MULTIPLIER = 2;
+public class LongSquareTask implements Task<Long> {
+    public static final int POWER = 2;
 
     /* value that will be executed */
     private Long value;
@@ -17,11 +17,11 @@ public class LongTask implements Task<Long> {
     /* Generator of random numbers */
     private Random rand = new Random();
 
-    public LongTask() {
+    public LongSquareTask() {
         value = rand.nextLong();
     }
 
-    public LongTask(Long value) {
+    public LongSquareTask(Long value) {
         this.value = value;
     }
 
@@ -31,19 +31,17 @@ public class LongTask implements Task<Long> {
     @Override
     public void execute() {
         checkLongArgument();
-        result = value * MULTIPLIER;
-
+        result = 1L;
+        for (int i = 0; i < POWER; i++) {
+            result *= value;
+        }
     }
 
     // checks if multiplication is can be made without type overflow
     private void checkLongArgument() {
-        if (value > Long.MAX_VALUE / MULTIPLIER) {
+        if (Math.abs(value) > Math.sqrt(Long.MAX_VALUE)) {
             result = Long.MAX_VALUE;
             throw new TaskOverflowDataTypeException("Long type will be overflow through Long.MAX_VALUE");
-        }
-        if (value < Long.MIN_VALUE / MULTIPLIER) {
-            result = Long.MIN_VALUE;
-            throw new TaskOverflowDataTypeException("Long type will be overflow through Long.MIN_VALUE");
         }
     }
 

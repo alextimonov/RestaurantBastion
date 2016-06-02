@@ -5,13 +5,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Testing class for IntTask
+ * Testing class for IntSquareTask
  */
 public class IntTaskTest {
 
     @Test
     public void testExecuteNormal_1() {
-        IntTask task = new IntTask(100);
+        IntSquareTask task = new IntSquareTask(100);
         task.execute();
         int actual = task.getResult();
         assertEquals(200, actual);
@@ -19,7 +19,7 @@ public class IntTaskTest {
 
     @Test
     public void testExecuteNormal_2() {
-        IntTask task = new IntTask(0);
+        IntSquareTask task = new IntSquareTask(0);
         task.execute();
         int actual = task.getResult();
         assertEquals(0, actual);
@@ -27,7 +27,7 @@ public class IntTaskTest {
 
     @Test
     public void testExecuteNormal_3() {
-        IntTask task = new IntTask(-200);
+        IntSquareTask task = new IntSquareTask(-200);
         task.execute();
         int actual = task.getResult();
         assertEquals(-400, actual);
@@ -35,19 +35,19 @@ public class IntTaskTest {
 
     @Test (expected = TaskOverflowDataTypeException.class)
     public void testExecuteCatchForException_1() {
-        IntTask task = new IntTask(Integer.MAX_VALUE - 1);
+        IntSquareTask task = new IntSquareTask(Integer.MAX_VALUE - 1);
         task.execute();
     }
 
     @Test (expected = TaskOverflowDataTypeException.class)
     public void testExecuteCatchForException_2() {
-        IntTask task = new IntTask(Integer.MIN_VALUE + 1);
+        IntSquareTask task = new IntSquareTask(Integer.MIN_VALUE + 1);
         task.execute();
     }
 
     @Test
     public void testGetResultNormal_1() {
-        IntTask task = new IntTask(100);
+        IntSquareTask task = new IntSquareTask(100);
         task.execute();
         int actual = task.getResult();
         assertEquals(200, actual);
@@ -55,7 +55,7 @@ public class IntTaskTest {
 
     @Test
     public void testGetResultNormal_2() {
-        IntTask task = new IntTask(0);
+        IntSquareTask task = new IntSquareTask(0);
         task.execute();
         int actual = task.getResult();
         assertEquals(0, actual);
@@ -63,7 +63,7 @@ public class IntTaskTest {
 
     @Test
     public void testGetResultNormal_3() {
-        IntTask task = new IntTask(-200);
+        IntSquareTask task = new IntSquareTask(-200);
         task.execute();
         int actual = task.getResult();
         assertEquals(-400, actual);

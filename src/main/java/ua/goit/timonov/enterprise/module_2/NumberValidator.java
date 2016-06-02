@@ -11,8 +11,11 @@ public class NumberValidator implements Validator<Number> {
      */
     @Override
     public boolean isValid(Number result) {
-        if (result instanceof Number)
+        if (result.doubleValue() > 0) {
             return true;
-        return false;
+        }
+        else {
+            return false;
+        }
     }
 }

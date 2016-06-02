@@ -22,7 +22,7 @@ public interface Executor<T> {
      * @param task              given task
      * @param validator         given validator
      */
-    void addTask(Task<? extends T> task, Validator<T> validator);
+    void addTask(Task<? extends T> task, Validator<? super T> validator);
 
     /**
      * runs all added tasks

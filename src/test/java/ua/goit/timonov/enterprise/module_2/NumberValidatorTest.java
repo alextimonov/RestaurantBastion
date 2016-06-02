@@ -18,13 +18,13 @@ public class NumberValidatorTest {
 
     @Test
     public void testIsValidNormal_2() {
-        boolean actual = validator.isValid(12.34);
-        assertEquals(true, actual);
+        boolean actual = validator.isValid(-12.34);
+        assertEquals(false, actual);
     }
 
     @Test
     public void testIsValidNormal_3() {
-        boolean actual = validator.isValid(-.3e-5);
+        boolean actual = validator.isValid(.3e-5);
         assertEquals(true, actual);
     }
 
@@ -38,5 +38,11 @@ public class NumberValidatorTest {
     public void testIsValidNormal_5() {
         boolean actual = validator.isValid(0L);
         assertEquals(true, actual);
+    }
+
+    @Test
+    public void testIsValidNormal_6() {
+        boolean actual = validator.isValid(-10);
+        assertEquals(false, actual);
     }
 }
