@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_2;
 import java.util.Random;
 
 /**
- * Created by Alex on 31.05.2016.
+ * Task with integer values, multiplication by multiplier
  */
 public class IntTask implements Task<Integer> {
     public static final int MULTIPLIER = 2;
@@ -23,6 +23,10 @@ public class IntTask implements Task<Integer> {
 
     public IntTask(Integer value) {
         this.value = value;
+    }
+
+    public Integer getValue() {
+        return value;
     }
 
     /**
@@ -52,6 +56,6 @@ public class IntTask implements Task<Integer> {
      */
     @Override
     public Integer getResult() {
-        return value;
+        return result;
     }
 }

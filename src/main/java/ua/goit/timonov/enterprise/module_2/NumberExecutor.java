@@ -19,6 +19,10 @@ public class NumberExecutor implements Executor<Number> {
     /* list of invalid results */
     private List<Number> invalidResults = new ArrayList<>();
 
+    public List<TaskWithValidator> getTaskSchedule() {
+        return taskSchedule;
+    }
+
     /**
      * adds task to schedule. The result of task is available with the method getValueResults()
      * throws an exception if method execute() has been already invoked
