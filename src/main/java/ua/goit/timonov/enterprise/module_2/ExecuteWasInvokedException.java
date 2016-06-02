@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.module_2;
 
 /**
- * Created by Alex on 30.05.2016.
+ * Indicates that method execute() has been invoked
  */
 public class ExecuteWasInvokedException extends RuntimeException {
 

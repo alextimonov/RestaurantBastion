@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_2;
 import java.util.List;
 
 /**
- * Created by Alex on 30.05.2016.
+ * Executor for objects implementing interfaces Task and Validator
  */
 public interface Executor<T> {
 
@@ -12,7 +12,7 @@ public interface Executor<T> {
      * throws an exception if method execute() has been already invoked
      * @param task      given task
      */
-    void addTask(Task<T> task);
+    void addTask(Task<? extends T> task);
 
     /**
      * adds task to execution with result validator.
@@ -22,12 +22,11 @@ public interface Executor<T> {
      * @param task              given task
      * @param validator         given validator
      */
-    void addTask(Task<T> task, Validator<T> validator);
+    void addTask(Task<? extends T> task, Validator<T> validator);
 
     /**
      * runs all added tasks
      */
-    // Выполнить все добавленые таски
     void execute();
 
     /**

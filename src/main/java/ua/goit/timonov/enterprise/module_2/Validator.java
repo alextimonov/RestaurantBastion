@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.module_2;
 
 /**
- * Created by Alex on 30.05.2016.
+ * Validator for received value
  */
 public interface Validator <T> {
 

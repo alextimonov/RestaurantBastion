@@ -1,12 +1,12 @@
 package ua.goit.timonov.enterprise.module_2;
 
 /**
- * Created by Alex on 30.05.2016.
+ * Some task that can be executed
  */
 public interface Task <T> {
 
     /**
-     * runs task for execution
+     * executes the task
      */
     void execute();
 
