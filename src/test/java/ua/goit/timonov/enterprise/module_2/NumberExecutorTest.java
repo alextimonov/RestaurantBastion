@@ -17,9 +17,9 @@ public class NumberExecutorTest {
     public void testAddTaskNormal() {
         NumberExecutor executor = new NumberExecutor();
         List<TaskWithValidator> schedule = executor.getTaskSchedule();
-        List<Task> testTaskList = new ArrayList<>();
+        List<Task<Integer>> testTaskList = new ArrayList<>();
 
-        Task task = new IntSquareTask(10);
+        Task<Integer> task = new IntSquareTask(10);
         executor.addTask(task);
         testTaskList.add(task);
 
@@ -30,7 +30,7 @@ public class NumberExecutorTest {
         int i = 0;
         for (TaskWithValidator taskWithValidator : schedule) {
             Task actual = taskWithValidator.getTask();
-            Task expected = testTaskList.get(i++);
+            Task<Integer> expected = testTaskList.get(i++);
             assertEquals(actual, expected);
         }
     }
@@ -43,7 +43,7 @@ public class NumberExecutorTest {
     }
 
     @Test
-    public void testExecuteLong() throws Exception {
+    public void testExecuteLong() {
         List<Task<Long>> longTasks = new ArrayList<>();
         longTasks.add(new LongSquareTask(5L));
         longTasks.add(new LongSquareTask(12L));
@@ -51,24 +51,21 @@ public class NumberExecutorTest {
 
         Executor<Number> numberExecutor = new NumberExecutor();
 
-        for (Task<Long> longTask : longTasks) {
-            numberExecutor.addTask(longTask);
-        }
+        longTasks.forEach(numberExecutor::addTask);
         numberExecutor.addTask(new LongSquareTask(7L), new NumberValidator());
 
         numberExecutor.execute();
 
         List<Long> testValidResults = Arrays.asList(25L, 144L, 100L, 49L);
         int index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
+        for (Number actual : numberExecutor.getValidResults()) {
             Number expected = testValidResults.get(index++);
-            Number actual = number;
             assertEquals(expected, actual);
         }
     }
 
     @Test
-    public void testExecuteLongAndInvalidResults() throws Exception {
+    public void testExecuteLongWithInvalidResults() {
         List<Task<Long>> longTasks = new ArrayList<>();
         longTasks.add(new LongSquareTask(5L));
         longTasks.add(new LongSquareTask(12L));
@@ -78,26 +75,22 @@ public class NumberExecutorTest {
 
         Executor<Number> numberExecutor = new NumberExecutor();
 
-        for (Task<Long> longTask : longTasks) {
-            numberExecutor.addTask(longTask);
-        }
+        longTasks.forEach(numberExecutor::addTask);
         numberExecutor.addTask(new LongSquareTask(7L), new NumberValidator());
 
         numberExecutor.execute();
 
         List<Long> testValidResults = Arrays.asList(25L, 144L, 100L, 49L);
         int index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
+        for (Number actual : numberExecutor.getValidResults()) {
             Number expected = testValidResults.get(index++);
-            Number actual = number;
             assertEquals(expected, actual);
         }
 
         List<Long> testInvalidResults = Arrays.asList(Long.MAX_VALUE, Long.MAX_VALUE);
         index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
-            Number expected = testValidResults.get(index++);
-            Number actual = number;
+        for (Number actual : numberExecutor.getInvalidResults()) {
+            Number expected = testInvalidResults.get(index++);
             assertEquals(expected, actual);
         }
     }
@@ -111,48 +104,66 @@ public class NumberExecutorTest {
 
         Executor<Number> numberExecutor = new NumberExecutor();
 
-        for (Task<Integer> intTask : intTasks) {
-            numberExecutor.addTask(intTask);
-        }
+        intTasks.forEach(numberExecutor::addTask);
         numberExecutor.addTask(new IntSquareTask(7), new NumberValidator());
 
         numberExecutor.execute();
 
         List<Integer> testValidResults = Arrays.asList(25, 144, 100, 49);
         int index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
+        for (Number actual : numberExecutor.getValidResults()) {
             Number expected = testValidResults.get(index++);
-            Number actual = number;
             assertEquals(expected, actual);
         }
 
         List<Integer> testInvalidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
         index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
-            Number expected = testValidResults.get(index++);
-            Number actual = number;
+        for (Number actual : numberExecutor.getInvalidResults()) {
+            Number expected = testInvalidResults.get(index++);
             assertEquals(expected, actual);
         }
     }
 
     @Test
-    public void testExecuteIntAndInvalidResults() throws Exception {
+    public void testExecuteIntWithInvalidResults() {
         Executor<Number> numberExecutor = makeIntTestSchedule();
         numberExecutor.execute();
 
         List<Integer> testValidResults = Arrays.asList(25, 144, 100, 49);
         int index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
+        for (Number actual : numberExecutor.getValidResults()) {
             Number expected = testValidResults.get(index++);
-            Number actual = number;
             assertEquals(expected, actual);
         }
 
         List<Integer> testInvalidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
         index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
+        for (Number actual : numberExecutor.getInvalidResults()) {
+            Number expected = testInvalidResults.get(index++);
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testGetValidResults() {
+        Executor<Number> numberExecutor = makeIntTestSchedule();
+        numberExecutor.execute();
+        List<Integer> testValidResults = Arrays.asList(25, 144, 100, 49);
+        int index = 0;
+        for (Number actual : numberExecutor.getValidResults()) {
             Number expected = testValidResults.get(index++);
-            Number actual = number;
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testGetInvalidResults() {
+        Executor<Number> numberExecutor = makeIntTestSchedule();
+        numberExecutor.execute();
+        List<Integer> testInValidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        int index = 0;
+        for (Number actual : numberExecutor.getInvalidResults()) {
+            Number expected = testInValidResults.get(index++);
             assertEquals(expected, actual);
         }
     }
@@ -171,31 +182,5 @@ public class NumberExecutorTest {
         }
         numberExecutor.addTask(new IntSquareTask(7), new NumberValidator());
         return numberExecutor;
-    }
-
-    @Test
-    public void testGetValidResults() {
-        Executor<Number> numberExecutor = makeIntTestSchedule();
-        numberExecutor.execute();
-        List<Integer> testValidResults = Arrays.asList(25, 144, 100, 49);
-        int index = 0;
-        for (Number number : numberExecutor.getValidResults()) {
-            Number expected = testValidResults.get(index++);
-            Number actual = number;
-            assertEquals(expected, actual);
-        }
-    }
-
-    @Test
-    public void testGetInvalidResults() {
-        Executor<Number> numberExecutor = makeIntTestSchedule();
-        numberExecutor.execute();
-        List<Integer> testInValidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
-        int index = 0;
-        for (Number number : numberExecutor.getInvalidResults()) {
-            Number expected = testInValidResults.get(index++);
-            Number actual = number;
-            assertEquals(expected, actual);
-        }
     }
 }

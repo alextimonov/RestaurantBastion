@@ -11,10 +11,10 @@ public class IntTaskTest {
 
     @Test
     public void testExecuteNormal_1() {
-        IntSquareTask task = new IntSquareTask(100);
+        IntSquareTask task = new IntSquareTask(10);
         task.execute();
         int actual = task.getResult();
-        assertEquals(200, actual);
+        assertEquals(100, actual);
     }
 
     @Test
@@ -27,10 +27,10 @@ public class IntTaskTest {
 
     @Test
     public void testExecuteNormal_3() {
-        IntSquareTask task = new IntSquareTask(-200);
+        IntSquareTask task = new IntSquareTask(-20);
         task.execute();
         int actual = task.getResult();
-        assertEquals(-400, actual);
+        assertEquals(400, actual);
     }
 
     @Test (expected = TaskOverflowDataTypeException.class)
@@ -50,7 +50,7 @@ public class IntTaskTest {
         IntSquareTask task = new IntSquareTask(100);
         task.execute();
         int actual = task.getResult();
-        assertEquals(200, actual);
+        assertEquals(10_000, actual);
     }
 
     @Test
@@ -63,9 +63,9 @@ public class IntTaskTest {
 
     @Test
     public void testGetResultNormal_3() {
-        IntSquareTask task = new IntSquareTask(-200);
+        IntSquareTask task = new IntSquareTask(-20);
         task.execute();
         int actual = task.getResult();
-        assertEquals(-400, actual);
+        assertEquals(400, actual);
     }
 }

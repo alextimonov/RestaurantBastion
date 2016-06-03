@@ -14,10 +14,8 @@ public class IntSquareTask implements Task<Integer> {
     /* result of multiplication */
     private Integer result;
 
-    /* Generator of random numbers */
-    private Random rand = new Random();
-
     public IntSquareTask() {
+        Random rand = new Random();
         value = rand.nextInt();
     }
 

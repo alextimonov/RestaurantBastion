@@ -11,7 +11,7 @@ public class NumberValidator implements Validator<Number> {
      */
     @Override
     public boolean isValid(Number result) {
-        if (result.doubleValue() > 0) {
+        if (result.doubleValue() >= 0) {
             return true;
         }
         else {

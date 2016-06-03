@@ -11,10 +11,10 @@ public class LongTaskTest {
 
     @Test
     public void testExecuteNormal_1() {
-        LongSquareTask task = new LongSquareTask(100L);
+        LongSquareTask task = new LongSquareTask(10L);
         task.execute();
         long actual = task.getResult();
-        assertEquals(200, actual);
+        assertEquals(100, actual);
     }
 
     @Test
@@ -27,10 +27,10 @@ public class LongTaskTest {
 
     @Test
     public void testExecuteNormal_3() {
-        LongSquareTask task = new LongSquareTask(-200L);
+        LongSquareTask task = new LongSquareTask(-20L);
         task.execute();
         long actual = task.getResult();
-        assertEquals(-400, actual);
+        assertEquals(400, actual);
     }
 
     @Test (expected = TaskOverflowDataTypeException.class)
@@ -50,7 +50,7 @@ public class LongTaskTest {
         LongSquareTask task = new LongSquareTask(100L);
         task.execute();
         long actual = task.getResult();
-        assertEquals(200, actual);
+        assertEquals(10_000, actual);
     }
 
     @Test
@@ -63,9 +63,9 @@ public class LongTaskTest {
 
     @Test
     public void testGetResultNormal_3() {
-        LongSquareTask task = new LongSquareTask(-200L);
+        LongSquareTask task = new LongSquareTask(-20L);
         task.execute();
         long actual = task.getResult();
-        assertEquals(-400, actual);
+        assertEquals(400, actual);
     }
 }

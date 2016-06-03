@@ -94,7 +94,7 @@ public class NumberExecutor implements Executor<Number> {
      */
     @Override
     public List<Number> getValidResults() {
-        if (executeWasInvoked == false)
+        if (!executeWasInvoked)
             throw new ExecuteWasNotInvokedException("Method execute() hasn't been invoked!");
         return validResults;
     }
@@ -105,7 +105,7 @@ public class NumberExecutor implements Executor<Number> {
      */
     @Override
     public List<Number> getInvalidResults() {
-        if (executeWasInvoked == false)
+        if (!executeWasInvoked)
             throw new ExecuteWasNotInvokedException("Method execute() hasn't been invoked!");
         return invalidResults;
     }

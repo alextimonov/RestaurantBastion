@@ -14,10 +14,8 @@ public class LongSquareTask implements Task<Long> {
     /* result of multiplication */
     private Long result;
 
-    /* Generator of random numbers */
-    private Random rand = new Random();
-
     public LongSquareTask() {
+        Random rand = new Random();
         value = rand.nextLong();
     }
 
