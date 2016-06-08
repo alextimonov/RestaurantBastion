@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.lecture_2;
+package ua.goit.timonov.enterprise.lectures.lecture_2;
 
 import org.junit.Test;
 

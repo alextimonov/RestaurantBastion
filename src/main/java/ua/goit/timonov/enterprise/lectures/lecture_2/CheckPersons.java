@@ -1,8 +1,6 @@
-package ua.goit.timonov.enterprise.lecture_2;
+package ua.goit.timonov.enterprise.lectures.lecture_2;
 
-//import org.apache.commons.lang3;
-
-import com.sun.deploy.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +86,6 @@ class PersonValidator implements Validator<Person> {
 
     @Override
     public boolean isValid(Person value) {
-        return value.name != "" && value.surname != "";
+        return !StringUtils.isBlank(value.name) && !StringUtils.isBlank(value.surname);
     }
 }
