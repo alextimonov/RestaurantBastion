@@ -5,7 +5,7 @@ package ua.goit.timonov.enterprise.module_2;
  */
 public class NumberValidator implements Validator<Number> {
     /**
-     * dummy validator, validates given number value
+     * validates given number value
      * @param result        received result
      * @return              true if result is valid
      */

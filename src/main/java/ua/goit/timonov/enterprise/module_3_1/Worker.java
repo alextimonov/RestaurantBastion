@@ -1,11 +1,16 @@
 package ua.goit.timonov.enterprise.module_3_1;
 
 /**
- * Created by Alex on 08.06.2016.
+ * Class simulating some work in the thread
  */
 public class Worker implements Runnable {
+    /* delay in milliseconds simulating doing something */
     public static final int DELAY_IN_MILLIS = 200;
+
+    /* number of required threads for this thread */
     private int requiredPermits;
+
+    /* solving semaphore */
     private Semaphore semaphore;
 
     public Worker(int requiredPermits, Semaphore semaphore) {
@@ -13,6 +18,9 @@ public class Worker implements Runnable {
         this.semaphore = semaphore;
     }
 
+    /**
+     * starts when thread is invoked
+     */
     @Override
     public void run() {
         startWorking();
@@ -21,11 +29,13 @@ public class Worker implements Runnable {
         endWorking();
     }
 
+    // starts thread work
     private void startWorking() {
         System.out.println("Thread " + Thread.currentThread().getName() +
                 " starts working, it requires " + requiredPermits + " permits");
     }
 
+    // receives required number of permits
     private void receiveSemaphorePermits() {
         System.out.println("Thread " + Thread.currentThread().getName() +
                 " is trying to get permits");
@@ -39,6 +49,7 @@ public class Worker implements Runnable {
                 " has get permits");
     }
 
+    // simulates thread work delaying it
     private void doSomething() {
         try {
             // do something
@@ -50,6 +61,7 @@ public class Worker implements Runnable {
 
     }
 
+    // ends thread work and releases its permits to semaphore
     private void endWorking() {
         if (requiredPermits > 1) {
             semaphore.release(requiredPermits);
