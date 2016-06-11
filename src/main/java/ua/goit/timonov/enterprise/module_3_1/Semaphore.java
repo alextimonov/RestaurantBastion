@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.module_3_1;
 
 /**
- * Created by Alex on 05.06.2016.
+ * Interface for simple semaphore
  */
 public interface Semaphore {
     /**

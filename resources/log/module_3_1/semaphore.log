@@ -1,0 +1,242 @@
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SemaphoreMain initializeSemaphore
+INFO: Semaphore is initialized. There are 10 available permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-1 starts working, it requires 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-1 is trying to get 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-1 received 5 permits, 5 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-8 starts working, it requires 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-1 has got 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-5 starts working, it requires 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-5 is trying to get 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-5 received 3 permits, 2 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-5 has got 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-18 starts working, it requires 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-4 starts working, it requires 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-18 is trying to get 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-3 starts working, it requires 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-9 starts working, it requires 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-10 starts working, it requires 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-17 starts working, it requires 1 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-6 starts working, it requires 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-8 is trying to get 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-2 starts working, it requires 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-6 is trying to get 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-2 is trying to get 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-7 starts working, it requires 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-7 is trying to get 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-20 starts working, it requires 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-20 is trying to get 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-17 is trying to get 1 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-10 is trying to get 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-13 starts working, it requires 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-9 is trying to get 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-13 is trying to get 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-19 starts working, it requires 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-19 is trying to get 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-15 starts working, it requires 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-11 starts working, it requires 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-18 received 2 permits, 0 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-14 starts working, it requires 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-11 is trying to get 3 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-3 is trying to get 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-16 starts working, it requires 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-4 is trying to get 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker startWorking
+INFO: 					 Thread Thread-12 starts working, it requires 1 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-18 has got 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-14 is trying to get 4 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-15 is trying to get 2 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-12 is trying to get 1 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-16 is trying to get 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-1 released 5 permits, 5 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-1 stops working
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-16 received 5 permits, 0 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-16 has got 5 permits
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-5 released 3 permits, 3 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-5 stops working
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-11 received 3 permits, 0 permits are available now
+июн 11, 2016 9:36:32 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-11 has got 3 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-18 released 2 permits, 2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-18 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-12 received 1 permit,  1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-12 has got one permit
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-17 received 1 permit,  0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-17 has got one permit
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-16 released 5 permits, 5 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-16 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-19 received 3 permits, 2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-19 has got 3 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-13 received 2 permits, 0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-13 has got 2 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-11 released 3 permits, 3 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-11 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-10 received 2 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-10 has got 2 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-12 released 1 permit,  2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-12 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-15 received 2 permits, 0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-15 has got 2 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-17 released 1 permit,  1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-17 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-19 released 3 permits, 4 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-19 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-9 received 4 permits, 0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-9 has got 4 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-13 released 2 permits, 2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-13 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-7 received 2 permits, 0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-7 has got 2 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-10 released 2 permits, 2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-10 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-15 released 2 permits, 4 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-15 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-6 received 3 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-6 has got 3 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-9 released 4 permits, 5 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-9 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-3 received 5 permits, 0 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-3 has got 5 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-7 released 2 permits, 2 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-7 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-6 released 3 permits, 5 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-14 received 4 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-14 has got 4 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-6 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-3 released 5 permits, 6 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-3 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-20 received 5 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-20 has got 5 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-14 released 4 permits, 5 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-14 stops working
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-4 received 4 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-4 has got 4 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-20 released 5 permits, 6 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-2 received 5 permits, 1 permits are available now
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-2 has got 5 permits
+июн 11, 2016 9:36:33 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-20 stops working
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-4 released 4 permits, 5 permits are available now
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-4 stops working
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore acquire
+INFO: Thread Thread-8 received 3 permits, 2 permits are available now
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.Worker receiveSemaphorePermits
+INFO: 					 Thread Thread-8 has got 3 permits
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-2 released 5 permits, 7 permits are available now
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-2 stops working
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.SimpleSemaphore release
+INFO: Thread Thread-8 released 3 permits, 10 permits are available now
+июн 11, 2016 9:36:34 PM ua.goit.timonov.enterprise.module_3_1.Worker endWorking
+INFO: 					 Thread Thread-8 stops working

@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise.module_3_1;
 
+import java.util.logging.Logger;
+
 /**
  * Implementation of interface Semaphore
  */
@@ -13,6 +15,9 @@ public class SimpleSemaphore implements Semaphore {
 
     /* locker for thread synchronizing  */
     private final Object lock = new Object();
+
+    // static logger
+    private static Logger log = Logger.getLogger(SemaphoreMain.class.getName());
 
     public SimpleSemaphore(int permitsTotal) {
         this.permitsTotal = permitsTotal;
@@ -33,7 +38,7 @@ public class SimpleSemaphore implements Semaphore {
                 }
             }
             issuedPermits++;
-            System.out.println("\t\t\t\t\t\t\t\t\t\tThread " + Thread.currentThread().getName() + " received 1 permit,  " +
+            log.info("Thread " + Thread.currentThread().getName() + " received 1 permit,  " +
                     getAvailablePermits() + " permits are available now");
         }
     }
@@ -54,7 +59,7 @@ public class SimpleSemaphore implements Semaphore {
                 }
             }
             issuedPermits += permits;
-            System.out.println("\t\t\t\t\t\t\t\t\t\tThread " + Thread.currentThread().getName() + " received " + permits + " permits, " +
+            log.info("Thread " + Thread.currentThread().getName() + " received " + permits + " permits, " +
                     getAvailablePermits() + " permits are available now");
         }
     }
@@ -66,7 +71,7 @@ public class SimpleSemaphore implements Semaphore {
     public void release() {
         synchronized (lock) {
             issuedPermits--;
-            System.out.println("\t\t\t\t\t\t\t\t\t\tThread " + Thread.currentThread().getName() + " released 1 permit,  " +
+            log.info("Thread " + Thread.currentThread().getName() + " released 1 permit,  " +
                     getAvailablePermits() + " permits are available now");
             lock.notifyAll();
         }
@@ -80,7 +85,7 @@ public class SimpleSemaphore implements Semaphore {
     public void release(int permits) {
         synchronized (lock) {
             issuedPermits -= permits;
-            System.out.println("\t\t\t\t\t\t\t\t\t\tThread " + Thread.currentThread().getName() + " released " + permits + " permits, " +
+            log.info("Thread " + Thread.currentThread().getName() + " released " + permits + " permits, " +
                     getAvailablePermits() + " permits are available now");
             lock.notifyAll();
         }

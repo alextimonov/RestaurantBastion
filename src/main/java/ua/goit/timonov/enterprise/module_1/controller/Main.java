@@ -2,7 +2,7 @@ package ua.goit.timonov.enterprise.module_1.controller;
 
 /**
  * App for measure time of different operations with collections
- * (ArrayList, LinkedList, HashSet, TreeSet). SemaphoreBootstrap class executes tests for different number of elements
+ * (ArrayList, LinkedList, HashSet, TreeSet). SemaphoreMain class executes tests for different number of elements
  */
 public class Main {
 

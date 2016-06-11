@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise.module_3_1;
 
+import java.util.logging.Logger;
+
 /**
  * Class simulating some work in the thread
  */
@@ -12,6 +14,9 @@ public class Worker implements Runnable {
 
     /* solving semaphore */
     private Semaphore semaphore;
+
+    /* static logger */
+    private static Logger log = Logger.getLogger(SemaphoreMain.class.getName());
 
     public Worker(int requiredPermits, Semaphore semaphore) {
         this.requiredPermits = requiredPermits;
@@ -31,22 +36,24 @@ public class Worker implements Runnable {
 
     // starts thread work
     private void startWorking() {
-        System.out.println("Thread " + Thread.currentThread().getName() +
+        log.info("\t\t\t\t\t Thread " + Thread.currentThread().getName() +
                 " starts working, it requires " + requiredPermits + " permits");
     }
 
     // receives required number of permits
-    private void receiveSemaphorePermits() {
-        System.out.println("Thread " + Thread.currentThread().getName() +
-                " is trying to get permits");
+    public void receiveSemaphorePermits() {
+        log.info("\t\t\t\t\t Thread " + Thread.currentThread().getName() +
+                " is trying to get " + requiredPermits + " permits");
         if (requiredPermits > 1) {
             semaphore.acquire(requiredPermits);
+            log.info("\t\t\t\t\t Thread " + Thread.currentThread().getName() +
+                    " has got " + requiredPermits + " permits");
         }
         else {
             semaphore.acquire();
+            log.info("\t\t\t\t\t Thread " + Thread.currentThread().getName() +
+                    " has got one permit");
         }
-        System.out.println("Thread " + Thread.currentThread().getName() +
-                " has get permits");
     }
 
     // simulates thread work delaying it
@@ -57,18 +64,18 @@ public class Worker implements Runnable {
         }
         catch (InterruptedException e) {
             e.printStackTrace();
+            log.severe(e.getMessage());
         }
-
     }
 
     // ends thread work and releases its permits to semaphore
-    private void endWorking() {
+    public void endWorking() {
         if (requiredPermits > 1) {
             semaphore.release(requiredPermits);
         }
         else {
             semaphore.release();
         }
-        System.out.println("Thread " + Thread.currentThread().getName() + " stops working");
+        log.info("\t\t\t\t\t Thread " + Thread.currentThread().getName() + " stops working");
     }
 }
