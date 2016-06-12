@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class TestListPopulate extends TestList {
 
-    public <T> TestListPopulate(List<T> collection, int nElements) {
+    public TestListPopulate(List collection, int nElements) {
         super(collection, nElements);
     }
 

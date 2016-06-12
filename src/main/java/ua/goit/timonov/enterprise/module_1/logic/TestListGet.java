@@ -6,7 +6,7 @@ import java.util.List;
  * Implementation of operation get(index) for list
  */
 public class TestListGet extends TestList {
-    public <T> TestListGet(List<T> collection, int nElements) {
+    public TestListGet(List collection, int nElements) {
         super(collection, nElements);
     }
 

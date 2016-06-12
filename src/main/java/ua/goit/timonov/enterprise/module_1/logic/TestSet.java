@@ -6,10 +6,10 @@ import java.util.Set;
 /**
  * Abstract class with methods for tests with sets
  */
-abstract class TestSet<T> implements Test {
+abstract class TestSet implements Test {
 
     /* tested Set */
-    protected Set<T> collection;
+    protected Set collection;
     /* number of elements */
     protected int nElements;
     /* generator of pseudorandom numbers */
@@ -17,7 +17,7 @@ abstract class TestSet<T> implements Test {
     /* measured time for test execution */
     private long averageTime;
 
-    public TestSet(Set<T> collection, int nElements) {
+    public TestSet(Set collection, int nElements) {
         this.collection = collection;
         this.nElements = nElements;
     }

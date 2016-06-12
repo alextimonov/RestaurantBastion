@@ -6,7 +6,7 @@ import java.util.List;
  * Implementation of operation contains(value) for list
  */
 public class TestListContains extends TestList {
-    public <T> TestListContains(List<T> collection, int nElements) {
+    public TestListContains(List collection, int nElements) {
         super(collection, nElements);
     }
 

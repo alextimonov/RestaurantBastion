@@ -5,8 +5,8 @@ import java.util.List;
 /**
  * Implementation of operation remove(index) for list
  */
-public class TestListRemove<T> extends TestList {
-    public <T> TestListRemove(List<T> collection, int nElements) {
+public class TestListRemove extends TestList {
+    public TestListRemove(List collection, int nElements) {
         super(collection, nElements);
     }
 

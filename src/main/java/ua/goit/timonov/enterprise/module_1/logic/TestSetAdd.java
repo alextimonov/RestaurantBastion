@@ -6,7 +6,7 @@ import java.util.Set;
  * Implementation of operation add(value) for Set
  */
 public class TestSetAdd extends TestSet {
-    public <T> TestSetAdd(Set collection, int nElements) {
+    public TestSetAdd(Set collection, int nElements) {
         super(collection, nElements);
     }
 

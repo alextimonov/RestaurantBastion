@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Printer {
 
-    public static final String PATHNAME = "resources\\txt\\module_1\\test_results.txt";
+    public static final String PATHNAME = "resources/txt/module_1/test_results.txt";
 
     /**
      * prints given list of Strings to console

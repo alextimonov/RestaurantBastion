@@ -6,15 +6,15 @@ import java.util.ListIterator;
 /**
  * Implementation of operation iterator.remove() for list
  */
-public class TestIteratorRemove<T> extends TestList {
+public class TestIteratorRemove extends TestList {
 
-    public <T> TestIteratorRemove(List<T> collection, int nElements) {
+    public TestIteratorRemove(List collection, int nElements) {
         super(collection, nElements);
     }
 
     @Override
     public long fixTimeOfOperation() {
-        ListIterator<T> iterator = collection.listIterator();
+        ListIterator iterator = collection.listIterator();
         int index = rand.nextInt(nElements);
 
         for (int i = 0; i < index; i++) {

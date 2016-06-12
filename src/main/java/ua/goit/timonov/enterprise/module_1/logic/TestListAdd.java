@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class TestListAdd extends TestList {
 
-    public <T> TestListAdd(List<T> collection, int nElements) {
+    public TestListAdd(List collection, int nElements) {
         super(collection, nElements);
     }
 

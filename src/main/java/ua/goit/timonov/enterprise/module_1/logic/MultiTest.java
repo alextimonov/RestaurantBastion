@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Abstract class for invoke tests for different operations with Collection
  */
-public abstract class MultiTest<T> {
+public abstract class MultiTest {
     /* number of elements in collection */
     protected int nElements;
     /* List with tests and their time results */

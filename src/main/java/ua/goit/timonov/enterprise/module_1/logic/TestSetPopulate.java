@@ -6,7 +6,7 @@ import java.util.Set;
  * Implementation of operation populate for Set
  */
 public class TestSetPopulate extends TestSet {
-    public <T> TestSetPopulate(Set collection, int nElements) {
+    public TestSetPopulate(Set collection, int nElements) {
         super(collection, nElements);
     }
 

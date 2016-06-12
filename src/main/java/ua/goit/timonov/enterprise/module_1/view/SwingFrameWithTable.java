@@ -3,13 +3,10 @@ package ua.goit.timonov.enterprise.module_1.view;
 import ua.goit.timonov.enterprise.module_1.controller.TestExecutor;
 
 import javax.swing.*;
-import javax.swing.event.TableColumnModelListener;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 
 /**
  * Created by Alex on 27.05.2016.

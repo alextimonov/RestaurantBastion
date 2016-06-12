@@ -6,18 +6,18 @@ import java.util.Random;
 /**
  * Abstract class with methods for tests with lists
  */
-public abstract class TestList<T> implements Test {
+public abstract class TestList implements Test {
 
     /* tested list */
-    protected List<T> collection;
+    protected List collection;
     /* number of elements */
     protected int nElements;
-    /* generator of pseudorandom numbers */
+    /* generator of pseudo random numbers */
     protected Random rand;
     /* measured time for test execution */
     private long averageTime;
 
-    public TestList(List<T> collection, int nElements) {
+    public TestList(List collection, int nElements) {
         this.collection = collection;
         this.nElements = nElements;
         rand = new Random();

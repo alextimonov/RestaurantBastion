@@ -6,17 +6,17 @@ import java.util.ListIterator;
 /**
  * Implementation of operation iterator.add(value) for list
  */
-public class TestIteratorAdd <T> extends TestList {
-    public <T> TestIteratorAdd(List<T> collection, int nElements) {
+public class TestIteratorAdd extends TestList {
+
+    public TestIteratorAdd(List collection, int nElements) {
         super(collection, nElements);
     }
 
     @Override
     public long fixTimeOfOperation() {
-        ListIterator<T> iterator = collection.listIterator();
+        ListIterator iterator = collection.listIterator();
         int index = rand.nextInt(nElements);
-        Integer valueInt = rand.nextInt(Integer.MAX_VALUE);
-        T value = (T) valueInt;
+        Integer value = rand.nextInt(Integer.MAX_VALUE);
 
         for (int i = 0; i < index; i++) {
             iterator.next();

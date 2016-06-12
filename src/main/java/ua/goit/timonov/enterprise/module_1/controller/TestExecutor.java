@@ -42,10 +42,10 @@ public class TestExecutor <T> {
     // creates list of tests for collections
     private void createListOfMultiTests(int nElements) {
         allTests = new ArrayList<>();
-        allTests.add(new MultiTestList(arrayList, nElements));
-        allTests.add(new MultiTestList(linkedList, nElements));
-        allTests.add(new MultiTestSet(hashSet, nElements));
-        allTests.add(new MultiTestSet(treeSet, nElements));
+        allTests.add(new MultiTestList<>(arrayList, nElements));
+        allTests.add(new MultiTestList<>(linkedList, nElements));
+        allTests.add(new MultiTestSet<>(hashSet, nElements));
+        allTests.add(new MultiTestSet<>(treeSet, nElements));
     }
 
     /**
