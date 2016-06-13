@@ -3,22 +3,22 @@ package ua.goit.timonov.enterprise.module_2;
 /**
  * Class for storage pair of task and its validator
  */
-public class TaskWithValidator {
+public class TaskWithValidator<T> {
     /* task to execute */
-    private Task task;
+    private Task<T> task;
     /* validator for task's result */
-    private Validator validator;
+    private Validator<T> validator;
 
-    public TaskWithValidator(Task task, Validator validator) {
+    public TaskWithValidator(Task<T> task, Validator<T> validator) {
         this.task = task;
         this.validator = validator;
     }
 
-    public Task getTask() {
+    public Task<T> getTask() {
         return task;
     }
 
-    public Validator getValidator() {
+    public Validator<T> getValidator() {
         return validator;
     }
 }

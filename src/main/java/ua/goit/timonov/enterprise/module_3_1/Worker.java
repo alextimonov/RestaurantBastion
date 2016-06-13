@@ -7,7 +7,7 @@ import java.util.logging.Logger;
  */
 public class Worker implements Runnable {
     /* delay in milliseconds simulating doing something */
-    public static final int DELAY_IN_MILLIS = 200;
+    public static final int DELAY_IN_MILLIS = 100;
 
     /* number of required threads for this thread */
     private int requiredPermits;
@@ -16,7 +16,7 @@ public class Worker implements Runnable {
     private Semaphore semaphore;
 
     /* static logger */
-    private static Logger log = Logger.getLogger(SemaphoreMain.class.getName());
+    private static Logger log = Logger.getLogger(Worker.class.getName());
 
     public Worker(int requiredPermits, Semaphore semaphore) {
         this.requiredPermits = requiredPermits;
@@ -31,7 +31,7 @@ public class Worker implements Runnable {
         startWorking();
         receiveSemaphorePermits();
         doSomething();
-        endWorking();
+        releaseSemaphorePermits();
     }
 
     // starts thread work
@@ -69,7 +69,7 @@ public class Worker implements Runnable {
     }
 
     // ends thread work and releases its permits to semaphore
-    public void endWorking() {
+    public void releaseSemaphorePermits() {
         if (requiredPermits > 1) {
             semaphore.release(requiredPermits);
         }

@@ -35,10 +35,9 @@ public class LongSquareTask implements Task<Long> {
         }
     }
 
-    // checks if multiplication is can be made without type overflow
+    // checks if multiplication can be made without type overflow
     private void checkLongArgument() {
         if (Math.abs(value) > Math.sqrt(Long.MAX_VALUE)) {
-            result = Long.MAX_VALUE;
             throw new TaskOverflowDataTypeException("Long type will be overflow through Long.MAX_VALUE");
         }
     }

@@ -25,8 +25,8 @@ public class NumberExecutor implements Executor<Number> {
 
     /**
      * adds task to schedule. The result of task is available with the method getValueResults()
-     * throws an exception if method execute() has been already invoked
-     * @param task      given task
+     * @param task                           given task
+     * @throws ExecuteWasInvokedException    generated if method execute() has been already invoked
      */
     @Override
     public void addTask(Task<? extends Number> task) {
@@ -40,12 +40,12 @@ public class NumberExecutor implements Executor<Number> {
      * adds task to schedule with result validator.
      * The result will be written to ValidResults if validator.isValid returns true for this result
      * The result will be written to InvalidResults if validator.isValid returns false for this result
-     * throws an exception if method execute() has been already invoked
-     * @param task              given task
-     * @param validator         given validator
+     * @param task                              given task
+     * @param validator                         given validator
+     * @throws ExecuteWasInvokedException       generated if method execute() has been already invoked
      */
     @Override
-    public void addTask(Task<? extends Number> task, Validator<? super Number> validator) {
+    public void addTask(Task<? extends Number> task, Validator<? super Number> validator) throws ExecuteWasInvokedException {
         if (executeWasInvoked) {
             throw new ExecuteWasInvokedException(task.toString() + " can't be added!");
         }
@@ -70,7 +70,7 @@ public class NumberExecutor implements Executor<Number> {
         try {
             task.execute();
             Number result = task.getResult();
-            addResultToApropriateList(validator, result);
+            addResultToAppropriateList(validator, result);
         }
         catch (TaskOverflowDataTypeException e) {
             Number result = task.getResult();
@@ -79,7 +79,7 @@ public class NumberExecutor implements Executor<Number> {
     }
 
     // adds result to appropriate lits with results
-    private void addResultToApropriateList(Validator<Number>  validator, Number result) {
+    private void addResultToAppropriateList(Validator<Number>  validator, Number result) {
         if (validator.isValid(result)) {
             validResults.add(result);
         }
@@ -90,7 +90,8 @@ public class NumberExecutor implements Executor<Number> {
 
     /**
      * gets valid results, throws an exception if method execute() hasn't been invoked
-     * @return      list of valid results
+     * @return                                  list of valid results
+     * @throws ExecuteWasNotInvokedException    is generated if method execute() hasn't been invoked
      */
     @Override
     public List<Number> getValidResults() {
@@ -101,7 +102,8 @@ public class NumberExecutor implements Executor<Number> {
 
     /**
      * gets invalid results, throws an exception if method execute() hasn't been invoked
-     * @return      list of invalid results
+     * @return                                  list of invalid results
+     * @throws ExecuteWasNotInvokedException    is generated if method execute() hasn't been invoked
      */
     @Override
     public List<Number> getInvalidResults() {

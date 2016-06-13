@@ -42,7 +42,6 @@ public class IntSquareTask implements Task<Integer> {
     // checks if multiplication can be made without type overflow
     private void checkIntegerArgument() {
         if (Math.abs(value) > Math.sqrt(Integer.MAX_VALUE)) {
-            result = Integer.MAX_VALUE;
             throw new TaskOverflowDataTypeException("Long type will be overflow through Integer.MAX_VALUE");
         }
     }

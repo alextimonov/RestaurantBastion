@@ -59,44 +59,70 @@ public class WorkerTest {
     }
 
     @Test
-    public void testEndWorkingNormal_1() {
+    public void testReleasePermitsNormal_1() {
         Worker worker1 = new Worker(3, semaphore);
         worker1.receiveSemaphorePermits();
 
         Worker worker2 = new Worker(2, semaphore);
         worker2.receiveSemaphorePermits();
 
-        worker1.endWorking();
+        worker1.releaseSemaphorePermits();
 
         int availablePermits = semaphore.getAvailablePermits();
         assertEquals(availablePermits, 3);
     }
 
     @Test
-    public void testEndWorkingNormal_2() {
+    public void testReleaseSemaphorePermitsNormal_2() {
         Worker worker1 = new Worker(1, semaphore);
         worker1.receiveSemaphorePermits();
 
         Worker worker2 = new Worker(3, semaphore);
         worker2.receiveSemaphorePermits();
 
-        worker1.endWorking();
+        worker1.releaseSemaphorePermits();
 
         int availablePermits = semaphore.getAvailablePermits();
         assertEquals(availablePermits, 2);
     }
 
     @Test
-    public void testEndWorkingNormal_3() {
+    public void testReleaseSemaphorePermitsNormal_3() {
         Worker worker1 = new Worker(2, semaphore);
         worker1.receiveSemaphorePermits();
 
         Worker worker2 = new Worker(3, semaphore);
         worker2.receiveSemaphorePermits();
 
-        worker1.endWorking();
-        worker2.endWorking();
+        worker1.releaseSemaphorePermits();
+        worker2.releaseSemaphorePermits();
 
+
+        int availablePermits = semaphore.getAvailablePermits();
+        assertEquals(availablePermits, 5);
+    }
+
+    @Test
+    public void testRunNormal_1() throws Exception {
+        Worker worker1 = new Worker(2, semaphore);
+        worker1.run();
+
+        Worker worker2 = new Worker(3, semaphore);
+        worker2.run();
+
+        int availablePermits = semaphore.getAvailablePermits();
+        assertEquals(availablePermits, 5);
+    }
+
+    @Test
+    public void testRunNoormal_2() {
+        Worker worker1 = new Worker(3, semaphore);
+        Worker worker2 = new Worker(4, semaphore);
+        Worker worker3 = new Worker(5, semaphore);
+
+        worker1.run();
+        worker2.run();
+        worker3.run();
 
         int availablePermits = semaphore.getAvailablePermits();
         assertEquals(availablePermits, 5);
