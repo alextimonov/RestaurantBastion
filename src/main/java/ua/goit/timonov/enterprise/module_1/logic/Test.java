@@ -1,23 +1,23 @@
 package ua.goit.timonov.enterprise.module_1.logic;
 
 /**
- * Interface with methods for each test
+ * Interface with methods for each testLock
  */
 public interface Test {
-    /* number of test repetitions */
+    /* number of testLock repetitions */
     int REPETITIONS = 10;
     /**
-     * @return      measured time for this test
+     * @return      measured time for this testLock
      */
     long getAverageTime();
 
     /**
-     * makes test for given number of repetitions and finds average time for this test
+     * makes testLock for given number of repetitions and finds average time for this testLock
      */
     void makeTest();
 
     /**
-     * makes test once and measures elapsed time
+     * makes testLock once and measures elapsed time
      * @return          elapsed time for current repetition
      */
     long fixTimeOfOperation();

@@ -27,7 +27,7 @@ public class TestExecutor <T> {
     private TableToStrings tableToStrings = new TableToStrings();
 
     /**
-     * runs test execution for collection
+     * runs testLock execution for collection
      * @param nElements     number of elements in the collection
      */
     public void runTest(int nElements) {

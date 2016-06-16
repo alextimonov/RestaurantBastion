@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.lectures.lecture_3_1;
 /**
  * Created by Alex on 05.06.2016.
  */
-public class CheckTests {
+public class TestQuestions {
     public static void main(String[] args) {
         Worker worker = new Worker();
         new Thread(worker).start();

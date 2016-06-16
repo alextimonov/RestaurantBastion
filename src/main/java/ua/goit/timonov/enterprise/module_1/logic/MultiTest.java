@@ -24,14 +24,14 @@ public abstract class MultiTest {
     }
 
     /**
-     * adds different types of test to schedule
+     * adds different types of testLock to schedule
      */
     public abstract void makeScheduleOfTests();
 
     /**
-     * returns time result of required test
-     * @param i     index of test
-     * @return      measured time for required test
+     * returns time result of required testLock
+     * @param i     index of testLock
+     * @return      measured time for required testLock
      */
     public long getResultTime(int i) {
         return tests.get(i).getAverageTime();
@@ -39,7 +39,7 @@ public abstract class MultiTest {
 
     /**
      * returns number of tests
-     * @return          test number
+     * @return          testLock number
      */
     public int getNTests() {
         return tests.size();

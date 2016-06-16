@@ -14,7 +14,7 @@ public abstract class TestList implements Test {
     protected int nElements;
     /* generator of pseudo random numbers */
     protected Random rand;
-    /* measured time for test execution */
+    /* measured time for testLock execution */
     private long averageTime;
 
     public TestList(List collection, int nElements) {
@@ -24,14 +24,14 @@ public abstract class TestList implements Test {
     }
 
     /**
-     * @return      measured time for this test
+     * @return      measured time for this testLock
      */
     public long getAverageTime() {
         return averageTime;
     }
 
     /**
-     * makes test for given number of repetitions and finds average time for this test
+     * makes testLock for given number of repetitions and finds average time for this testLock
      */
     public void makeTest(){
         long averageTime = 0;
@@ -42,7 +42,7 @@ public abstract class TestList implements Test {
     }
 
     /**
-     * makes test once and measures elapsed time
+     * makes testLock once and measures elapsed time
      * @return          elapsed time for current repetition
      */
     public long fixTimeOfOperation() {

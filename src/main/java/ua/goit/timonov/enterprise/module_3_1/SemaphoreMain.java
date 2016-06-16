@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.*;
 
 /**
@@ -59,6 +61,12 @@ public class SemaphoreMain {
         for (int i = 0; i < N_THREADS; i++) {
             int permits = rand.nextInt(PERMITS_TOTAL / 2) + 1;
             new Thread(new Worker(permits, semaphore)).start();
+        }
+        ReentrantLock lock = new ReentrantLock();
+        try {
+            lock.tryLock(100, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

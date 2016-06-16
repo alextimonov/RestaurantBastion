@@ -14,7 +14,7 @@ abstract class TestSet implements Test {
     protected int nElements;
     /* generator of pseudorandom numbers */
     protected Random rand = new Random();
-    /* measured time for test execution */
+    /* measured time for testLock execution */
     private long averageTime;
 
     public TestSet(Set collection, int nElements) {
@@ -23,14 +23,14 @@ abstract class TestSet implements Test {
     }
 
     /**
-     * @return      measured time for this test
+     * @return      measured time for this testLock
      */
     public long getAverageTime() {
         return averageTime;
     }
 
     /**
-     * makes test for given number of repetitions and finds average time for this test
+     * makes testLock for given number of repetitions and finds average time for this testLock
      */
     public void makeTest(){
         long averageTime = 0;
@@ -41,7 +41,7 @@ abstract class TestSet implements Test {
     }
 
     /**
-     * makes test once and measures elapsed time
+     * makes testLock once and measures elapsed time
      * @return          elapsed time for current repetition
      */
     public long fixTimeOfOperation() {

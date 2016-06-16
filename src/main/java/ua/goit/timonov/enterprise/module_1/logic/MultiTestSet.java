@@ -14,7 +14,7 @@ public class MultiTestSet<T> extends MultiTest {
         this.collection = collection;
     }
 
-    // adds different types of test to schedule
+    // adds different types of testLock to schedule
     public void makeScheduleOfTests() {
         tests.add(new TestSetPopulate(collection, nElements));
         tests.add(new TestSetAdd(collection, nElements));

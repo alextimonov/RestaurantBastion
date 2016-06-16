@@ -37,7 +37,7 @@ public class TableToStrings {
         addEmptyString();
     }
 
-    // adds  string with current test result to list
+    // adds  string with current testLock result to list
     private void printTestResults(MultiTest multiTest) {
         tableInStrings.add(printLineResults(multiTest));
         tableInStrings.add(printHyphenLine());
@@ -48,7 +48,7 @@ public class TableToStrings {
         tableInStrings.add(EMPTY_STRING);
     }
 
-    // return string with test results for certain type of collection
+    // return string with testLock results for certain type of collection
     private String printLineResults(MultiTest multiTest) {
         StringBuilder sb = new StringBuilder();
         sb.append(BORDER).append(getCollectionNameWithIndent(multiTest));
