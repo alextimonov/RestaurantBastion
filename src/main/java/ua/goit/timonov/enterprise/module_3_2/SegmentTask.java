@@ -17,26 +17,20 @@ public class SegmentTask implements Callable<Long> {
 
     @Override
     public Long call() throws Exception {
-        String threadName = Thread.currentThread().getName();
         phaser.register();
 
         long result = 0L;
         for (int element : arraySegment) {
             result += element * element;
         }
-        System.out.println(threadName + " evaluates its task, phase = " + phaser.getPhase() +
-                ", parties = " + phaser.getRegisteredParties() + ", arrived = " + phaser.getArrivedParties() +
-                ", unarrived = " + phaser.getUnarrivedParties());
         phaser.arriveAndAwaitAdvance();
+
+        // some another job
         try {
-            Thread.sleep(200);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println(threadName + " ends, result = " + result + ", phase = " + phaser.getPhase() +
-                ", parties = " + phaser.getRegisteredParties() + ", arrived = " + phaser.getArrivedParties() +
-                ", unarrived = " + phaser.getUnarrivedParties());
         phaser.arriveAndDeregister();
         return result;
     }
