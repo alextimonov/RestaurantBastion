@@ -1,9 +1,6 @@
 package ua.goit.timonov.enterprise.meetings_offline.meeting_0;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created by Alex on 04.06.2016.
@@ -14,6 +11,7 @@ public class SimpleListGeneric<E> implements SimpleList<E> {
     private Object[] data = new Object[CAPACITY];
     private int size;
     private long version;
+
 
     @Override
     public void add(E element) {
@@ -119,7 +117,7 @@ public class SimpleListGeneric<E> implements SimpleList<E> {
 
             private void validateVersion() {
                 if (iteratorVersion != version) {
-                    throw new ConcurrentModificationException("String.format(\"Not eqaul versions: %s vs %s\", iteratorVersion, version)");
+                    throw new ConcurrentModificationException("String.format(\"Not equal versions: %s vs %s\", iteratorVersion, version)");
                 }
             }
         };
