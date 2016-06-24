@@ -1,4 +1,4 @@
-package ua.goit.timonov.enterprise.meeting_offline;
+package ua.goit.timonov.enterprise.meeting_offline.meeting_0;
 
 import org.junit.Test;
 import ua.goit.timonov.enterprise.meetings_offline.meeting_0.SimpleList;

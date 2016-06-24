@@ -6,6 +6,7 @@ import java.util.*;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Testing class for ArrayListSimple
@@ -386,5 +387,21 @@ public class ArrayListSimpleTest {
         }
         actualHasNext = iterator.hasNext();
         assertEquals(false, actualHasNext);
+    }
+
+    @Test
+    public void testTrimToSizeNormal_1() {
+        ArrayListSimple<Integer> tooBigList = new ArrayListSimple<>(20);
+
+        for (int i = 0; i < 5; i++) {
+            tooBigList.add(i + 1);
+        }
+        tooBigList.trimToSize();
+
+        ArrayListSimple<Integer> normalList = new ArrayListSimple<>(Arrays.asList(1, 2, 3, 4, 5));
+        assertNotEquals(normalList, tooBigList);
+
+        normalList.trimToSize();
+        assertEquals(normalList, tooBigList);
     }
 }

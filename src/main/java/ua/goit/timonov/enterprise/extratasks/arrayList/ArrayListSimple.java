@@ -9,6 +9,7 @@ public class ArrayListSimple<E> implements List<E>  {
 
     // default initial capacity of list
     public static final int INITIAL_CAPACITY = 10;
+    public static final String NOT_IMPLEMENTED = "Method is not implemented";
 
     /* current number of elements in ArrayList */
     private int currentSize;
@@ -38,6 +39,7 @@ public class ArrayListSimple<E> implements List<E>  {
         }
     }
 
+
     /**
      * Returns the number of elements in this list.
      * @return the number of elements in this list
@@ -47,6 +49,7 @@ public class ArrayListSimple<E> implements List<E>  {
         return currentSize;
     }
 
+
     /**
      * Returns true if this list contains no elements.
      * @return true if this list contains no elements
@@ -55,6 +58,7 @@ public class ArrayListSimple<E> implements List<E>  {
     public boolean isEmpty() {
         return currentSize == 0;
     }
+
 
     /**
      * Returns the index of the first occurrence of the specified element
@@ -77,6 +81,7 @@ public class ArrayListSimple<E> implements List<E>  {
         return -1;
     }
 
+
     /**
      * Returns true if this list contains the specified element.
      *
@@ -89,6 +94,7 @@ public class ArrayListSimple<E> implements List<E>  {
     public boolean contains(Object element) {
         return indexOf(element) >= 0;
     }
+
 
     /**
      * Appends the specified element to the end of this list
@@ -105,6 +111,7 @@ public class ArrayListSimple<E> implements List<E>  {
         currentSize++;
         return true;
     }
+
 
     /**
      * Inserts the specified element at the specified position in this list.
@@ -131,6 +138,7 @@ public class ArrayListSimple<E> implements List<E>  {
         version++;
     }
 
+
     // checks if index is in appropriate range for add operation
     private void rangeCheckForAdd(int index) {
         if (index < 0 || index > currentSize) {
@@ -138,12 +146,24 @@ public class ArrayListSimple<E> implements List<E>  {
         }
     }
 
+
     // increases capacity of list
     private void increaseCapacity() {
         Object[] newData = new Object[data.length * 3 / 2];
         System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
     }
+
+
+    /**
+     * decreases capacity of list to value of it's current size
+     */
+    public void trimToSize() {
+        Object[] newData = new Object[currentSize];
+        System.arraycopy(data, 0, newData, 0, currentSize);
+        data = newData;
+    }
+
 
     /**
      * Appends all of the elements in the specified collection to the end of
@@ -377,92 +397,40 @@ public class ArrayListSimple<E> implements List<E>  {
     // =========== Not implemented ================
 
     /**
-     * Removes from this list all of its elements that are contained in the
-     * specified collection (optional operation).
-     *
      * @param c collection containing elements to be removed from this list
      * @return <tt>true</tt> if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the <tt>removeAll</tt> operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of this list
-     *                                       is incompatible with the specified collection
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
-     * @see #remove(Object)
-     * @see #contains(Object)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
      * Returns an data containing all of the elements in this list in
-     * proper sequence (from first to last element); the runtime type of
-     * the returned data is that of the specified data.  If the list fits
-     * in the specified data, it is returned therein.  Otherwise, a new
-     * data is allocated with the runtime type of the specified data and
-     * the size of this list.
-     * <p>
-     * <p>If the list fits in the specified data with room to spare (i.e.,
-     * the data has more elements than the list), the element in the data
-     * immediately following the end of the list is set to <tt>null</tt>.
-     * (This is useful in determining the length of the list <i>only</i> if
-     * the caller knows that the list does not contain any null elements.)
-     * <p>
-     * <p>Like the {@link #toArray()} method, this method acts as bridge between
-     * data-based and collection-based APIs.  Further, this method allows
-     * precise control over the runtime type of the output data, and may,
-     * under certain circumstances, be used to save allocation costs.
-     * <p>
-     * <p>Suppose <tt>x</tt> is a list known to contain only strings.
-     * The following code can be used to dump the list into a newly
-     * allocated data of <tt>String</tt>:
-     * <p>
-     * <pre>{@code
-     *     String[] y = x.toArray(new String[0]);
-     * }</pre>
-     * <p>
-     * Note that <tt>toArray(new Object[0])</tt> is identical in function to
-     * <tt>toArray()</tt>.
-     *
+     * proper sequence (from first to last element)
      * @param a the data into which the elements of this list are to
      *          be stored, if it is big enough; otherwise, a new data of the
      *          same runtime type is allocated for this purpose.
      * @return an data containing the elements of this list
-     * @throws ArrayStoreException  if the runtime type of the specified data
-     *                              is not a supertype of the runtime type of every element in
-     *                              this list
-     * @throws NullPointerException if the specified data is null
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public <E> E[] toArray(E[] a) {
-        return null;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
      * Returns the index of the last occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
-     * More formally, returns the highest index <tt>i</tt> such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-     * or -1 if there is no such index.
-     *
      * @param o element to search for
      * @return the index of the last occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
-     * @throws ClassCastException   if the type of the specified element
-     *                              is incompatible with this list
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException if the specified element is null and this
-     *                              list does not permit null elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
@@ -473,21 +441,11 @@ public class ArrayListSimple<E> implements List<E>  {
      *
      * @param c collection containing elements to be retained in this list
      * @return <tt>true</tt> if this list changed as a result of the call
-     * @throws UnsupportedOperationException if the <tt>retainAll</tt> operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of this list
-     *                                       is incompatible with the specified collection
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
-     * @see #remove(Object)
-     * @see #contains(Object)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
@@ -497,20 +455,11 @@ public class ArrayListSimple<E> implements List<E>  {
      * @param c collection to be checked for containment in this list
      * @return <tt>true</tt> if this list contains all of the elements of the
      * specified collection
-     * @throws ClassCastException   if the types of one or more elements
-     *                              in the specified collection are incompatible with this
-     *                              list
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException if the specified collection contains one
-     *                              or more null elements and this list does not permit null
-     *                              elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                              or if the specified collection is null
-     * @see #contains(Object)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
@@ -519,69 +468,40 @@ public class ArrayListSimple<E> implements List<E>  {
      *
      * @return a list iterator over the elements in this list (in proper
      * sequence)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
      * Returns a list iterator over the elements in this list (in proper
      * sequence), starting at the specified position in the list.
-     * The specified index indicates the first element that would be
-     * returned by an initial call to {@link ListIterator#next next}.
-     * An initial call to {@link ListIterator#previous previous} would
-     * return the element with the specified index minus one.
      *
      * @param index index of the first element to be returned from the
      *              list iterator (by a call to {@link ListIterator#next next})
      * @return a list iterator over the elements in this list (in proper
      * sequence), starting at the specified position in the list
-     * @throws IndexOutOfBoundsException if the index is out of range
-     *                                   ({@code index < 0 || index > size()})
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
     /**
      * Returns a view of the portion of this list between the specified
-     * <tt>fromIndex</tt>, inclusive, and <tt>toIndex</tt>, exclusive.  (If
-     * <tt>fromIndex</tt> and <tt>toIndex</tt> are equal, the returned list is
-     * empty.)  The returned list is backed by this list, so non-structural
-     * changes in the returned list are reflected in this list, and vice-versa.
-     * The returned list supports all of the optional list operations supported
-     * by this list.<p>
-     * <p>
-     * This method eliminates the need for explicit range operations (of
-     * the sort that commonly exist for arrays).  Any operation that expects
-     * a list can be used as a range operation by passing a subList view
-     * instead of a whole list.  For example, the following idiom
-     * removes a range of elements from a list:
-     * <pre>{@code
-     *      list.subList(from, to).clear();
-     * }</pre>
-     * Similar idioms may be constructed for <tt>indexOf</tt> and
-     * <tt>lastIndexOf</tt>, and all of the algorithms in the
-     * <tt>Collections</tt> class can be applied to a subList.<p>
-     * <p>
-     * The semantics of the list returned by this method become undefined if
-     * the backing list (i.e., this list) is <i>structurally modified</i> in
-     * any way other than via the returned list.  (Structural modifications are
-     * those that change the size of this list, or otherwise perturb it in such
-     * a fashion that iterations in progress may yield incorrect results.)
+     * <tt>fromIndex</tt>, inclusive, and <tt>toIndex</tt>, exclusive.
      *
      * @param fromIndex low endpoint (inclusive) of the subList
      * @param toIndex   high endpoint (exclusive) of the subList
      * @return a view of the specified range within this list
-     * @throws IndexOutOfBoundsException for an illegal endpoint index value
-     *                                   (<tt>fromIndex &lt; 0 || toIndex &gt; size ||
-     *                                   fromIndex &gt; toIndex</tt>)
+     * @throws UnsupportedOperationException as method is not implemented
      */
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException(NOT_IMPLEMENTED);
     }
 
 }

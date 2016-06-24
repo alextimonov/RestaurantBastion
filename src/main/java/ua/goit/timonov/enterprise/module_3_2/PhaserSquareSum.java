@@ -31,7 +31,7 @@ public class PhaserSquareSum implements SquareSum {
         findNElementsInSegment(values.length, numberOfThreads);
         List<Callable<Long>> callables = formCallableTasks(values, numberOfThreads, phaser);
 
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
         List<Future<Long>> segmentResults;
         long overallResult = 0L;
         try {
@@ -40,8 +40,15 @@ public class PhaserSquareSum implements SquareSum {
                 overallResult += segmentResult.get();
             }
         }
-        catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+        catch (InterruptedException e) {
+            segmentResults = null;
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+        catch (ExecutionException e) {
+            segmentResults = null;
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
         }
         executor.shutdown();
         return overallResult;

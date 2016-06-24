@@ -87,7 +87,7 @@ public class NumberExecutorTest {
             assertEquals(expected, actual);
         }
 
-        List<Long> testInvalidResults = Arrays.asList(Long.MAX_VALUE, Long.MAX_VALUE);
+        List<Long> testInvalidResults = Arrays.asList(null, null);
         index = 0;
         for (Number actual : numberExecutor.getInvalidResults()) {
             Number expected = testInvalidResults.get(index++);
@@ -136,7 +136,7 @@ public class NumberExecutorTest {
             assertEquals(expected, actual);
         }
 
-        List<Integer> testInvalidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        List<Integer> testInvalidResults = Arrays.asList(null, null);
         index = 0;
         for (Number actual : numberExecutor.getInvalidResults()) {
             Number expected = testInvalidResults.get(index++);
@@ -160,7 +160,7 @@ public class NumberExecutorTest {
     public void testGetInvalidResults() {
         Executor<Number> numberExecutor = makeIntTestSchedule();
         numberExecutor.execute();
-        List<Integer> testInValidResults = Arrays.asList(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        List<Integer> testInValidResults = Arrays.asList(null, null);
         int index = 0;
         for (Number actual : numberExecutor.getInvalidResults()) {
             Number expected = testInValidResults.get(index++);
