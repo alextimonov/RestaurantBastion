@@ -17,6 +17,10 @@ public class OperationAddCast<T> implements Operation<T> {
             Long result = (Long) value1 + (Long) value2;
             expression.setResult((T) result);
         }
+        if (value1 instanceof Float) {
+            Float result = (Float) value1 + (Float) value2;
+            expression.setResult((T) result);
+        }
         if (value1 instanceof Double) {
             Double result = (Double) value1 + (Double) value2;
             expression.setResult((T) result);

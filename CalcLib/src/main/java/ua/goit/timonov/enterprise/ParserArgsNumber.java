@@ -17,10 +17,15 @@ public class ParserArgsNumber implements ParserArgs {
             }
             catch (NumberFormatException eLong) {
                 try {
-                    expression = new ParserArgsDouble().getExpression(stringExpression);
+                    expression = new ParserArgsFloat().getExpression(stringExpression);
                 }
-                catch (NumberFormatException eDouble) {
-                    throw new IllegalArgumentException("Arguments are not numbers!");
+                catch (NumberFormatException eFloat) {
+                    try {
+                        expression = new ParserArgsDouble().getExpression(stringExpression);
+                    }
+                    catch (NumberFormatException eDouble) {
+                        throw new IllegalArgumentException("Arguments are not numbers!");
+                    }
                 }
             }
         }

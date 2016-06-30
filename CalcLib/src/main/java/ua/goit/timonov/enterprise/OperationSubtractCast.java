@@ -13,10 +13,17 @@ public class OperationSubtractCast<T> implements Operation<T> {
             Integer result = (Integer) value1 - (Integer) value2;
             expression.setResult((T) result);
         }
+        if (value1 instanceof Long) {
+            Long result = (Long) value1 - (Long) value2;
+            expression.setResult((T) result);
+        }
+        if (value1 instanceof Float) {
+            Float result = (Float) value1 - (Float) value2;
+            expression.setResult((T) result);
+        }
         if (value1 instanceof Double) {
             Double result = (Double) value1 - (Double) value2;
             expression.setResult((T) result);
         }
-
     }
 }

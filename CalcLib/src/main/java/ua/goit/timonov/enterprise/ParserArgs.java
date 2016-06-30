@@ -5,12 +5,6 @@ package ua.goit.timonov.enterprise;
  */
 public interface ParserArgs<T> {
 
-    public static final char DIGIT_0 = '0';
-    public static final char DIGIT_9 = '9';
-    public static final char DOT = '.';
-    public static final char SPACE = ' ';
-    public static final int RADIX = 10;
-
     Expression<T> getExpression(StringExpression stringExpression);
 
 }
