@@ -5,7 +5,10 @@
   <groupId>ua.goit.timonov.enterprise</groupId>
   <artifactId>GoITEnterprise</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <modules>
+    <module>CalcLib</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>GoITEnterprise</name>
   <url>http://maven.apache.org</url>
