@@ -27,8 +27,9 @@ public class CalcNumbers implements Calc {
         expressionFactory = new ExpressionFactoryNumber();
         stringExpression = stringParser.parse(inputString, permittedOperations);
         expression = expressionFactory.getExpression(stringExpression);
-        compute = new ComputeTwoArgs();
-        compute.calculate(expression);
+//        compute = new ComputeTwoArgs();
+//        compute.calculate(expression);
+        expression.getOperation().execute();
         resultString = expression.getResult().toString();
         return resultString;
     }

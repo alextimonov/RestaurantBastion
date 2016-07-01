@@ -9,8 +9,8 @@ public class ComputeTwoArgs<A, R> implements Compute<A, R> {
         A value1 = expression.getValue1();
         A value2 = expression.getValue2();
         Operation<A, R> operation = expression.getOperation();
-        operation.execute((A) value1, (A) value2);
-        R result = (R) operation.execute(value1, value2);
+        operation.execute(value1, value2);
+        R result = operation.execute(value1, value2);
         expression.setResult(result);
     }
 }

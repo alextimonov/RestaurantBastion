@@ -24,6 +24,7 @@ public class ExpressionFactoryInteger implements ExpressionFactory<Integer, Inte
         expression.setValue2(value2);
         expression.setOperation(operation);
         return expression;
+//        return new Expression<>(value1, value2, new OperationIntPlus());
     }
 }
 
