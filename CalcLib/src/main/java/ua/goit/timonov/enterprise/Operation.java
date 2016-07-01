@@ -1,8 +1,9 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 29.06.2016.
+ * Created by Alex on 01.07.2016.
  */
-public interface Operation<T> {
-    void evaluate(Expression<T> expression);
+public interface Operation<A, R> {
+
+    R execute(A... values);
 }

@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by Alex on 29.06.2016.
+ * Created by Alex on 01.07.2016.
  */
-public class ParserAlgebraicToStringExpression implements ParserToStringExpression  {
-
+public class StringParserToStringExpression implements StringParser {
     private StringExpression expression = new StringExpression();
     private char[] charSequence;
 
+    @Override
     public StringExpression parse(String inputString, PermittedOperations permittedOperations) {
 
         charSequence = inputString.toCharArray();
@@ -22,7 +22,7 @@ public class ParserAlgebraicToStringExpression implements ParserToStringExpressi
     }
 
     private int findOperatorPosition(String inputString, PermittedOperations permittedOperations) {
-        Set<String> setOperators = permittedOperations.getKeySet();
+        Set<String> setOperators = permittedOperations.getSetOperations();
         Iterator<String> iterator = setOperators.iterator();
         int foundPosition = -1;
         while (iterator.hasNext() && foundPosition < 0) {

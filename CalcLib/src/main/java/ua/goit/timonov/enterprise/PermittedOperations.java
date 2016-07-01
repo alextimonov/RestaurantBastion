@@ -1,8 +1,7 @@
 package ua.goit.timonov.enterprise;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Alex on 29.06.2016.
@@ -10,27 +9,35 @@ import java.util.Set;
 public class PermittedOperations {
     public static final String PLUS = "+";
     public static final String MINUS = "-";
-    private Map<String, Operation> operations = new HashMap<>();
+    private Map<Operation, String> operations = new HashMap<>();
 
-    public Set<String> getKeySet() {
-        return operations.keySet();
+    public Set<String> getSetOperations() {
+        return operations.values().stream().collect(Collectors.toSet());
+
+        /*Set<String> setOperators = new HashSet<>();
+        for (String stringNotation : operations.values()) {
+            setOperators.add(stringNotation);
+        }
+        return setOperators;*/
     }
 
     public PermittedOperations() {
-        operations.put(PLUS, new OperationAddCast());
-        operations.put(MINUS, new OperationSubtractCast());
+        operations.put(new OperationIntPlus(), PLUS);
+        operations.put(new OperationIntMinus(), MINUS);
+        operations.put(new OperationDoublePlus(), PLUS);
+        operations.put(new OperationDoubleMinus(), MINUS);
     }
 
-    public Operation getOperation(String notation) {
-        Operation operation = operations.get(notation);
-        if (operation == null) {
-            throw new RuntimeException("It is not permitted operation!");
+/*    public OldOperation getOperation(String notation) {
+        OldOperation oldOperation = operations.get(notation);
+        if (oldOperation == null) {
+            throw new RuntimeException("It is not permitted oldOperation!");
         }
-        return operation;
-    }
+        return oldOperation;
+    }*/
 
-    public void putOperation(String notation, Operation operation) {
-        operations.put(notation, operation);
+    public void putOperation(Operation operation, String notation) {
+        operations.put(operation, notation);
     }
 
 }
