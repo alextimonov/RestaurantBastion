@@ -3,16 +3,16 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 02.07.2016.
  */
-public class ExpressionDoublePlusMinus implements Expression<Double> {
+public class ExpressionDouble implements Expression<Double> {
     private Double value1;
     private Double value2;
     private Operation<Double, Double> operation;
     private Double result;
 
-    public ExpressionDoublePlusMinus() {
+    public ExpressionDouble() {
     }
 
-    public ExpressionDoublePlusMinus(Double value1, Double value2, Operation<Double, Double> operation) {
+    public ExpressionDouble(Double value1, Double value2, Operation<Double, Double> operation) {
         this.value1 = value1;
         this.value2 = value2;
         this.operation = operation;

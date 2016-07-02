@@ -6,7 +6,7 @@ package ua.goit.timonov.enterprise;
 public class CalcNumbers implements Calc {
     private StringParser stringParser;
     private PermittedOperations permittedOperations = new PermittedOperations();
-    private FactoryExpression factoryExpression;
+    private FactoryExpression factoryExpression = new FactoryNumberExpression();
     private StringExpression stringExpression;
     private Expression expression;
     private String resultString;
@@ -26,7 +26,6 @@ public class CalcNumbers implements Calc {
     public String doCalc(String inputString) {
         stringParser = new ParserStringToStringExpression();
         stringExpression = stringParser.parse(inputString, permittedOperations);
-        factoryExpression = new FactoryNumberExpression();
         expression = factoryExpression.makeExpression(stringExpression);
         expression.calculate();
         resultString = expression.getResult().toString();

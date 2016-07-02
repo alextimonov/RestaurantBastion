@@ -5,7 +5,7 @@ package ua.goit.timonov.enterprise;
  */
 public class FactoryNumberExpression implements FactoryExpression {
 
-    private String operator;
+    protected String operator;
     private Expression expression;
 
     public Expression makeExpression(StringExpression stringExpression) {
@@ -39,7 +39,7 @@ public class FactoryNumberExpression implements FactoryExpression {
     }
 
     protected Expression makeIntegerExpression(Integer value1, Integer value2) {
-        Expression<Integer> integerExpression = null;
+        Expression integerExpression = null;
         if (operator.equals(PLUS)) {
             integerExpression = new ExpressionIntegerPlusMinus(value1, value2, new OperationIntegerPlus());
         }
@@ -49,8 +49,8 @@ public class FactoryNumberExpression implements FactoryExpression {
         return integerExpression;
     }
 
-    private Expression makeLongExpression(Long value1, Long value2) {
-        Expression<Long> longExpression = null;
+    protected Expression makeLongExpression(Long value1, Long value2) {
+        Expression longExpression = null;
         if (operator.equals(PLUS)) {
             longExpression = new ExpressionLongPlusMinus(value1, value2, new OperationLongPlus());
         }
@@ -60,51 +60,25 @@ public class FactoryNumberExpression implements FactoryExpression {
         return longExpression;
     }
 
-    private Expression makeFloatExpression(Float value1, Float value2) {
-        Expression<Float> floatExpression = null;
+    protected Expression makeFloatExpression(Float value1, Float value2) {
+        Expression floatExpression = null;
         if (operator.equals(PLUS)) {
-            floatExpression = new ExpressionFloatPlusMinus(value1, value2, new OperationFloatPlus());
+            floatExpression = new ExpressionFloat(value1, value2, new OperationFloatPlus());
         }
         if (operator.equals(MINUS)) {
-            floatExpression = new ExpressionFloatPlusMinus(value1, value2, new OperationFloatMinus());
+            floatExpression = new ExpressionFloat(value1, value2, new OperationFloatMinus());
         }
         return floatExpression;
     }
 
-    private Expression makeDoubleExpression(Double value1, Double value2) {
-        Expression<Double> doubleExpression = null;
+    protected Expression makeDoubleExpression(Double value1, Double value2) {
+        Expression doubleExpression = null;
         if (operator.equals(PLUS)) {
-            doubleExpression = new ExpressionDoublePlusMinus(value1, value2, new OperationDoublePlus());
+            doubleExpression = new ExpressionDouble(value1, value2, new OperationDoublePlus());
         }
         if (operator.equals(MINUS)) {
-            doubleExpression = new ExpressionDoublePlusMinus(value1, value2, new OperationDoubleMinus());
+            doubleExpression = new ExpressionDouble(value1, value2, new OperationDoubleMinus());
         }
         return doubleExpression;
     }
-
-    /*public Expression makeExpression(StringExpression stringExpression) {
-        Expression expression;
-        try {
-            expression = new FactoryIntegerExpression().makeExpression(stringExpression);
-        }
-        catch (NumberFormatException eInteger)  {
-            try {
-                expression = new FactoryLongExpression().makeExpression(stringExpression);
-            }
-            catch (NumberFormatException eLong) {
-                try {
-                    expression = new FactoryFloatExpression().makeExpression(stringExpression);
-                }
-                catch (NumberFormatException eFloat) {
-                    try {
-                        expression = new FactoryDoubleExpression().makeExpression(stringExpression);
-                    }
-                    catch (NumberFormatException eDouble) {
-                        throw new IllegalArgumentException("Arguments are not numbers!");
-                    }
-                }
-            }
-        }
-        return expression;
-    }*/
 }
