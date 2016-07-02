@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
  * Created by Alex on 29.06.2016.
  */
 public class FactoryIntegerExpressionTest {
-    FactoryExpression factoryExpression = new FactoryIntegerExpression();
+    FactoryExpression factoryExpression = new FactoryNumberExpression();
 
     @Test
     public void testParseNormal_1() throws Exception {

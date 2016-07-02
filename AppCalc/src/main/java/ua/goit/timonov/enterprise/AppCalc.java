@@ -16,7 +16,8 @@ public class AppCalc {
         inputOutput = new InputOutput();
 
         PermittedOperations permittedOperations = new PermittedOperationsForApp();
-        Calc calc = new CalcNumbers(permittedOperations);
+        FactoryExpression factoryExpression = new FactoryNumberExpressionForApp();
+        Calc calc = new CalcNumbers(permittedOperations, factoryExpression);
         String input = inputOutput.inputStringFromConsole();
         String result = calc.doCalc(input);
         inputOutput.printToConsole(input, result);

@@ -12,11 +12,15 @@ public class CalcNumbers implements Calc {
     private String resultString;
 
     public CalcNumbers() {
-        permittedOperations = new PermittedOperations();
     }
 
     public CalcNumbers(PermittedOperations permittedOperations) {
         this.permittedOperations = permittedOperations;
+    }
+
+    public CalcNumbers(PermittedOperations permittedOperations, FactoryExpression factoryExpression) {
+        this.permittedOperations = permittedOperations;
+        this.factoryExpression = factoryExpression;
     }
 
     public String doCalc(String inputString) {

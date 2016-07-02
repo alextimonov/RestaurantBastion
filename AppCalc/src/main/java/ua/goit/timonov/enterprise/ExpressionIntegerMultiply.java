@@ -3,16 +3,16 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 02.07.2016.
  */
-public class ExpressionIntegerDivide implements Expression<Double> {
+public class ExpressionIntegerMultiply implements Expression<Integer> {
     private Integer value1;
     private Integer value2;
-    private Operation<Integer, Double> operation;
-    private Double result;
+    private Operation<Integer, Integer> operation;
+    private Integer result;
 
-    public ExpressionIntegerDivide() {
+    public ExpressionIntegerMultiply() {
     }
 
-    public ExpressionIntegerDivide(Integer value1, Integer value2, Operation<Integer, Double> operation) {
+    public ExpressionIntegerMultiply(Integer value1, Integer value2, Operation<Integer, Integer> operation) {
         this.value1 = value1;
         this.value2 = value2;
         this.operation = operation;
@@ -34,14 +34,12 @@ public class ExpressionIntegerDivide implements Expression<Double> {
         this.value2 = value2;
     }
 
+    public Integer getResult() {
+        return result;
+    }
 
     @Override
     public void calculate() {
         result = operation.execute(value1, value2);
-    }
-
-    @Override
-    public Double getResult() {
-        return result;
     }
 }
