@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 30.06.2016.
  */
-public class FactoryDoubleExpression implements ExpressionFactory<Double> {
+public class FactoryDoubleExpression implements FactoryExpression<Double> {
     private Double value1;
     private Double value2;
     Operation<Double, Double> operation;

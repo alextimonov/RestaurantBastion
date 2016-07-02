@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 29.06.2016.
  */
-public class FactoryIntegerExpression implements ExpressionFactory<Integer> {
+public class FactoryIntegerExpression implements FactoryExpression<Integer> {
     private Integer value1;
     private Integer value2;
     Operation<Integer, Integer> operation;

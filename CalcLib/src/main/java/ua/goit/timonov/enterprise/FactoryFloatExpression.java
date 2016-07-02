@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 30.06.2016.
  */
-public class FactoryFloatExpression implements ExpressionFactory<Float> {
+public class FactoryFloatExpression implements FactoryExpression<Float> {
     private Float value1;
     private Float value2;
     Operation<Float, Float> operation;

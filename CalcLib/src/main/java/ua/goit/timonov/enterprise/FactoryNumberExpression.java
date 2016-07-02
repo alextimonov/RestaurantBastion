@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 30.06.2016.
  */
-public class FactoryNumberExpression implements ExpressionFactory {
+public class FactoryNumberExpression implements FactoryExpression {
 
     public Expression makeExpression(StringExpression stringExpression) {
         Expression expression;

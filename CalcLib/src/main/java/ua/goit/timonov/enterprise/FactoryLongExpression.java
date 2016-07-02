@@ -1,11 +1,9 @@
 package ua.goit.timonov.enterprise;
 
-import java.util.Locale;
-
 /**
  * Created by Alex on 30.06.2016.
  */
-public class FactoryLongExpression implements ExpressionFactory<Long> {
+public class FactoryLongExpression implements FactoryExpression<Long> {
     private Long value1;
     private Long value2;
     Operation<Long, Long> operation;

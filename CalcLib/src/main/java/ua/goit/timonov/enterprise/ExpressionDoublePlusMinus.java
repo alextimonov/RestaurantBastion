@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 02.07.2016.
  */
-public class ExpressionDoublePlusMinus implements Expression {
+public class ExpressionDoublePlusMinus implements Expression<Double> {
     private Double value1;
     private Double value2;
     private Operation<Double, Double> operation;

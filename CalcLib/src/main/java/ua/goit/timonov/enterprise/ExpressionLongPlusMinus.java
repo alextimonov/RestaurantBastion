@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 02.07.2016.
  */
-public class ExpressionLongPlusMinus implements Expression {
+public class ExpressionLongPlusMinus implements Expression<Long> {
     private Long value1;
     private Long value2;
     private Operation<Long, Long> operation;

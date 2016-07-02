@@ -5,10 +5,11 @@ package ua.goit.timonov.enterprise;
  */
 public class PermittedOperationsForApp extends PermittedOperations {
     public static final String DIVIDE = "/";
-    public static final String MILTIPLY = "*";
+    public static final String MULTIPLY = "*";
 
     public PermittedOperationsForApp() {
         super();
         operations.put(new OperationIntegerDivide(), DIVIDE);
+        operations.put(new OperationIntegerMultiply(), MULTIPLY);
     }
 }
