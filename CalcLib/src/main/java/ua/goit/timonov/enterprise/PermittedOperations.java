@@ -9,34 +9,24 @@ import java.util.stream.Collectors;
 public class PermittedOperations {
     public static final String PLUS = "+";
     public static final String MINUS = "-";
-    private Map<Operation, String> operations = new HashMap<>();
+    protected Map<Operation, String> operations = new HashMap<>();
 
     public Set<String> getSetOperations() {
         return operations.values().stream().collect(Collectors.toSet());
-
-        /*Set<String> setOperators = new HashSet<>();
-        for (String stringNotation : operations.values()) {
-            setOperators.add(stringNotation);
-        }
-        return setOperators;*/
     }
 
     public PermittedOperations() {
         operations.put(new OperationIntegerPlus(), PLUS);
         operations.put(new OperationIntegerMinus(), MINUS);
+        operations.put(new OperationLongPlus(), PLUS);
+        operations.put(new OperationLongMinus(), MINUS);
+        operations.put(new OperationFloatPlus(), PLUS);
+        operations.put(new OperationFloatMinus(), MINUS);
         operations.put(new OperationDoublePlus(), PLUS);
         operations.put(new OperationDoubleMinus(), MINUS);
     }
 
-/*    public OldOperation getOperation(String notation) {
-        OldOperation oldOperation = operations.get(notation);
-        if (oldOperation == null) {
-            throw new RuntimeException("It is not permitted oldOperation!");
-        }
-        return oldOperation;
-    }*/
-
-    public void putOperation(Operation operation, String notation) {
+    public void addOperation(Operation operation, String notation) {
         operations.put(operation, notation);
     }
 

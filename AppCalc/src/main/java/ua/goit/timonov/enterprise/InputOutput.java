@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputOutput {
 
     String inputStringFromConsole() {
-        System.out.println("Input expression: ");
+        System.out.println("Input number expression (operations +, -, *, / are permitted): ");
         Scanner scan = new Scanner(System.in);
         String inputString = scan.next();
         scan.close();

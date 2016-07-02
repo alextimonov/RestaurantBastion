@@ -16,7 +16,7 @@ public class AppCalc {
     public void execute() {
         inputOutput = new InputOutput();
 
-        PermittedOperations permittedOperations = new AppPermittedOperations().getPermittedOperations();
+        PermittedOperations permittedOperations = new PermittedOperationsForApp().getPermittedOperations();
         Calc calc = new CalcNumbers(permittedOperations);
         String input = inputOutput.inputStringFromConsole();
         String result = calc.doCalc(input);
