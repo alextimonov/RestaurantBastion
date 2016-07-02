@@ -5,6 +5,6 @@ package ua.goit.timonov.enterprise;
  */
 public interface Compute<A, R> {
 
-    void calculate(Expression<A, R> expression);
+    void calculate(Expression<R> expression);
 
 }

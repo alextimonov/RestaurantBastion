@@ -22,8 +22,8 @@ public class PermittedOperations {
     }
 
     public PermittedOperations() {
-        operations.put(new OperationIntPlus(), PLUS);
-        operations.put(new OperationIntMinus(), MINUS);
+        operations.put(new OperationIntegerPlus(), PLUS);
+        operations.put(new OperationIntegerMinus(), MINUS);
         operations.put(new OperationDoublePlus(), PLUS);
         operations.put(new OperationDoubleMinus(), MINUS);
     }

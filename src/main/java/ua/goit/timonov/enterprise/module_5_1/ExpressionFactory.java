@@ -5,10 +5,18 @@ package ua.goit.timonov.enterprise.module_5_1;
  */
 public class ExpressionFactory {
 
-    public ExpressIface makeExpression() {
-        if (true) {
-            return new ExpressionInteger(3, 2, new OperationInteger());
-        } else
-            return new ExpressionLong();
+    public Expression makeExpression(int k) {
+        if (k == 1) {
+            return new ExpressionIntegerPlusMinus(3, 2, new OperationIntegerPlus());
+        }
+        else {
+            if (k == 2) {
+                return new ExpressionIntegerPlusMinus(3, 2, new OperationIntegerMinus());
+            }
+            else {
+                return new ExpressionIntegerDivide(3, 2, new OperationIntegerDivide());
+            }
+        }
     }
 }
+

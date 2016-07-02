@@ -4,23 +4,23 @@ package ua.goit.timonov.enterprise.module_5_1;
  * Created by Alex on 01.07.2016.
  */
 public class App {
-    Operation operation = new OperationInteger();
-    Operation<Integer> operationInt;
-    OperationInteger operationInteger;
-
-    ExpressIface expression;
-
-
-    ExpressionInteger expressionInteger = new ExpressionInteger();
+    Expression expression;
     ExpressionFactory factory = new ExpressionFactory();
 
     void check() {
 
-        expression = factory.makeExpression();
+        expression = factory.makeExpression(1);
         expression.evaluate();
-        expression.getResult();
+        System.out.println(expression.getResult().toString());
 
-        int q = 5;
+        expression = factory.makeExpression(2);
+        expression.evaluate();
+        System.out.println(expression.getResult().toString());
+
+        expression = factory.makeExpression(3);
+        expression.evaluate();
+        System.out.println(expression.getResult().toString());
+
 //        Integer v1 = expression.getX1();
 
 

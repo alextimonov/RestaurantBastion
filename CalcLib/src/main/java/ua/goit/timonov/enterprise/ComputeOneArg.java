@@ -5,9 +5,9 @@ package ua.goit.timonov.enterprise;
  */
 public class ComputeOneArg<A, R> implements Compute<A, R> {
     @Override
-    public void calculate(Expression<A, R> expression) {
+    public void calculate(Expression<R> expression) {
         //TODO
-        A value = expression.getValue1();
-        R result = (R) expression.getOperation().execute(value);
+//        A value = expression.
+//        R result = (R) expression.getOperation().execute(value);
     }
 }

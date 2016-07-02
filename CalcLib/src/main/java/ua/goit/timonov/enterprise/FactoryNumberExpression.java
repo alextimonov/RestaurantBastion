@@ -3,25 +3,24 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 30.06.2016.
  */
-public class ExpressionFactoryNumber implements ExpressionFactory {
+public class FactoryNumberExpression implements ExpressionFactory {
 
-    @Override
-    public Expression getExpression(StringExpression stringExpression) {
+    public Expression makeExpression(StringExpression stringExpression) {
         Expression expression;
         try {
-            expression = new ExpressionFactoryInteger().getExpression(stringExpression);
+            expression = new FactoryIntegerExpression().makeExpression(stringExpression);
         }
         catch (NumberFormatException eInteger)  {
             try {
-                expression = new ExpressionFactoryLong().getExpression(stringExpression);
+                expression = new FactoryLongExpression().makeExpression(stringExpression);
             }
             catch (NumberFormatException eLong) {
                 try {
-                    expression = new ExpressionFactoryFloat().getExpression(stringExpression);
+                    expression = new FactoryFloatExpression().makeExpression(stringExpression);
                 }
                 catch (NumberFormatException eFloat) {
                     try {
-                        expression = new ExpressionFactoryDouble().getExpression(stringExpression);
+                        expression = new FactoryDoubleExpression().makeExpression(stringExpression);
                     }
                     catch (NumberFormatException eDouble) {
                         throw new IllegalArgumentException("Arguments are not numbers!");

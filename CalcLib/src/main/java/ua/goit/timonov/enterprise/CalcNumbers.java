@@ -24,12 +24,13 @@ public class CalcNumbers implements Calc {
 
     public String doCalc(String inputString) {
         stringParser = new StringParserToStringExpression();
-        expressionFactory = new ExpressionFactoryNumber();
         stringExpression = stringParser.parse(inputString, permittedOperations);
-        expression = expressionFactory.getExpression(stringExpression);
+        expressionFactory = new FactoryNumberExpression();
+        expression = expressionFactory.makeExpression(stringExpression);
 //        compute = new ComputeTwoArgs();
 //        compute.calculate(expression);
-        expression.getOperation().execute();
+//        expression.getOperation().execute();
+        expression.calculate();
         resultString = expression.getResult().toString();
         return resultString;
     }
