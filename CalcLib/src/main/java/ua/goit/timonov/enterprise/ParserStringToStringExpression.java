@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by Alex on 01.07.2016.
  */
-public class StringParserToStringExpression implements StringParser {
+public class ParserStringToStringExpression implements StringParser {
     private StringExpression expression = new StringExpression();
     private char[] charSequence;
 

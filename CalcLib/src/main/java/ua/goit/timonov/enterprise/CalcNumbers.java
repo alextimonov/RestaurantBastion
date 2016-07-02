@@ -8,9 +8,6 @@ public class CalcNumbers implements Calc {
     private PermittedOperations permittedOperations = new PermittedOperations();
     private ExpressionFactory expressionFactory;
     private StringExpression stringExpression;
-
-    private Compute compute;
-
     private Expression expression;
     private String resultString;
 
@@ -23,13 +20,10 @@ public class CalcNumbers implements Calc {
     }
 
     public String doCalc(String inputString) {
-        stringParser = new StringParserToStringExpression();
+        stringParser = new ParserStringToStringExpression();
         stringExpression = stringParser.parse(inputString, permittedOperations);
         expressionFactory = new FactoryNumberExpression();
         expression = expressionFactory.makeExpression(stringExpression);
-//        compute = new ComputeTwoArgs();
-//        compute.calculate(expression);
-//        expression.getOperation().execute();
         expression.calculate();
         resultString = expression.getResult().toString();
         return resultString;

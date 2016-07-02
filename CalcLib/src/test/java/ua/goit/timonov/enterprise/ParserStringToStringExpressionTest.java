@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Alex on 29.06.2016.
  */
-public class ParserToStringTest {
-    StringParser stringParser = new StringParserToStringExpression();
+public class ParserStringToStringExpressionTest {
+    StringParser stringParser = new ParserStringToStringExpression();
     PermittedOperations permittedOperations = new PermittedOperations();
 
     @Test
