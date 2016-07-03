@@ -8,14 +8,17 @@ import java.util.Scanner;
 public class InputOutput {
 
     String inputStringFromConsole() {
-        System.out.println("Input number expression (operations +, -, *, / are permitted): ");
+        System.out.println("Input number expression (operations +, -, *, / are permitted). Input \"Q\" or \"q\" to quit ");
         Scanner scan = new Scanner(System.in);
         String inputString = scan.next();
-        scan.close();
         return inputString;
     }
 
     public void printToConsole(String input, String result) {
-        System.out.println(input + " = " + result);
+        System.out.println("Result is: " + input + " = " + result);
+    }
+
+    public void printErrorToConsole(String input, String message) {
+        System.out.println("Wrong input format: " + input + ", error: " + message);
     }
 }

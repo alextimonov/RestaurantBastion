@@ -16,6 +16,9 @@ public class ParserStringToStringExpression implements StringParser {
         charSequence = inputString.toCharArray();
         int positionOperator = findOperatorPosition(inputString, permittedOperations);
         readFirstArgument(positionOperator);
+        if (positionOperator < 0) {
+            positionOperator = 0;
+        }
         int startPositionSecondValue = readOperator(positionOperator);
         readSecondArgument(startPositionSecondValue);
         return expression;
