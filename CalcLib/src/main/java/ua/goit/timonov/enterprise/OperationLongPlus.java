@@ -1,9 +1,16 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 01.07.2016.
+ * Math operation to add two Long values
  */
 public class OperationLongPlus implements Operation<Long, Long> {
+
+    /**
+     * adds two Long numbers
+     * @param values        given Long numbers
+     * @return              result of adding two numbers
+     */
+
     @Override
     public Long execute(Long... values) {
         return values[0] + values[1];

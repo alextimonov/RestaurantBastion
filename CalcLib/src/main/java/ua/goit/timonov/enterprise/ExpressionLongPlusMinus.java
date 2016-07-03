@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Represents expression with Long arguments and result oriented to add and subtract operations
  */
 public class ExpressionLongPlusMinus implements Expression<Long> {
     private Long value1;
@@ -34,15 +34,19 @@ public class ExpressionLongPlusMinus implements Expression<Long> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Long expression
+     * @return      result of expression
+     */
     @Override
     public Long getResult() {
         return result;
     }
 
-    public void setResult(Long result) {
-        this.result = result;
-    }
 
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
         result = operation.execute(value1, value2);

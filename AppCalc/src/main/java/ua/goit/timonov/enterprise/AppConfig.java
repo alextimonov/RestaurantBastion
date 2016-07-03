@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by Alex on 27.06.2016.
+ * Java-based Spring configuration class for AppCalc
  */
 
 @Configuration

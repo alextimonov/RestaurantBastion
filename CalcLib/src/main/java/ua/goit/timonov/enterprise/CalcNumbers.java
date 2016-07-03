@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 29.06.2016.
+ * number calculator to evaluate given math expression
  */
 public class CalcNumbers implements Calc {
     private StringParser stringParser;
@@ -19,6 +19,14 @@ public class CalcNumbers implements Calc {
         this.factoryExpression = factoryExpression;
     }
 
+    /**
+     * @param inputString               given String with math expression, String must be in format
+     *                                  "operand1_operator_operand2" without spaces or underscore, e.g.
+     *                                  "12+5", "3.25-0.8" etc. Supported operation for base library CalcLib are
+     *                                  "+" and "-", supported formats of arguments: Integer, Long, Float and Double
+     * @return                          String with result for calculated expression
+     * @throws RuntimeException         if given String does not contain appropriate arguments
+     */
     public String doCalc(String inputString) {
         stringParser = new ParserStringToStringExpression();
         stringExpression = stringParser.parse(inputString, permittedOperations);

@@ -7,9 +7,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Alex on 29.06.2016.
+ * Test class for CalcNumbers
  */
-public class CalcMainTest {
+public class CalcNumbersTest {
     CalcNumbers calculator = new CalcNumbers();
 
     @Before

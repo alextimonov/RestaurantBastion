@@ -1,11 +1,18 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 01.07.2016.
+ * Represents some math expression typified by result data format
  */
 public interface Expression<T> {
 
+    /**
+     * calculates an expression
+     */
     void calculate();
 
+    /**
+     * returns result of calculated expression
+     * @return      result of expression
+     */
     T getResult();
 }

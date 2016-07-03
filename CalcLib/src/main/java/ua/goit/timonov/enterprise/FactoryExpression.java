@@ -1,12 +1,18 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 29.06.2016.
+ * factory to create Expression with arguments in appropriate format from given StringExpression with arguments
+ * presented with String
  */
 public interface FactoryExpression<T> {
-    public static final String PLUS = "+";
-    public static final String MINUS = "-";
+    String PLUS = "+";
+    String MINUS = "-";
 
+    /**
+     * converts given StringExpression to Expression format arguments in appropriate format
+     * @param stringExpression      given expression with arguments in String
+     * @return                      Expression with arguments in appropriate format
+     */
     Expression<T> makeExpression(StringExpression stringExpression);
 
 }

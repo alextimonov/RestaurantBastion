@@ -1,8 +1,9 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Expression for divide operation for arguments with Long format
  */
+
 public class ExpressionLongDivide implements Expression<Double> {
     private Long value1;
     private Long value2;

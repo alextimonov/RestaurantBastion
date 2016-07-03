@@ -1,16 +1,13 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Expression for divide operation for arguments with Integer format
  */
 public class ExpressionIntegerDivide implements Expression<Double> {
     private Integer value1;
     private Integer value2;
     private Operation<Integer, Double> operation;
     private Double result;
-
-    public ExpressionIntegerDivide() {
-    }
 
     public ExpressionIntegerDivide(Integer value1, Integer value2, Operation<Integer, Double> operation) {
         this.value1 = value1;

@@ -1,16 +1,13 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Represents expression with Float arguments and result
  */
 public class ExpressionFloat implements Expression<Float> {
     private Float value1;
     private Float value2;
     private Operation<Float, Float> operation;
     private Float result;
-
-    public ExpressionFloat() {
-    }
 
     public ExpressionFloat(Float value1, Float value2, Operation<Float, Float> operation) {
         this.value1 = value1;
@@ -34,10 +31,18 @@ public class ExpressionFloat implements Expression<Float> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Float expression
+     * @return      result of expression
+     */
+    @Override
     public Float getResult() {
         return result;
     }
 
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
         result = operation.execute(value1, value2);

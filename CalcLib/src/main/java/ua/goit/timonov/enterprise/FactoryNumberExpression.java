@@ -1,13 +1,21 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 30.06.2016.
+ * factory to create Expression with number arguments in appropriate format from given StringExpression with arguments
+ * presented with String. Supported formats are Integer, Long, Float, Double. Supported operations are addition ("+")
+ * and subtracting ("-")
  */
 public class FactoryNumberExpression implements FactoryExpression {
 
     protected String operator;
     private Expression expression;
 
+    /**
+     * converts given StringExpression to Expression format arguments in appropriate format
+     * @param stringExpression      given expression with arguments in String
+     * @return                      Expression with arguments in appropriate format
+     * @throws IllegalArgumentException if given arguments are not numbers
+     */
     public Expression makeExpression(StringExpression stringExpression) {
         operator = stringExpression.getOperator();
         try {
@@ -38,6 +46,7 @@ public class FactoryNumberExpression implements FactoryExpression {
         return expression;
     }
 
+    // returns expression of ExpressionIntegerPlusMinus for adding or subtracting Integer numbers
     protected Expression makeIntegerExpression(Integer value1, Integer value2) {
         Expression integerExpression = null;
         if (operator.equals(PLUS)) {
@@ -49,6 +58,7 @@ public class FactoryNumberExpression implements FactoryExpression {
         return integerExpression;
     }
 
+    // returns expression of ExpressionLongPlusMinus for adding or subtracting Long numbers
     protected Expression makeLongExpression(Long value1, Long value2) {
         Expression longExpression = null;
         if (operator.equals(PLUS)) {
@@ -60,6 +70,7 @@ public class FactoryNumberExpression implements FactoryExpression {
         return longExpression;
     }
 
+    // returns expression of ExpressionFloat for adding or subtracting Float numbers
     protected Expression makeFloatExpression(Float value1, Float value2) {
         Expression floatExpression = null;
         if (operator.equals(PLUS)) {
@@ -71,6 +82,7 @@ public class FactoryNumberExpression implements FactoryExpression {
         return floatExpression;
     }
 
+    // returns expression of ExpressionDouble for adding or subtracting Double numbers
     protected Expression makeDoubleExpression(Double value1, Double value2) {
         Expression doubleExpression = null;
         if (operator.equals(PLUS)) {

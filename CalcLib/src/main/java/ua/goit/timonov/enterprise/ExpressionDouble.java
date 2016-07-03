@@ -1,16 +1,13 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Represents expression with Double arguments and result
  */
 public class ExpressionDouble implements Expression<Double> {
     private Double value1;
     private Double value2;
     private Operation<Double, Double> operation;
     private Double result;
-
-    public ExpressionDouble() {
-    }
 
     public ExpressionDouble(Double value1, Double value2, Operation<Double, Double> operation) {
         this.value1 = value1;
@@ -34,15 +31,18 @@ public class ExpressionDouble implements Expression<Double> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Double expression
+     * @return      result of expression
+     */
     @Override
     public Double getResult() {
         return result;
     }
 
-    public void setResult(Double result) {
-        this.result = result;
-    }
-
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
         result = operation.execute(value1, value2);

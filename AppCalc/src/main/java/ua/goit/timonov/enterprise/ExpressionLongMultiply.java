@@ -1,8 +1,9 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Expression multiply operation for arguments with Long format
  */
+
 public class ExpressionLongMultiply implements Expression<Long> {
     private Long value1;
     private Long value2;

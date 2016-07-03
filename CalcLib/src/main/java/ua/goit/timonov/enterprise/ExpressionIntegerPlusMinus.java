@@ -1,16 +1,13 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Represents expression with Integer arguments and result oriented to add and subtract operations
  */
 public class ExpressionIntegerPlusMinus implements Expression<Integer> {
     private Integer value1;
     private Integer value2;
     private Operation<Integer, Integer> operation;
     private Integer result;
-
-    public ExpressionIntegerPlusMinus() {
-    }
 
     public ExpressionIntegerPlusMinus(Integer value1, Integer value2, Operation<Integer, Integer> operation) {
         this.value1 = value1;
@@ -34,10 +31,18 @@ public class ExpressionIntegerPlusMinus implements Expression<Integer> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Integer expression
+     * @return      result of expression
+     */
+    @Override
     public Integer getResult() {
         return result;
     }
 
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
         result = operation.execute(value1, value2);

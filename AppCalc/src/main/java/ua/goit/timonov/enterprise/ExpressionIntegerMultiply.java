@@ -1,8 +1,9 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 02.07.2016.
+ * Expression multiply operation for arguments with Integer format
  */
+
 public class ExpressionIntegerMultiply implements Expression<Integer> {
     private Integer value1;
     private Integer value2;
