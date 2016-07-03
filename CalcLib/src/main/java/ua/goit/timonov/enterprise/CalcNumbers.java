@@ -14,10 +14,6 @@ public class CalcNumbers implements Calc {
     public CalcNumbers() {
     }
 
-    public CalcNumbers(PermittedOperations permittedOperations) {
-        this.permittedOperations = permittedOperations;
-    }
-
     public CalcNumbers(PermittedOperations permittedOperations, FactoryExpression factoryExpression) {
         this.permittedOperations = permittedOperations;
         this.factoryExpression = factoryExpression;

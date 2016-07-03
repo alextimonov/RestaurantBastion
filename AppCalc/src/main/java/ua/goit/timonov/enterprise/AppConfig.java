@@ -11,12 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    public AppCalc appCalc(PermittedOperations permittedOperations, FactoryExpression factoryExpression,
-                           InputOutput inputOutput) {
+    public AppCalc appCalc() {
         AppCalc appCalc = new AppCalc();
-        appCalc.setInputOutput(inputOutput);
-        appCalc.setPermittedOperations(permittedOperations);
-        appCalc.setFactoryExpression(factoryExpression);
+        appCalc.setInputOutput(inputOutput());
         appCalc.setCalc(calc());
         return appCalc;
     }

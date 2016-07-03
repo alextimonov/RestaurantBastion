@@ -10,8 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class AppCalc {
     private InputOutput inputOutput;
-    private PermittedOperations permittedOperations;
-    private FactoryExpression factoryExpression;
     private Calc calc;
 
     public static void main(String[] args) {
@@ -24,25 +22,11 @@ public class AppCalc {
         this.inputOutput = inputOutput;
     }
 
-    public void setPermittedOperations(PermittedOperations permittedOperations) {
-        this.permittedOperations = permittedOperations;
-    }
-
-    public void setFactoryExpression(FactoryExpression factoryExpression) {
-        this.factoryExpression = factoryExpression;
-    }
-
     public void setCalc(Calc calc) {
         this.calc = calc;
     }
 
     public void execute() {
-
-//        inputOutput = new InputOutput();
-//        permittedOperations = new PermittedOperationsForApp();
-//        factoryExpression = new FactoryNumberExpressionForApp();
-//        Calc calc = new CalcNumbers(permittedOperations, factoryExpression);
-
         while (true) {
             String input = inputOutput.inputStringFromConsole();
             if (input.equalsIgnoreCase("q")) {
