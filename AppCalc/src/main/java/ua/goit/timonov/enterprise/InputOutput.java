@@ -12,10 +12,11 @@ public class InputOutput {
      * @return      inputted string
      */
     public String inputStringFromConsole() {
-        System.out.println("Input number expression (operations +, -, *, / are permitted). Input \"Q\" or \"q\" to quit ");
+        System.out.println("Input number expression (operations +, -, *, /, LN(x), SQRT(x), x!  are supported). " +
+                "Input \"Q\" or \"q\" to quit ");
         Scanner scan = new Scanner(System.in);
         String inputString = scan.next();
-        return inputString;
+        return inputString.toLowerCase();
     }
 
     /**

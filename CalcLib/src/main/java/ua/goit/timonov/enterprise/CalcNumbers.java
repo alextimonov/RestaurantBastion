@@ -23,7 +23,9 @@ public class CalcNumbers implements Calc {
      * @param inputString               given String with math expression, String must be in format
      *                                  "operand1_operator_operand2" without spaces or underscore, e.g.
      *                                  "12+5", "3.25-0.8" etc. Supported operation for base library CalcLib are
-     *                                  "+" and "-", supported formats of arguments: Integer, Long, Float and Double
+     *                                  "+" and "-", supported formats of arguments: Integer, Long, Float and Double.
+     *                                  Also unary operations for evaluating natural logarithm LN(x), square root SQRT(x),
+     *                                  factorial x! were added recently
      * @return                          String with result for calculated expression
      * @throws RuntimeException         if given String does not contain appropriate arguments
      */

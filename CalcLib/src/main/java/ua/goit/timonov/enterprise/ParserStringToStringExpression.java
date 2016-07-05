@@ -7,10 +7,12 @@ import java.util.Set;
  * Parser of given String to an object of StringExpression with String representations of expression's
  * arguments and operation using list of permitted operations
  */
-
 public class ParserStringToStringExpression implements StringParser {
+    public static final char CLOSING_BRACE = ')';
+    public static final String NO_VALUE = "NoValue";
     private StringExpression expression = new StringExpression();
     private char[] charSequence;
+    private String foundOperator;
 
     /**
      * makes parsing from given String to StringExpression
@@ -40,8 +42,13 @@ public class ParserStringToStringExpression implements StringParser {
         while (iterator.hasNext() && foundPosition < 0) {
             String operator = iterator.next();
             foundPosition = inputString.indexOf(operator);
+            if (foundPosition >= 0) {
+                foundOperator = operator;
+            }
         }
-        return foundPosition;
+        if (foundPosition >= 0)
+            return foundPosition;
+        else throw new IllegalArgumentException("There is no supported operator in expession.");
     }
 
     // reads first argument from the string with math expression
@@ -51,22 +58,25 @@ public class ParserStringToStringExpression implements StringParser {
             expression.setValue1(subString);
         }
         else
-            expression.setValue1("");
+            expression.setValue1(NO_VALUE);
     }
 
     // reads operator from the string with math expression
     private int readOperator(int positionOperator) {
-        String operator = String.valueOf(charSequence[positionOperator++]);
-        expression.setOperator(operator);
+        expression.setOperator(foundOperator);
+        positionOperator += foundOperator.length();
         return positionOperator;
     }
 
     // reads second argument from the string with math expression
     private void readSecondArgument(int startPositionSecondValue) {
         int lengthOfSecondValue = charSequence.length - startPositionSecondValue;
-//        if (inputSequence[inputSequence.length - 1] == CLOSING_BRACE)
-//            lengthOfSecondValue--;
+        if (charSequence[charSequence.length - 1] == CLOSING_BRACE)
+            lengthOfSecondValue--;
         String subString = String.copyValueOf(charSequence, startPositionSecondValue, lengthOfSecondValue);
-        expression.setValue2(subString);
+        if (lengthOfSecondValue > 0)
+            expression.setValue2(subString);
+        else
+            expression.setValue2(NO_VALUE);
     }
 }

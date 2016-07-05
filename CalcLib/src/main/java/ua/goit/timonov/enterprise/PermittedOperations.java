@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 public class PermittedOperations {
     public static final String PLUS = "+";
     public static final String MINUS = "-";
+    public static final String SQUARE_ROOT = "sqrt(";
+    public static final String LN = "ln(";
+    public static final String FACTORIAL = "!";
+
     protected Map<Operation, String> operations = new HashMap<>();
 
 
@@ -32,6 +36,10 @@ public class PermittedOperations {
         operations.put(new OperationFloatMinus(), MINUS);
         operations.put(new OperationDoublePlus(), PLUS);
         operations.put(new OperationDoubleMinus(), MINUS);
+        operations.put(new OperationIntegerSquareRoot(), SQUARE_ROOT);
+        operations.put(new OperationDoubleSquareRoot(), SQUARE_ROOT);
+        operations.put(new OperationDoubleLogarithm(), LN);
+        operations.put(new OperationFactorial(), FACTORIAL);
     }
 
 

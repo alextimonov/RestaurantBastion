@@ -7,8 +7,12 @@ package ua.goit.timonov.enterprise;
  */
 public class FactoryNumberExpression implements FactoryExpression {
 
+    private static final String SQUARE_ROOT = "sqrt(";
+    private static final String LN = "ln(";
+    private static final String FACTORIAL = "!";
+
     protected String operator;
-    private Expression expression;
+    protected Expression expression;
 
     /**
      * converts given StringExpression to Expression format arguments in appropriate format
@@ -18,6 +22,53 @@ public class FactoryNumberExpression implements FactoryExpression {
      */
     public Expression makeExpression(StringExpression stringExpression) {
         operator = stringExpression.getOperator();
+        switch (operator) {
+            case SQUARE_ROOT:
+            case LN: {
+                makeExpressionWithOnlySecondArg(stringExpression);
+            }
+            break;
+            case FACTORIAL: {
+                makeExpressionWithOnlyFirstArg(stringExpression);
+            }
+            break;
+            default: {
+                makeExpressionWithTwoArgs(stringExpression);
+            }
+        }
+        return expression;
+    }
+
+    private void makeExpressionWithOnlyFirstArg(StringExpression stringExpression) {
+        try {
+            Integer value = Integer.valueOf(stringExpression.getValue1());
+            expression = new ExpressionFactorial(value, new OperationFactorial());
+        } catch (NumberFormatException eInteger) {
+            throw new IllegalArgumentException("Factorial's argument must be an integer number!");
+        }
+    }
+
+    private void makeExpressionWithOnlySecondArg(StringExpression stringExpression) {
+        try {
+            Integer value = Integer.valueOf(stringExpression.getValue2());
+            if (operator.equals(SQUARE_ROOT))
+                expression = new ExpressionUnaryIntegerToDouble(value, new OperationIntegerSquareRoot());
+            else
+                expression = new ExpressionUnaryIntegerToDouble(value, new OperationIntegerLogarithm());
+        } catch (NumberFormatException eInteger) {
+            try {
+                Double value = Double.valueOf(stringExpression.getValue2());
+                if (operator.equals(SQUARE_ROOT))
+                    expression = new ExpressionUnaryDoubleToDouble(value, new OperationDoubleSquareRoot());
+                else
+                    expression = new ExpressionUnaryDoubleToDouble(value, new OperationDoubleLogarithm());
+            } catch (NumberFormatException eDouble) {
+                throw new IllegalArgumentException("Arguments are not numbers!");
+            }
+        }
+    }
+
+    private void makeExpressionWithTwoArgs(StringExpression stringExpression) {
         try {
             Integer value1 = Integer.valueOf(stringExpression.getValue1());
             Integer value2 = Integer.valueOf(stringExpression.getValue2());
@@ -43,7 +94,6 @@ public class FactoryNumberExpression implements FactoryExpression {
                 }
             }
         }
-        return expression;
     }
 
     // returns expression of ExpressionIntegerPlusMinus for adding or subtracting Integer numbers
