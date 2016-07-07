@@ -41,4 +41,10 @@ public class AppConfig {
         Calc calc = new CalcNumbers(permittedOperations(), factoryExpression());
         return calc;
     }
+
+    @Bean
+    public CalcNumbers calcNumbers() {
+        CalcNumbers calcNumbers = new CalcNumbers(permittedOperations(), factoryExpression());
+        return calcNumbers;
+    }
 }
