@@ -1,11 +1,8 @@
 
 package ua.goit.timonov.enterprise;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Calc application using CalcLib library
@@ -18,17 +15,13 @@ public class AppCalc {
     // object of calculator from CalcLib library
     private Calc calc;
 
-
     /**
      * starts application
      * @param args      arguments are not expected
      */
     public static void main(String[] args) {
-//        Logger logger = LoggerFactory.getLogger(AppCalc.class);
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class); //, LogAspect.class);
-        String[] configLocations = {"aop-context.xml"};
-        ApplicationContext applicationContextWithAOP = new ClassPathXmlApplicationContext(configLocations, applicationContext);
-        AppCalc appCalc = applicationContextWithAOP.getBean("appCalc", AppCalc.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppCalc appCalc = applicationContext.getBean("appCalc", AppCalc.class);
         appCalc.execute();
     }
 

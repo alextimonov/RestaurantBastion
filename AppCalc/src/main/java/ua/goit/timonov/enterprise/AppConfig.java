@@ -2,12 +2,16 @@ package ua.goit.timonov.enterprise;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 
 /**
  * Java-based Spring configuration class for AppCalc
  */
 
 @Configuration
+@EnableAspectJAutoProxy
+@Import(LogAspect.class)
 public class AppConfig {
 
     @Bean
@@ -16,6 +20,12 @@ public class AppConfig {
         appCalc.setInputOutput(inputOutput());
         appCalc.setCalc(calc());
         return appCalc;
+    }
+
+    @Bean
+    public StringParser stringParser() {
+        StringParser stringParser = new ParserStringToStringExpression();
+        return stringParser;
     }
 
     @Bean
@@ -38,13 +48,13 @@ public class AppConfig {
 
     @Bean
     public Calc calc() {
-        Calc calc = new CalcNumbers(permittedOperations(), factoryExpression());
+        Calc calc = new CalcNumbers(permittedOperations(), factoryExpression(), stringParser());
         return calc;
     }
 
     @Bean
     public CalcNumbers calcNumbers() {
-        CalcNumbers calcNumbers = new CalcNumbers(permittedOperations(), factoryExpression());
+        CalcNumbers calcNumbers = new CalcNumbers(permittedOperations(), factoryExpression(), stringParser());
         return calcNumbers;
     }
 }
