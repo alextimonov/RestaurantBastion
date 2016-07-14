@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <context:component-scan base-package="ua.goit.timonov.enterprise"/>
-    <context:annotation-config/>
+    <bean id = "appCalc" class = "ua.goit.timonov.enterprise.AppCalc">
+        <constructor-arg name="calc" ref="calc"/>
+        <constructor-arg name="inputOutput" ref="inputOutput"/>
+    </bean>
+
+    <bean id = "calc" class="ua.goit.timonov.enterprise.CalcNumbers">
+        <constructor-arg name="permittedOperations" ref="permittedOperations"/>
+        <constructor-arg name="factoryExpression" ref="factoryNumberExpression"/>
+        <constructor-arg name="stringParser" ref="stringParser"/>
+        <!--<constructor-arg name="expression" ref="expressionImpl"/>-->
+
+        <!--<property name="permittedOperations" ref="permittedOperations"/>-->
+        <!--<property name="factoryExpression" ref="factoryNumberExpression"/>-->
+        <!--<property name="stringParser" ref="stringParser"/>-->
+        <property name="expression" ref="expressionImpl"/>
+        <property name="expressionToCalc" ref="expressionIntegerPlusMinus"/>
+    </bean>
+
+    <bean id = "inputOutput" class="ua.goit.timonov.enterprise.InputOutput"/>
+
+    <bean id="permittedOperations" class="ua.goit.timonov.enterprise.PermittedOperationsForApp"/>
+    <bean id="factoryNumberExpression" class="ua.goit.timonov.enterprise.FactoryNumberExpressionForApp"/>
+    <bean id="stringParser" class="ua.goit.timonov.enterprise.ParserStringToStringExpression"/>
+
+    <bean id="expressionImpl" class="ua.goit.timonov.enterprise.ExpressionImpl" scope="prototype">
+        <!--<lookup-method bean="factoryNumberExpression" />-->
+    </bean>
+
+    <bean id="expressionIntegerPlusMinus" class="ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus">
+        <property name="operation" ref="operationIntegerPlus"/>
+    </bean>
+
+    <bean id="operationIntegerPlus" class="ua.goit.timonov.enterprise.OperationIntegerPlus"/>
+
 
 </beans>
 

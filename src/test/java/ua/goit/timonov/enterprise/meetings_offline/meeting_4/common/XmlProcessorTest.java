@@ -1,7 +1,5 @@
 package ua.goit.timonov.enterprise.meetings_offline.meeting_4.common;
 
-import com.sun.xml.internal.ws.policy.AssertionValidationProcessor;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;

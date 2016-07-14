@@ -9,6 +9,7 @@ public class CalcNumbers implements Calc {
     private FactoryExpression factoryExpression = new FactoryNumberExpression();
     private StringExpression stringExpression;
     private Expression expression;
+    private Expression expressionToCalc;
     private String resultString;
 
     public CalcNumbers() {
@@ -24,6 +25,34 @@ public class CalcNumbers implements Calc {
         this.stringParser = stringParser;
     }
 
+    public CalcNumbers(PermittedOperations permittedOperations, FactoryExpression factoryExpression, StringParser stringParser, Expression expression) {
+        this(permittedOperations, factoryExpression, stringParser);
+        this.expression = expression;
+    }
+
+    public void setExpression(Expression expression) {
+        this.expression = expression;
+    }
+
+
+    public void setExpressionToCalc(Expression expressionToCalc) {
+        this.expressionToCalc = expressionToCalc;
+    }
+
+    public void setStringParser(ParserStringToStringExpression stringParser) {
+        this.stringParser = stringParser;
+    }
+
+    public void setPermittedOperations(PermittedOperations permittedOperations) {
+        this.permittedOperations = permittedOperations;
+    }
+
+    public void setFactoryExpression(FactoryExpression factoryExpression) {
+        this.factoryExpression = factoryExpression;
+    }
+
+
+
     /**
      * @param inputString given String with math expression, String must be in format
      *                    "operand1_operator_operand2" without spaces or underscore, e.g.
@@ -36,11 +65,15 @@ public class CalcNumbers implements Calc {
      */
     public String doCalc(String inputString) {
         stringExpression = stringParser.parse(inputString, permittedOperations);
-        expression = factoryExpression.makeExpression(stringExpression);
-        expression.calculate();
-        resultString = expression.getResult().toString();
+//        expression.calculate();
+//        System.out.println(expression.getResult().toString());
+        expressionToCalc = factoryExpression.makeExpression(stringExpression);
+        expressionToCalc.calculate();
+        resultString = expressionToCalc.getResult().toString();
         return resultString;
     }
+
+
 }
 
 

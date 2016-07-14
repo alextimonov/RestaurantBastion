@@ -1,6 +1,5 @@
 package ua.goit.timonov.enterprise.meetings_offline.meeting_4.common;
 
-import ua.goit.timonov.enterprise.meetings_offline.meeting_4.xml.sax.SaxXmlProcessorImpl;
 import ua.goit.timonov.enterprise.meetings_offline.meeting_4.xml.xsd.XsdProcessorImpl;
 
 /**

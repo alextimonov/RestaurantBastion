@@ -7,6 +7,9 @@ import java.util.Scanner;
  */
 public class InputOutput {
 
+    public InputOutput() {
+    }
+
     /**
      * returns inputted string
      * @return      inputted string

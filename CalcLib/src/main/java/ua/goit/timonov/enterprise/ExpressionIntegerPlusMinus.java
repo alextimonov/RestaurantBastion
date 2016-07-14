@@ -34,6 +34,10 @@ public class ExpressionIntegerPlusMinus implements Expression<Integer> {
         this.value2 = value2;
     }
 
+    public void setOperation(Operation<Integer, Integer> operation) {
+        this.operation = operation;
+    }
+
     /**
      * returns result of calculated Integer expression
      * @return      result of expression
@@ -42,6 +46,13 @@ public class ExpressionIntegerPlusMinus implements Expression<Integer> {
     public Integer getResult() {
         return result;
     }
+
+//    @Override
+//    public void makeExpression(Integer value1, Integer value2, Operation<Integer, Integer> operation) {
+//        this.value1 = value1;
+//        this.value2 = value2;
+//        this.operation = operation;
+//    }
 
     /**
      * calculates an expression

@@ -3,9 +3,7 @@ package ua.goit.timonov.enterprise.lectures.lecture_3_2;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 /**
  * Created by Alex on 14.06.2016.

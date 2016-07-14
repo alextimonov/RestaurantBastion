@@ -1,7 +1,5 @@
 package ua.goit.timonov.enterprise;
 
-import java.util.Date;
-
 /**
  * factory to create Expression with number arguments in appropriate format from given StringExpression with arguments
  * presented with String. Supported formats are Integer, Long, Float, Double. Supported operations are addition ("+"),
@@ -11,10 +9,6 @@ import java.util.Date;
 public class FactoryNumberExpressionForApp extends FactoryNumberExpression {
     public static final String MULTIPLY = "*";
     public static final String DIVIDE = "/";
-
-    private Date getDate(String value1) {
-        return null;
-    }
 
     // returns expression of ExpressionIntegerPlusMinus for adding or subtracting,
     // ExpressionIntegerMultiply for multiplication or ExpressionIntegerDivide for division Integer numbers

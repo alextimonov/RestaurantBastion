@@ -1,8 +1,5 @@
 package ua.goit.timonov.enterprise.meetings_offline.meeting_4.common;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * Created by Alex on 01.07.2016.
  */
