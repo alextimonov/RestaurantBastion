@@ -50,15 +50,21 @@ public class LogAspect {
         return logAndProceed(pjp);
     }
 
-    @Around("execution( * ua.goit.timonov.enterprise.Expression.calculate(..) )")
+    @Around("execution( * ua.goit.timonov.enterprise.Expression.*(..) )")
     public Object onExpressionExecute(ProceedingJoinPoint pjp) throws Throwable {
         return logAndProceed(pjp);
     }
 
-    @Around("execution( * ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus.calculate(..) )")
-    public Object onExpressionIPMExecute(ProceedingJoinPoint pjp) throws Throwable {
+//    @Around("execution( * ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus.*(..) )")
+//    public Object onExpressionIPMExecute(ProceedingJoinPoint pjp) throws Throwable {
+//        return logAndProceed(pjp);
+//    }
+
+    @Around("execution( * ua.goit.timonov.enterprise.ExpressionProvider.getExpression(..) )")
+    public Object onGetExpressionExecute(ProceedingJoinPoint pjp) throws Throwable {
         return logAndProceed(pjp);
     }
+
 
 
 //    @Around("execution(public * *(..))")

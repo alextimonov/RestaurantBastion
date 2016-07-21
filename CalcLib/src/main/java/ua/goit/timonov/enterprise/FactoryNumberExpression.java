@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise;
 
+import java.util.Map;
+
 /**
  * factory to create Expression with number arguments in appropriate format from given StringExpression with arguments
  * presented with String. Supported formats are Integer, Long, Float, Double. Supported operations are addition ("+")
@@ -11,8 +13,12 @@ public class FactoryNumberExpression implements FactoryExpression {
     private static final String LN = "ln(";
     private static final String FACTORIAL = "!";
 
+
     protected String operator;
     protected Expression expression;
+
+    //adds
+    private Map expressionFactoryMap;
 
     /**
      * converts given StringExpression to Expression format arguments in appropriate format
@@ -142,5 +148,10 @@ public class FactoryNumberExpression implements FactoryExpression {
             doubleExpression = new ExpressionDouble(value1, value2, new OperationDoubleMinus());
         }
         return doubleExpression;
+    }
+
+    // adds
+    public void setExpressionFactoryMap(Map expressionFactoryMap) {
+        this.expressionFactoryMap = expressionFactoryMap;
     }
 }

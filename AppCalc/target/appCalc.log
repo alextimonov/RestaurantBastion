@@ -677,3 +677,395 @@
 14-07-2016 16:30:41 INFO  AppCalc:72 - Class FactoryNumberExpressionForApp, method makeExpression before executing
 14-07-2016 16:30:41 INFO  AppCalc:74 - Class FactoryNumberExpressionForApp, method makeExpression after executing
 14-07-2016 16:30:41 INFO  AppCalc:74 - Class CalcNumbers, method doCalc after executing
+18-07-2016 23:43:55 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Mon Jul 18 23:43:55 EEST 2016]; root of context hierarchy
+18-07-2016 23:43:56 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+18-07-2016 23:43:57 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+18-07-2016 23:44:03 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'expressionDouble' defined in class path resource [application-context.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.ExpressionDouble]: No default constructor found; nested exception is java.lang.NoSuchMethodException: ua.goit.timonov.enterprise.ExpressionDouble.<init>()
+19-07-2016 00:12:19 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 00:12:19 EEST 2016]; root of context hierarchy
+19-07-2016 00:12:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:12:21 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:12:24 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appCalc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'calc' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'calc' defined in class path resource [application-context.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.CalcNumbers]: Constructor threw exception; nested exception is java.lang.NullPointerException
+19-07-2016 00:18:27 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 00:18:27 EEST 2016]; root of context hierarchy
+19-07-2016 00:18:27 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:18:27 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:18:28 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appCalc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'calc' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'calc' defined in class path resource [application-context.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.CalcNumbers]: Constructor threw exception; nested exception is java.lang.NullPointerException
+19-07-2016 00:21:19 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 00:21:19 EEST 2016]; root of context hierarchy
+19-07-2016 00:21:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:21:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:21:22 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appCalc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'calc' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'calc' defined in class path resource [application-context.xml]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.CalcNumbers]: Constructor threw exception; nested exception is java.lang.NullPointerException
+19-07-2016 00:23:12 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 00:23:12 EEST 2016]; root of context hierarchy
+19-07-2016 00:23:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:23:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:23:23 INFO  AppCalc:72 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:23:23 INFO  AppCalc:72 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:23:23 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:23:23 INFO  AppCalc:72 - Class FactoryNumberExpressionForApp, method makeExpression before executing
+19-07-2016 00:23:23 INFO  AppCalc:74 - Class FactoryNumberExpressionForApp, method makeExpression after executing
+19-07-2016 00:23:23 INFO  AppCalc:74 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:23:40 INFO  AppCalc:72 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:23:40 INFO  AppCalc:72 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:23:40 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:23:40 INFO  AppCalc:72 - Class FactoryNumberExpressionForApp, method makeExpression before executing
+19-07-2016 00:23:40 INFO  AppCalc:74 - Class FactoryNumberExpressionForApp, method makeExpression after executing
+19-07-2016 00:23:40 INFO  AppCalc:74 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:26:39 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 00:26:39 EEST 2016]; root of context hierarchy
+19-07-2016 00:26:39 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:26:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:26:48 INFO  AppCalc:74 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:26:48 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:26:48 INFO  AppCalc:76 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:26:48 INFO  AppCalc:74 - Class FactoryNumberExpressionForApp, method makeExpression before executing
+19-07-2016 00:26:48 INFO  AppCalc:76 - Class FactoryNumberExpressionForApp, method makeExpression after executing
+19-07-2016 00:26:48 INFO  AppCalc:76 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:27:51 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 00:27:51 EEST 2016]; root of context hierarchy
+19-07-2016 00:27:51 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:27:51 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:28:01 INFO  AppCalc:74 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:28:01 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:28:01 INFO  AppCalc:76 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:33:31 INFO  AppCalc:74 - Class FactoryNumberExpressionForApp, method makeExpression before executing
+19-07-2016 00:33:31 INFO  AppCalc:76 - Class FactoryNumberExpressionForApp, method makeExpression after executing
+19-07-2016 00:33:31 INFO  AppCalc:76 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:33:49 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 00:33:49 EEST 2016]; root of context hierarchy
+19-07-2016 00:33:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:33:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:33:56 INFO  AppCalc:74 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:33:56 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:33:56 INFO  AppCalc:76 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:34:11 INFO  AppCalc:74 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 00:34:11 INFO  AppCalc:76 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 00:34:11 INFO  AppCalc:76 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:34:19 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 00:34:19 EEST 2016]; root of context hierarchy
+19-07-2016 00:34:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:34:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:34:28 INFO  AppCalc:74 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:34:28 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:34:28 INFO  AppCalc:76 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:34:28 INFO  AppCalc:74 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 00:34:28 INFO  AppCalc:76 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 00:34:28 INFO  AppCalc:76 - Class CalcNumbers, method doCalc after executing
+19-07-2016 00:36:16 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 00:36:16 EEST 2016]; root of context hierarchy
+19-07-2016 00:36:16 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:36:16 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:36:19 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appCalc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'calc' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'calc' defined in class path resource [application-context.xml]: Initialization of bean failed; nested exception is org.springframework.beans.ConversionNotSupportedException: Failed to convert property value of type [com.sun.proxy.$Proxy10 implementing ua.goit.timonov.enterprise.StringParser,org.springframework.aop.SpringProxy,org.springframework.aop.framework.Advised,org.springframework.core.DecoratingProxy] to required type [ua.goit.timonov.enterprise.ParserStringToStringExpression] for property 'stringParser'; nested exception is java.lang.IllegalStateException: Cannot convert value of type [com.sun.proxy.$Proxy10 implementing ua.goit.timonov.enterprise.StringParser,org.springframework.aop.SpringProxy,org.springframework.aop.framework.Advised,org.springframework.core.DecoratingProxy] to required type [ua.goit.timonov.enterprise.ParserStringToStringExpression] for property 'stringParser': no matching editors or conversion strategy found
+19-07-2016 00:37:49 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 00:37:49 EEST 2016]; root of context hierarchy
+19-07-2016 00:37:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 00:37:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 00:38:00 INFO  AppCalc:74 - Class CalcNumbers, method doCalc before executing
+19-07-2016 00:38:00 INFO  AppCalc:74 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 00:38:00 INFO  AppCalc:76 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 00:40:40 INFO  AppCalc:74 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 00:40:40 INFO  AppCalc:76 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 00:40:40 INFO  AppCalc:76 - Class CalcNumbers, method doCalc after executing
+19-07-2016 23:25:14 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 23:25:14 EEST 2016]; root of context hierarchy
+19-07-2016 23:25:15 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 23:25:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 23:25:31 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+19-07-2016 23:25:31 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 23:25:32 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 23:25:32 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+19-07-2016 23:25:32 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+19-07-2016 23:25:32 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 23:25:32 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 23:25:32 INFO  AppCalc:82 - Class CalcNumbers, method doCalc after executing
+19-07-2016 23:34:47 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Tue Jul 19 23:34:47 EEST 2016]; root of context hierarchy
+19-07-2016 23:34:47 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 23:34:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 23:35:01 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+19-07-2016 23:35:01 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 23:35:03 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 23:35:03 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+19-07-2016 23:40:47 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+19-07-2016 23:46:14 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 23:46:14 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 23:46:14 INFO  AppCalc:82 - Class CalcNumbers, method doCalc after executing
+19-07-2016 23:47:06 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Tue Jul 19 23:47:06 EEST 2016]; root of context hierarchy
+19-07-2016 23:47:07 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+19-07-2016 23:47:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+19-07-2016 23:48:12 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+19-07-2016 23:48:12 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+19-07-2016 23:48:13 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+19-07-2016 23:48:13 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+19-07-2016 23:48:13 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+19-07-2016 23:48:13 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+19-07-2016 23:48:13 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+19-07-2016 23:48:13 INFO  AppCalc:82 - Class CalcNumbers, method doCalc after executing
+20-07-2016 00:00:28 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 00:00:27 EEST 2016]; root of context hierarchy
+20-07-2016 00:00:28 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:00:29 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:06:00 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:06:00 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:06:01 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:06:01 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:06:01 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:06:01 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+20-07-2016 00:06:01 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+20-07-2016 00:06:01 INFO  AppCalc:82 - Class CalcNumbers, method doCalc after executing
+20-07-2016 00:08:42 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 00:08:42 EEST 2016]; root of context hierarchy
+20-07-2016 00:08:43 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:08:43 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:08:57 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:08:57 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:08:57 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:08:57 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:08:57 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:08:57 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+20-07-2016 00:08:57 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+20-07-2016 00:17:46 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 00:17:46 EEST 2016]; root of context hierarchy
+20-07-2016 00:17:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:17:48 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:18:13 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:18:13 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:18:14 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:18:14 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:18:14 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:18:14 INFO  AppCalc:80 - Class FactoryNumberExpression, method makeExpression before executing
+20-07-2016 00:18:14 INFO  AppCalc:82 - Class FactoryNumberExpression, method makeExpression after executing
+20-07-2016 00:18:14 INFO  AppCalc:82 - Class CalcNumbers, method doCalc after executing
+20-07-2016 00:28:16 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 00:28:16 EEST 2016]; root of context hierarchy
+20-07-2016 00:28:17 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:28:17 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:28:23 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:28:23 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:28:24 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:28:24 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:28:24 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:28:24 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 00:30:30 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 00:30:30 EEST 2016]; root of context hierarchy
+20-07-2016 00:30:30 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:30:31 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:30:38 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:30:38 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:30:38 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:30:38 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:30:38 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:32:27 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 00:41:58 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 00:41:58 EEST 2016]; root of context hierarchy
+20-07-2016 00:41:58 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:41:59 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:42:09 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:42:09 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:42:09 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:42:09 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:42:09 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:42:09 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 00:55:41 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 00:55:41 EEST 2016]; root of context hierarchy
+20-07-2016 00:55:41 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 00:55:43 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 00:55:51 INFO  AppCalc:80 - Class CalcNumbers, method doCalc before executing
+20-07-2016 00:55:51 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 00:55:51 INFO  AppCalc:82 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 00:55:51 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 00:55:51 INFO  AppCalc:82 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 00:55:51 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:15:16 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:15:16 EEST 2016]; root of context hierarchy
+20-07-2016 01:15:16 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:15:17 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:15:35 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:15:35 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:15:35 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:15:35 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:15:35 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:16:29 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:16:29 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:16:29 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:16:29 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:16:29 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:16:45 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:16:45 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:16:45 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:16:45 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:16:45 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:17:45 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:17:45 EEST 2016]; root of context hierarchy
+20-07-2016 01:17:45 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:17:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:17:52 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:17:52 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:17:52 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:17:52 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:17:52 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:19:12 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:19:12 EEST 2016]; root of context hierarchy
+20-07-2016 01:19:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:19:13 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:19:19 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:19:19 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:19:19 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:19:58 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:19:58 EEST 2016]; root of context hierarchy
+20-07-2016 01:19:59 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:19:59 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:20:16 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:20:16 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:20:16 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:22:17 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:22:16 EEST 2016]; root of context hierarchy
+20-07-2016 01:22:17 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:22:18 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:22:27 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:24:40 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:24:40 EEST 2016]; root of context hierarchy
+20-07-2016 01:24:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:24:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:24:46 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:36:53 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:36:53 EEST 2016]; root of context hierarchy
+20-07-2016 01:36:53 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:36:54 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:37:04 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:37:40 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:37:40 EEST 2016]; root of context hierarchy
+20-07-2016 01:37:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:37:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:37:45 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:38:10 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:50:59 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:50:59 EEST 2016]; root of context hierarchy
+20-07-2016 01:51:00 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:51:00 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:51:07 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:51:07 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:51:07 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:51:07 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 01:52:35 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:52:35 EEST 2016]; root of context hierarchy
+20-07-2016 01:52:36 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:52:36 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:52:43 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:52:43 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:52:44 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:53:12 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 01:54:53 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:54:53 EEST 2016]; root of context hierarchy
+20-07-2016 01:54:53 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:54:53 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:55:01 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:55:01 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:55:01 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:55:42 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Wed Jul 20 01:55:42 EEST 2016]; root of context hierarchy
+20-07-2016 01:55:42 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:55:42 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:55:50 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:55:50 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:55:50 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:57:35 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:57:35 EEST 2016]; root of context hierarchy
+20-07-2016 01:57:35 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:57:36 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:57:40 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:57:40 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:57:40 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:57:40 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 01:57:50 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:57:50 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:57:50 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:57:50 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 01:59:06 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 01:59:06 EEST 2016]; root of context hierarchy
+20-07-2016 01:59:06 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 01:59:07 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 01:59:15 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 01:59:15 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 02:00:10 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 02:00:10 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 02:02:18 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 02:02:18 EEST 2016]; root of context hierarchy
+20-07-2016 02:02:18 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 02:02:19 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 02:02:28 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:02:28 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:02:28 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 02:02:28 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 02:02:29 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 02:02:29 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 02:02:29 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 02:02:29 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 02:02:29 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 02:02:29 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 02:02:29 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 02:02:29 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 02:06:55 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 02:06:55 EEST 2016]; root of context hierarchy
+20-07-2016 02:06:56 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 02:06:56 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method setArguments after executing
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method calculate before executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method calculate after executing
+20-07-2016 02:07:00 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method getResult before executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class ExpressionIntegerPlusMinus, method getResult after executing
+20-07-2016 02:07:00 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+20-07-2016 02:07:19 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:07:19 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:07:19 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 02:07:19 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 02:07:19 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 02:07:19 INFO  AppCalc:78 - Class ExpressionIntegerPlusMinus, method setArguments before executing
+20-07-2016 02:07:25 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:07:25 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:09:00 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Wed Jul 20 02:09:00 EEST 2016]; root of context hierarchy
+20-07-2016 02:09:00 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+20-07-2016 02:09:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class ExpressionDouble, method setArguments before executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class ExpressionDouble, method setArguments after executing
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class ExpressionDouble, method calculate before executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class ExpressionDouble, method calculate after executing
+20-07-2016 02:09:14 INFO  AppCalc:78 - Class ExpressionDouble, method getResult before executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class ExpressionDouble, method getResult after executing
+20-07-2016 02:09:14 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+21-07-2016 17:57:49 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 17:57:49 EEST 2016]; root of context hierarchy
+21-07-2016 17:57:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 17:57:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class ExpressionDouble, method setArguments before executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class ExpressionDouble, method setArguments after executing
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class ExpressionDouble, method calculate before executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class ExpressionDouble, method calculate after executing
+21-07-2016 17:58:09 INFO  AppCalc:78 - Class ExpressionDouble, method getResult before executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class ExpressionDouble, method getResult after executing
+21-07-2016 17:58:09 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class CalcNumbers, method doCalc before executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class ExpressionDouble, method setArguments before executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class ExpressionDouble, method setArguments after executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class ExpressionDouble, method calculate before executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class ExpressionDouble, method calculate after executing
+21-07-2016 17:58:25 INFO  AppCalc:78 - Class ExpressionDouble, method getResult before executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class ExpressionDouble, method getResult after executing
+21-07-2016 17:58:25 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing

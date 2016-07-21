@@ -22,4 +22,9 @@ public class ExpressionFactorial implements Expression<Long> {
     public Long getResult() {
         return result;
     }
+
+    @Override
+    public void setArguments(StringExpression stringExpression) {
+        //TODO
+    }
 }

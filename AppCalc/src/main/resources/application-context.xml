@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id = "appCalc" class = "ua.goit.timonov.enterprise.AppCalc">
         <constructor-arg name="calc" ref="calc"/>
@@ -12,12 +12,12 @@
         <constructor-arg name="permittedOperations" ref="permittedOperations"/>
         <constructor-arg name="factoryExpression" ref="factoryNumberExpression"/>
         <constructor-arg name="stringParser" ref="stringParser"/>
-        <!--<constructor-arg name="expression" ref="expressionImpl"/>-->
 
         <!--<property name="permittedOperations" ref="permittedOperations"/>-->
         <!--<property name="factoryExpression" ref="factoryNumberExpression"/>-->
         <!--<property name="stringParser" ref="stringParser"/>-->
-        <property name="expression" ref="expressionImpl"/>
+
+        <property name="expressionProvider" ref="expressionProvider"/>
         <property name="expressionToCalc" ref="expressionIntegerPlusMinus"/>
     </bean>
 
@@ -27,15 +27,38 @@
     <bean id="factoryNumberExpression" class="ua.goit.timonov.enterprise.FactoryNumberExpressionForApp"/>
     <bean id="stringParser" class="ua.goit.timonov.enterprise.ParserStringToStringExpression"/>
 
-    <bean id="expressionImpl" class="ua.goit.timonov.enterprise.ExpressionImpl" scope="prototype">
-        <!--<lookup-method bean="factoryNumberExpression" />-->
+    <bean id="expressionProvider" class="ua.goit.timonov.enterprise.ExpressionProvider">
+        <property name="expressionFactoryMap">
+        <util:map>
+            <entry key="IntegerPlus" value-ref="integerExpressionFactory"/>
+            <entry key="DoublePlus" value-ref="doubleExpressionFactory"/>
+        </util:map>
+        </property>
     </bean>
 
-    <bean id="expressionIntegerPlusMinus" class="ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus">
-        <property name="operation" ref="operationIntegerPlus"/>
+    <bean id="expressionIntegerPlusMinus" class="ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus" scope="prototype">
     </bean>
 
-    <bean id="operationIntegerPlus" class="ua.goit.timonov.enterprise.OperationIntegerPlus"/>
+    <bean id="expressionDouble" class="ua.goit.timonov.enterprise.ExpressionDouble" scope="prototype">
+    </bean>
+
+
+    <bean id="integerExpressionFactory" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionIntegerPlusMinus"/>
+    </bean>
+
+    <bean id="doubleExpressionFactory" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionDouble"/>
+    </bean>
+
+    <!--<bean id="factoryNumberExpressionNew" class="ua.goit.timonov.enterprise.FactoryNumberExpression">-->
+        <!--<property name="expressionFactoryMap">-->
+            <!--<util:map>-->
+                <!--<entry key="IntegerPlus" value-ref="integerExpressionFactory"/>-->
+                <!--<entry key="DoublePlus" value-ref="doubleExpressionFactory"/>-->
+            <!--</util:map>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 
 </beans>

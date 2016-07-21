@@ -40,6 +40,11 @@ public class ExpressionFloat implements Expression<Float> {
         return result;
     }
 
+    @Override
+    public void setArguments(StringExpression stringExpression) {
+        //TODO
+    }
+
     /**
      * calculates an expression
      */

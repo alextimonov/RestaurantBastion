@@ -22,4 +22,9 @@ public class ExpressionUnaryDoubleToDouble implements Expression<Double> {
     public Double getResult() {
         return result;
     }
+
+    @Override
+    public void setArguments(StringExpression stringExpression) {
+        //TODO
+    }
 }

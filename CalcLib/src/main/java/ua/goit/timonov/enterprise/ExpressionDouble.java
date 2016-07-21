@@ -9,6 +9,9 @@ public class ExpressionDouble implements Expression<Double> {
     private Operation<Double, Double> operation;
     private Double result;
 
+    public ExpressionDouble() {
+    }
+
     public ExpressionDouble(Double value1, Double value2, Operation<Double, Double> operation) {
         this.value1 = value1;
         this.value2 = value2;
@@ -38,6 +41,13 @@ public class ExpressionDouble implements Expression<Double> {
     @Override
     public Double getResult() {
         return result;
+    }
+
+    @Override
+    public void setArguments(StringExpression stringExpression) {
+        this.value1 = Double.valueOf(stringExpression.getValue1());
+        this.value2 = Double.valueOf(stringExpression.getValue2());
+        this.operation = new OperationDoublePlus();
     }
 
     /**

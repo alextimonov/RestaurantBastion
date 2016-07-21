@@ -7,6 +7,7 @@ public class StringExpression {
     private String operator;
     private String value1;
     private String value2;
+    private String expressionType;
     private String result;
 
     public StringExpression() {
@@ -16,6 +17,13 @@ public class StringExpression {
         this.operator = operator;
         this.value1 = value1;
         this.value2 = value2;
+    }
+
+    public StringExpression(String operator, String value1, String value2, String expressionType) {
+        this.operator = operator;
+        this.value1 = value1;
+        this.value2 = value2;
+        this.expressionType = expressionType;
     }
 
     public String getOperator() {
@@ -40,6 +48,14 @@ public class StringExpression {
 
     public void setValue2(String value2) {
         this.value2 = value2;
+    }
+
+    public String getExpressionType() {
+        return expressionType;
+    }
+
+    public void setExpressionType(String expressionType) {
+        this.expressionType = expressionType;
     }
 
     public String getResult() {

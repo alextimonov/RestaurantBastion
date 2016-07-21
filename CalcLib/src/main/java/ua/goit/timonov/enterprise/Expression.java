@@ -18,5 +18,10 @@ public interface Expression<T> {
      */
     T getResult();
 
-//    void makeExpression(A value1, A value2, Operation<A, T> operation);
+    /**
+     * @param stringExpression
+     * sets arguments
+     */
+    void setArguments(StringExpression stringExpression);
+
 }

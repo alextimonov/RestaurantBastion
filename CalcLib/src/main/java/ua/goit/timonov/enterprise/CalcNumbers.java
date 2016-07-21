@@ -7,6 +7,7 @@ public class CalcNumbers implements Calc {
     private StringParser stringParser = new ParserStringToStringExpression();
     private PermittedOperations permittedOperations = new PermittedOperations();
     private FactoryExpression factoryExpression = new FactoryNumberExpression();
+    private ExpressionProvider expressionProvider = new ExpressionProvider();
     private StringExpression stringExpression;
     private Expression expression;
     private Expression expressionToCalc;
@@ -25,33 +26,29 @@ public class CalcNumbers implements Calc {
         this.stringParser = stringParser;
     }
 
-    public CalcNumbers(PermittedOperations permittedOperations, FactoryExpression factoryExpression, StringParser stringParser, Expression expression) {
-        this(permittedOperations, factoryExpression, stringParser);
-        this.expression = expression;
-    }
-
     public void setExpression(Expression expression) {
         this.expression = expression;
     }
-
 
     public void setExpressionToCalc(Expression expressionToCalc) {
         this.expressionToCalc = expressionToCalc;
     }
 
-    public void setStringParser(ParserStringToStringExpression stringParser) {
-        this.stringParser = stringParser;
+//    public void setStringParser(ParserStringToStringExpression stringParser) {
+//        this.stringParser = stringParser;
+//    }
+//
+//    public void setPermittedOperations(PermittedOperations permittedOperations) {
+//        this.permittedOperations = permittedOperations;
+//    }
+//
+//    public void setFactoryExpression(FactoryExpression factoryExpression) {
+//        this.factoryExpression = factoryExpression;
+//    }
+
+    public void setExpressionProvider(ExpressionProvider expressionProvider) {
+        this.expressionProvider = expressionProvider;
     }
-
-    public void setPermittedOperations(PermittedOperations permittedOperations) {
-        this.permittedOperations = permittedOperations;
-    }
-
-    public void setFactoryExpression(FactoryExpression factoryExpression) {
-        this.factoryExpression = factoryExpression;
-    }
-
-
 
     /**
      * @param inputString given String with math expression, String must be in format
@@ -65,11 +62,17 @@ public class CalcNumbers implements Calc {
      */
     public String doCalc(String inputString) {
         stringExpression = stringParser.parse(inputString, permittedOperations);
-//        expression.calculate();
-//        System.out.println(expression.getResult().toString());
-        expressionToCalc = factoryExpression.makeExpression(stringExpression);
-        expressionToCalc.calculate();
-        resultString = expressionToCalc.getResult().toString();
+
+
+        expression = expressionProvider.getExpression("DoublePlus");
+
+        expression.setArguments(stringExpression);
+        expression.calculate();
+        resultString = expression.getResult().toString();
+
+//        expressionToCalc = factoryExpression.makeExpression(stringExpression);
+//        expressionToCalc.calculate();
+//        resultString = expressionToCalc.getResult().toString();
         return resultString;
     }
 

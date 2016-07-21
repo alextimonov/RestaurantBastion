@@ -40,6 +40,11 @@ public class ExpressionIntegerMultiply implements Expression<Integer> {
     }
 
     @Override
+    public void setArguments(StringExpression stringExpression) {
+        //TODO
+    }
+
+    @Override
     public void calculate() {
         result = operation.execute(value1, value2);
     }
