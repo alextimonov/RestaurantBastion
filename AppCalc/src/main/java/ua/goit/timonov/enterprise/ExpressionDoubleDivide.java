@@ -1,35 +1,34 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Expression for divide operation for arguments with Long format
+ * Created by Alex on 22.07.2016.
  */
-
-public class ExpressionLongDivide implements Expression<Long, Double> {
-    private Long value1;
-    private Long value2;
+public class ExpressionDoubleDivide implements Expression<Double, Double> {
+    private Double value1;
+    private Double value2;
     private Double result;
 
-    public ExpressionLongDivide() {
+    public ExpressionDoubleDivide() {
     }
 
-    public ExpressionLongDivide(Long value1, Long value2) {
+    public ExpressionDoubleDivide(Double value1, Double value2) {
         this.value1 = value1;
         this.value2 = value2;
     }
 
-    public Long getValue1() {
+    public Double getValue1() {
         return value1;
     }
 
-    public void setValue1(Long value1) {
+    public void setValue1(Double value1) {
         this.value1 = value1;
     }
 
-    public Long getValue2() {
+    public Double getValue2() {
         return value2;
     }
 
-    public void setValue2(Long value2) {
+    public void setValue2(Double value2) {
         this.value2 = value2;
     }
 
@@ -37,12 +36,11 @@ public class ExpressionLongDivide implements Expression<Long, Double> {
     @Override
     public void calculate() {
         checkSecondArgument(value2);
-        double arg2 = (double) value2;
-        result = value1 / arg2;
+        result = value1 / value2;
     }
 
     // checks if second argument equals to zero
-    private void checkSecondArgument(long divider) {
+    private void checkSecondArgument(double divider) {
         if (divider == 0) {
             throw new IllegalArgumentException("Divider is equal to zero!");
         }
@@ -54,7 +52,7 @@ public class ExpressionLongDivide implements Expression<Long, Double> {
 
     @Override
     public void setArguments(StringExpression stringExpression) {
-        this.value1 = Long.valueOf(stringExpression.getValue1());
-        this.value2 = Long.valueOf(stringExpression.getValue2());
+        this.value1 = Double.valueOf(stringExpression.getValue1());
+        this.value2 = Double.valueOf(stringExpression.getValue2());
     }
 }

@@ -3,19 +3,34 @@ package ua.goit.timonov.enterprise;
 /**
  * Created by Alex on 04.07.2016.
  */
-public class ExpressionFactorial implements Expression<Long> {
+public class ExpressionFactorial implements Expression<Integer, Long> {
     private Integer value;
-    private Operation<Integer, Long> operation;
     private Long result;
 
-    public ExpressionFactorial(Integer value, Operation<Integer, Long> operation) {
+    public ExpressionFactorial() {
+    }
+
+    public ExpressionFactorial(Integer value) {
         this.value = value;
-        this.operation = operation;
     }
 
     @Override
     public void calculate() {
-        result = operation.execute(value);
+        checkArgument(value);
+        if (value == 0)
+            result = 0L;
+        else {
+            result = 1L;
+            for (int i = 1; i <= value; i++) {
+                result *= i;
+            }
+        }
+    }
+
+    private void checkArgument(int value) {
+        if (value < 0 || value > 30) {
+            throw new IllegalArgumentException("Can not calculate factorial for negative numbers or numbers bigger than 20.");
+        }
     }
 
     @Override
@@ -25,6 +40,6 @@ public class ExpressionFactorial implements Expression<Long> {
 
     @Override
     public void setArguments(StringExpression stringExpression) {
-        //TODO
+        this.value = Integer.valueOf(stringExpression.getValue1());
     }
 }

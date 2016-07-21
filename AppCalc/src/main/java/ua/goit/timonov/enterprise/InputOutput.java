@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise;
 import java.util.Scanner;
 
 /**
- * Class to input string expression from console and output the result of calculation or message about wrong input data format
+ * Class to input string expressionType from console and output the result of calculation or message about wrong input data format
  */
 public class InputOutput {
 
@@ -15,7 +15,7 @@ public class InputOutput {
      * @return      inputted string
      */
     public String inputStringFromConsole() {
-        System.out.println("Input number expression (operations +, -, *, /, LN(x), SQRT(x), x!  are supported). " +
+        System.out.println("Input number expressionType (operations +, -, *, /, LN(x), SQRT(x), x!  are supported). " +
                 "Input \"Q\" or \"q\" to quit ");
         Scanner scan = new Scanner(System.in);
         String inputString = scan.next();
@@ -23,8 +23,8 @@ public class InputOutput {
     }
 
     /**
-     * outputs inputted string expression and the result od its execution
-     * @param input     string with inputted expression
+     * outputs inputted string expressionType and the result od its execution
+     * @param input     string with inputted expressionType
      * @param result    string with result
      */
     public void printToConsole(String input, String result) {
@@ -32,8 +32,8 @@ public class InputOutput {
     }
 
     /**
-     * outputs message about wrong data format of inputted expression
-     * @param input         string with inputted expression
+     * outputs message about wrong data format of inputted expressionType
+     * @param input         string with inputted expressionType
      * @param message       string of caught exception
      */
     public void printErrorToConsole(String input, String message) {

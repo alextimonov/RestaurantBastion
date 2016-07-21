@@ -1069,3 +1069,820 @@
 21-07-2016 17:58:25 INFO  AppCalc:78 - Class ExpressionDouble, method getResult before executing
 21-07-2016 17:58:25 INFO  AppCalc:80 - Class ExpressionDouble, method getResult after executing
 21-07-2016 17:58:25 INFO  AppCalc:80 - Class CalcNumbers, method doCalc after executing
+21-07-2016 18:45:45 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:45:45 EEST 2016]; root of context hierarchy
+21-07-2016 18:45:45 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:45:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:45:48 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appCalc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'calc' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'calc' defined in class path resource [application-context.xml]: Cannot resolve reference to bean 'expressionIntegerPlusMinus' while setting bean property 'expressionToCalc'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'expressionIntegerPlusMinus' is defined
+21-07-2016 18:47:10 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:47:10 EEST 2016]; root of context hierarchy
+21-07-2016 18:47:10 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:47:10 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:47:18 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:47:18 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:47:18 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:47:18 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:50:01 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:50:01 EEST 2016]; root of context hierarchy
+21-07-2016 18:50:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:50:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:51:41 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:51:41 EEST 2016]; root of context hierarchy
+21-07-2016 18:51:41 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:51:41 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:51:45 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:51:45 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:51:45 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:51:45 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:53:16 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Thu Jul 21 18:53:16 EEST 2016]; root of context hierarchy
+21-07-2016 18:53:16 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:53:17 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:53:21 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:53:21 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:53:21 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:54:29 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:54:47 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:54:47 EEST 2016]; root of context hierarchy
+21-07-2016 18:54:47 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:54:47 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:54:53 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:54:53 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:54:53 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:54:53 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:54:53 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 18:54:53 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 18:54:58 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 18:54:58 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 18:56:08 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 18:56:08 EEST 2016]; root of context hierarchy
+21-07-2016 18:56:08 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 18:56:08 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 18:56:20 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 18:56:20 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 18:56:24 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 18:56:24 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 18:56:32 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 18:56:32 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 19:57:37 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 19:57:37 EEST 2016]; root of context hierarchy
+21-07-2016 19:57:37 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 19:57:39 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 19:57:50 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 19:57:50 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 19:58:05 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 19:58:05 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 19:58:05 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 19:58:05 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 20:19:08 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 20:19:08 EEST 2016]; root of context hierarchy
+21-07-2016 20:19:08 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 20:19:08 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 20:19:17 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 20:19:17 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 20:19:23 INFO  AppCalc:85 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 20:19:23 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 20:19:38 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 20:19:38 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 20:19:38 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 20:19:38 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 20:19:55 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 20:19:55 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 20:19:55 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 20:19:55 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 20:20:11 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 20:20:11 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 20:20:11 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 20:20:11 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:03:15 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:03:15 EEST 2016]; root of context hierarchy
+21-07-2016 23:03:15 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:03:16 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:03:30 INFO  AppCalc:85 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:03:30 INFO  AppCalc:87 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:04:49 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:04:49 EEST 2016]; root of context hierarchy
+21-07-2016 23:04:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:04:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:04:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:04:56 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 23:05:15 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 23:05:15 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class ExpressionDoublePlus, method setArguments before executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class ExpressionDoublePlus, method setArguments after executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class ExpressionDoublePlus, method calculate before executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class ExpressionDoublePlus, method calculate after executing
+21-07-2016 23:05:49 INFO  AppCalc:71 - Class ExpressionDoublePlus, method getResult before executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class ExpressionDoublePlus, method getResult after executing
+21-07-2016 23:05:49 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:31:20 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:31:20 EEST 2016]; root of context hierarchy
+21-07-2016 23:31:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:31:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:31:23 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'expressionSquareRoot' defined in class path resource [application-context.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.ExpressionSquareRoot]: No default constructor found; nested exception is java.lang.NoSuchMethodException: ua.goit.timonov.enterprise.ExpressionSquareRoot.<init>()
+21-07-2016 23:32:48 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:32:48 EEST 2016]; root of context hierarchy
+21-07-2016 23:32:48 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:32:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:32:56 INFO  AppCalc:71 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:32:56 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method setArguments before executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method setArguments after executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method calculate before executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method calculate after executing
+21-07-2016 23:33:00 INFO  AppCalc:71 - Class ExpressionIntegerMinus, method getResult before executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class ExpressionIntegerMinus, method getResult after executing
+21-07-2016 23:33:00 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class ExpressionLogarithm, method setArguments before executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class ExpressionLogarithm, method setArguments after executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class ExpressionLogarithm, method calculate before executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class ExpressionLogarithm, method calculate after executing
+21-07-2016 23:33:06 INFO  AppCalc:71 - Class ExpressionLogarithm, method getResult before executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class ExpressionLogarithm, method getResult after executing
+21-07-2016 23:33:06 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:33:19 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:19 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:19 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:19 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:33:44 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:33:44 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:33:51 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:33:51 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:33:57 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:33:57 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:01 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:01 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:05 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:05 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:09 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:09 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:12 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:12 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:16 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:16 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:21 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:21 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class ExpressionFactorial, method setArguments before executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class ExpressionFactorial, method setArguments after executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class ExpressionFactorial, method calculate before executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class ExpressionFactorial, method calculate after executing
+21-07-2016 23:34:25 INFO  AppCalc:71 - Class ExpressionFactorial, method getResult before executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class ExpressionFactorial, method getResult after executing
+21-07-2016 23:34:25 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:36:48 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:36:48 EEST 2016]; root of context hierarchy
+21-07-2016 23:36:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:36:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class ExpressionFloatPlus, method setArguments before executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class ExpressionFloatPlus, method setArguments after executing
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class ExpressionFloatPlus, method calculate before executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class ExpressionFloatPlus, method calculate after executing
+21-07-2016 23:37:01 INFO  AppCalc:71 - Class ExpressionFloatPlus, method getResult before executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class ExpressionFloatPlus, method getResult after executing
+21-07-2016 23:37:01 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class ExpressionFloatPlus, method setArguments before executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class ExpressionFloatPlus, method setArguments after executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class ExpressionFloatPlus, method calculate before executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class ExpressionFloatPlus, method calculate after executing
+21-07-2016 23:37:17 INFO  AppCalc:71 - Class ExpressionFloatPlus, method getResult before executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class ExpressionFloatPlus, method getResult after executing
+21-07-2016 23:37:17 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class ExpressionFloatPlus, method setArguments before executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class ExpressionFloatPlus, method setArguments after executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class ExpressionFloatPlus, method calculate before executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class ExpressionFloatPlus, method calculate after executing
+21-07-2016 23:37:36 INFO  AppCalc:71 - Class ExpressionFloatPlus, method getResult before executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class ExpressionFloatPlus, method getResult after executing
+21-07-2016 23:37:36 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:37:51 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:37:51 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:37:51 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:37:51 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class ExpressionLogarithm, method setArguments before executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class ExpressionLogarithm, method setArguments after executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class ExpressionLogarithm, method calculate before executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class ExpressionLogarithm, method calculate after executing
+21-07-2016 23:38:08 INFO  AppCalc:71 - Class ExpressionLogarithm, method getResult before executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class ExpressionLogarithm, method getResult after executing
+21-07-2016 23:38:08 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class ExpressionLogarithm, method setArguments before executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class ExpressionLogarithm, method setArguments after executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class ExpressionLogarithm, method calculate before executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class ExpressionLogarithm, method calculate after executing
+21-07-2016 23:38:17 INFO  AppCalc:71 - Class ExpressionLogarithm, method getResult before executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class ExpressionLogarithm, method getResult after executing
+21-07-2016 23:38:17 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:41:28 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:41:28 EEST 2016]; root of context hierarchy
+21-07-2016 23:41:28 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:41:29 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class ExpressionSquareRoot, method setArguments before executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class ExpressionSquareRoot, method setArguments after executing
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class ExpressionSquareRoot, method calculate before executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class ExpressionSquareRoot, method calculate after executing
+21-07-2016 23:41:34 INFO  AppCalc:71 - Class ExpressionSquareRoot, method getResult before executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class ExpressionSquareRoot, method getResult after executing
+21-07-2016 23:41:34 INFO  AppCalc:73 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:48:50 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:48:50 EEST 2016]; root of context hierarchy
+21-07-2016 23:48:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:48:50 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:48:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:48:54 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+21-07-2016 23:52:48 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Thu Jul 21 23:52:48 EEST 2016]; root of context hierarchy
+21-07-2016 23:52:48 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+21-07-2016 23:52:49 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method setArguments after executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method calculate before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method calculate after executing
+21-07-2016 23:52:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method getResult before executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method getResult after executing
+21-07-2016 23:52:54 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:12:25 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:12:25 EEST 2016]; root of context hierarchy
+22-07-2016 00:12:25 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:12:25 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:12:27 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'expressionIntegerDivide' defined in class path resource [application-context.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [ua.goit.timonov.enterprise.ExpressionIntegerDivide]: No default constructor found; nested exception is java.lang.NoSuchMethodException: ua.goit.timonov.enterprise.ExpressionIntegerDivide.<init>()
+22-07-2016 00:13:33 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:13:33 EEST 2016]; root of context hierarchy
+22-07-2016 00:13:34 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:13:34 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:13:40 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:13:40 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:13:40 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:13:40 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:13:40 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:13:40 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:21:36 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:21:36 EEST 2016]; root of context hierarchy
+22-07-2016 00:21:36 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:21:37 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method setArguments after executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method calculate before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method calculate after executing
+22-07-2016 00:21:43 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method getResult before executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method getResult after executing
+22-07-2016 00:21:43 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method setArguments before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method setArguments after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method calculate before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method calculate after executing
+22-07-2016 00:21:50 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method getResult before executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method getResult after executing
+22-07-2016 00:21:50 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method setArguments before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method setArguments after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method calculate before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method calculate after executing
+22-07-2016 00:22:10 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method getResult before executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method getResult after executing
+22-07-2016 00:22:10 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ExpressionSquareRoot, method setArguments before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ExpressionSquareRoot, method setArguments after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ExpressionSquareRoot, method calculate before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ExpressionSquareRoot, method calculate after executing
+22-07-2016 00:22:23 INFO  AppCalc:52 - Class ExpressionSquareRoot, method getResult before executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class ExpressionSquareRoot, method getResult after executing
+22-07-2016 00:22:23 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ParserStringToStringExpression, method parse before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ParserStringToStringExpression, method parse after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ExpressionFloatDivide, method setArguments before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ExpressionFloatDivide, method setArguments after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ExpressionFloatDivide, method calculate before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ExpressionFloatDivide, method calculate after executing
+22-07-2016 00:22:41 INFO  AppCalc:52 - Class ExpressionFloatDivide, method getResult before executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class ExpressionFloatDivide, method getResult after executing
+22-07-2016 00:22:41 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:44:01 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:44:01 EEST 2016]; root of context hierarchy
+22-07-2016 00:44:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:44:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method setArguments after executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method calculate before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method calculate after executing
+22-07-2016 00:44:08 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method getResult before executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method getResult after executing
+22-07-2016 00:44:08 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ExpressionIntegerMinus, method setArguments before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ExpressionIntegerMinus, method setArguments after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ExpressionIntegerMinus, method calculate before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ExpressionIntegerMinus, method calculate after executing
+22-07-2016 00:44:12 INFO  AppCalc:52 - Class ExpressionIntegerMinus, method getResult before executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class ExpressionIntegerMinus, method getResult after executing
+22-07-2016 00:44:12 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:44:16 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:44:16 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:44:16 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:44:16 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:44:16 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:44:16 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:44:33 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:44:33 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:44:33 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:44:33 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:44:33 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:44:33 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ExpressionTypeIdentifier, method identify before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ExpressionTypeIdentifier, method identify after executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ExpressionLogarithm, method setArguments before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ExpressionLogarithm, method setArguments after executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ExpressionLogarithm, method calculate before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ExpressionLogarithm, method calculate after executing
+22-07-2016 00:44:45 INFO  AppCalc:52 - Class ExpressionLogarithm, method getResult before executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class ExpressionLogarithm, method getResult after executing
+22-07-2016 00:44:45 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:46:39 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:46:39 EEST 2016]; root of context hierarchy
+22-07-2016 00:46:39 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:46:40 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method setArguments before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method setArguments after executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method calculate before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method calculate after executing
+22-07-2016 00:46:49 INFO  AppCalc:52 - Class ExpressionIntegerMultiply, method getResult before executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class ExpressionIntegerMultiply, method getResult after executing
+22-07-2016 00:46:49 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method setArguments before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method setArguments after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method calculate before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method calculate after executing
+22-07-2016 00:46:54 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method getResult before executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method getResult after executing
+22-07-2016 00:46:54 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method setArguments before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method setArguments after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method calculate before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method calculate after executing
+22-07-2016 00:47:03 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method getResult before executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method getResult after executing
+22-07-2016 00:47:03 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ExpressionFloatDivide, method setArguments before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ExpressionFloatDivide, method setArguments after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ExpressionFloatDivide, method calculate before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ExpressionFloatDivide, method calculate after executing
+22-07-2016 00:47:16 INFO  AppCalc:52 - Class ExpressionFloatDivide, method getResult before executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class ExpressionFloatDivide, method getResult after executing
+22-07-2016 00:47:16 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:47:26 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:26 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:32 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:32 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:32 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:47:32 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:47:32 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:47:32 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:47:32 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:47:32 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method setArguments before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method setArguments after executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method calculate before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method calculate after executing
+22-07-2016 00:47:46 INFO  AppCalc:52 - Class ExpressionFloatMultiply, method getResult before executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class ExpressionFloatMultiply, method getResult after executing
+22-07-2016 00:47:46 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:47:56 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:47:56 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:47:56 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:47:56 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:47:56 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:47:56 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:47:56 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:47:56 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+22-07-2016 00:50:00 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Fri Jul 22 00:50:00 EEST 2016]; root of context hierarchy
+22-07-2016 00:50:00 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:50:01 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:50:14 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:50:14 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:50:14 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:50:14 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:51:09 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:51:09 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:51:20 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Fri Jul 22 00:51:20 EEST 2016]; root of context hierarchy
+22-07-2016 00:51:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:51:20 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:51:45 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:51:45 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:51:45 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:51:45 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:52:20 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:52:20 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:53:04 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@cb644e: startup date [Fri Jul 22 00:53:04 EEST 2016]; root of context hierarchy
+22-07-2016 00:53:04 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:53:05 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ExpressionLongPlus, method setArguments before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ExpressionLongPlus, method setArguments after executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ExpressionLongPlus, method calculate before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ExpressionLongPlus, method calculate after executing
+22-07-2016 00:53:19 INFO  AppCalc:52 - Class ExpressionLongPlus, method getResult before executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class ExpressionLongPlus, method getResult after executing
+22-07-2016 00:53:19 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:57:04 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:57:04 EEST 2016]; root of context hierarchy
+22-07-2016 00:57:04 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:57:05 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:57:07 WARN  ClassPathXmlApplicationContext:549 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [ua.goit.timonov.enterprise.PermittedOperationsForApp] for bean with name 'permittedOperations' defined in class path resource [application-context.xml]; nested exception is java.lang.ClassNotFoundException: ua.goit.timonov.enterprise.PermittedOperationsForApp
+22-07-2016 00:57:46 INFO  ClassPathXmlApplicationContext:581 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@aec6354: startup date [Fri Jul 22 00:57:46 EEST 2016]; root of context hierarchy
+22-07-2016 00:57:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [application-context.xml]
+22-07-2016 00:57:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [aop-context.xml]
+22-07-2016 00:57:53 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:57:53 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:57:53 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:57:53 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:57:54 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:57:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method setArguments before executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method setArguments after executing
+22-07-2016 00:57:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method calculate before executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method calculate after executing
+22-07-2016 00:57:54 INFO  AppCalc:52 - Class ExpressionIntegerPlus, method getResult before executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class ExpressionIntegerPlus, method getResult after executing
+22-07-2016 00:57:54 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method setArguments before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method setArguments after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method calculate before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method calculate after executing
+22-07-2016 00:57:59 INFO  AppCalc:52 - Class ExpressionIntegerDivide, method getResult before executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class ExpressionIntegerDivide, method getResult after executing
+22-07-2016 00:57:59 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class CalcNumbers, method doCalc before executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ParserToStringExpressionForApp, method parse before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ParserToStringExpressionForApp, method parse after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ExpressionTypeIdentifierForApp, method identify before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ExpressionTypeIdentifierForApp, method identify after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ExpressionProvider, method getExpression before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ExpressionProvider, method getExpression after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ExpressionSquareRoot, method setArguments before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ExpressionSquareRoot, method setArguments after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ExpressionSquareRoot, method calculate before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ExpressionSquareRoot, method calculate after executing
+22-07-2016 00:58:05 INFO  AppCalc:52 - Class ExpressionSquareRoot, method getResult before executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class ExpressionSquareRoot, method getResult after executing
+22-07-2016 00:58:05 INFO  AppCalc:54 - Class CalcNumbers, method doCalc after executing

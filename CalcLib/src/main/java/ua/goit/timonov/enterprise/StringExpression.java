@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Class to storage parsed expression with string representation of its arguments, operation and result
+ * Class to storage parsed expressionType with string representation of its arguments, operation and result
  */
 public class StringExpression {
     private String operator;

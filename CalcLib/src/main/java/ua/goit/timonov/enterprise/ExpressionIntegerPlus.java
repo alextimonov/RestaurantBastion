@@ -1,18 +1,17 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Expression multiply operation for arguments with Integer format
+ * Represents expressionType with Integer arguments and result oriented to add and subtract operations
  */
-
-public class ExpressionIntegerMultiply implements Expression<Integer, Integer> {
+public class ExpressionIntegerPlus implements Expression<Integer, Integer> {
     private Integer value1;
     private Integer value2;
     private Integer result;
 
-    public ExpressionIntegerMultiply() {
+    public ExpressionIntegerPlus() {
     }
 
-    public ExpressionIntegerMultiply(Integer value1, Integer value2) {
+    public ExpressionIntegerPlus(Integer value1, Integer value2) {
         this.value1 = value1;
         this.value2 = value2;
     }
@@ -33,6 +32,11 @@ public class ExpressionIntegerMultiply implements Expression<Integer, Integer> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Integer expressionType
+     * @return      result of expressionType
+     */
+    @Override
     public Integer getResult() {
         return result;
     }
@@ -43,8 +47,12 @@ public class ExpressionIntegerMultiply implements Expression<Integer, Integer> {
         this.value2 = Integer.valueOf(stringExpression.getValue2());
     }
 
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
-        result = value1 * value2;
+        result = value1 + value2;
     }
+
 }

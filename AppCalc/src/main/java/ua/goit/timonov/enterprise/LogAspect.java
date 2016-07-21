@@ -18,18 +18,6 @@ public class LogAspect {
 
     private Logger logger = LoggerFactory.getLogger(AppCalc.class);
 
-//    @Bean
-//    public FactoryNumberExpression factoryNumberExpression() {
-//        FactoryNumberExpression factoryExpression = new FactoryNumberExpression();
-//        return factoryExpression;
-//    }
-
-//    @Bean
-//    public ParserStringToStringExpression parserStringToStringExpression() {
-//        ParserStringToStringExpression stringParser = new ParserStringToStringExpression();
-//        return stringParser;
-//    }
-
     @Pointcut("execution ( * ua.goit.timonov.enterprise.Calc.doCalc(..) ) ")
     public Object onCalcExecute() {
         return null;
@@ -45,8 +33,13 @@ public class LogAspect {
         return logAndProceed(pjp);
     }
 
-    @Around("execution ( * ua.goit.timonov.enterprise.FactoryExpression.makeExpression(..) ) ")
-    public Object onMakeExpression(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("execution ( * ua.goit.timonov.enterprise.ExpressionTypeIdentifier.identify(..) ) ")
+    public Object onIdentify(ProceedingJoinPoint pjp) throws Throwable {
+        return logAndProceed(pjp);
+    }
+
+    @Around("execution( * ua.goit.timonov.enterprise.ExpressionProvider.getExpression(..) )")
+    public Object onGetExpressionExecute(ProceedingJoinPoint pjp) throws Throwable {
         return logAndProceed(pjp);
     }
 
@@ -54,25 +47,6 @@ public class LogAspect {
     public Object onExpressionExecute(ProceedingJoinPoint pjp) throws Throwable {
         return logAndProceed(pjp);
     }
-
-//    @Around("execution( * ua.goit.timonov.enterprise.ExpressionIntegerPlusMinus.*(..) )")
-//    public Object onExpressionIPMExecute(ProceedingJoinPoint pjp) throws Throwable {
-//        return logAndProceed(pjp);
-//    }
-
-    @Around("execution( * ua.goit.timonov.enterprise.ExpressionProvider.getExpression(..) )")
-    public Object onGetExpressionExecute(ProceedingJoinPoint pjp) throws Throwable {
-        return logAndProceed(pjp);
-    }
-
-
-
-//    @Around("execution(public * *(..))")
-//    public void onPublicExecution(ProceedingJoinPoint pjp) throws Throwable {
-//        logger.info("Class {}, PUBLIC method {} before executing", pjp.getTarget().getClass().getSimpleName(), pjp.getSignature().getName());
-//        pjp.proceed();
-//        logger.info("Class {}, PUBLIC method {} before executing", pjp.getTarget().getClass().getSimpleName(), pjp.getSignature().getName());
-//    }
 
     private Object logAndProceed(ProceedingJoinPoint pjp) throws Throwable {
         logger.info("Class {}, method {} before executing", pjp.getTarget().getClass().getSimpleName(), pjp.getSignature().getName());
