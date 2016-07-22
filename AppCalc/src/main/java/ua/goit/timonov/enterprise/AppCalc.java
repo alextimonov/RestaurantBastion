@@ -25,7 +25,6 @@ public class AppCalc {
      * @param args      arguments are not expected
      */
     public static void main(String[] args) {
-//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml", "aop-context.xml");
         AppCalc appCalc = applicationContext.getBean("appCalc", AppCalc.class);
         appCalc.execute();

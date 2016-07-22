@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Represents expressionType with Integer arguments and result oriented to add and subtract operations
+ * Expression for add operation with Integer arguments
  */
 public class ExpressionIntegerPlus implements Expression<Integer, Integer> {
     private Integer value1;
@@ -41,6 +41,9 @@ public class ExpressionIntegerPlus implements Expression<Integer, Integer> {
         return result;
     }
 
+    /**
+     * sets arguments from given StringExpression
+     */
     @Override
     public void setArguments(StringExpression stringExpression) {
         this.value1 = Integer.valueOf(stringExpression.getValue1());

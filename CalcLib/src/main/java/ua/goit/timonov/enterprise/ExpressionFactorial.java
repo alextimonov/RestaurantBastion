@@ -28,7 +28,7 @@ public class ExpressionFactorial implements Expression<Integer, Long> {
     }
 
     private void checkArgument(int value) {
-        if (value < 0 || value > 30) {
+        if (value < 0 || value > 20) {
             throw new IllegalArgumentException("Can not calculate factorial for negative numbers or numbers bigger than 20.");
         }
     }

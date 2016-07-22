@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Created by Alex on 21.07.2016.
+ * Expression for subtract operation with Integer arguments
  */
 public class ExpressionIntegerMinus implements Expression<Integer, Integer> {
     private Integer value1;
@@ -44,6 +44,9 @@ public class ExpressionIntegerMinus implements Expression<Integer, Integer> {
         return result;
     }
 
+    /**
+     * sets arguments from given StringExpression
+     */
     @Override
     public void setArguments(StringExpression stringExpression) {
         this.value1 = Integer.valueOf(stringExpression.getValue1());

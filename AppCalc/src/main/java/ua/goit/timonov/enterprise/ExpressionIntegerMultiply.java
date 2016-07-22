@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Expression multiply operation for arguments with Integer format
+ * Expression for multiply operation with Integer arguments
  */
 
 public class ExpressionIntegerMultiply implements Expression<Integer, Integer> {
@@ -33,10 +33,17 @@ public class ExpressionIntegerMultiply implements Expression<Integer, Integer> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Integer expressionType
+     * @return      result of expressionType
+     */
     public Integer getResult() {
         return result;
     }
 
+    /**
+     * sets arguments from given StringExpression
+     */
     @Override
     public void setArguments(StringExpression stringExpression) {
         this.value1 = Integer.valueOf(stringExpression.getValue1());
