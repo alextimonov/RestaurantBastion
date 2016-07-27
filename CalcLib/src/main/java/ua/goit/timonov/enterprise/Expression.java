@@ -1,18 +1,27 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Represents some math expression typified by result data format
+ * Created by Alex on 21.07.2016.
  */
-public interface Expression<T> {
+public interface Expression<Argument, Result> {
+    String PLUS = "+";
+    String MINUS = "-";
 
     /**
-     * calculates an expression
+     * calculates an expressionType
      */
     void calculate();
 
     /**
-     * returns result of calculated expression
-     * @return      result of expression
+     * returns result of calculated expressionType
+     * @return      result of expressionType
      */
-    T getResult();
+    Result getResult();
+
+    /**
+     * @param stringExpression
+     * sets arguments
+     */
+    void setArguments(StringExpression stringExpression);
+
 }

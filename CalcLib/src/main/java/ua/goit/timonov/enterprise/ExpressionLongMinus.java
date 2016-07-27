@@ -1,18 +1,17 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Expression multiply operation for arguments with Long format
+ * Represents expressionType with Long arguments and result oriented to add and subtract operations
  */
-
-public class ExpressionLongMultiply implements Expression<Long, Long> {
+public class ExpressionLongMinus implements Expression<Long, Long> {
     private Long value1;
     private Long value2;
     private Long result;
 
-    public ExpressionLongMultiply() {
+    public ExpressionLongMinus() {
     }
 
-    public ExpressionLongMultiply(Long value1, Long value2) {
+    public ExpressionLongMinus(Long value1, Long value2) {
         this.value1 = value1;
         this.value2 = value2;
     }
@@ -33,6 +32,11 @@ public class ExpressionLongMultiply implements Expression<Long, Long> {
         this.value2 = value2;
     }
 
+    /**
+     * returns result of calculated Integer expressionType
+     * @return      result of expressionType
+     */
+    @Override
     public Long getResult() {
         return result;
     }
@@ -43,8 +47,11 @@ public class ExpressionLongMultiply implements Expression<Long, Long> {
         this.value2 = Long.valueOf(stringExpression.getValue2());
     }
 
+    /**
+     * calculates an expression
+     */
     @Override
     public void calculate() {
-        result = value1 * value2;
+        result = value1 + value2;
     }
 }

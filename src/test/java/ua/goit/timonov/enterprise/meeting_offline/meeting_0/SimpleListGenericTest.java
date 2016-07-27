@@ -1,8 +1,8 @@
 package ua.goit.timonov.enterprise.meeting_offline.meeting_0;
 
 import org.junit.Test;
-import ua.goit.timonov.enterprise.meetings_offline.meeting_0.SimpleList;
 import ua.goit.timonov.enterprise.meetings_offline.meeting_0.SimpleListGeneric;
+import ua.goit.timonov.enterprise.meetings_offline.meeting_0.SimpleList;
 
 import static org.junit.Assert.*;
 

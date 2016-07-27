@@ -1,10 +1,10 @@
 package ua.goit.timonov.enterprise.module_1.controller;
 
 import ua.goit.timonov.enterprise.module_1.logic.MultiTest;
-import ua.goit.timonov.enterprise.module_1.logic.MultiTestList;
 import ua.goit.timonov.enterprise.module_1.logic.MultiTestSet;
-import ua.goit.timonov.enterprise.module_1.view.Printer;
 import ua.goit.timonov.enterprise.module_1.view.TableToStrings;
+import ua.goit.timonov.enterprise.module_1.logic.MultiTestList;
+import ua.goit.timonov.enterprise.module_1.view.Printer;
 
 import javax.swing.*;
 import java.util.*;

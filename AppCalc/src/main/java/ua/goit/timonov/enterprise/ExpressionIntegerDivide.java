@@ -1,18 +1,19 @@
 package ua.goit.timonov.enterprise;
 
 /**
- * Expression for divide operation for arguments with Integer format
+ * Expression for divide operation with Integer arguments
  */
-public class ExpressionIntegerDivide implements Expression<Double> {
+public class ExpressionIntegerDivide implements Expression<Integer, Double> {
     private Integer value1;
     private Integer value2;
-    private Operation<Integer, Double> operation;
     private Double result;
 
-    public ExpressionIntegerDivide(Integer value1, Integer value2, Operation<Integer, Double> operation) {
+    public ExpressionIntegerDivide() {
+    }
+
+    public ExpressionIntegerDivide(Integer value1, Integer value2) {
         this.value1 = value1;
         this.value2 = value2;
-        this.operation = operation;
     }
 
     public Integer getValue1() {
@@ -34,11 +35,33 @@ public class ExpressionIntegerDivide implements Expression<Double> {
 
     @Override
     public void calculate() {
-        result = operation.execute(value1, value2);
+        checkSecondArgument(value2);
+        double arg2 = (double) value2;
+        result = value1 / arg2;
     }
 
+    // checks if second argument equals to zero
+    private void checkSecondArgument(int divider) {
+        if (divider == 0) {
+            throw new IllegalArgumentException("Divider is equal to zero!");
+        }
+    }
+
+    /**
+     * returns result of calculated Integer expressionType
+     * @return      result of expressionType
+     */
     @Override
     public Double getResult() {
         return result;
+    }
+
+    /**
+     * sets arguments from given StringExpression
+     */
+    @Override
+    public void setArguments(StringExpression stringExpression) {
+        this.value1 = Integer.valueOf(stringExpression.getValue1());
+        this.value2 = Integer.valueOf(stringExpression.getValue2());
     }
 }

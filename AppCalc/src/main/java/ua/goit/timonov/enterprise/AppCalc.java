@@ -2,7 +2,7 @@
 package ua.goit.timonov.enterprise;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Calc application using CalcLib library
@@ -15,12 +15,17 @@ public class AppCalc {
     // object of calculator from CalcLib library
     private Calc calc;
 
+    public AppCalc(InputOutput inputOutput, Calc calc) {
+        this.inputOutput = inputOutput;
+        this.calc = calc;
+    }
+
     /**
      * starts application
      * @param args      arguments are not expected
      */
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml", "aop-context.xml");
         AppCalc appCalc = applicationContext.getBean("appCalc", AppCalc.class);
         appCalc.execute();
     }
