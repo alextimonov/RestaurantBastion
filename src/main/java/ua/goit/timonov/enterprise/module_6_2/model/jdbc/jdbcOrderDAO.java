@@ -58,13 +58,21 @@ public class JdbcOrderDAO implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(int orderId, String dishName) {
-        // only open orders
+        if (orderIsOpen(orderId)) {
+            String sql = "INSERT INTO dish_to_ordering VALUES ((SELECT max(id) FROM dish_to_ordering) + 1, ?, \n" +
+                    " (SELECT id FROM dish WHERE name = ?))";
+            template.update(sql, orderId, dishName);
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void deleteDish(int orderId, String dishName) {
-        // only open orders
+        if (orderIsOpen(orderId)) {
+            String sql = "DELETE FROM dish_to_ordering WHERE (order_id = ? AND dish_id =\n" +
+                    " (SELECT id FROM dish WHERE name = ?))";
+            template.update(sql, orderId, dishName);
+        }
     }
 
     @Override
