@@ -11,7 +11,7 @@ public interface EmployeeDAO {
 
     void delete(Employee employee);
 
-    Employee find(String surname, String name);
+    Employee find(String surnameToSearch, String nameToSearch);
 
     List<Employee> getAll();
 
