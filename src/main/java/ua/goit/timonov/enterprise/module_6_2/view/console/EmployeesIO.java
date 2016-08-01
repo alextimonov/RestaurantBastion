@@ -3,10 +3,10 @@ package ua.goit.timonov.enterprise.module_6_2.view.console;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printEmptyLine;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printLine;
 
 /**
@@ -15,6 +15,7 @@ import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.
 public class EmployeesIO {
 
     public static void outputList(List<Employee> staff) {
+        printEmptyLine();
         printLine("Current list of employees: ");
         for (Employee employee : staff) {
             printLine(employee.toString());
@@ -38,7 +39,7 @@ public class EmployeesIO {
         employee.setName(Input.inputString(sc));
 
         printLine("Input employee's birthday: ");
-        Date date = inputDate(sc);
+        Date date = Input.inputDate(sc);
         employee.setBirthday(date);
 
         printLine("Input employee's position: ");
@@ -51,17 +52,17 @@ public class EmployeesIO {
         return employee;
     }
 
-    private static Date inputDate(Scanner sc) {
-        printLine("Input birthday's year: ");
-        int year = Input.inputInteger(sc);
-        printLine("Input birthday's month: ");
-        int month = Input.inputInteger(sc) - 1;
-        printLine("Input birthday's day in month: ");
-        int day = Input.inputInteger(sc);
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.set(year, month, day);
-        return gregorianCalendar.getTime();
-    }
+//    private static Date inputDate(Scanner sc) {
+//        printLine("Input birthday's year: ");
+//        int year = Input.inputInteger(sc);
+//        printLine("Input birthday's month: ");
+//        int month = Input.inputInteger(sc) - 1;
+//        printLine("Input birthday's day in month: ");
+//        int day = Input.inputInteger(sc);
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.set(year, month, day);
+//        return gregorianCalendar.getTime();
+//    }
 
     public static String inputString(String fieldName) {
         Scanner sc = new Scanner(System.in);

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printEmptyLine;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printLine;
 
 /**
@@ -13,6 +14,7 @@ import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.
  */
 public class MenuIO {
     public static void outputList(List<Menu> menus) {
+        printEmptyLine();
         printLine("Current list of menus: ");
         for (Menu menu : menus) {
             printLine(menu.toString());
@@ -30,7 +32,7 @@ public class MenuIO {
         Scanner sc = new Scanner(System.in);
         printLine("Please, input menu's name: ");
         String name = Input.inputString(sc);
-        Menu menu = new Menu(0, name, new ArrayList<>());
+        Menu menu = new Menu(name);
         return menu;
     }
 

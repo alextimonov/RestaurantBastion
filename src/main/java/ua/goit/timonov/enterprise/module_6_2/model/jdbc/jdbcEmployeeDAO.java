@@ -20,7 +20,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     private JdbcTemplate template;
 
-    private static Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDAO.class);
+//    private static Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDAO.class);
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
@@ -48,10 +48,10 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public Employee find(String surnameToFind, String nameToFind) {
+    public Employee find(String surnameToSearch, String nameToSearch) {
         String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
                 "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
-        List<Map<String, Object>> mapList = template.queryForList(sql, surnameToFind, nameToFind);
+        List<Map<String, Object>> mapList = template.queryForList(sql, surnameToSearch, nameToSearch);
         Map<String, Object> row = mapList.get(0);
         Employee employee = new Employee();
         employee.setId((Integer) row.get("id"));

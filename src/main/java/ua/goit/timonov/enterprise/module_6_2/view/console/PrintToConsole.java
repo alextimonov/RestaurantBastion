@@ -7,6 +7,10 @@ import java.util.List;
  */
 public class PrintToConsole {
 
+    public static void printEmptyLine() {
+        System.out.println();
+    }
+
     public static void printLine(String line) {
         System.out.println(line);
     }

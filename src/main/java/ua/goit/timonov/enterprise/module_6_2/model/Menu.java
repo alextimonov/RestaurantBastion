@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,9 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int id, String name, List<Dish> dishes) {
-        this.id = id;
+    public Menu(String name) {
         this.name = name;
-        this.dishes = dishes;
+        dishes = new ArrayList<>();
     }
 
     public int getId() {
