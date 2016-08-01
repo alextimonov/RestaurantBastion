@@ -14,12 +14,12 @@ import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.
  */
 public class MenuIO {
     public static void outputList(List<Menu> menus) {
-        printEmptyLine();
         printLine("Current list of menus: ");
         for (Menu menu : menus) {
             printLine(menu.toString());
             DishIO.outputList(menu.getDishes());
         }
+        printEmptyLine();
     }
 
     public static void output(String explain, Menu menu) {

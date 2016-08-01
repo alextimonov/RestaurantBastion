@@ -15,12 +15,12 @@ import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.
 public class OrderIO {
 
     public static void outputList(String orderType, List<Order> orders) {
-        printEmptyLine();
         printLine("Current list of " + orderType + " orders: ");
         for (Order order : orders) {
             printLine(order.toString());
             DishIO.outputList(order.getDishes());
         }
+        printEmptyLine();
     }
 
     public static Order inputOrder() {
@@ -46,20 +46,3 @@ public class OrderIO {
         return Input.inputInteger(sc);
     }
 }
-
-//    private int id;
-//    private Employee waiter;
-//    private int tableNumber;
-//    private Date date;
-//    private Boolean  closed;
-//    private List<Dish> dishes;
-//
-//    id integer NOT NULL,
-//    employee_id integer NOT NULL,
-//    table_number integer,
-//    date date NOT NULL,
-//    closed boolean,
-//
-//    id integer NOT NULL,
-//    order_id integer NOT NULL,
-//    dish_id integer NOT NULL,

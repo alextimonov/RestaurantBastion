@@ -5,6 +5,7 @@ import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import java.util.List;
 import java.util.Scanner;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printEmptyLine;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printLine;
 
 /**
@@ -17,6 +18,7 @@ public class DishIO {
         for (Dish dish : dishes) {
             printLine(dish.toString());
         }
+        printEmptyLine();
     }
 
     public static void output(String explain, Dish dish) {

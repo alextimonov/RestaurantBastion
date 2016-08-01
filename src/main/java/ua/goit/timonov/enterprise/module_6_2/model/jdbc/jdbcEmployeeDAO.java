@@ -51,15 +51,14 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     public Employee find(String surnameToSearch, String nameToSearch) {
         String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
                 "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
-        List<Map<String, Object>> mapList = template.queryForList(sql, surnameToSearch, nameToSearch);
-        Map<String, Object> row = mapList.get(0);
+        Map<String, Object> map = template.queryForMap(sql, surnameToSearch, nameToSearch);
         Employee employee = new Employee();
-        employee.setId((Integer) row.get("id"));
-        employee.setSurname((String) row.get("surname"));
-        employee.setName((String) row.get("name"));
-        employee.setPosition((String) row.get("position"));
-        employee.setBirthday((Date) row.get("birthday"));
-        employee.setSalary((Float) row.get("salary"));
+        employee.setId((Integer) map.get("id"));
+        employee.setSurname((String) map.get("surname"));
+        employee.setName((String) map.get("name"));
+        employee.setPosition((String) map.get("position"));
+        employee.setBirthday((Date) map.get("birthday"));
+        employee.setSalary((Float) map.get("salary"));
         return employee;
     }
 

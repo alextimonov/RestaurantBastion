@@ -52,18 +52,6 @@ public class EmployeesIO {
         return employee;
     }
 
-//    private static Date inputDate(Scanner sc) {
-//        printLine("Input birthday's year: ");
-//        int year = Input.inputInteger(sc);
-//        printLine("Input birthday's month: ");
-//        int month = Input.inputInteger(sc) - 1;
-//        printLine("Input birthday's day in month: ");
-//        int day = Input.inputInteger(sc);
-//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-//        gregorianCalendar.set(year, month, day);
-//        return gregorianCalendar.getTime();
-//    }
-
     public static String inputString(String fieldName) {
         Scanner sc = new Scanner(System.in);
         printLine("Please input employee's " + fieldName + " that you want to find: ");

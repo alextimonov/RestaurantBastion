@@ -30,6 +30,7 @@
         <property name="dishController" ref="dishController"/>
         <property name="menuController" ref="menuController"/>
         <property name="orderController" ref="orderController"/>
+        <property name="cookedDishController" ref="cookedDishController"/>
     </bean>
 
 
@@ -62,6 +63,14 @@
     </bean>
 
     <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcOrderDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="cookedDishController" class="ua.goit.timonov.enterprise.module_6_2.controllers.CookedDishController">
+        <property name="cookedDishDAO" ref="cookedDishDAO"/>
+    </bean>
+
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcCookedDishDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
