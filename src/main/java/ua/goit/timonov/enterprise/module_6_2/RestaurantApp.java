@@ -18,6 +18,7 @@ public class RestaurantApp {
     private MenuController menuController;
     private OrderController orderController;
     private CookedDishController cookedDishController;
+    private StorageController storageController;
 
 //    private static final Logger LOGGER = LoggerFactory.getLogger(RestaurantApp.class);
 
@@ -41,6 +42,10 @@ public class RestaurantApp {
         this.cookedDishController = cookedDishController;
     }
 
+    public void setStorageController(StorageController storageController) {
+        this.storageController = storageController;
+    }
+
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
         RestaurantApp restaurantApp = context.getBean(RestaurantApp.class);
@@ -49,7 +54,7 @@ public class RestaurantApp {
 
     private void start() {
 
-        /*// EMPLOYEES
+        // EMPLOYEES
 
         // get all list
         List<Employee> staff = employeeController.getAll();
@@ -147,7 +152,7 @@ public class RestaurantApp {
         menuController.deleteDish(menuName, dishName);
 
         menus = menuController.getAll();
-        MenuIO.outputList(menus);*/
+        MenuIO.outputList(menus);
 
         // ORDERS
 
@@ -155,7 +160,7 @@ public class RestaurantApp {
         List<Order> openOrders = orderController.getOpenOrders();
         OrderIO.outputList("open", openOrders);
 
-        /*// get closed orders
+        // get closed orders
         List<Order> closedOrders = orderController.getClosedOrders();
         OrderIO.outputList("closed", closedOrders);
 
@@ -176,13 +181,13 @@ public class RestaurantApp {
 
         // set order to closed
         orderId = OrderIO.inputOrderId();
-        orderController.setClosed(orderId);*/
+        orderController.setClosed(orderId);
 
         // add dish to open order
 //        int orderId, String dishName
 
-        int orderId = OrderIO.inputOrderId();
-        String dishName = DishIO.inputString("dish name to add");
+        orderId = OrderIO.inputOrderId();
+        dishName = DishIO.inputString("dish name to add");
         orderController.addDish(orderId, dishName);
 
         openOrders = orderController.getOpenOrders();
@@ -198,7 +203,7 @@ public class RestaurantApp {
         OrderIO.outputList("open", openOrders);
 
 
-        /*// COOKED DISHES
+        // COOKED DISHES
 
         // get all list
         List<CookedDish> cookedDishes = cookedDishController.getAll();
@@ -218,7 +223,44 @@ public class RestaurantApp {
         cookedDishController.add(orderId, dishName, cookId);
 
         cookedDishes = cookedDishController.getAll();
-        CookedDishIO.outputList(cookedDishes);*/
+        CookedDishIO.outputList(cookedDishes);
+
+        // STORAGE
+
+        // get all ingredients
+        List<Ingredient> ingredients = storageController.getAll();
+        StorageIO.outputList(ingredients);
+
+        // add new ingredient
+        Ingredient newIngredient = StorageIO.inputIngredient();
+        StorageIO.output("Ingredient to add: ", newIngredient);
+        storageController.add(newIngredient);
+
+        ingredients = storageController.getAll();
+        StorageIO.outputList(ingredients);
+
+        // find ingredient by name
+        nameToSearch = StorageIO.inputString("name");
+        Ingredient foundIngredient = storageController.find(nameToSearch);
+        StorageIO.output("Found ingredient: ", foundIngredient);
+
+        // delete ingredient by name
+        String nameToDelete = StorageIO.inputString("name");
+        storageController.delete(nameToDelete);
+
+        ingredients = storageController.getAll();
+        StorageIO.outputList(ingredients);
+
+        // change amount
+
+        String nameToChangeAmount = StorageIO.inputString("name");
+        int difference = StorageIO.inputInteger("difference");
+        storageController.changeAmount(nameToChangeAmount, difference);
+
+        //  get terminating ingredients
+        int limit = StorageIO.inputInteger("limit");
+        ingredients = storageController.getTerminatingIngredients(limit);
+        StorageIO.outputList(ingredients);
     }
 }
 

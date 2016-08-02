@@ -31,6 +31,7 @@
         <property name="menuController" ref="menuController"/>
         <property name="orderController" ref="orderController"/>
         <property name="cookedDishController" ref="cookedDishController"/>
+        <property name="storageController" ref="storageController"/>
     </bean>
 
 
@@ -74,9 +75,19 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
+    <bean id="storageController" class="ua.goit.timonov.enterprise.module_6_2.controllers.StorageController" >
+        <property name="storageDAO" ref="storageDAO"/>
+    </bean>
+
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcStorageDAO" >
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+
 
 </beans>
