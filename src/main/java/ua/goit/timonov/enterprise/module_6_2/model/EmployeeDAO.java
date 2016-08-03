@@ -9,9 +9,13 @@ public interface EmployeeDAO {
 
     void add(Employee employee);
 
-    void delete(Employee employee);
+    Employee search(int id);
 
-    Employee find(String surnameToSearch, String nameToSearch);
+    Employee search(String surnameToSearch, String nameToSearch);
+
+    void delete(int id);
+
+    void delete(String surname, String name);
 
     List<Employee> getAll();
 

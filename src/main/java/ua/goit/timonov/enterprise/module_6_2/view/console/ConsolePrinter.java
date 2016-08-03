@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Alex on 31.07.2016.
  */
-public class PrintToConsole {
+public class ConsolePrinter {
 
     public static void printEmptyLine() {
         System.out.println();
@@ -16,6 +16,6 @@ public class PrintToConsole {
     }
 
     public static void printList(List<String> lines) {
-        lines.forEach(System.out::print);
+        lines.forEach(System.out::println);
     }
 }

@@ -26,12 +26,7 @@
     </bean>
 
     <bean id="restaurantApp" class="ua.goit.timonov.enterprise.module_6_2.RestaurantApp">
-        <property name="employeeController" ref="employeeController"/>
-        <property name="dishController" ref="dishController"/>
-        <property name="menuController" ref="menuController"/>
-        <property name="orderController" ref="orderController"/>
-        <property name="cookedDishController" ref="cookedDishController"/>
-        <property name="storageController" ref="storageController"/>
+        <property name="mainMenu" ref="mainMenu"/>
     </bean>
 
 
@@ -88,6 +83,46 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="mainMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MainMenu">
+        <property name="menuName" value="Restaurant (main menu)"/>
+        <property name="employeesConsoleMenu" ref="employeesConsoleMenu"/>
+        <property name="dishesConsoleMenu" ref="dishesConsoleMenu"/>
+        <property name="ordersConsoleMenu" ref="ordersConsoleMenu"/>
+        <property name="menusConsoleMenu" ref="menusConsoleMenu"/>
+        <property name="cookedDishConsoleMenu" ref="cookedDishConsoleMenu"/>
+        <property name="storageConsoleMenu" ref="storageConsoleMenu"/>
+    </bean>
 
+    <bean id="employeesConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.EmployeesConsoleMenu">
+        <property name="menuName" value="Employees"/>
+        <property name="employeeController" ref="employeeController"/>
+    </bean>
+
+    <bean id="dishesConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.DishesConsoleMenu">
+        <property name="menuName" value="Dishes"/>
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="menusConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MenusConsoleMenu">
+        <property name="menuName" value="Dish Menus"/>
+        <property name="menuController" ref="menuController"/>
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="ordersConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.OrdersConsoleMenu">
+        <property name="menuName" value="Orders"/>
+        <property name="orderController" ref="orderController"/>
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="cookedDishConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.CookedDishConsoleMenu">
+        <property name="menuName" value="Cooked Dishes"/>
+        <property name="cookedDishController" ref="cookedDishController"/>
+    </bean>
+
+    <bean id="storageConsoleMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.StorageConsoleMenu">
+        <property name="menuName" value="Storage"/>
+        <property name="storageController" ref="storageController"/>
+    </bean>
 
 </beans>

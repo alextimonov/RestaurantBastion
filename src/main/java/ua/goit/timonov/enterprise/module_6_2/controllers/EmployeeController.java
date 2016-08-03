@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.EmployeeDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,8 +20,13 @@ public class EmployeeController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public List<Employee> getAll() {
-        return employeeDAO.getAll();
+    public List<String> getAll() {
+        List<Employee> staff = employeeDAO.getAll();
+        List<String> staffLines = new ArrayList<>();
+        for (Employee employee : staff) {
+            staffLines.add(employee.toString());
+        }
+        return staffLines;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -29,12 +35,22 @@ public class EmployeeController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(Employee employee) {
-        employeeDAO.delete(employee);
+    public void delete(int id) {
+        employeeDAO.delete(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Employee find(String surname, String name) {
-        return employeeDAO.find(surname, name);
+    public void delete(String surname, String name) {
+        employeeDAO.delete(surname, name);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Employee search(String surname, String name) {
+        return employeeDAO.search(surname, name);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Employee search(int id) {
+        return employeeDAO.search(id);
     }
 }

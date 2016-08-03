@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.DishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,12 +30,22 @@ public class DishController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(Dish dish) {
-        dishDAO.delete(dish);
+    public void delete(int id) {
+        dishDAO.delete(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Dish find(String nameToFind) {
-        return dishDAO.find(nameToFind);
+    public void delete(String name) {
+        dishDAO.delete(name);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Dish search(String nameToFind) {
+        return dishDAO.search(nameToFind);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Dish search(int id) {
+        return dishDAO.search(id);
     }
 }

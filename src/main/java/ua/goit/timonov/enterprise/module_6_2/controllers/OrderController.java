@@ -53,4 +53,9 @@ public class OrderController {
     public List<Order> getClosedOrders() {
         return orderDAO.getClosedOrders();
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Order search(Integer id) {
+        return orderDAO.search(id);
+    }
 }

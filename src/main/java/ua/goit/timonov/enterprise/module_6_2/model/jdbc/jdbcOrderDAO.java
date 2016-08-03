@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.model.jdbc;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -136,5 +137,13 @@ public class JdbcOrderDAO implements OrderDAO {
             result.add(dish);
         }
         return result;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Order search(Integer orderId) {
+        String sql = "SELECT * FROM ordering WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, orderId);
+        return getOrderFromMap(map);
     }
 }

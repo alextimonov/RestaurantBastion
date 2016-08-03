@@ -9,9 +9,13 @@ public interface DishDAO {
 
     void add(Dish dish);
 
-    void delete(Dish dish);
+    void delete(String name);
 
-    Dish find(String nameToFind);
+    void delete(int id);
+
+    Dish search(String nameToFind);
+
+    Dish search(int id);
 
     List<Dish> getAll();
 }

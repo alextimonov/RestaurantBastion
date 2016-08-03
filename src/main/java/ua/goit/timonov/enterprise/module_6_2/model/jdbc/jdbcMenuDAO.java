@@ -29,16 +29,37 @@ public class JdbcMenuDAO implements MenuDAO {
 
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
-    public void delete(Menu menu) {
+    public void delete(int id) {
         String sql = "DELETE FROM menu WHERE id = ?";
-        template.update(sql, menu.getId());
+        template.update(sql, id);
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
-    public Menu find(String nameToSearch) {
-        String sql = "SELECT * FROM menu WHERE menu.name = ?";
+    public void delete(String name) {
+        String sql = "DELETE FROM menu WHERE name = ?";
+        template.update(sql, name);
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public Menu search(String nameToSearch) {
+        String sql = "SELECT * FROM menu WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, nameToSearch);
+
+        Menu menu = new Menu();
+        menu.setId((Integer) map.get("id"));
+        menu.setName((String) map.get("name"));
+        List<Dish> dishes = findDishesByMenuId(menu.getId());
+        menu.setDishes(dishes);
+        return menu;
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public Menu search(int id) {
+        String sql = "SELECT * FROM menu WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, id);
 
         Menu menu = new Menu();
         menu.setId((Integer) map.get("id"));
@@ -84,7 +105,7 @@ public class JdbcMenuDAO implements MenuDAO {
 
     @Transactional(propagation = Propagation.MANDATORY)
     private List<Dish> findDishesByMenuId(int menuId) {
-        String sql = "SELECT DISH_TO_MENU.dish_id, DISH.name, DISH.description, DISH.cost, DISH.weight\n" +
+        String sql = "SELECT DISH.id, DISH.name, DISH.description, DISH.cost, DISH.weight\n" +
                 "FROM (DISH_TO_MENU INNER JOIN DISH ON DISH_TO_MENU.dish_id = DISH.id)\n" +
                 "WHERE DISH_TO_MENU.menu_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, menuId);
@@ -106,25 +127,3 @@ public class JdbcMenuDAO implements MenuDAO {
         template.update(sql, menuName, dishName);
     }
 }
-
-
-
-
-    /*private Menu findMenuById(int id, String name, List<Menu> menuList) {
-        boolean itemFound = false;
-        Menu result = new Menu();
-        Iterator iter = menuList.iterator();
-        while (!itemFound & iter.hasNext()) {
-            Menu menu = (Menu) iter.next();
-            if (id == menu.getId()) {
-                itemFound = true;
-                result = menu;
-            }
-        }
-        if (!itemFound) {
-            Menu newMenu = new Menu(id, name, new ArrayList<>());
-            menuList.add(newMenu);
-            result = newMenu;
-        }
-        return result;
-    }*/

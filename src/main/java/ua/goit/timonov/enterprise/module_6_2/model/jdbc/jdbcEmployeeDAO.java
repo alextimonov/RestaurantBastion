@@ -41,17 +41,40 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(Employee employee) {
+    public void delete(int id) {
         String sql = "DELETE FROM employee WHERE id = ?";
-        template.update(sql, employee.getId());
+        template.update(sql, id);
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public Employee find(String surnameToSearch, String nameToSearch) {
+    public void delete(String surname, String name) {
+        String sql = "DELETE FROM employee WHERE surname = ? AND name = ?";
+        template.update(sql, surname, name);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Employee search(String surnameToSearch, String nameToSearch) {
         String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
                 "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
         Map<String, Object> map = template.queryForMap(sql, surnameToSearch, nameToSearch);
+        Employee employee = getEmployeeFromMap(map);
+        return employee;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Employee search(int id) {
+        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
+                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.id = ?";
+        Map<String, Object> map = template.queryForMap(sql, id);
+        Employee employee = getEmployeeFromMap(map);
+        return employee;
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    private Employee getEmployeeFromMap(Map<String, Object> map) {
         Employee employee = new Employee();
         employee.setId((Integer) map.get("id"));
         employee.setSurname((String) map.get("surname"));
@@ -70,13 +93,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
                 "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id";
         List<Map<String, Object>> mapList = template.queryForList(sql);
         for (Map<String, Object> row : mapList) {
-            Employee employee = new Employee();
-            employee.setId((Integer) row.get("id"));
-            employee.setSurname((String) row.get("surname"));
-            employee.setName((String) row.get("name"));
-            employee.setPosition((String) row.get("position"));
-            employee.setBirthday((Date) row.get("birthday"));
-            employee.setSalary((Float) row.get("salary"));
+            Employee employee = getEmployeeFromMap(row);
             result.add(employee);
         }
         return result;

@@ -21,5 +21,6 @@ public interface OrderDAO {
 
     List<Order> getClosedOrders();
 
+    Order search(Integer id);
 }
 

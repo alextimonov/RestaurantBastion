@@ -25,6 +25,11 @@ public class StorageController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
+    public void delete(Integer id) {
+        storageDAO.delete(id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     public void delete(String ingredientName) {
         storageDAO.delete(ingredientName);
     }
@@ -35,8 +40,13 @@ public class StorageController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Ingredient find(String ingredientName) {
-        return storageDAO.find(ingredientName);
+    public Ingredient search(String ingredientName) {
+        return storageDAO.search(ingredientName);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Ingredient search(Integer id) {
+        return storageDAO.search(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

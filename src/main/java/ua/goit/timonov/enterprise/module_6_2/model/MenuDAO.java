@@ -7,13 +7,17 @@ import java.util.List;
  */
 public interface MenuDAO {
 
+    List<Menu> getAll();
+
     void add(Menu menu);
 
-    void delete(Menu menu);
+    Menu search(String nameToSearch);
 
-    Menu find(String nameToSearch);
+    Menu search(int id);
 
-    List<Menu> getAll();
+    void delete(String name);
+
+    void delete(int id);
 
     void addDish(String menuName, Dish dish);
 

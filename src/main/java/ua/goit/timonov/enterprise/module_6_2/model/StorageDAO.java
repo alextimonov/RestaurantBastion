@@ -9,11 +9,15 @@ public interface StorageDAO {
 
     void add(Ingredient ingredient);
 
+    void delete(int id);
+
     void delete(String ingredientName);
 
     void changeAmount(String ingredientName, int difference);
 
-    Ingredient find(String ingredientName);
+    Ingredient search(int id);
+
+    Ingredient search(String ingredientName);
 
     List<Ingredient> getAll();
 

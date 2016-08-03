@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import static ua.goit.timonov.enterprise.module_6_2.view.console.PrintToConsole.printLine;
+import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
  * Created by Alex on 31.07.2016.
  */
-public class Input {
+public class ConsoleInput {
 
     public static String inputString(Scanner sc) {
         return sc.nextLine();
@@ -25,11 +25,11 @@ public class Input {
 
     public static Date inputDate(Scanner sc) {
         printLine("Input year: ");
-        int year = Input.inputInteger(sc);
+        int year = ConsoleInput.inputInteger(sc);
         printLine("Input month: ");
-        int month = Input.inputInteger(sc) - 1;
+        int month = ConsoleInput.inputInteger(sc) - 1;
         printLine("Input day in month: ");
-        int day = Input.inputInteger(sc);
+        int day = ConsoleInput.inputInteger(sc);
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.set(year, month, day);
         return gregorianCalendar.getTime();

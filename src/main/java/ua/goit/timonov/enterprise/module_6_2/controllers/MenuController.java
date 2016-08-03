@@ -30,14 +30,25 @@ public class MenuController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(Menu menu) {
-        menuDAO.delete(menu);
+    public void delete(int id) {
+        menuDAO.delete(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Menu find(String nameToSearch) {
-        return menuDAO.find(nameToSearch);
+    public void delete(String name) {
+        menuDAO.delete(name);
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Menu search(String nameToSearch) {
+        return menuDAO.search(nameToSearch);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Menu search(int id) {
+        return menuDAO.search(id);
+    }
+
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void addDish(String menuName, Dish dish) {

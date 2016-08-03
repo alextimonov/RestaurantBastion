@@ -36,16 +36,32 @@ public class JdbcDishDAO implements DishDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(Dish dish) {
+    public void delete(int id) {
         String sql = "DELETE FROM dish WHERE id = ?";
-        template.update(sql, dish.getId());
+        template.update(sql, id);
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public Dish find(String nameToFind) {
+    public void delete(String name) {
+        String sql = "DELETE FROM dish WHERE name = ?";
+        template.update(sql, name);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Dish search(String nameToFind) {
         String sql = "SELECT * FROM dish WHERE dish.name = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, nameToFind);
+        Map<String, Object> row = mapList.get(0);
+        return getDishFromMap(row);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Dish search(int id) {
+        String sql = "SELECT * FROM dish WHERE dish.id = ?";
+        List<Map<String, Object>> mapList = template.queryForList(sql, id);
         Map<String, Object> row = mapList.get(0);
         return getDishFromMap(row);
     }
@@ -64,7 +80,7 @@ public class JdbcDishDAO implements DishDAO {
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
-    public Dish getDishFromMap(Map<String, Object> map) {
+    Dish getDishFromMap(Map<String, Object> map) {
         Dish dish = new Dish();
         dish.setId((Integer) map.get("id"));
         dish.setName((String) map.get("name"));
