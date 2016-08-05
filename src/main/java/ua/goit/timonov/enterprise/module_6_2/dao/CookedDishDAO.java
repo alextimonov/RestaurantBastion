@@ -1,7 +1,8 @@
-package ua.goit.timonov.enterprise.module_6_2.model;
+package ua.goit.timonov.enterprise.module_6_2.dao;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.timonov.enterprise.module_6_2.model.CookedDish;
 
 import java.util.List;
 

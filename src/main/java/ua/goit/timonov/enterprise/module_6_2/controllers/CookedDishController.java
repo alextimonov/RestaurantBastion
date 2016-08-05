@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_6_2.controllers;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.CookedDish;
-import ua.goit.timonov.enterprise.module_6_2.model.CookedDishDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.CookedDishDAO;
 
 import java.util.List;
 

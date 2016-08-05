@@ -1,10 +1,10 @@
-package ua.goit.timonov.enterprise.module_6_2.model.jdbc;
+package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
-import ua.goit.timonov.enterprise.module_6_2.model.DishDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
 
 import java.util.ArrayList;
 import java.util.List;

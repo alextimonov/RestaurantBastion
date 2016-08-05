@@ -1,4 +1,6 @@
-package ua.goit.timonov.enterprise.module_6_2.model;
+package ua.goit.timonov.enterprise.module_6_2.dao;
+
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 
 import java.util.List;
 

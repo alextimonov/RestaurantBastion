@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_6_2.controllers;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
-import ua.goit.timonov.enterprise.module_6_2.model.EmployeeDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
 
 import java.util.ArrayList;
 import java.util.List;

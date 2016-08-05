@@ -1,10 +1,10 @@
-package ua.goit.timonov.enterprise.module_6_2.model.jdbc;
+package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
-import ua.goit.timonov.enterprise.module_6_2.model.StorageDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
 
 import java.util.ArrayList;
 import java.util.List;

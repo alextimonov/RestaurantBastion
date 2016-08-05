@@ -34,7 +34,7 @@
         <property name="employeeDAO" ref="employeeDAO"/>
     </bean>
 
-    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcEmployeeDAO">
+    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcEmployeeDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
@@ -42,7 +42,7 @@
         <property name="dishDAO" ref="dishDAO"/>
     </bean>
 
-    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcDishDAO">
+    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
@@ -50,23 +50,25 @@
         <property name="menuDAO" ref="menuDAO"/>
     </bean>
 
-    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcMenuDAO">
+    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcMenuDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="jdbcDishDAO" ref="dishDAO"/>
     </bean>
 
     <bean id="orderController" class="ua.goit.timonov.enterprise.module_6_2.controllers.OrderController">
         <property name="orderDAO" ref="orderDAO"/>
     </bean>
 
-    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcOrderDAO">
+    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcOrderDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="jdbcDishDAO" ref="dishDAO"/>
     </bean>
 
     <bean id="cookedDishController" class="ua.goit.timonov.enterprise.module_6_2.controllers.CookedDishController">
         <property name="cookedDishDAO" ref="cookedDishDAO"/>
     </bean>
 
-    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcCookedDishDAO">
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcCookedDishDAO">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
@@ -74,7 +76,7 @@
         <property name="storageDAO" ref="storageDAO"/>
     </bean>
 
-    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.model.jdbc.JdbcStorageDAO" >
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcStorageDAO" >
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 

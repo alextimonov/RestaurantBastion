@@ -1,9 +1,10 @@
-package ua.goit.timonov.enterprise.module_6_2.model.jdbc;
+package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.timonov.enterprise.module_6_2.dao.OrderDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
 import java.util.ArrayList;
@@ -17,9 +18,14 @@ import java.util.Map;
 public class JdbcOrderDAO implements OrderDAO {
 
     private JdbcTemplate template;
+    private JdbcDishDAO jdbcDishDAO;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
+    }
+
+    public void setJdbcDishDAO(JdbcDishDAO jdbcDishDAO) {
+        this.jdbcDishDAO = jdbcDishDAO;
     }
 
     @Override
@@ -133,7 +139,7 @@ public class JdbcOrderDAO implements OrderDAO {
 
         List<Dish> result = new ArrayList<>();
         for (Map<String, Object> row : mapList) {
-            Dish dish = new JdbcDishDAO().getDishFromMap(row);
+            Dish dish = jdbcDishDAO.getDishFromMap(row);
             result.add(dish);
         }
         return result;

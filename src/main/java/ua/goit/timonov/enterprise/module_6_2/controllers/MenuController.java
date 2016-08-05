@@ -4,7 +4,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
-import ua.goit.timonov.enterprise.module_6_2.model.MenuDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
 
 import java.util.List;
 

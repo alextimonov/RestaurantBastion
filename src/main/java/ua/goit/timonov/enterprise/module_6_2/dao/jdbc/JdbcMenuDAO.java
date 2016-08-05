@@ -1,11 +1,12 @@
-package ua.goit.timonov.enterprise.module_6_2.model.jdbc;
+package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
-import ua.goit.timonov.enterprise.module_6_2.model.MenuDAO;
+import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
 
 import java.util.*;
 
@@ -15,9 +16,14 @@ import java.util.*;
 public class JdbcMenuDAO implements MenuDAO {
 
     private JdbcTemplate template;
+    private JdbcDishDAO jdbcDishDAO;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
+    }
+
+    public void setJdbcDishDAO(JdbcDishDAO jdbcDishDAO) {
+        this.jdbcDishDAO = jdbcDishDAO;
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
@@ -112,7 +118,7 @@ public class JdbcMenuDAO implements MenuDAO {
 
         List<Dish> result = new ArrayList<>();
         for (Map<String, Object> row : mapList) {
-            Dish dish = new JdbcDishDAO().getDishFromMap(row);
+            Dish dish = jdbcDishDAO.getDishFromMap(row);
             result.add(dish);
         }
         return result;
