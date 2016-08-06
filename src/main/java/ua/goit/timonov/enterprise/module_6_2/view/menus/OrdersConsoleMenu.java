@@ -11,7 +11,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with orders
  */
 public class OrdersConsoleMenu extends ConsoleMenu {
 
@@ -23,7 +23,10 @@ public class OrdersConsoleMenu extends ConsoleMenu {
     public static final String CLOSED = "closed";
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no order with such ";
 
+    /* controller for tasks with orders */
     private OrderController orderController;
+
+    /* controller for tasks with dishes */
     private DishController dishController;
 
     public void setOrderController(OrderController orderController) {
@@ -34,6 +37,16 @@ public class OrdersConsoleMenu extends ConsoleMenu {
         this.dishController = dishController;
     }
 
+    /**
+     * configures menu's items:
+     * - get from DB list of all open orders
+     * - get from DB list of all closed orders
+     * - add new order to DB
+     * - delete open order from DB by ID
+     * - set open order to closed
+     * - add dish to open order
+     * - delete dish from open order
+     */
     public OrdersConsoleMenu() {
 
         addItem(new ConsoleMenuItem("Get all open orders") {

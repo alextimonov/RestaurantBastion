@@ -5,14 +5,26 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Alex on 01.08.2016.
+ * Provides order's data
  */
 public class Order {
+
+    /* unique id in DB table */
     private int id;
+
+    /* waiter's id who takes this order */
     private int waiterId;
+
+    /* order's table number */
     private int tableNumber;
+
+    /* order's date */
     private Date date;
+
+    /* true if order is closed, false if one is open */
     private Boolean  closed;
+
+    /* dishes in this order */
     private List<Dish> dishes;
 
     public Order() {

@@ -9,7 +9,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with dishes that can be cooked in restaurant
  */
 public class DishesConsoleMenu extends ConsoleMenu {
 
@@ -18,12 +18,22 @@ public class DishesConsoleMenu extends ConsoleMenu {
     public static final String NAME = "name";
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no dish with such ";
 
+    /* controller for tasks with dishes */
     private DishController dishController;
 
     public void setDishController(DishController dishController) {
         this.dishController = dishController;
     }
 
+    /**
+     * configures menu's items:
+     * - get from DB list of all dishes
+     * - add new dish to DB
+     * - search dish by ID
+     * - search dish by name
+     * - delete dish from DB by ID
+     * - search dish from DB by name
+     */
     public DishesConsoleMenu() {
 
         addItem(new ConsoleMenuItem("Get all dishes") {

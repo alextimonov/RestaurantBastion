@@ -1,25 +1,26 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
 /**
- * Created by Alex on 31.07.2016.
+ * Provides dish's data
  */
 
 public class Dish {
+    /* unique id in the DB table */
     private int id;
+
+    /* dish's name */
     private String name;
+
+    /* dish' description */
     private String description;
+
+    /* dish's cost */
     private float cost;
+
+    /* dish's weight */
     private int weight;
 
     public Dish() {
-    }
-
-    public Dish(int id, String name, String description, float cost, int weight) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.cost = cost;
-        this.weight = weight;
     }
 
     public int getId() {

@@ -3,37 +3,29 @@ package ua.goit.timonov.enterprise.module_6_2.model;
 import java.util.Date;
 
 /**
- * Created by Alex on 30.07.2016.
+ * Provides employee's data
  */
 public class Employee {
+
+    /* unique id in the DB table */
     private int id;
+
+    /* employee's surname */
     private String surname;
+
+    /* employee's name */
     private String name;
+
+    /* employee's date of birthday */
     private Date birthday;
-    private int position_id;
+
+    /* employee's salary */
     private float salary;
+
+    /* employee's position */
     private String position;
 
     public Employee() {
-    }
-
-    public Employee(int id, String surname, String name, Date birthday, int position_id, float salary) {
-        this.id = id;
-        this.surname = surname;
-        this.name = name;
-        this.birthday = birthday;
-        this.position_id = position_id;
-        this.salary = salary;
-    }
-
-    public Employee(int id, String surname, String name, Date birthday, int position_id, float salary, String position) {
-        this.id = id;
-        this.surname = surname;
-        this.name = name;
-        this.birthday = birthday;
-        this.position_id = position_id;
-        this.salary = salary;
-        this.position = position;
     }
 
     public int getId() {
@@ -66,14 +58,6 @@ public class Employee {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public int getPosition_id() {
-        return position_id;
-    }
-
-    public void setPosition_id(int position_id) {
-        this.position_id = position_id;
     }
 
     public float getSalary() {

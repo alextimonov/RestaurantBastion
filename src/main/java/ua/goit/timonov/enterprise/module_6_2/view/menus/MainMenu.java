@@ -5,7 +5,7 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
  */
 public class MainMenu extends ConsoleMenu {
 
-    // console menus for different groups of tasks
+    /* console menus for different groups of tasks */
     private EmployeesConsoleMenu employeesConsoleMenu;
     private DishesConsoleMenu dishesConsoleMenu;
     private MenusConsoleMenu menusConsoleMenu;
@@ -36,7 +36,6 @@ public class MainMenu extends ConsoleMenu {
     public void setStorageConsoleMenu(StorageConsoleMenu storageConsoleMenu) {
         this.storageConsoleMenu = storageConsoleMenu;
     }
-
 
     /**
      * configures main menu's items

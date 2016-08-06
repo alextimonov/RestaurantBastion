@@ -4,7 +4,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.OrderDAO;
-import ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alex on 01.08.2016.
+ * JDBC implementation of OrderDAO
  */
 public class JdbcOrderDAO implements OrderDAO {
 
@@ -28,6 +27,10 @@ public class JdbcOrderDAO implements OrderDAO {
         this.jdbcDishDAO = jdbcDishDAO;
     }
 
+    /**
+     * adds new order to DB
+     * @param order      given order
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Order order) {
@@ -38,6 +41,26 @@ public class JdbcOrderDAO implements OrderDAO {
                 order.getDate());
     }
 
+
+    /**
+     * searches order in DB by its ID
+     * @param orderId        order's ID to find
+     * @return          found order
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Order search(Integer orderId) {
+        String sql = "SELECT * FROM ordering WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, orderId);
+        return getOrderFromMap(map);
+    }
+
+    /**
+     * deletes order from DB by its ID
+     * @param orderId           order's ID to delete
+     * throws                   EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int orderId) {
@@ -50,6 +73,7 @@ public class JdbcOrderDAO implements OrderDAO {
 
     }
 
+    // returns true if order (given by its ID) is open
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean orderIsOpen(int orderId) {
         String sql = "SELECT closed FROM ordering WHERE id = ?";
@@ -58,6 +82,7 @@ public class JdbcOrderDAO implements OrderDAO {
         return !closed;
     }
 
+    // deletes order from auxiliary table
     @Transactional(propagation = Propagation.MANDATORY)
     private void deleteOrder(int orderId) {
         String sql = "DELETE FROM dish_to_ordering WHERE order_id = ?; " +
@@ -65,6 +90,12 @@ public class JdbcOrderDAO implements OrderDAO {
         template.update(sql, orderId, orderId);
     }
 
+    /**
+     * adds dish to order by order's ID
+     * @param orderId       order's ID
+     * @param dish          dish to be added
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(int orderId, Dish dish) {
@@ -77,6 +108,12 @@ public class JdbcOrderDAO implements OrderDAO {
         }
     }
 
+    /**
+     * deletes dish from order
+     * @param orderId       order's ID
+     * @param dish          dish to be deleted
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void deleteDish(int orderId, Dish dish) {
@@ -89,6 +126,10 @@ public class JdbcOrderDAO implements OrderDAO {
         }
     }
 
+    /**
+     * sets order to closed
+     * @param orderId
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void setClosed(int orderId) {
@@ -101,6 +142,11 @@ public class JdbcOrderDAO implements OrderDAO {
         }
     }
 
+    /**
+     * finds list of all open orders in DB
+     * @return          list of open orders
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getOpenOrders() {
@@ -115,6 +161,11 @@ public class JdbcOrderDAO implements OrderDAO {
         return result;
     }
 
+    /**
+     * finds list of all closed orders in DB
+     * @return          list of closed orders
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getClosedOrders() {
@@ -132,7 +183,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     private Order getOrderFromMap(Map<String, Object> map) {
         Order order = new Order();
-        order.setId((Integer) map.get("id"));
+        order.setId((Integer) map.get("orderId"));
         order.setWaiterId((Integer) map.get("employee_id"));
         order.setTableNumber((Integer) map.get("table_number"));
         order.setDate((Date) map.get("date"));
@@ -155,13 +206,5 @@ public class JdbcOrderDAO implements OrderDAO {
             result.add(dish);
         }
         return result;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Order search(Integer orderId) {
-        String sql = "SELECT * FROM ordering WHERE id = ?";
-        Map<String, Object> map = template.queryForMap(sql, orderId);
-        return getOrderFromMap(map);
     }
 }

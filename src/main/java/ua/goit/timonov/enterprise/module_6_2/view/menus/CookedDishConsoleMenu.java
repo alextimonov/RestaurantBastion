@@ -9,7 +9,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with cooked dishes
  */
 public class CookedDishConsoleMenu extends ConsoleMenu {
 
@@ -19,12 +19,19 @@ public class CookedDishConsoleMenu extends ConsoleMenu {
     public static final String ORDER = "order's";
     public static final String DISH_NAME = "dish name";
     public static final String NAME = "name";
+
+    /* controller for tasks with cooked dishes */
     private CookedDishController cookedDishController;
 
     public void setCookedDishController(CookedDishController cookedDishController) {
         this.cookedDishController = cookedDishController;
     }
 
+    /**
+     * configures menu's items:
+     * - get from DB list of cooked dishes
+     * - ddd cooked dish by order's ID, dish's name, cook's ID
+     */
     public CookedDishConsoleMenu() {
 
         addItem(new ConsoleMenuItem("Get all cooked dishes") {

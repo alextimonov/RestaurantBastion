@@ -1,20 +1,20 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
 /**
- * Created by Alex on 01.08.2016.
+ * Provides ingredient's data
  */
 public class Ingredient {
 
+    /* unique id in DB table */
     private int id;
+
+    /* ingredient's name */
     private String name;
+
+    /* ingredient's amount */
     private int amount;
 
     public Ingredient() {
-    }
-
-    public Ingredient(String name, int amount) {
-        this.name = name;
-        this.amount = amount;
     }
 
     public int getId() {

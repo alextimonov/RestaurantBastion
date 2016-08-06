@@ -12,21 +12,19 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alex on 31.07.2016.
+ * JDBC implementation of EmployeeDAO
  */
 public class JdbcEmployeeDAO implements EmployeeDAO {
 
     private JdbcTemplate template;
-
-//    private static Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDAO.class);
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
     }
 
     /**
-     * @param employee
-     * throws IllegalArgumentException
+     * adds new employee to DB
+     * @param employee      given employee
      */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
@@ -45,6 +43,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
             throw new IllegalArgumentException("UNSUCCESSFUL! Unable to add employee. Such position don't exist:");
     }
 
+    // returns true if given position exists in table JOBS
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean isValidPosition(String position) {
         String sql = "SELECT * FROM jobs WHERE position = ?";
@@ -52,6 +51,11 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
         return !listMap.isEmpty();
     }
 
+    /**
+     * deletes employee from DB by its ID
+     * @param id            employee's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
@@ -60,12 +64,12 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
             template.update(sql, id);
     }
 
-    private boolean isValidId(int id) {
-        String sql = "SELECT * FROM employee WHERE id = ?";
-        List<Map<String, Object>> listMap= template.queryForList(sql, id);
-        return !listMap.isEmpty();
-    }
-
+    /**
+     * deletes employee from DB by its full name (surname & name)
+     * @param surname        surname of employee to delete
+     * @param name           name of employee to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String surname, String name) {
@@ -74,16 +78,12 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
             template.update(sql, surname, name);
     }
 
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Employee search(String surnameToSearch, String nameToSearch) {
-        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
-                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
-        Map<String, Object> map = template.queryForMap(sql, surnameToSearch, nameToSearch);
-        Employee employee = getEmployeeFromMap(map);
-        return employee;
-    }
-
+    /**
+     * searches employee in DB by its ID
+     * @param id        employee's ID to find
+     * @return          found employee
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Employee search(int id) {
@@ -94,6 +94,24 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
         return employee;
     }
 
+    /**
+     * searches employee in DB by its full name (surname & name)
+     * @param surname        surname of employee to find
+     * @param name           name of employee to find
+     * @return name          found employee
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Employee search(String surname, String name) {
+        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
+                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
+        Map<String, Object> map = template.queryForMap(sql, surname, name);
+        Employee employee = getEmployeeFromMap(map);
+        return employee;
+    }
+
+    // gets employee's data from SQL query's map
     @Transactional(propagation = Propagation.MANDATORY)
     private Employee getEmployeeFromMap(Map<String, Object> map) {
         Employee employee = new Employee();
@@ -106,6 +124,11 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
         return employee;
     }
 
+    /**
+     * finds list of all employees in DB
+     * @return          list of employees
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Employee> getAll() {

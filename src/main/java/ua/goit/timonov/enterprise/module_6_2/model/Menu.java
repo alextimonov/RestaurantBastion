@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alex on 31.07.2016.
+ * Provides dish menu's data
  */
 public class Menu {
+    /* unique id in DB table */
     private int id;
+
+    /* dish menu's name */
     private String name;
+
+    /* dishes in menu */
     private List<Dish> dishes;
 
     public Menu() {

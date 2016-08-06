@@ -5,7 +5,7 @@ import java.util.*;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 31.07.2016.
+ * Provides input of different data types from console: String, int, float, Date
  */
 public class ConsoleInput {
 
@@ -19,17 +19,27 @@ public class ConsoleInput {
     public static final int DAYS_IN_SHORT_FEBRUARY = 28;
     public static final int FOUR = 4;
     public static final int HUNDRED = 100;
-    public static final int FOUR_NUNDRED = 400;
+    public static final int FOUR_HUNDRED = 400;
 
-
+    /* list of month's numbers with 31 days in that month */
     private static List<Integer> longMonths = Arrays.asList(1, 3, 5, 7, 8, 10, 12);
+
+    /* list of month's numbers with 30 days in that month */
     private static List<Integer> shortMonths = Arrays.asList(4, 6, 9, 11);
 
+    /**
+     * inputs String from console
+     * @return      inputted string
+     */
     public static String inputString() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
 
+    /**
+     * inputs int value from console
+     * @return      inputted int value
+     */
     public static int inputInteger() {
         while(true) {
             try {
@@ -42,6 +52,12 @@ public class ConsoleInput {
         }
     }
 
+    /**
+     * inputs int value from console, inputted value must be in defined interval including bounds
+     * @param lowBound          interval's low bound
+     * @param highBound         interval's high bound
+     * @return                  inputted int value
+     */
     public static int inputInteger(int lowBound, int highBound) {
         while(true) {
             try {
@@ -61,6 +77,10 @@ public class ConsoleInput {
         }
     }
 
+    /**
+     * inputs float value from console
+     * @return      inputted float value
+     */
     public static float inputFloat() {
         while(true) {
             try {
@@ -73,6 +93,10 @@ public class ConsoleInput {
         }
     }
 
+    /**
+     * inputs Date from console with taking to consideration number of days in different months and years
+     * @return      inputted Date value
+     */
     public static Date inputDate() {
         printLine("Input year: ");
         Calendar calendar = GregorianCalendar.getInstance();
@@ -104,7 +128,7 @@ public class ConsoleInput {
     private static int findNDaysInFebruary(int year) {
         if (year % FOUR == 0)
             if (year % HUNDRED == 0)
-                if (year % FOUR_NUNDRED == 0)
+                if (year % FOUR_HUNDRED == 0)
                     return DAYS_IN_LONG_FEBRUARY;
                 else
                     return DAYS_IN_SHORT_FEBRUARY;

@@ -11,18 +11,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alex on 31.07.2016.
+ * JDBC implementation of DishDAO
  */
 public class JdbcDishDAO implements DishDAO {
 
     private JdbcTemplate template;
 
-//    private static Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDAO.class);
-
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
     }
 
+    /**
+     * adds new dish to DB
+     * @param dish      given dish
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Dish dish) {
@@ -34,6 +36,11 @@ public class JdbcDishDAO implements DishDAO {
                 dish.getWeight());
     }
 
+    /**
+     * deletes dish from DB by its ID
+     * @param id            dish's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
@@ -42,6 +49,11 @@ public class JdbcDishDAO implements DishDAO {
         template.update(sql, id);
     }
 
+    /**
+     * deletes dish from DB by its name
+     * @param name           name of dish to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String name) {
@@ -50,14 +62,26 @@ public class JdbcDishDAO implements DishDAO {
         template.update(sql, name);
     }
 
+    /**
+     * searches dish in DB by name
+     * @param name           name of dish to find
+     * @return name          found dish
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public Dish search(String nameToFind) {
+    public Dish search(String name) {
         String sql = "SELECT * FROM dish WHERE name = ?";
-        Map<String, Object> map = template.queryForMap(sql, nameToFind);
+        Map<String, Object> map = template.queryForMap(sql, name);
         return getDishFromMap(map);
     }
 
+    /**
+     * searches dish in DB by its ID
+     * @param id        dish's ID to find
+     * @return          found dish
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Dish search(int id) {

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alex on 01.08.2016.
+ * JDBC implementation of CookedDishDAO
  */
 public class JdbcCookedDishDAO implements CookedDishDAO {
 
@@ -22,6 +22,11 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         this.template = jdbcTemplate;
     }
 
+    /**
+     * finds list of all cooked dishes in DB
+     * @return              list of cooked dishes
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<CookedDish> getAll() {
@@ -36,6 +41,13 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         return result;
     }
 
+    /**
+     * adds new cooked dish to DB table
+     * @param orderId       order's id, in which dish is cooked
+     * @param dishName      name of dish
+     * @param cookId        employee's employee that cooked the dish
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(int orderId, String dishName, int cookId) {
@@ -50,13 +62,15 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         }
     }
 
+    // returns true if order is closed
     @Transactional(propagation = Propagation.MANDATORY)
-    private boolean orderIsClosedByOrderId(int orderedDishId) {
+    private boolean orderIsClosedByOrderId(int orderedId) {
         String sql = "SELECT closed FROM ordering WHERE id = ?";
-        Map<String, Object> map = template.queryForMap(sql, orderedDishId);
+        Map<String, Object> map = template.queryForMap(sql, orderedId);
         return (boolean) map.get("closed");
     }
 
+    // returns cooked dish' data from SQL query map
     private CookedDish getCookedDishFromMap(Map<String, Object> map) {
         CookedDish cookedDish = new CookedDish();
         cookedDish.setId((Integer) map.get("id"));
@@ -67,6 +81,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         return cookedDish;
     }
 
+    // defines order and dish by instance of CookedDish's object
     @Transactional(propagation = Propagation.MANDATORY)
     private void defineOrderAndDish(CookedDish cookedDish) {
         int orderedDishId = cookedDish.getOrderedDishId();
@@ -78,6 +93,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         cookedDish.setDish(defineDishById(dishId));
     }
 
+    // gets dish by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Dish defineDishById(int dishId) {
         String sql = "SELECT * FROM dish WHERE id = ?";
@@ -91,6 +107,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         return dish;
     }
 
+    // gets order by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Order defineOrderById(int orderId) {
         String sql = "SELECT * FROM ordering WHERE id = ?";
@@ -104,6 +121,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         return order;
     }
 
+    // gets employee (cook) by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Employee defineCookById(int cookId) {
         String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +

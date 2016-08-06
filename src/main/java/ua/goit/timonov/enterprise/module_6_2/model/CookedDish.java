@@ -1,14 +1,23 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
 /**
- * Created by Alex on 01.08.2016.
+ * Provides cooked dish's data
  */
 public class CookedDish {
+
+    /* unique ID in DB table */
     private int id;
+
+    /* id of ordered dish */
     private int orderedDishId;
 
+    /* order to which cooked dish is associated */
     private Order order;
+
+    /* dish type of cooked dish */
     private Dish dish;
+
+    /* cook who cooks this dish */
     private Employee cook;
 
     public CookedDish() {

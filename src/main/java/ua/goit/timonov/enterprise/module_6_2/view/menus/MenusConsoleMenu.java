@@ -11,7 +11,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with restaurant's dish menus
  */
 public class MenusConsoleMenu extends ConsoleMenu {
 
@@ -21,7 +21,10 @@ public class MenusConsoleMenu extends ConsoleMenu {
     public static final String DISH = "dish";
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no menu with such ";
 
+    /* controller for tasks with menus */
     private MenuController menuController;
+
+    /* controller for tasks with dishes */
     private DishController dishController;
 
     public void setMenuController(MenuController menuController) {
@@ -32,6 +35,18 @@ public class MenusConsoleMenu extends ConsoleMenu {
         this.dishController = dishController;
     }
 
+
+    /**
+     * configures console menu's items:
+     * - get from DB list of all menus
+     * - add new menu to DB
+     * - search menu by ID
+     * - search menu by name
+     * - delete menu from DB by ID
+     * - search menu from DB by name
+     * - add dish to menu
+     * - delete dish from menu
+     */
     public MenusConsoleMenu() {
         
         addItem(new ConsoleMenuItem("Get all Menus") {

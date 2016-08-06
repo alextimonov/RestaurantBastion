@@ -1,10 +1,11 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu's item
  */
 public abstract class ConsoleMenuItem {
 
+    /* item's text */
     private String title;
 
     public ConsoleMenuItem(String title) {
@@ -19,5 +20,8 @@ public abstract class ConsoleMenuItem {
         this.title = title;
     }
 
-    public abstract void  run();
+    /**
+     * runs task mapped to menu's item
+     */
+    public abstract void run();
 }

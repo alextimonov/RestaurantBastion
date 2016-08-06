@@ -3,7 +3,6 @@ package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
 import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
@@ -11,7 +10,7 @@ import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
 import java.util.*;
 
 /**
- * Created by Alex on 31.07.2016.
+ * JDBC implementation of MenuDAO
  */
 public class JdbcMenuDAO implements MenuDAO {
 
@@ -26,57 +25,11 @@ public class JdbcMenuDAO implements MenuDAO {
         this.jdbcDishDAO = jdbcDishDAO;
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
-    @Override
-    public void add(Menu menu) {
-        String sql = "INSERT INTO menu VALUES ((SELECT max(menu.id) FROM menu) + 1, ?)";
-        template.update(sql, menu.getName());
-    }
-
-    @Transactional(propagation = Propagation.MANDATORY)
-    @Override
-    public void delete(int id) {
-        search(id);
-        String sql = "DELETE FROM menu WHERE id = ?";
-        template.update(sql, id);
-    }
-
-    @Transactional(propagation = Propagation.MANDATORY)
-    @Override
-    public void delete(String name) {
-        search(name);
-        String sql = "DELETE FROM menu WHERE name = ?";
-        template.update(sql, name);
-    }
-
-    @Transactional(propagation = Propagation.MANDATORY)
-    @Override
-    public Menu search(String nameToSearch) {
-        String sql = "SELECT * FROM menu WHERE name = ?";
-        Map<String, Object> map = template.queryForMap(sql, nameToSearch);
-
-        Menu menu = new Menu();
-        menu.setId((Integer) map.get("id"));
-        menu.setName((String) map.get("name"));
-        List<Dish> dishes = findDishesByMenuId(menu.getId());
-        menu.setDishes(dishes);
-        return menu;
-    }
-
-    @Transactional(propagation = Propagation.MANDATORY)
-    @Override
-    public Menu search(int id) {
-        String sql = "SELECT * FROM menu WHERE id = ?";
-        Map<String, Object> map = template.queryForMap(sql, id);
-
-        Menu menu = new Menu();
-        menu.setId((Integer) map.get("id"));
-        menu.setName((String) map.get("name"));
-        List<Dish> dishes = findDishesByMenuId(menu.getId());
-        menu.setDishes(dishes);
-        return menu;
-    }
-
+    /**
+     * finds list of all menus in DB
+     * @return          list of menus
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Menu> getAll() {
@@ -95,6 +48,89 @@ public class JdbcMenuDAO implements MenuDAO {
         return result;
     }
 
+    /**
+     * adds new menu to DB
+     * @param menu      given menus
+     */
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public void add(Menu menu) {
+        String sql = "INSERT INTO menu VALUES ((SELECT max(menu.id) FROM menu) + 1, ?)";
+        template.update(sql, menu.getName());
+    }
+
+    /**
+     * searches menu in DB by its ID
+     * @param id        menu's ID to find
+     * @return          found menu
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public Menu search(int id) {
+        String sql = "SELECT * FROM menu WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, id);
+
+        Menu menu = new Menu();
+        menu.setId((Integer) map.get("id"));
+        menu.setName((String) map.get("name"));
+        List<Dish> dishes = findDishesByMenuId(menu.getId());
+        menu.setDishes(dishes);
+        return menu;
+    }
+
+    /**
+     * searches menu in DB by name
+     * @param name       name of menu to find
+     * @return           found menu
+     * throws            EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public Menu search(String name) {
+        String sql = "SELECT * FROM menu WHERE name = ?";
+        Map<String, Object> map = template.queryForMap(sql, name);
+
+        Menu menu = new Menu();
+        menu.setId((Integer) map.get("id"));
+        menu.setName((String) map.get("name"));
+        List<Dish> dishes = findDishesByMenuId(menu.getId());
+        menu.setDishes(dishes);
+        return menu;
+    }
+
+    /**
+     * deletes menu from DB by its ID
+     * @param id            menu's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public void delete(int id) {
+        search(id);
+        String sql = "DELETE FROM menu WHERE id = ?";
+        template.update(sql, id);
+    }
+
+    /**
+     * deletes menu from DB by its name
+     * @param name           name of menu to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.MANDATORY)
+    @Override
+    public void delete(String name) {
+        search(name);
+        String sql = "DELETE FROM menu WHERE name = ?";
+        template.update(sql, name);
+    }
+
+    /**
+     * adds dish to menu
+     * @param menu          dish menu
+     * @param dish          dish to be added
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(Menu menu, Dish dish) {
@@ -103,6 +139,7 @@ public class JdbcMenuDAO implements MenuDAO {
         template.update(sql, menu.getId(), dish.getId());
     }
 
+    // returns list of dishes in menu by menu's ID
     @Transactional(propagation = Propagation.MANDATORY)
     private List<Dish> findDishesByMenuId(int menuId) {
         String sql = "SELECT DISH.id, DISH.name, DISH.description, DISH.cost, DISH.weight\n" +
@@ -118,6 +155,12 @@ public class JdbcMenuDAO implements MenuDAO {
         return result;
     }
 
+    /**
+     * deletes dish from menu
+     * @param menu          dish menu
+     * @param dish          dish to be deleted
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     public void deleteDish(Menu menu, Dish dish) {
         String sql = "DELETE FROM dish_to_menu VALUES WHERE menu_id = ? AND dish_id = ?";

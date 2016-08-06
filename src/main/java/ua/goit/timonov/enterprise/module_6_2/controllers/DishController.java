@@ -8,7 +8,7 @@ import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import java.util.List;
 
 /**
- * Created by Alex on 31.07.2016.
+ * Controller for DishDAO
  */
 public class DishController {
 
@@ -18,33 +18,64 @@ public class DishController {
         this.dishDAO = dishDAO;
     }
 
+    /**
+     * finds list of all dishes in DB
+     * @return          list of dishes
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Dish> getAll() {
         return dishDAO.getAll();
     }
 
+    /**
+     * adds new dish to DB
+     * @param dish      given dish
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public void add(Dish dish) {
         dishDAO.add(dish);
     }
 
+    /**
+     * searches dish in DB by its ID
+     * @param id        dish's ID to find
+     * @return          found dish
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Dish search(int id) {
+        return dishDAO.search(id);
+    }
+
+    /**
+     * searches dish in DB by name
+     * @param name           name of dish to find
+     * @return name          found dish
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Dish search(String name) {
+        return dishDAO.search(name);
+    }
+
+    /**
+     * deletes dish from DB by its ID
+     * @param id            dish's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public void delete(int id) {
         dishDAO.delete(id);
     }
 
+    /**
+     * deletes dish from DB by its name
+     * @param name           name of dish to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public void delete(String name) {
         dishDAO.delete(name);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public Dish search(String nameToFind) {
-        return dishDAO.search(nameToFind);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public Dish search(int id) {
-        return dishDAO.search(id);
     }
 }

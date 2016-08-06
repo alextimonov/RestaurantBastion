@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alex on 01.08.2016.
+ * JDBC implementation of StorageDAO
  */
 public class JdbcStorageDAO implements StorageDAO {
 
@@ -21,63 +21,11 @@ public class JdbcStorageDAO implements StorageDAO {
         this.template = jdbcTemplate;
     }
 
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void add(Ingredient ingredient) {
-        String sql = "INSERT INTO ingredient VALUES ((SELECT max(id) FROM ingredient) + 1, ?, ?)";
-        template.update(sql, ingredient.getName(), ingredient.getAmount());
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(int id) {
-        search(id);
-        String sql = "DELETE FROM ingredient WHERE id = ?";
-        template.update(sql, id);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(String ingredientName) {
-        search(ingredientName);
-        String sql = "DELETE FROM ingredient WHERE name = ?";
-        template.update(sql, ingredientName);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void changeAmount(String ingredientName, int difference) {
-        String sql = "UPDATE ingredient SET amount = (SELECT amount FROM ingredient WHERE name = ?) + ? WHERE name = ?";
-        template.update(sql, ingredientName, difference, ingredientName);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Ingredient search(int id) {
-        String sql = "SELECT * FROM ingredient WHERE id = ?";
-        Map<String, Object> map = template.queryForMap(sql, id);
-        Ingredient ingredient = getIngredientFromMap(map);
-        return ingredient;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Ingredient search(String ingredientName) {
-        String sql = "SELECT * FROM ingredient WHERE ingredient.name = ?";
-        Map<String, Object> map = template.queryForMap(sql, ingredientName);
-        Ingredient ingredient = getIngredientFromMap(map);
-        return ingredient;
-    }
-
-    @Transactional(propagation = Propagation.MANDATORY)
-    private Ingredient getIngredientFromMap(Map<String, Object> map) {
-        Ingredient ingredient = new Ingredient();
-        ingredient.setId((Integer) map.get("id"));
-        ingredient.setName((String) map.get("name"));
-        ingredient.setAmount((Integer) map.get("amount"));
-        return ingredient;
-    }
-
+    /**
+     * finds list of all ingredients in DB
+     * @return              list of ingredients
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Ingredient> getAll() {
@@ -91,6 +39,101 @@ public class JdbcStorageDAO implements StorageDAO {
         return result;
     }
 
+    /**
+     * adds new ingredient to DB
+     * @param ingredient      given ingredient
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void add(Ingredient ingredient) {
+        String sql = "INSERT INTO ingredient VALUES ((SELECT max(id) FROM ingredient) + 1, ?, ?)";
+        template.update(sql, ingredient.getName(), ingredient.getAmount());
+    }
+
+    /**
+     * searches ingredient in DB by its ID
+     * @param id        ingredient's ID to find
+     * @return          found ingredient
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Ingredient search(int id) {
+        String sql = "SELECT * FROM ingredient WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, id);
+        Ingredient ingredient = getIngredientFromMap(map);
+        return ingredient;
+    }
+
+    /**
+     * searches ingredient in DB by name
+     * @param name       name of ingredient to find
+     * @return           found ingredient
+     * throws            EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Ingredient search(String name) {
+        String sql = "SELECT * FROM ingredient WHERE ingredient.name = ?";
+        Map<String, Object> map = template.queryForMap(sql, name);
+        Ingredient ingredient = getIngredientFromMap(map);
+        return ingredient;
+    }
+
+    /**
+     * deletes ingredient from DB by its ID
+     * @param id            ingredient's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void delete(int id) {
+        search(id);
+        String sql = "DELETE FROM ingredient WHERE id = ?";
+        template.update(sql, id);
+    }
+
+    /**
+     * deletes ingredient from DB by its name
+     * @param name           name of ingredient to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void delete(String name) {
+        search(name);
+        String sql = "DELETE FROM ingredient WHERE name = ?";
+        template.update(sql, name);
+    }
+
+    /**
+     * changes amount of ingredient
+     * @param name        ingredient's name
+     * @param difference            difference to be added to current amount
+     * throws                       EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void changeAmount(String name, int difference) {
+        String sql = "UPDATE ingredient SET amount = (SELECT amount FROM ingredient WHERE name = ?) + ? WHERE name = ?";
+        template.update(sql, name, difference, name);
+    }
+
+    // gets ingredient from SQL query's map
+    @Transactional(propagation = Propagation.MANDATORY)
+    private Ingredient getIngredientFromMap(Map<String, Object> map) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setId((Integer) map.get("id"));
+        ingredient.setName((String) map.get("name"));
+        ingredient.setAmount((Integer) map.get("amount"));
+        return ingredient;
+    }
+
+    /**
+     * finds list of terminating ingredients with amount less than given limit
+     * @param limit                 limit to chose an ingredient
+     * @return                      list of ingredient
+     */
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Ingredient> getTerminatingIngredients(int limit) {

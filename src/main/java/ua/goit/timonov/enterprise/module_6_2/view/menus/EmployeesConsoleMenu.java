@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
+import org.springframework.dao.DataAccessException;
 import ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
@@ -9,7 +10,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.*;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with restaurant's employees
  */
 public class EmployeesConsoleMenu extends ConsoleMenu {
     public static final String EMPLOYEE = "employee";
@@ -18,20 +19,29 @@ public class EmployeesConsoleMenu extends ConsoleMenu {
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no employee with such ";
     public static final String FULL_NAME = "surname & name";
 
-
+    /* controller for tasks with employees */
     private EmployeeController employeeController;
 
     public void setEmployeeController(EmployeeController employeeController) {
         this.employeeController = employeeController;
     }
 
+    /**
+     * configures menu's items:
+     * - get from DB list of all employees
+     * - add new employee to DB
+     * - search employee by ID
+     * - search employee by full name (surname & name)
+     * - delete employee from DB by ID
+     * - search employee from DB by full name (surname & name)
+     */
     public EmployeesConsoleMenu() {
         addItem(new ConsoleMenuItem("Get all employees") {
             @Override
             public void run() {
                 try {
-                    List<String> staff = employeeController.getAll();
-                    ConsoleIO.outputItems(EMPLOYEE, staff);
+                    List<Employee> staff = employeeController.getAll();
+                    ConsoleIO.outputEmployees(staff);
                 } catch (RuntimeException e) {
                     printLine("UNSUCCESSFUL! There's no employees in the base!");
                 }
@@ -48,7 +58,7 @@ public class EmployeesConsoleMenu extends ConsoleMenu {
                     printLine(SUCCESS);
                 }
                 catch (RuntimeException e) {
-                    ConsoleIO.outputItem(e.getMessage(), newEmployee.getPosition());
+                    ConsoleIO.outputItem("e.getMessage()", newEmployee.getPosition());
                 }
             }
         });
@@ -57,13 +67,9 @@ public class EmployeesConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(EMPLOYEE, ID);
-                try {
                     Employee foundEmployee = employeeController.search(id);
                     ConsoleIO.outputItem(SUCCESS + " Found employee: ", foundEmployee.toString());
-                }
-                catch (RuntimeException e) {
                     ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
-                }
             }
         });
 

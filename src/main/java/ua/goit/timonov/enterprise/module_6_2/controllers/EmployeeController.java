@@ -5,11 +5,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alex on 31.07.2016.
+ * Controller for EmployeeDAO
  */
 public class EmployeeController {
 
@@ -19,38 +18,66 @@ public class EmployeeController {
         this.employeeDAO = employeeDAO;
     }
 
+    /**
+     * finds list of all employees in DB
+     * @return              list of employees
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
-    public List<String> getAll() {
-        List<Employee> staff = employeeDAO.getAll();
-        List<String> staffLines = new ArrayList<>();
-        for (Employee employee : staff) {
-            staffLines.add(employee.toString());
-        }
-        return staffLines;
+    public List<Employee> getAll() {
+        return employeeDAO.getAll();
     }
 
+    /**
+     * adds new employee to DB
+     * @param employee      given employee
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public void add(Employee employee) {
         employeeDAO.add(employee);
     }
 
+    /**
+     * searches employee in DB by its ID
+     * @param id        employee's ID to find
+     * @return          found employee
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(int id) {
-        employeeDAO.delete(id);
+    public Employee search(int id) {
+        return employeeDAO.search(id);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(String surname, String name) {
-        employeeDAO.delete(surname, name);
-    }
-
+    /**
+     * searches employee in DB by its full name (surname & name)
+     * @param surname        surname of employee to find
+     * @param name           name of employee to find
+     * @return name          found employee
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
     public Employee search(String surname, String name) {
         return employeeDAO.search(surname, name);
     }
 
+    /**
+     * deletes employee from DB by its ID
+     * @param id            employee's ID to delete
+     * throws               EmptyResultDataAccessException, DataAccessException
+     */
     @Transactional(propagation = Propagation.REQUIRED)
-    public Employee search(int id) {
-        return employeeDAO.search(id);
+    public void delete(int id) {
+        employeeDAO.delete(id);
+    }
+
+    /**
+     * deletes employee from DB by its full name (surname & name)
+     * @param surname        surname of employee to delete
+     * @param name           name of employee to delete
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void delete(String surname, String name) {
+        employeeDAO.delete(surname, name);
     }
 }

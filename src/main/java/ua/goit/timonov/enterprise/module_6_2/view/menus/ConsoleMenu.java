@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu with string items
  */
 public class ConsoleMenu {
 
@@ -15,10 +15,18 @@ public class ConsoleMenu {
     public static final String SUCCESS = "OPERATION SUCCEEDED!";
     public static final String ID = "id";
 
+    /* menu name */
     private String menuName;
+
+    /* list of menu items */
     private List<ConsoleMenuItem> items = new ArrayList<>();
+
+    /* true if it's necessary to quit from menu */
     private boolean isExit = false;
 
+    /**
+     * Menu constructor with one obligate item
+     */
     public ConsoleMenu() {
         items.add(new ConsoleMenuItem("Exit") {
             @Override
@@ -32,6 +40,9 @@ public class ConsoleMenu {
         this.menuName = menuName;
     }
 
+    /**
+     * runs menu, prints it, provides ability to make user's choice
+     */
     public void run() {
         while (!isExit) {
             printMenu();
@@ -52,12 +63,18 @@ public class ConsoleMenu {
         }
     }
 
+    /**
+     * adds item to console menu
+     * @param item      menu item
+     * @return          this console menu with added item
+     */
     public ConsoleMenu addItem(ConsoleMenuItem item) {
         int index = items.size() - 1;
         items.add(index, item);
         return this;
     }
 
+    // outputs menu to console
     private void printMenu() {
         List<String> menuLines = new ArrayList<>();
         menuLines.add("\n\tMenu " + menuName + ":");

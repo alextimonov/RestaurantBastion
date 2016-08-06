@@ -10,7 +10,7 @@ import java.util.List;
 import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Console menu for tasks with ingredient storage
  */
 public class StorageConsoleMenu extends ConsoleMenu {
 
@@ -22,12 +22,24 @@ public class StorageConsoleMenu extends ConsoleMenu {
     public static final String DIFF = "difference";
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no ingredient with such ";
 
+    /* controller for tasks with ingredient storage */
     private StorageController storageController;
 
     public void setStorageController(StorageController storageController) {
         this.storageController = storageController;
     }
 
+    /**
+     * configures menu's items:
+     * - get from DB list of all ingredients
+     * - add new ingredient to DB
+     * - search ingredient by ID
+     * - search ingredient by name
+     * - delete ingredient from DB by ID
+     * - search ingredient from DB by name
+     * - change ingredient's amount in the storage
+     * - get terminating ingredients in the storage
+     */
     public StorageConsoleMenu() {
         addItem(new ConsoleMenuItem("Get all ingredients") {
             @Override
