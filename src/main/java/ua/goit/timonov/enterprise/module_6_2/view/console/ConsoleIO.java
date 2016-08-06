@@ -20,15 +20,14 @@ public class ConsoleIO {
     public static final String COLON = ": ";
 
     public static String inputString(String itemName, String fieldName) {
-        Scanner sc = new Scanner(System.in);
         printLine(PLEASE_INPUT + itemName + POSSESIVE + fieldName + COLON);
-        return ConsoleInput.inputString(sc);
+        return ConsoleInput.inputString();
     }
 
     public static Integer inputInteger(String itemName, String fieldName) {
         Scanner sc = new Scanner(System.in);
         printLine(PLEASE_INPUT + itemName + POSSESIVE + fieldName + COLON);
-        return ConsoleInput.inputInteger(sc);
+        return ConsoleInput.inputInteger();
     }
 
     public static void outputItem(String explain, String item) {
@@ -36,8 +35,8 @@ public class ConsoleIO {
         printLine(item);
     }
 
-    public static void outputList(String itemsName, List<String> items) {
-        printLine("\nCurrent list of " + itemsName + COLON);
+    public static void outputItems(String itemsName, List<String> items) {
+        printLine("\nOPERATION SUCCEEDED! Current list of " + itemsName + COLON);
         printList(items);
     }
 
@@ -50,7 +49,7 @@ public class ConsoleIO {
     }
 
     public static void outputMenus(List<Menu> menus) {
-        printLine("Current list of menus: ");
+        printLine("OPERATION SUCCEEDED! Current list of menus: ");
         for (Menu menu : menus) {
             printLine(menu.toString());
             outputDishes(menu.getDishes());
@@ -58,8 +57,8 @@ public class ConsoleIO {
         printEmptyLine();
     }
 
-    public static void outputList(List<CookedDish> dishes) {
-        printLine("Current list of cooked dishes: ");
+    public static void outputCookedDish(List<CookedDish> dishes) {
+        printLine("OPERATION SUCCEEDED! Current list of cooked dishes: ");
         for (CookedDish cookedDish : dishes) {
             printLine(cookedDish.toString());
             printLine(cookedDish.getOrder().toString());
@@ -71,7 +70,7 @@ public class ConsoleIO {
     }
 
     public static void outputOrders(String orderType, List<Order> orders) {
-        printLine("Current list of " + orderType + " orders: ");
+        printLine("OPERATION SUCCEEDED! Current list of " + orderType + " orders: ");
         for (Order order : orders) {
             printLine(order.toString());
             ConsoleIO.outputDishes(order.getDishes());
@@ -90,79 +89,73 @@ public class ConsoleIO {
 
     public static Employee inputEmployee() {
         Employee employee = new Employee();
-        Scanner sc = new Scanner(System.in);
         printLine("Please, input new employee's data: ");
 
         printLine("Input employee's surname: ");
-        employee.setSurname(ConsoleInput.inputString(sc));
+        employee.setSurname(ConsoleInput.inputString());
 
         printLine("Input employee's name: ");
-        employee.setName(ConsoleInput.inputString(sc));
+        employee.setName(ConsoleInput.inputString());
 
         printLine("Input employee's birthday: ");
-        Date date = ConsoleInput.inputDate(sc);
+        Date date = ConsoleInput.inputDate();
         employee.setBirthday(date);
 
         printLine("Input employee's position: ");
-        sc = new Scanner(System.in);
-        employee.setPosition(ConsoleInput.inputString(sc));
+        employee.setPosition(ConsoleInput.inputString());
 
         printLine("Input employee's salary: ");
-        employee.setSalary(ConsoleInput.inputFloat(sc));
+        employee.setSalary(ConsoleInput.inputFloat());
 
         return employee;
     }
 
     public static Dish inputDish() {
-        Scanner sc = new Scanner(System.in);
         Dish dish = new Dish();
         printLine("Please, input new dish's data: ");
 
         printLine("Input dish's name: ");
-        dish.setName(ConsoleInput.inputString(sc));
+        dish.setName(ConsoleInput.inputString());
 
         printLine("Input dish's description: ");
-        dish.setDescription(ConsoleInput.inputString(sc));
+        dish.setDescription(ConsoleInput.inputString());
 
         printLine("Input dish's cost: ");
-        dish.setCost(ConsoleInput.inputFloat(sc));
+        dish.setCost(ConsoleInput.inputFloat());
 
         printLine("Input dish's weight: ");
-        dish.setWeight(ConsoleInput.inputInteger(sc));
+        dish.setWeight(ConsoleInput.inputInteger());
 
         return dish;
     }
 
     public static Menu inputMenu() {
-        Scanner sc = new Scanner(System.in);
         printLine("Please, input menu's name: ");
-        String name = ConsoleInput.inputString(sc);
+        String name = ConsoleInput.inputString();
         Menu menu = new Menu(name);
         return menu;
     }
 
     public static Order inputOrder() {
-        Scanner sc = new Scanner(System.in);
         printLine("Please, input date of order: ");
-        Date date = ConsoleInput.inputDate(sc);
+        Date date = ConsoleInput.inputDate();
         printLine("Please, input table number: ");
-        int nTable = ConsoleInput.inputInteger(sc);
+        int nTable = ConsoleInput.inputInteger();
         printLine("Please, input waiter's id: ");
-        int waiterId = ConsoleInput.inputInteger(sc);
+        int waiterId = ConsoleInput.inputInteger();
         Order order = new Order(waiterId, nTable, date);
         return order;
     }
 
     public static Ingredient inputIngredient() {
-        Scanner sc = new Scanner(System.in);
         Ingredient ingredient = new Ingredient();
         printLine("Please, input new ingredient's data: ");
 
         printLine("Input ingredient's name: ");
-        ingredient.setName(ConsoleInput.inputString(sc));
+        ingredient.setName(ConsoleInput.inputString());
 
         printLine("Input ingredient's start amount: ");
-        ingredient.setAmount(ConsoleInput.inputInteger(sc));
+        ingredient.setAmount(ConsoleInput.inputInteger());
 
         return ingredient;
     }

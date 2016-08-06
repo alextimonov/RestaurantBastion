@@ -7,6 +7,8 @@ import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 import java.util.List;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
+
 /**
  * Created by Alex on 03.08.2016.
  */
@@ -18,6 +20,8 @@ public class StorageConsoleMenu extends ConsoleMenu {
     public static final String AMOUNT = "amount";
     public static final String LIMIT = "limit";
     public static final String DIFF = "difference";
+    public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no ingredient with such ";
+
     private StorageController storageController;
 
     public void setStorageController(StorageController storageController) {
@@ -28,8 +32,12 @@ public class StorageConsoleMenu extends ConsoleMenu {
         addItem(new ConsoleMenuItem("Get all ingredients") {
             @Override
             public void run() {
-                List<Ingredient> ingredients = storageController.getAll();
-                ConsoleIO.outputIngredients(ingredients);
+                try {
+                    List<Ingredient> ingredients = storageController.getAll();
+                    ConsoleIO.outputIngredients(ingredients);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! There's no ingredients in the base!");
+                }
             }
         });
 
@@ -38,7 +46,12 @@ public class StorageConsoleMenu extends ConsoleMenu {
             public void run() {
                 Ingredient ingredient = ConsoleIO.inputIngredient();
                 ConsoleIO.outputItem("Ingredient to add: ", ingredient.toString());
-                storageController.add(ingredient);
+                try {
+                    storageController.add(ingredient);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(e.getMessage(), ingredient.getName());
+                }
             }
         });
 
@@ -46,16 +59,25 @@ public class StorageConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(INGREDIENT, ID);
-                Ingredient foundIngredient = storageController.search(id);
-                ConsoleIO.outputItem("Found ingredient: ", foundIngredient.toString());
+                try {
+                    Ingredient foundIngredient = storageController.search(id);
+                    ConsoleIO.outputItem(SUCCESS + " Found ingredient: ", foundIngredient.toString());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
+
         addItem(new ConsoleMenuItem("Search ingredient by name") {
             @Override
             public void run() {
                 String nameToSearch = ConsoleIO.inputString(INGREDIENT, NAME);
-                Ingredient foundIngredient = storageController.search(nameToSearch);
-                ConsoleIO.outputItem("Found ingredient: ", foundIngredient.toString());
+                try {
+                    Ingredient foundIngredient = storageController.search(nameToSearch);
+                    ConsoleIO.outputItem("Found ingredient: ", foundIngredient.toString());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, nameToSearch);
+                }
             }
         });
 
@@ -63,7 +85,12 @@ public class StorageConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(INGREDIENT, ID);
-                storageController.delete(id);
+                try {
+                    storageController.delete(id);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
 
@@ -71,7 +98,12 @@ public class StorageConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 String nameToDelete = ConsoleIO.inputString(INGREDIENT, NAME);
-                storageController.delete(nameToDelete);
+                try {
+                    storageController.delete(nameToDelete);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, String.valueOf(nameToDelete));
+                }
             }
         });
 
@@ -80,7 +112,13 @@ public class StorageConsoleMenu extends ConsoleMenu {
             public void run() {
                 String nameToChangeAmount = ConsoleIO.inputString(INGREDIENT, NAME);
                 Integer diff = ConsoleIO.inputInteger(INGREDIENT, DIFF);
-                storageController.changeAmount(nameToChangeAmount, diff);
+                try {
+                    storageController.changeAmount(nameToChangeAmount, diff);
+                    Ingredient ingredient = storageController.search(nameToChangeAmount);
+                    ConsoleIO.outputItem(SUCCESS + AMOUNT, ingredient.toString());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + AMOUNT, String.valueOf(diff));
+                }
             }
         });
 
@@ -88,8 +126,12 @@ public class StorageConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer limit = ConsoleIO.inputInteger(INGREDIENT, LIMIT);
-                List<Ingredient> ingredients = storageController.getTerminatingIngredients(limit);
-                ConsoleIO.outputIngredients(ingredients);
+                try {
+                    List<Ingredient> ingredients = storageController.getTerminatingIngredients(limit);
+                    ConsoleIO.outputIngredients(ingredients);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! There's no terminating ingredients in the base!");
+                }
             }
         });
     }

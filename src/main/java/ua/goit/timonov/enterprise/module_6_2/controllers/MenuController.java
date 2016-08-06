@@ -49,19 +49,13 @@ public class MenuController {
         return menuDAO.search(id);
     }
 
-
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addDish(String menuName, Dish dish) {
-        menuDAO.addDish(menuName, dish);
+    public void addDish(Menu menu, Dish dish) {
+        menuDAO.addDish(menu, dish);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addDish(String menuName, String dishName) {
-        menuDAO.addDish(menuName, dishName);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void deleteDish(String menuName, String dishName) {
-        menuDAO.deleteDish(menuName, dishName);
+    public void deleteDish(Menu menu, Dish dish) {
+        menuDAO.deleteDish(menu, dish);
     }
 }

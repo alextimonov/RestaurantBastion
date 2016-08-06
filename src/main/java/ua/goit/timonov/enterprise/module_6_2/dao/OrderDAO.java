@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao;
 
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface OrderDAO {
 
     void delete(int orderId);
 
-    void addDish(int orderId, String dishName);
+    void addDish(int orderId, Dish dish);
 
-    void deleteDish(int orderId, String dishName);
+    void deleteDish(int orderId, Dish dish);
 
     void setClosed(int orderId);
 

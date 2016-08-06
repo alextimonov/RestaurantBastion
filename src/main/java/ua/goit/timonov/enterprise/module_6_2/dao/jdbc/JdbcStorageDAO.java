@@ -31,6 +31,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
+        search(id);
         String sql = "DELETE FROM ingredient WHERE id = ?";
         template.update(sql, id);
     }
@@ -38,6 +39,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String ingredientName) {
+        search(ingredientName);
         String sql = "DELETE FROM ingredient WHERE name = ?";
         template.update(sql, ingredientName);
     }

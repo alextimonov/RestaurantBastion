@@ -2,6 +2,7 @@ package ua.goit.timonov.enterprise.module_6_2.controllers;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 import ua.goit.timonov.enterprise.module_6_2.dao.OrderDAO;
 
@@ -30,13 +31,13 @@ public class OrderController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addDish(int orderId, String dishName) {
-        orderDAO.addDish(orderId, dishName);
+    public void addDish(int orderId, Dish dish) {
+        orderDAO.addDish(orderId, dish);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void deleteDish(int orderId, String dishName) {
-        orderDAO.deleteDish(orderId, dishName);
+    public void deleteDish(int orderId, Dish dish) {
+        orderDAO.deleteDish(orderId, dish);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

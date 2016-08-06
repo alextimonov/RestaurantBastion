@@ -11,8 +11,6 @@ import java.util.List;
  */
 public interface CookedDishDAO {
 
-    void add(int orderedDishId, int cookId);
-
     void add(int orderId, String dishName, int cookId);
 
     List<CookedDish> getAll();

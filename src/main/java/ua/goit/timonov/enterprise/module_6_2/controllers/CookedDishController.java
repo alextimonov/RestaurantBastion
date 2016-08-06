@@ -19,11 +19,6 @@ public class CookedDishController {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void add(int orderedDishId,int cookId) {
-        cookedDishDAO.add(orderedDishId, cookId);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
     public void add(int orderId, String dishName, int cookId) {
         cookedDishDAO.add(orderId, dishName, cookId);
     }

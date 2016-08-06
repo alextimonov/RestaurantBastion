@@ -37,6 +37,7 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
+        search(id);
         String sql = "DELETE FROM dish WHERE id = ?";
         template.update(sql, id);
     }
@@ -44,6 +45,7 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String name) {
+        search(name);
         String sql = "DELETE FROM dish WHERE name = ?";
         template.update(sql, name);
     }
@@ -51,19 +53,17 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Dish search(String nameToFind) {
-        String sql = "SELECT * FROM dish WHERE dish.name = ?";
-        List<Map<String, Object>> mapList = template.queryForList(sql, nameToFind);
-        Map<String, Object> row = mapList.get(0);
-        return getDishFromMap(row);
+        String sql = "SELECT * FROM dish WHERE name = ?";
+        Map<String, Object> map = template.queryForMap(sql, nameToFind);
+        return getDishFromMap(map);
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Dish search(int id) {
-        String sql = "SELECT * FROM dish WHERE dish.id = ?";
-        List<Map<String, Object>> mapList = template.queryForList(sql, id);
-        Map<String, Object> row = mapList.get(0);
-        return getDishFromMap(row);
+        String sql = "SELECT * FROM dish WHERE id = ?";
+        Map<String, Object> map = template.queryForMap(sql, id);
+        return getDishFromMap(map);
     }
 
     @Override

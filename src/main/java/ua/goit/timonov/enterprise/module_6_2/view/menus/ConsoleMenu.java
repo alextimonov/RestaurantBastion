@@ -10,7 +10,10 @@ import java.util.Scanner;
  * Created by Alex on 03.08.2016.
  */
 public class ConsoleMenu {
+
     private static final String MENU_PATTERN = "%s - %s";
+    public static final String SUCCESS = "OPERATION SUCCEEDED!";
+    public static final String ID = "id";
 
     private String menuName;
     private List<ConsoleMenuItem> items = new ArrayList<>();
@@ -57,7 +60,7 @@ public class ConsoleMenu {
 
     private void printMenu() {
         List<String> menuLines = new ArrayList<>();
-        menuLines.add("\n\tMenu " + menuName + " : \n");
+        menuLines.add("\n\tMenu " + menuName + ":");
         for (int i = 0; i < items.size(); i++) {
             String itemFormatted = String.format(MENU_PATTERN, (i + 1), items.get(i).getTitle());
             menuLines.add(itemFormatted);

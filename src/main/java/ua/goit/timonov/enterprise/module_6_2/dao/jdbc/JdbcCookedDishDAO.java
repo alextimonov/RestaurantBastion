@@ -24,21 +24,16 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void add(int orderedDishId, int cookId) {
-        if (orderIsClosedByOrderedDishId(orderedDishId)) {
-            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, ?, ?)";
-            template.update(sql, orderedDishId, cookId);
-        }
-        else {
-            // TODO
-        }
-    }
+    public List<CookedDish> getAll() {
+        String sql = "SELECT * FROM cooked_dish";
+        List<Map<String, Object>> mapList = template.queryForList(sql);
 
-    @Transactional(propagation = Propagation.MANDATORY)
-    private boolean orderIsClosedByOrderedDishId(int orderedDishId) {
-        String sql = "SELECT closed FROM ordering WHERE id = (SELECT order_id FROM dish_to_ordering WHERE id = ?)";
-        Map<String, Object> map = template.queryForMap(sql, orderedDishId);
-        return (boolean) map.get("closed");
+        List<CookedDish> result = new ArrayList<>();
+        for (Map<String, Object> row : mapList) {
+            CookedDish cookedDish = getCookedDishFromMap(row);
+            result.add(cookedDish);
+        }
+        return result;
     }
 
     @Override
@@ -51,7 +46,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
             template.update(sql, orderId, dishName, cookId);
         }
         else {
-            // TODO
+            throw new IllegalArgumentException("Order is not closed.");
         }
     }
 
@@ -60,20 +55,6 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         String sql = "SELECT closed FROM ordering WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderedDishId);
         return (boolean) map.get("closed");
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public List<CookedDish> getAll() {
-        String sql = "SELECT * FROM cooked_dish";
-        List<Map<String, Object>> mapList = template.queryForList(sql);
-
-        List<CookedDish> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            CookedDish cookedDish = getCookedDishFromMap(row);
-            result.add(cookedDish);
-        }
-        return result;
     }
 
     private CookedDish getCookedDishFromMap(Map<String, Object> map) {

@@ -1,10 +1,11 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
 /**
- * Created by Alex on 03.08.2016.
+ * Main console menu
  */
 public class MainMenu extends ConsoleMenu {
 
+    // console menus for different groups of tasks
     private EmployeesConsoleMenu employeesConsoleMenu;
     private DishesConsoleMenu dishesConsoleMenu;
     private MenusConsoleMenu menusConsoleMenu;
@@ -36,8 +37,11 @@ public class MainMenu extends ConsoleMenu {
         this.storageConsoleMenu = storageConsoleMenu;
     }
 
+
+    /**
+     * configures main menu's items
+     */
     public MainMenu() {
-        super();
         addItem(new ConsoleMenuItem("Employees") {
             @Override
             public void run() {
@@ -78,7 +82,5 @@ public class MainMenu extends ConsoleMenu {
                 storageConsoleMenu.run();
             }
         });
-
-
     }
 }

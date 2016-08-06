@@ -6,15 +6,18 @@ import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 import java.util.List;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
+
 /**
  * Created by Alex on 03.08.2016.
  */
 public class DishesConsoleMenu extends ConsoleMenu {
 
     public static final String DISHES = "dishes";
-    public static final String ID = "id";
     public static final String DISH = "dish";
     public static final String NAME = "name";
+    public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no dish with such ";
+
     private DishController dishController;
 
     public void setDishController(DishController dishController) {
@@ -26,8 +29,12 @@ public class DishesConsoleMenu extends ConsoleMenu {
         addItem(new ConsoleMenuItem("Get all dishes") {
             @Override
             public void run() {
-                List<Dish> dishes = dishController.getAll();
-                ConsoleIO.outputDishes(dishes);
+                try {
+                    List<Dish> dishes = dishController.getAll();
+                    ConsoleIO.outputDishes(dishes);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! There's no dishes in the base!");
+                }
             }
         });
 
@@ -36,16 +43,12 @@ public class DishesConsoleMenu extends ConsoleMenu {
             public void run() {
                 Dish newDish = ConsoleIO.inputDish();
                 ConsoleIO.outputItem("Dish to add: ", newDish.toString());
-                dishController.add(newDish);
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Search dish by name") {
-            @Override
-            public void run() {
-                String nameToSearch = ConsoleIO.inputString(DISH, NAME);
-                Dish foundDish = dishController.search(nameToSearch);
-                ConsoleIO.outputItem("Found dish: ", foundDish.toString());
+                try {
+                    dishController.add(newDish);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(e.getMessage(), newDish.getName());
+                }
             }
         });
 
@@ -53,8 +56,25 @@ public class DishesConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(DISH, ID);
-                Dish foundDish = dishController.search(id);
-                ConsoleIO.outputItem("Found dish: ", foundDish.toString());
+                try {
+                    Dish foundDish = dishController.search(id);
+                    ConsoleIO.outputItem(SUCCESS + " Found dish: ", foundDish.toString());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
+            }
+        });
+
+        addItem(new ConsoleMenuItem("Search dish by name") {
+            @Override
+            public void run() {
+                String nameToSearch = ConsoleIO.inputString(DISH, NAME);
+                try {
+                    Dish foundDish = dishController.search(nameToSearch);
+                    ConsoleIO.outputItem(SUCCESS + "Found dish: ", foundDish.toString());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, nameToSearch);
+                }
             }
         });
 
@@ -62,7 +82,12 @@ public class DishesConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(DISH, ID);
-                dishController.delete(id);
+                try {
+                    dishController.delete(id);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
 
@@ -70,10 +95,13 @@ public class DishesConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 String nameDish = ConsoleIO.inputString(DISH, NAME);
-                dishController.delete(nameDish);
+                try {
+                    dishController.delete(nameDish);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, nameDish);
+                }
             }
         });
-
-
     }
 }

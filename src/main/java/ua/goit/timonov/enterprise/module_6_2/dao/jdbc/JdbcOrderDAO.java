@@ -44,6 +44,9 @@ public class JdbcOrderDAO implements OrderDAO {
         if (orderIsOpen(orderId)) {
             deleteOrder(orderId);
         }
+        else {
+            throw new IllegalArgumentException("Order is not open");
+        }
 
     }
 
@@ -64,29 +67,38 @@ public class JdbcOrderDAO implements OrderDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void addDish(int orderId, String dishName) {
+    public void addDish(int orderId, Dish dish) {
         if (orderIsOpen(orderId)) {
-            String sql = "INSERT INTO dish_to_ordering VALUES ((SELECT max(id) FROM dish_to_ordering) + 1, ?, \n" +
-                    " (SELECT id FROM dish WHERE name = ?))";
-            template.update(sql, orderId, dishName);
+            String sql = "INSERT INTO dish_to_ordering VALUES ((SELECT max(id) FROM dish_to_ordering) + 1, ?, ?)";
+            template.update(sql, orderId, dish.getId());
+        }
+        else {
+            throw new IllegalArgumentException("Order is not open");
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void deleteDish(int orderId, String dishName) {
+    public void deleteDish(int orderId, Dish dish) {
         if (orderIsOpen(orderId)) {
-            String sql = "DELETE FROM dish_to_ordering WHERE (order_id = ? AND dish_id =\n" +
-                    " (SELECT id FROM dish WHERE name = ?))";
-            template.update(sql, orderId, dishName);
+            String sql = "DELETE FROM dish_to_ordering WHERE (order_id = ? AND dish_id =?)";
+            template.update(sql, orderId, dish.getId());
+        }
+        else {
+            throw new IllegalArgumentException("Order is not open");
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void setClosed(int orderId) {
-        String sql = "UPDATE ordering SET closed = 'TRUE' WHERE id = ?";
-        template.update(sql, orderId);
+        if (orderIsOpen(orderId)) {
+            String sql = "UPDATE ordering SET closed = 'TRUE' WHERE id = ?";
+            template.update(sql, orderId);
+        }
+        else {
+            throw new IllegalArgumentException("Order is not open");
+        }
     }
 
     @Override

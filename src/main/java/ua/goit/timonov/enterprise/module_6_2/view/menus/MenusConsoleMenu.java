@@ -8,6 +8,8 @@ import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 import java.util.List;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
+
 /**
  * Created by Alex on 03.08.2016.
  */
@@ -17,6 +19,7 @@ public class MenusConsoleMenu extends ConsoleMenu {
     public static final String MENU = "Menu";
     public static final String ID = "id";
     public static final String DISH = "dish";
+    public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no menu with such ";
 
     private MenuController menuController;
     private DishController dishController;
@@ -34,8 +37,12 @@ public class MenusConsoleMenu extends ConsoleMenu {
         addItem(new ConsoleMenuItem("Get all Menus") {
             @Override
             public void run() {
-                List<Menu> menus = menuController.getAll();
-                ConsoleIO.outputMenus(menus);
+                try {
+                    List<Menu> menus = menuController.getAll();
+                    ConsoleIO.outputMenus(menus);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! There's no menus in the base!");
+                }
             }
         });
 
@@ -44,17 +51,12 @@ public class MenusConsoleMenu extends ConsoleMenu {
             public void run() {
                 Menu newMenu = ConsoleIO.inputMenu();
                 ConsoleIO.outputItem("Menu to add: ", newMenu.toString());
-                menuController.add(newMenu);
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Search Menu by name") {
-            @Override
-            public void run() {
-                String nameToSearch = ConsoleIO.inputString(MENU, NAME);
-                Menu foundMenu = menuController.search(nameToSearch);
-                ConsoleIO.outputItem("Found Menu: ", foundMenu.toString());
-                ConsoleIO.outputDishes(foundMenu.getDishes());
+                try {
+                    menuController.add(newMenu);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(e.getMessage(), newMenu.getName());
+                }
             }
         });
 
@@ -62,17 +64,27 @@ public class MenusConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(MENU, ID);
-                Menu foundMenu = menuController.search(id);
-                ConsoleIO.outputItem("Found Menu: ", foundMenu.toString());
-                ConsoleIO.outputDishes(foundMenu.getDishes());
+                try {
+                    Menu foundMenu = menuController.search(id);
+                    ConsoleIO.outputItem(SUCCESS + "Found Menu: ", foundMenu.toString());
+                    ConsoleIO.outputDishes(foundMenu.getDishes());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
 
-        addItem(new ConsoleMenuItem("Delete Menu by name") {
+        addItem(new ConsoleMenuItem("Search Menu by name") {
             @Override
             public void run() {
-                String nameToDelete = ConsoleIO.inputString(MENU, NAME);
-                menuController.delete(nameToDelete);
+                String nameToSearch = ConsoleIO.inputString(MENU, NAME);
+                try {
+                    Menu foundMenu = menuController.search(nameToSearch);
+                    ConsoleIO.outputItem(SUCCESS + "Found Menu: ", foundMenu.toString());
+                    ConsoleIO.outputDishes(foundMenu.getDishes());
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, nameToSearch);
+                }
             }
         });
 
@@ -80,33 +92,43 @@ public class MenusConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(MENU, ID);
-                menuController.delete(id);
+                try {
+                    menuController.delete(id);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
 
-        addItem(new ConsoleMenuItem("Add new dish to menu") {
+        addItem(new ConsoleMenuItem("Delete Menu by name") {
             @Override
             public void run() {
-                String menuName = ConsoleIO.inputString(MENU, NAME);
-                Dish newDish = ConsoleIO.inputDish();
-                dishController.add(newDish);
-                newDish = dishController.search(newDish.getName());
-                menuController.addDish(menuName, newDish);
-                Menu menuWithAddedDish = menuController.search(menuName);
-                ConsoleIO.outputItem("Found Menu: ", menuWithAddedDish.toString());
-                ConsoleIO.outputDishes(menuWithAddedDish.getDishes());
+                String nameDish = ConsoleIO.inputString(MENU, NAME);
+                try {
+                    menuController.delete(nameDish);
+                    printLine(SUCCESS);
+                } catch (RuntimeException e) {
+                    ConsoleIO.outputItem(NO_SUCCESS + NAME, nameDish);
+                }
             }
         });
 
-        addItem(new ConsoleMenuItem("Add existing dish to menu") {
+        addItem(new ConsoleMenuItem("Add  dish to menu") {
             @Override
             public void run() {
                 String menuName = ConsoleIO.inputString(MENU, NAME);
                 String dishName =  ConsoleIO.inputString(DISH, NAME);
-                menuController.addDish(menuName, dishName);
-                Menu menuWithAddedDish = menuController.search(menuName);
-                ConsoleIO.outputItem("Found Menu: ", menuWithAddedDish.toString());
-                ConsoleIO.outputDishes(menuWithAddedDish.getDishes());
+                try {
+                    Dish dish = dishController.search(dishName);
+                    Menu menu = menuController.search(menuName);
+                    menuController.addDish(menu, dish);
+                    Menu menuWithAddedDish = menuController.search(menu.getId());
+                    ConsoleIO.outputItem(SUCCESS + "Changed Menu: ", menuWithAddedDish.toString());
+                    ConsoleIO.outputDishes(menuWithAddedDish.getDishes());
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! Dish was not added to menu");
+                }
             }
         });
 
@@ -115,12 +137,17 @@ public class MenusConsoleMenu extends ConsoleMenu {
             public void run() {
                 String menuName = ConsoleIO.inputString(MENU, NAME);
                 String dishName = ConsoleIO.inputString(DISH, NAME);
-                menuController.deleteDish(menuName, dishName);
-                Menu menuWithDeletedDish = menuController.search(menuName);
-                ConsoleIO.outputItem("Found Menu: ", menuWithDeletedDish.toString());
-                ConsoleIO.outputDishes(menuWithDeletedDish.getDishes());
+                try {
+                    Dish dish = dishController.search(dishName);
+                    Menu menu = menuController.search(menuName);
+                    menuController.deleteDish(menu, dish);
+                    Menu menuWithDeletedDish = menuController.search(menuName);
+                    ConsoleIO.outputItem(SUCCESS + "Changed menu: ", menuWithDeletedDish.toString());
+                    ConsoleIO.outputDishes(menuWithDeletedDish.getDishes());
+                } catch (Exception e) {
+                    printLine("UNSUCCESSFUL! Dish " + dishName + " was not deleted from " + menuName + " menu");
+                }
             }
         });
-
     }
 }

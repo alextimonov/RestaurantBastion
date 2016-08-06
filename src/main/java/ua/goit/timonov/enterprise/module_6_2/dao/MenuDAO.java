@@ -22,9 +22,7 @@ public interface MenuDAO {
 
     void delete(int id);
 
-    void addDish(String menuName, Dish dish);
+    void addDish(Menu menu, Dish dish);
 
-    void addDish(String menuName, String dishName);
-
-    void deleteDish(String menuName, String dishName);
+    void deleteDish(Menu menu, Dish dish);
 }

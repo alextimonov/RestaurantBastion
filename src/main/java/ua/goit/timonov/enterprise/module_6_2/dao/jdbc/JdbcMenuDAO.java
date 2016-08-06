@@ -36,6 +36,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public void delete(int id) {
+        search(id);
         String sql = "DELETE FROM menu WHERE id = ?";
         template.update(sql, id);
     }
@@ -43,6 +44,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public void delete(String name) {
+        search(name);
         String sql = "DELETE FROM menu WHERE name = ?";
         template.update(sql, name);
     }
@@ -95,18 +97,10 @@ public class JdbcMenuDAO implements MenuDAO {
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public void addDish(String menuName, Dish dish) {
+    public void addDish(Menu menu, Dish dish) {
         String sql = "INSERT INTO dish_to_menu VALUES ((SELECT max(dish_to_menu.id) FROM dish_to_menu) + 1, \n" +
-                "(SELECT menu.id FROM MENU WHERE name = ?), ?)";
-        template.update(sql, menuName, dish.getId());
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void addDish(String menuName, String dishName) {
-        String sql = "INSERT INTO dish_to_menu VALUES ((SELECT max(dish_to_menu.id) FROM dish_to_menu) + 1, \n" +
-                "(SELECT menu.id FROM MENU WHERE name = ?), (SELECT dish.id FROM DISH WHERE name = ?))";
-        template.update(sql, menuName, dishName);
+                "(SELECT menu.id FROM MENU WHERE id = ?), (SELECT dish.id FROM DISH WHERE id = ?))";
+        template.update(sql, menu.getId(), dish.getId());
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
@@ -124,12 +118,9 @@ public class JdbcMenuDAO implements MenuDAO {
         return result;
     }
 
-
-
     @Override
-    public void deleteDish(String menuName, String dishName) {
-        String sql = "DELETE FROM dish_to_menu VALUES WHERE menu_id = (SELECT menu.id FROM MENU WHERE name = ?) AND \n" +
-                "dish_id = (SELECT dish.id FROM DISH WHERE name = ?)";
-        template.update(sql, menuName, dishName);
+    public void deleteDish(Menu menu, Dish dish) {
+        String sql = "DELETE FROM dish_to_menu VALUES WHERE menu_id = ? AND dish_id = ?";
+        template.update(sql, menu.getId(), dish.getId());
     }
 }

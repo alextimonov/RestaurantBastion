@@ -6,6 +6,8 @@ import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 import java.util.List;
 
+import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
+
 /**
  * Created by Alex on 03.08.2016.
  */
@@ -28,17 +30,12 @@ public class CookedDishConsoleMenu extends ConsoleMenu {
         addItem(new ConsoleMenuItem("Get all cooked dishes") {
             @Override
             public void run() {
-                List<CookedDish> cookedDishes = cookedDishController.getAll();
-                ConsoleIO.outputList(cookedDishes);
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Add by ordered dish's Id, cook's id") {
-            @Override
-            public void run() {
-                int orderedDishId = ConsoleIO.inputInteger(COOKED_DISH, ID);
-                int cookId = ConsoleIO.inputInteger(COOK, ID);
-                cookedDishController.add(orderedDishId, cookId);
+                try {
+                    List<CookedDish> cookedDishes = cookedDishController.getAll();
+                    ConsoleIO.outputCookedDish(cookedDishes);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! There's no cooked dishes in the base!");
+                }
             }
         });
 
@@ -48,7 +45,13 @@ public class CookedDishConsoleMenu extends ConsoleMenu {
                 Integer orderId = ConsoleIO.inputInteger(ORDER, ID);
                 String dishName = ConsoleIO.inputString(DISH_NAME, NAME);
                 Integer cookId = ConsoleIO.inputInteger(COOK, ID);
-                cookedDishController.add(orderId, dishName, cookId);
+                try {
+                    cookedDishController.add(orderId, dishName, cookId);
+                    List<CookedDish> cookedDishes = cookedDishController.getAll();
+                    ConsoleIO.outputCookedDish(cookedDishes);
+                } catch (RuntimeException e) {
+                    printLine("UNSUCCESSFUL! Unable to add dish to cooked dishes");
+                }
             }
         });
     }
