@@ -40,7 +40,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
                     employee.getSalary());
         }
         else
-            throw new IllegalArgumentException("UNSUCCESSFUL! Unable to add employee. Such position don't exist:");
+            throw new IllegalArgumentException("UNSUCCESSFUL! Unable to add employee. Such position doesn't exist:");
     }
 
     // returns true if given position exists in table JOBS

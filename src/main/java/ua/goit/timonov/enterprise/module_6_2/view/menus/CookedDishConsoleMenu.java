@@ -46,7 +46,7 @@ public class CookedDishConsoleMenu extends ConsoleMenu {
             }
         });
 
-        addItem(new ConsoleMenuItem("Add by order's id, dish's name, cook's id") {
+        addItem(new ConsoleMenuItem("Add by CLOSED order's id, dish's name, cook's id") {
             @Override
             public void run() {
                 Integer orderId = ConsoleIO.inputInteger(ORDER, ID);

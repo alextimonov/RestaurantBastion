@@ -58,7 +58,7 @@ public class EmployeesConsoleMenu extends ConsoleMenu {
                     printLine(SUCCESS);
                 }
                 catch (RuntimeException e) {
-                    ConsoleIO.outputItem("e.getMessage()", newEmployee.getPosition());
+                    ConsoleIO.outputItem(e.getMessage(), newEmployee.getPosition());
                 }
             }
         });
@@ -67,9 +67,12 @@ public class EmployeesConsoleMenu extends ConsoleMenu {
             @Override
             public void run() {
                 Integer id = ConsoleIO.inputInteger(EMPLOYEE, ID);
+                try {
                     Employee foundEmployee = employeeController.search(id);
                     ConsoleIO.outputItem(SUCCESS + " Found employee: ", foundEmployee.toString());
+                } catch (Exception e) {
                     ConsoleIO.outputItem(NO_SUCCESS + ID, String.valueOf(id));
+                }
             }
         });
 

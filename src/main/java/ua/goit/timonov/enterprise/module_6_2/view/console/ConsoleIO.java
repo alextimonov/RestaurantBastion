@@ -71,6 +71,7 @@ public class ConsoleIO {
         for (Dish dish : dishes) {
             printLine(dish.toString());
         }
+        printEmptyLine();
     }
 
     /**

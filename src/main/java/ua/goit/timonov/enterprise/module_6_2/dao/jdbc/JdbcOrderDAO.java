@@ -180,10 +180,9 @@ public class JdbcOrderDAO implements OrderDAO {
         return result;
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
     private Order getOrderFromMap(Map<String, Object> map) {
         Order order = new Order();
-        order.setId((Integer) map.get("orderId"));
+        order.setId((Integer) map.get("id"));
         order.setWaiterId((Integer) map.get("employee_id"));
         order.setTableNumber((Integer) map.get("table_number"));
         order.setDate((Date) map.get("date"));
