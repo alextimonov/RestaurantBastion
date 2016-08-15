@@ -4,12 +4,12 @@ package ua.goit.timonov.enterprise.module_6_2.model;
  * Provides dish's data
  */
 
-public class Dish {
-    /* unique id in the DB table */
-    private int id;
-
-    /* dish's name */
-    private String name;
+public class Dish extends DbItem {
+//    /* unique id in the DB table */
+//    private int id;
+//
+//    /* dish's name */
+//    private String name;
 
     /* dish' description */
     private String description;
@@ -21,22 +21,6 @@ public class Dish {
     private int weight;
 
     public Dish() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {

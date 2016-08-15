@@ -24,4 +24,6 @@ public interface CookedDishDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     void add(int orderId, String dishName, int cookId);
+
+    void add(CookedDish cookedDish);
 }

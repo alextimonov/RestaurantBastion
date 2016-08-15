@@ -52,10 +52,29 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(int orderId, String dishName, int cookId) {
         if (orderIsClosedByOrderId(orderId)) {
-            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, " +
-                    "(SELECT id FROM dish_to_ordering WHERE order_id = ? AND dish_id = " +
-                    "(SELECT id FROM dish WHERE name = ?)), ?)";
+            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, ?, ?, " +
+                    "(SELECT dish.id FROM dish WHERE dish.name = ?))";
             template.update(sql, orderId, dishName, cookId);
+        }
+        else {
+            throw new IllegalArgumentException("Order is not closed.");
+        }
+    }
+
+    /**
+     * adds new cooked dish to DB table
+     * @param cookedDish        cooked dish to add
+     * throws                   EmptyResultDataAccessException, DataAccessException
+     */
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void add(CookedDish cookedDish) {
+        int orderId = cookedDish.getOrder().getId();
+        int dishId = cookedDish.getDish().getId();
+        int cookId = cookedDish.getCook().getId();
+        if (orderIsClosedByOrderId(orderId)) {
+            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, ?, ?, ?)";
+            template.update(sql, orderId, cookId, dishId);
         }
         else {
             throw new IllegalArgumentException("Order is not closed.");
@@ -65,7 +84,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // returns true if order is closed
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean orderIsClosedByOrderId(int orderedId) {
-        String sql = "SELECT closed FROM ordering WHERE id = ?";
+        String sql = "SELECT closed FROM orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderedId);
         return (boolean) map.get("closed");
     }
@@ -74,23 +93,13 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     private CookedDish getCookedDishFromMap(Map<String, Object> map) {
         CookedDish cookedDish = new CookedDish();
         cookedDish.setId((Integer) map.get("id"));
-        cookedDish.setOrderedDishId((Integer) map.get("ordered_dish_id"));
-        int cookId = (Integer) map.get("cook_id");
-        cookedDish.setCook(defineCookById(cookId));
-        defineOrderAndDish(cookedDish);
-        return cookedDish;
-    }
-
-    // defines order and dish by instance of CookedDish's object
-    @Transactional(propagation = Propagation.MANDATORY)
-    private void defineOrderAndDish(CookedDish cookedDish) {
-        int orderedDishId = cookedDish.getOrderedDishId();
-        String sql = "SELECT order_id, dish_id FROM dish_to_ordering WHERE id = ?";
-        Map<String, Object> map = template.queryForMap(sql, orderedDishId);
         int orderId = (Integer) map.get("order_id");
-        int dishId = (Integer) map.get("dish_id");
+        int cookId = (Integer) map.get("cook_id");
+        int dishId = (Integer) map.get("menu_dish_id");
+        cookedDish.setCook(defineCookById(cookId));
         cookedDish.setOrder(defineOrderById(orderId));
         cookedDish.setDish(defineDishById(dishId));
+        return cookedDish;
     }
 
     // gets dish by its ID
@@ -110,7 +119,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // gets order by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Order defineOrderById(int orderId) {
-        String sql = "SELECT * FROM ordering WHERE id = ?";
+        String sql = "SELECT * FROM orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderId);
         Order order = new Order();
         order.setId((Integer) map.get("id"));

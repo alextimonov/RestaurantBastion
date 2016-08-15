@@ -24,7 +24,7 @@ public class StorageController {
      * @return              list of ingredients
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Ingredient> getAll() {
         return storageDAO.getAll();
     }
@@ -33,7 +33,7 @@ public class StorageController {
      * adds new ingredient to DB
      * @param ingredient      given ingredient
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(Ingredient ingredient) {
         storageDAO.add(ingredient);
     }
@@ -44,7 +44,7 @@ public class StorageController {
      * @return          found ingredient
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Ingredient search(Integer id) {
         return storageDAO.search(id);
     }
@@ -55,7 +55,7 @@ public class StorageController {
      * @return           found ingredient
      * throws            EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Ingredient search(String name) {
         return storageDAO.search(name);
     }
@@ -65,7 +65,7 @@ public class StorageController {
      * @param id            ingredient's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(Integer id) {
         storageDAO.delete(id);
     }
@@ -75,7 +75,7 @@ public class StorageController {
      * @param name           name of ingredient to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(String name) {
         storageDAO.delete(name);
     }
@@ -86,7 +86,7 @@ public class StorageController {
      * @param difference            difference to be added to current amount
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void changeAmount(String name, int difference) {
         storageDAO.changeAmount(name, difference);
     }
@@ -96,7 +96,7 @@ public class StorageController {
      * @param limit                 limit to chose an ingredient
      * @return                      list of ingredient
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Ingredient> getTerminatingIngredients(int limit) {
         return storageDAO.getTerminatingIngredients(limit);
     }

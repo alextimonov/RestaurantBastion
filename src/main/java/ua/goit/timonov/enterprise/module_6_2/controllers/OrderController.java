@@ -23,7 +23,7 @@ public class OrderController {
      * adds new order to DB
      * @param order      given order
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(Order order) {
         orderDAO.add(order);
     }
@@ -34,7 +34,7 @@ public class OrderController {
      * @return          found order
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Order search(Integer orderId) {
         return orderDAO.search(orderId);
     }
@@ -44,7 +44,7 @@ public class OrderController {
      * @param orderId           order's ID to delete
      * throws                   EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(int orderId) {
         orderDAO.delete(orderId);
     }
@@ -55,7 +55,7 @@ public class OrderController {
      * @param dish          dish to be added
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void addDish(int orderId, Dish dish) {
         orderDAO.addDish(orderId, dish);
     }
@@ -66,7 +66,7 @@ public class OrderController {
      * @param dish          dish to be deleted
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void deleteDish(int orderId, Dish dish) {
         orderDAO.deleteDish(orderId, dish);
     }
@@ -75,7 +75,7 @@ public class OrderController {
      * sets order to closed
      * @param orderId
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void setClosed(int orderId) {
         orderDAO.setClosed(orderId);
     }
@@ -85,7 +85,7 @@ public class OrderController {
      * @return          list of open orders
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Order> getOpenOrders() {
         return orderDAO.getOpenOrders();
     }
@@ -95,7 +95,7 @@ public class OrderController {
      * @return          list of closed orders
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Order> getClosedOrders() {
         return orderDAO.getClosedOrders();
     }

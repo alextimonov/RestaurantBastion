@@ -6,80 +6,46 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 public class MainMenu extends ConsoleMenu {
 
     /* console menus for different groups of tasks */
-    private EmployeesConsoleMenu employeesConsoleMenu;
-    private DishesConsoleMenu dishesConsoleMenu;
-    private MenusConsoleMenu menusConsoleMenu;
-    private OrdersConsoleMenu ordersConsoleMenu;
-    private CookedDishConsoleMenu cookedDishConsoleMenu;
-    private StorageConsoleMenu storageConsoleMenu;
+    private EmployeesHandler employeesHandler;
+    private DishesHandler dishesHandler;
+    private MenusHandler menusHandler;
+    private OrdersHandler ordersHandler;
+    private StorageHandler storageHandler;
+    private CookedDishHandler cookedDishHandler;
 
-    public void setEmployeesConsoleMenu(EmployeesConsoleMenu employeesConsoleMenu) {
-        this.employeesConsoleMenu = employeesConsoleMenu;
+    public void setEmployeesHandler(EmployeesHandler employeesHandler) {
+        this.employeesHandler = employeesHandler;
     }
 
-    public void setDishesConsoleMenu(DishesConsoleMenu dishesConsoleMenu) {
-        this.dishesConsoleMenu = dishesConsoleMenu;
+    public void setDishesHandler(DishesHandler dishesHandler) {
+        this.dishesHandler = dishesHandler;
     }
 
-    public void setMenusConsoleMenu(MenusConsoleMenu menusConsoleMenu) {
-        this.menusConsoleMenu = menusConsoleMenu;
+    public void setMenusHandler(MenusHandler menusHandler) {
+        this.menusHandler = menusHandler;
     }
 
-    public void setOrdersConsoleMenu(OrdersConsoleMenu ordersConsoleMenu) {
-        this.ordersConsoleMenu = ordersConsoleMenu;
+    public void setOrdersHandler(OrdersHandler ordersHandler) {
+        this.ordersHandler = ordersHandler;
     }
 
-    public void setCookedDishConsoleMenu(CookedDishConsoleMenu cookedDishConsoleMenu) {
-        this.cookedDishConsoleMenu = cookedDishConsoleMenu;
+    public void setStorageHandler(StorageHandler storageHandler) {
+        this.storageHandler = storageHandler;
     }
 
-    public void setStorageConsoleMenu(StorageConsoleMenu storageConsoleMenu) {
-        this.storageConsoleMenu = storageConsoleMenu;
+    public void setCookedDishHandler(CookedDishHandler cookedDishHandler) {
+        this.cookedDishHandler = cookedDishHandler;
     }
 
     /**
      * configures main menu's items
      */
     public MainMenu() {
-        addItem(new ConsoleMenuItem("Employees") {
-            @Override
-            public void run() {
-                employeesConsoleMenu.run();
-            }
-        });
-        addItem(new ConsoleMenuItem("Dishes") {
-            @Override
-            public void run() {
-                dishesConsoleMenu.run();
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Menus") {
-            @Override
-            public void run() {
-                menusConsoleMenu.run();
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Orders") {
-            @Override
-            public void run() {
-                ordersConsoleMenu.run();
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Cooked dishes") {
-            @Override
-            public void run() {
-                cookedDishConsoleMenu.run();
-            }
-        });
-
-        addItem(new ConsoleMenuItem("Storage") {
-            @Override
-            public void run() {
-                storageConsoleMenu.run();
-            }
-        });
+        addItem(new ConsoleMenuItem("Employees", () -> employeesHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Dishes", () -> dishesHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Menus", () -> menusHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Orders", () -> ordersHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Cooked Dishes", () -> cookedDishHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Storage", () -> storageHandler.getConsoleMenu().run()));
     }
 }

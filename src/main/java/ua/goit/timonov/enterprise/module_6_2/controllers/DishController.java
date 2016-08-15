@@ -23,7 +23,7 @@ public class DishController {
      * @return          list of dishes
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Dish> getAll() {
         return dishDAO.getAll();
     }
@@ -32,7 +32,7 @@ public class DishController {
      * adds new dish to DB
      * @param dish      given dish
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(Dish dish) {
         dishDAO.add(dish);
     }
@@ -43,7 +43,7 @@ public class DishController {
      * @return          found dish
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Dish search(int id) {
         return dishDAO.search(id);
     }
@@ -54,7 +54,7 @@ public class DishController {
      * @return name          found dish
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Dish search(String name) {
         return dishDAO.search(name);
     }
@@ -64,7 +64,7 @@ public class DishController {
      * @param id            dish's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(int id) {
         dishDAO.delete(id);
     }
@@ -74,7 +74,7 @@ public class DishController {
      * @param name           name of dish to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(String name) {
         dishDAO.delete(name);
     }

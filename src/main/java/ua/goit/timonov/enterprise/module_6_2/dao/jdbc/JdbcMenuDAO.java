@@ -134,8 +134,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(Menu menu, Dish dish) {
-        String sql = "INSERT INTO dish_to_menu VALUES ((SELECT max(dish_to_menu.id) FROM dish_to_menu) + 1, \n" +
-                "(SELECT menu.id FROM MENU WHERE id = ?), (SELECT dish.id FROM DISH WHERE id = ?))";
+        String sql = "INSERT INTO dish_to_menu VALUES ((SELECT menu.id FROM MENU WHERE id = ?), (SELECT dish.id FROM DISH WHERE id = ?))";
         template.update(sql, menu.getId(), dish.getId());
     }
 

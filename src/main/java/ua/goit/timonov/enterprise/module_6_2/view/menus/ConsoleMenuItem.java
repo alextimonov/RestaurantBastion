@@ -3,13 +3,19 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 /**
  * Console menu's item
  */
-public abstract class ConsoleMenuItem {
+public class ConsoleMenuItem {
 
     /* item's text */
     private String title;
 
-    public ConsoleMenuItem(String title) {
+    private Runnable callback;
+
+    public ConsoleMenuItem() {
+    }
+
+    public ConsoleMenuItem(String title, Runnable callback) {
         this.title = title;
+        this.callback = callback;
     }
 
     public String getTitle() {
@@ -20,8 +26,8 @@ public abstract class ConsoleMenuItem {
         this.title = title;
     }
 
-    /**
-     * runs task mapped to menu's item
-     */
-    public abstract void run();
+    public Runnable getCallback() {
+        return callback;
+    }
+
 }

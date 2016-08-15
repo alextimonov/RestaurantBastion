@@ -30,14 +30,14 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Employee employee) {
         if (isValidPosition(employee.getPosition())) {
-            String sql = "INSERT INTO employee VALUES ((SELECT max(EMPLOYEE.id) FROM EMPLOYEE) + 1, ?, ?, ?, " +
-                    "(SELECT jobs.id FROM JOBS WHERE jobs.position = ?), ?)";
+            String sql = "INSERT INTO employee VALUES ((SELECT max(EMPLOYEE.id) FROM EMPLOYEE) + 1, ?, ?, ?, ?," +
+                    "(SELECT jobs.id FROM JOBS WHERE jobs.position = ?))";
             template.update(sql,
                     employee.getSurname(),
                     employee.getName(),
                     employee.getBirthday(),
-                    employee.getPosition(),
-                    employee.getSalary());
+                    employee.getSalary(),
+                    employee.getPosition());
         }
         else
             throw new IllegalArgumentException("UNSUCCESSFUL! Unable to add employee. Such position doesn't exist:");

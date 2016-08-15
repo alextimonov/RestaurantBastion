@@ -1,6 +1,5 @@
 package ua.goit.timonov.enterprise.module_6_2.controllers;
 
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.CookedDish;
 import ua.goit.timonov.enterprise.module_6_2.dao.CookedDishDAO;
@@ -23,7 +22,7 @@ public class CookedDishController {
      * @return              list of cooked dishes
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<CookedDish> getAll() {
         return cookedDishDAO.getAll();
     }
@@ -35,8 +34,13 @@ public class CookedDishController {
      * @param cookId        employee's employee that cooked the dish
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(int orderId, String dishName, int cookId) {
         cookedDishDAO.add(orderId, dishName, cookId);
+    }
+
+    @Transactional
+    public void add(CookedDish cookedDish) {
+        cookedDishDAO.add(cookedDish);
     }
 }

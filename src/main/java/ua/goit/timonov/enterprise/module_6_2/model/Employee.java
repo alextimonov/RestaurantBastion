@@ -5,16 +5,10 @@ import java.util.Date;
 /**
  * Provides employee's data
  */
-public class Employee {
-
-    /* unique id in the DB table */
-    private int id;
+public class Employee extends DbItem {
 
     /* employee's surname */
     private String surname;
-
-    /* employee's name */
-    private String name;
 
     /* employee's date of birthday */
     private Date birthday;

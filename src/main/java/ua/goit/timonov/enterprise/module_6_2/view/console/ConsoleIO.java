@@ -1,13 +1,11 @@
 package ua.goit.timonov.enterprise.module_6_2.view.console;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-
-import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printEmptyLine;
-import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.printLine;
 
 /**
  * Provides input & output operations with console
@@ -15,8 +13,10 @@ import static ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter.
 public class ConsoleIO {
 
     public static final String PLEASE_INPUT = "Please input ";
-    public static final String POSSESIVE = "'s ";
+    public static final String POSSESSIVE = "'s ";
     public static final String COLON = ": ";
+
+    private static Logger LOGGER = LoggerFactory.getLogger(ConsoleIO.class);
 
     /**
      * provides input of string from console
@@ -25,7 +25,7 @@ public class ConsoleIO {
      * @return              inputted string
      */
     public static String inputString(String itemName, String fieldName) {
-        printLine(PLEASE_INPUT + itemName + POSSESIVE + fieldName + COLON);
+        LOGGER.info(PLEASE_INPUT + itemName + POSSESSIVE + fieldName + COLON);
         return ConsoleInput.inputString();
     }
 
@@ -36,10 +36,10 @@ public class ConsoleIO {
      * @return              inputted integer value
      */
     public static Integer inputInteger(String itemName, String fieldName) {
-        Scanner sc = new Scanner(System.in);
-        printLine(PLEASE_INPUT + itemName + POSSESIVE + fieldName + COLON);
+        LOGGER.info(PLEASE_INPUT + itemName + POSSESSIVE + fieldName + COLON);
         return ConsoleInput.inputInteger();
     }
+
 
     /**
      * outputs string item and explanation to it
@@ -47,8 +47,8 @@ public class ConsoleIO {
      * @param item          item to output
      */
     public static void outputItem(String explain, String item) {
-        printLine(explain);
-        printLine(item);
+        LOGGER.info(explain);
+        LOGGER.info(item);
     }
 
     /**
@@ -56,9 +56,9 @@ public class ConsoleIO {
      * @param employees         List of string employees to output
      */
     public static void outputEmployees(List<Employee> employees) {
-        printLine("OPERATION SUCCEEDED! Current list of employees: ");
+        LOGGER.info("OPERATION SUCCEEDED! Current list of employees: ");
         for (Employee employee : employees) {
-            printLine(employee.toString());
+            LOGGER.info(employee.toString());
         }
     }
 
@@ -67,11 +67,11 @@ public class ConsoleIO {
      * @param dishes         List of string employees to output
      */
     public static void outputDishes(List<Dish> dishes) {
-        printLine("Current list of dishes: ");
+        LOGGER.info("Current list of dishes: ");
         for (Dish dish : dishes) {
-            printLine(dish.toString());
+            LOGGER.info(dish.toString());
         }
-        printEmptyLine();
+        LOGGER.info("");
     }
 
     /**
@@ -79,9 +79,9 @@ public class ConsoleIO {
      * @param menus         List of menus to ouput
      */
     public static void outputMenus(List<Menu> menus) {
-        printLine("OPERATION SUCCEEDED! Current list of menus: ");
+        LOGGER.info("OPERATION SUCCEEDED! Current list of menus: ");
         for (Menu menu : menus) {
-            printLine(menu.toString());
+            LOGGER.info(menu.toString());
             outputDishes(menu.getDishes());
         }
     }
@@ -91,13 +91,13 @@ public class ConsoleIO {
      * @param dishes
      */
     public static void outputCookedDish(List<CookedDish> dishes) {
-        printLine("OPERATION SUCCEEDED! Current list of cooked dishes: ");
+        LOGGER.info("OPERATION SUCCEEDED! Current list of cooked dishes: ");
         for (CookedDish cookedDish : dishes) {
-            printLine(cookedDish.toString());
-            printLine(cookedDish.getOrder().toString());
-            printLine(cookedDish.getDish().toString());
-            printLine(cookedDish.getCook().toString());
-            printEmptyLine();
+            LOGGER.info(cookedDish.toString());
+            LOGGER.info(cookedDish.getOrder().toString());
+            LOGGER.info(cookedDish.getDish().toString());
+            LOGGER.info(cookedDish.getCook().toString());
+            LOGGER.info("");
         }
     }
 
@@ -107,9 +107,9 @@ public class ConsoleIO {
      * @param orders        list of orders
      */
     public static void outputOrders(String orderType, List<Order> orders) {
-        printLine("OPERATION SUCCEEDED! Current list of " + orderType + " orders: ");
+        LOGGER.info("OPERATION SUCCEEDED! Current list of " + orderType + " orders: ");
         for (Order order : orders) {
-            printLine(order.toString());
+            LOGGER.info(order.toString());
             ConsoleIO.outputDishes(order.getDishes());
         }
     }
@@ -119,9 +119,9 @@ public class ConsoleIO {
      * @param ingredients       list of ingredients
      */
     public static void outputIngredients(List<Ingredient> ingredients) {
-        printLine("Current list of ingredients: ");
+        LOGGER.info("Current list of ingredients: ");
         for (Ingredient ingredient: ingredients) {
-            printLine(ingredient.toString());
+            LOGGER.info(ingredient.toString());
         }
 
     }
@@ -132,22 +132,22 @@ public class ConsoleIO {
      */
     public static Employee inputEmployee() {
         Employee employee = new Employee();
-        printLine("Please, input new employee's data: ");
+        LOGGER.info("Please, input new employee's data: ");
 
-        printLine("Input employee's surname: ");
+        LOGGER.info("Input employee's surname: ");
         employee.setSurname(ConsoleInput.inputString());
 
-        printLine("Input employee's name: ");
+        LOGGER.info("Input employee's name: ");
         employee.setName(ConsoleInput.inputString());
 
-        printLine("Input employee's birthday: ");
+        LOGGER.info("Input employee's birthday: ");
         Date date = ConsoleInput.inputDate();
         employee.setBirthday(date);
 
-        printLine("Input employee's position: ");
+        LOGGER.info("Input employee's position: ");
         employee.setPosition(ConsoleInput.inputString());
 
-        printLine("Input employee's salary: ");
+        LOGGER.info("Input employee's salary: ");
         employee.setSalary(ConsoleInput.inputFloat());
 
         return employee;
@@ -159,18 +159,18 @@ public class ConsoleIO {
      */
     public static Dish inputDish() {
         Dish dish = new Dish();
-        printLine("Please, input new dish's data: ");
+        LOGGER.info("Please, input new dish's data: ");
 
-        printLine("Input dish's name: ");
+        LOGGER.info("Input dish's name: ");
         dish.setName(ConsoleInput.inputString());
 
-        printLine("Input dish's description: ");
+        LOGGER.info("Input dish's description: ");
         dish.setDescription(ConsoleInput.inputString());
 
-        printLine("Input dish's cost: ");
+        LOGGER.info("Input dish's cost: ");
         dish.setCost(ConsoleInput.inputFloat());
 
-        printLine("Input dish's weight: ");
+        LOGGER.info("Input dish's weight: ");
         dish.setWeight(ConsoleInput.inputInteger());
 
         return dish;
@@ -181,7 +181,7 @@ public class ConsoleIO {
      * @return      inputted dish menu
      */
     public static Menu inputMenu() {
-        printLine("Please, input menu's name: ");
+        LOGGER.info("Please, input menu's name: ");
         String name = ConsoleInput.inputString();
         Menu menu = new Menu(name);
         return menu;
@@ -192,11 +192,11 @@ public class ConsoleIO {
      * @return      inputted order
      */
     public static Order inputOrder() {
-        printLine("Please, input date of order: ");
+        LOGGER.info("Please, input date of order: ");
         Date date = ConsoleInput.inputDate();
-        printLine("Please, input table number: ");
+        LOGGER.info("Please, input table number: ");
         int nTable = ConsoleInput.inputInteger();
-        printLine("Please, input waiter's id: ");
+        LOGGER.info("Please, input waiter's id: ");
         int waiterId = ConsoleInput.inputInteger();
         Order order = new Order(waiterId, nTable, date);
         return order;
@@ -208,12 +208,12 @@ public class ConsoleIO {
      */
     public static Ingredient inputIngredient() {
         Ingredient ingredient = new Ingredient();
-        printLine("Please, input new ingredient's data: ");
+        LOGGER.info("Please, input new ingredient's data: ");
 
-        printLine("Input ingredient's name: ");
+        LOGGER.info("Input ingredient's name: ");
         ingredient.setName(ConsoleInput.inputString());
 
-        printLine("Input ingredient's start amount: ");
+        LOGGER.info("Input ingredient's start amount: ");
         ingredient.setAmount(ConsoleInput.inputInteger());
 
         return ingredient;

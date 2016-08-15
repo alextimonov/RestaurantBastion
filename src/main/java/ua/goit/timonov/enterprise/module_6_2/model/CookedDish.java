@@ -3,13 +3,10 @@ package ua.goit.timonov.enterprise.module_6_2.model;
 /**
  * Provides cooked dish's data
  */
-public class CookedDish {
+public class CookedDish extends DbItem {
 
     /* unique ID in DB table */
     private int id;
-
-    /* id of ordered dish */
-    private int orderedDishId;
 
     /* order to which cooked dish is associated */
     private Order order;
@@ -23,20 +20,18 @@ public class CookedDish {
     public CookedDish() {
     }
 
+    public CookedDish(Order order, Dish dish, Employee cook) {
+        this.order = order;
+        this.dish = dish;
+        this.cook = cook;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getOrderedDishId() {
-        return orderedDishId;
-    }
-
-    public void setOrderedDishId(int orderedDishId) {
-        this.orderedDishId = orderedDishId;
     }
 
     public Order getOrder() {
@@ -67,7 +62,6 @@ public class CookedDish {
     public String toString() {
         return "CookedDish{" +
                 "id=" + id +
-                ", orderedDishId=" + orderedDishId +
                 '}';
     }
 }

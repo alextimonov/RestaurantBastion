@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_6_2.model;
 /**
  * Provides ingredient's data
  */
-public class Ingredient {
+public class Ingredient extends DbItem {
 
     /* unique id in DB table */
     private int id;

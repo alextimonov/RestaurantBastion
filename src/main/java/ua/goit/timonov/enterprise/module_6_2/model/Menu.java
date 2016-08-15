@@ -6,12 +6,7 @@ import java.util.List;
 /**
  * Provides dish menu's data
  */
-public class Menu {
-    /* unique id in DB table */
-    private int id;
-
-    /* dish menu's name */
-    private String name;
+public class Menu extends DbItem {
 
     /* dishes in menu */
     private List<Dish> dishes;

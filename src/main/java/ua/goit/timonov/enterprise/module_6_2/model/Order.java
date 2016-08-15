@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Provides order's data
  */
-public class Order {
+public class Order extends DbItem {
 
     /* unique id in DB table */
     private int id;

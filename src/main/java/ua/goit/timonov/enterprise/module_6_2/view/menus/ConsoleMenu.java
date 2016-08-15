@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter;
 
 import java.util.ArrayList;
@@ -12,14 +14,15 @@ import java.util.Scanner;
 public class ConsoleMenu {
 
     private static final String MENU_PATTERN = "%s - %s";
-    public static final String SUCCESS = "OPERATION SUCCEEDED!";
     public static final String ID = "id";
 
+    public static Logger LOGGER = LoggerFactory.getLogger(ConsoleMenu.class);
+
     /* menu name */
-    private String menuName;
+    protected String menuName;
 
     /* list of menu items */
-    private List<ConsoleMenuItem> items = new ArrayList<>();
+    protected List<ConsoleMenuItem> items = new ArrayList<>();
 
     /* true if it's necessary to quit from menu */
     private boolean isExit = false;
@@ -28,12 +31,13 @@ public class ConsoleMenu {
      * Menu constructor with one obligate item
      */
     public ConsoleMenu() {
-        items.add(new ConsoleMenuItem("Exit") {
-            @Override
-            public void run() {
-                isExit = true;
-            }
-        });
+        ConsoleMenuItem itemExit = new ConsoleMenuItem("Exit", () -> isExit = true);
+        items.add(itemExit);
+    }
+
+    public ConsoleMenu(String menuName) {
+        this();
+        this.menuName = menuName;
     }
 
     public void setMenuName(String menuName) {
@@ -54,11 +58,11 @@ public class ConsoleMenu {
                     throw new IllegalArgumentException("Choice must be in diapason [1.." + items.size() + "]. Please, repeat!");
                 }
                 ConsoleMenuItem item = items.get(choice - 1);
-                item.run();
+                item.getCallback().run();
             } catch (NumberFormatException e) {
-                ConsolePrinter.printLine("Input format error! Please, repeat!");
+                LOGGER.error("Input format error! Please, repeat!");
             } catch (IllegalArgumentException e) {
-                ConsolePrinter.printLine(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         }
     }

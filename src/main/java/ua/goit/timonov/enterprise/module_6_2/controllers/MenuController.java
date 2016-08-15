@@ -24,7 +24,7 @@ public class MenuController {
      * @return          list of menus
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Menu> getAll() {
         return menuDAO.getAll();
     }
@@ -33,7 +33,7 @@ public class MenuController {
      * adds new menu to DB
      * @param menu      given menu
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(Menu menu) {
         menuDAO.add(menu);
     }
@@ -44,7 +44,7 @@ public class MenuController {
      * @return          found menu
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Menu search(int id) {
         return menuDAO.search(id);
     }
@@ -55,7 +55,7 @@ public class MenuController {
      * @return           found menu
      * throws            EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Menu search(String name) {
         return menuDAO.search(name);
     }
@@ -65,7 +65,7 @@ public class MenuController {
      * @param id            menu's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(int id) {
         menuDAO.delete(id);
     }
@@ -75,7 +75,7 @@ public class MenuController {
      * @param name           name of menu to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(String name) {
         menuDAO.delete(name);
     }
@@ -86,7 +86,7 @@ public class MenuController {
      * @param dish          dish to be added
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void addDish(Menu menu, Dish dish) {
         menuDAO.addDish(menu, dish);
     }
@@ -97,7 +97,7 @@ public class MenuController {
      * @param dish          dish to be deleted
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void deleteDish(Menu menu, Dish dish) {
         menuDAO.deleteDish(menu, dish);
     }

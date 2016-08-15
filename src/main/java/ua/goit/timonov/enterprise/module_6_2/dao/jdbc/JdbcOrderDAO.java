@@ -34,13 +34,12 @@ public class JdbcOrderDAO implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Order order) {
-        String sql = "INSERT INTO ordering VALUES ((SELECT max(ordering.id) FROM ordering) + 1, ?, ?, ?, false)";
+        String sql = "INSERT INTO orders VALUES ((SELECT max(orders.id) FROM orders) + 1, ?, ?, ?, false)";
         template.update(sql,
                 order.getWaiterId(),
                 order.getTableNumber(),
                 order.getDate());
     }
-
 
     /**
      * searches order in DB by its ID
@@ -51,7 +50,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Order search(Integer orderId) {
-        String sql = "SELECT * FROM ordering WHERE id = ?";
+        String sql = "SELECT * FROM orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderId);
         return getOrderFromMap(map);
     }
@@ -76,7 +75,7 @@ public class JdbcOrderDAO implements OrderDAO {
     // returns true if order (given by its ID) is open
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean orderIsOpen(int orderId) {
-        String sql = "SELECT closed FROM ordering WHERE id = ?";
+        String sql = "SELECT closed FROM orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderId);
         boolean closed = (Boolean) map.get("closed");
         return !closed;
@@ -85,8 +84,8 @@ public class JdbcOrderDAO implements OrderDAO {
     // deletes order from auxiliary table
     @Transactional(propagation = Propagation.MANDATORY)
     private void deleteOrder(int orderId) {
-        String sql = "DELETE FROM dish_to_ordering WHERE order_id = ?; " +
-                "DELETE FROM ordering WHERE id = ?;";
+        String sql = "DELETE FROM dish_to_orders WHERE order_id = ?; " +
+                "DELETE FROM orders WHERE id = ?;";
         template.update(sql, orderId, orderId);
     }
 
@@ -100,7 +99,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(int orderId, Dish dish) {
         if (orderIsOpen(orderId)) {
-            String sql = "INSERT INTO dish_to_ordering VALUES ((SELECT max(id) FROM dish_to_ordering) + 1, ?, ?)";
+            String sql = "INSERT INTO dish_to_orders VALUES (?, ?)";
             template.update(sql, orderId, dish.getId());
         }
         else {
@@ -118,7 +117,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void deleteDish(int orderId, Dish dish) {
         if (orderIsOpen(orderId)) {
-            String sql = "DELETE FROM dish_to_ordering WHERE (order_id = ? AND dish_id =?)";
+            String sql = "DELETE FROM dish_to_orders WHERE (order_id = ? AND dish_id =?)";
             template.update(sql, orderId, dish.getId());
         }
         else {
@@ -134,7 +133,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void setClosed(int orderId) {
         if (orderIsOpen(orderId)) {
-            String sql = "UPDATE ordering SET closed = 'TRUE' WHERE id = ?";
+            String sql = "UPDATE orders SET closed = 'TRUE' WHERE id = ?";
             template.update(sql, orderId);
         }
         else {
@@ -150,7 +149,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getOpenOrders() {
-        String sql = "SELECT * FROM ordering WHERE closed = 'FALSE'";
+        String sql = "SELECT * FROM orders WHERE closed = 'FALSE'";
         List<Map<String, Object>> mapList = template.queryForList(sql);
 
         List<Order> result = new ArrayList<>();
@@ -169,7 +168,7 @@ public class JdbcOrderDAO implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getClosedOrders() {
-        String sql = "SELECT * FROM ordering WHERE closed = 'TRUE'";
+        String sql = "SELECT * FROM orders WHERE closed = 'TRUE'";
         List<Map<String, Object>> mapList = template.queryForList(sql);
 
         List<Order> result = new ArrayList<>();
@@ -195,8 +194,8 @@ public class JdbcOrderDAO implements OrderDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     private List<Dish> findDishesByOrderId(int orderId) {
         String sql = "SELECT DISH.id, DISH.name, DISH.description, DISH.cost, DISH.weight\n" +
-                "FROM (DISH_TO_ORDERING INNER JOIN DISH ON DISH_TO_ORDERING.dish_id = DISH.id) \n" +
-                "WHERE DISH_TO_ORDERING.order_id = ?";
+                "FROM (DISH_TO_ORDERS INNER JOIN DISH ON DISH_TO_ORDERS.dish_id = DISH.id) \n" +
+                "WHERE DISH_TO_ORDERS.order_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, orderId);
 
         List<Dish> result = new ArrayList<>();

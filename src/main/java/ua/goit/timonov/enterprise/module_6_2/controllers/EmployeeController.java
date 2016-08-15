@@ -23,7 +23,7 @@ public class EmployeeController {
      * @return              list of employees
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<Employee> getAll() {
         return employeeDAO.getAll();
     }
@@ -32,7 +32,7 @@ public class EmployeeController {
      * adds new employee to DB
      * @param employee      given employee
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void add(Employee employee) {
         employeeDAO.add(employee);
     }
@@ -43,7 +43,7 @@ public class EmployeeController {
      * @return          found employee
      * throws           EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Employee search(int id) {
         return employeeDAO.search(id);
     }
@@ -55,7 +55,7 @@ public class EmployeeController {
      * @return name          found employee
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Employee search(String surname, String name) {
         return employeeDAO.search(surname, name);
     }
@@ -65,7 +65,7 @@ public class EmployeeController {
      * @param id            employee's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(int id) {
         employeeDAO.delete(id);
     }
@@ -76,7 +76,7 @@ public class EmployeeController {
      * @param name           name of employee to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void delete(String surname, String name) {
         employeeDAO.delete(surname, name);
     }

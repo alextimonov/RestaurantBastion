@@ -16,60 +16,69 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <junitVersion> 4.12 </junitVersion>
+        <commonsLangVersion> 3.4 </commonsLangVersion>
+        <postgresqlVersion> 9.1-901-1.jdbc4 </postgresqlVersion>
+        <slf4jVersion> 1.7.21 </slf4jVersion>
+        <logbackVersion> 1.1.7 </logbackVersion>
+        <c3p0Version> 0.9.5.2 </c3p0Version>
+        <springVersion> 4.3.1.RELEASE </springVersion>
+        <javaVersion> 1.8 </javaVersion>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version> ${junitVersion} </version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version> ${commonsLangVersion} </version>
         </dependency>
 
 
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
+            <version> ${postgresqlVersion} </version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
+            <version> ${slf4jVersion} </version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.7</version>
+            <version> ${logbackVersion} </version>
         </dependency>
 
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
+            <version> ${c3p0Version} </version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.1.RELEASE</version>
+            <version> ${springVersion} </version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>4.3.1.RELEASE</version>
+            <version> ${springVersion} </version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.3.1.RELEASE</version>
+            <version> ${springVersion} </version>
         </dependency>
 
     </dependencies>
@@ -80,8 +89,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source> ${javaVersion} </source>
+                    <target> ${javaVersion} </target>
                 </configuration>
             </plugin>
         </plugins>
