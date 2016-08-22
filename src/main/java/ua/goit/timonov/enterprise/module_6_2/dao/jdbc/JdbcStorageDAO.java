@@ -30,7 +30,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Ingredient> getAll() {
         List<Ingredient> result = new ArrayList<>();
-        String sql = "SELECT * FROM ingredient";
+        String sql = "SELECT * FROM Ingredient";
         List<Map<String, Object>> mapList = template.queryForList(sql);
         for (Map<String, Object> row : mapList) {
             Ingredient ingredient = getIngredientFromMap(row);
@@ -46,7 +46,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Ingredient ingredient) {
-        String sql = "INSERT INTO ingredient VALUES ((SELECT max(id) FROM ingredient) + 1, ?, ?)";
+        String sql = "INSERT INTO Ingredient VALUES ((SELECT max(id) FROM Ingredient) + 1, ?, ?)";
         template.update(sql, ingredient.getName(), ingredient.getAmount());
     }
 
@@ -59,7 +59,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Ingredient search(int id) {
-        String sql = "SELECT * FROM ingredient WHERE id = ?";
+        String sql = "SELECT * FROM Ingredient WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
         Ingredient ingredient = getIngredientFromMap(map);
         return ingredient;
@@ -74,7 +74,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Ingredient search(String name) {
-        String sql = "SELECT * FROM ingredient WHERE ingredient.name = ?";
+        String sql = "SELECT * FROM Ingredient WHERE Ingredient.name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
         Ingredient ingredient = getIngredientFromMap(map);
         return ingredient;
@@ -89,7 +89,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
         search(id);
-        String sql = "DELETE FROM ingredient WHERE id = ?";
+        String sql = "DELETE FROM Ingredient WHERE id = ?";
         template.update(sql, id);
     }
 
@@ -102,7 +102,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String name) {
         search(name);
-        String sql = "DELETE FROM ingredient WHERE name = ?";
+        String sql = "DELETE FROM Ingredient WHERE name = ?";
         template.update(sql, name);
     }
 
@@ -115,7 +115,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void changeAmount(String name, int difference) {
-        String sql = "UPDATE ingredient SET amount = (SELECT amount FROM ingredient WHERE name = ?) + ? WHERE name = ?";
+        String sql = "UPDATE Ingredient SET amount = (SELECT amount FROM Ingredient WHERE name = ?) + ? WHERE name = ?";
         template.update(sql, name, difference, name);
     }
 
@@ -138,7 +138,7 @@ public class JdbcStorageDAO implements StorageDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Ingredient> getTerminatingIngredients(int limit) {
         List<Ingredient> result = new ArrayList<>();
-        String sql = "SELECT * FROM ingredient WHERE amount <= ?";
+        String sql = "SELECT * FROM Ingredient WHERE amount <= ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, limit);
         for (Map<String, Object> row : mapList) {
             Ingredient ingredient = getIngredientFromMap(row);

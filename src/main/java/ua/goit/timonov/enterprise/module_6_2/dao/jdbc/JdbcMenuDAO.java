@@ -33,7 +33,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Menu> getAll() {
-        String sql = "SELECT * FROM menu";
+        String sql = "SELECT * FROM Menu";
         List<Map<String, Object>> mapList = template.queryForList(sql);
 
         List<Menu> result = new ArrayList<>();
@@ -55,7 +55,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public void add(Menu menu) {
-        String sql = "INSERT INTO menu VALUES ((SELECT max(menu.id) FROM menu) + 1, ?)";
+        String sql = "INSERT INTO Menu VALUES ((SELECT max(Menu.id) FROM Menu) + 1, ?)";
         template.update(sql, menu.getName());
     }
 
@@ -68,9 +68,8 @@ public class JdbcMenuDAO implements MenuDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public Menu search(int id) {
-        String sql = "SELECT * FROM menu WHERE id = ?";
+        String sql = "SELECT * FROM Menu WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
-
         Menu menu = new Menu();
         menu.setId((Integer) map.get("id"));
         menu.setName((String) map.get("name"));
@@ -88,9 +87,8 @@ public class JdbcMenuDAO implements MenuDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     @Override
     public Menu search(String name) {
-        String sql = "SELECT * FROM menu WHERE name = ?";
+        String sql = "SELECT * FROM Menu WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
-
         Menu menu = new Menu();
         menu.setId((Integer) map.get("id"));
         menu.setName((String) map.get("name"));
@@ -108,7 +106,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Override
     public void delete(int id) {
         search(id);
-        String sql = "DELETE FROM menu WHERE id = ?";
+        String sql = "DELETE FROM Menu WHERE id = ?";
         template.update(sql, id);
     }
 
@@ -121,7 +119,7 @@ public class JdbcMenuDAO implements MenuDAO {
     @Override
     public void delete(String name) {
         search(name);
-        String sql = "DELETE FROM menu WHERE name = ?";
+        String sql = "DELETE FROM Menu WHERE name = ?";
         template.update(sql, name);
     }
 
@@ -134,16 +132,16 @@ public class JdbcMenuDAO implements MenuDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(Menu menu, Dish dish) {
-        String sql = "INSERT INTO dish_to_menu VALUES ((SELECT menu.id FROM MENU WHERE id = ?), (SELECT dish.id FROM DISH WHERE id = ?))";
+        String sql = "INSERT INTO Dish_to_menu VALUES ((SELECT Menu.id FROM Menu WHERE id = ?), (SELECT Dish.id FROM Dish WHERE id = ?))";
         template.update(sql, menu.getId(), dish.getId());
     }
 
     // returns list of dishes in menu by menu's ID
     @Transactional(propagation = Propagation.MANDATORY)
     private List<Dish> findDishesByMenuId(int menuId) {
-        String sql = "SELECT DISH.id, DISH.name, DISH.description, DISH.cost, DISH.weight\n" +
-                "FROM (DISH_TO_MENU INNER JOIN DISH ON DISH_TO_MENU.dish_id = DISH.id)\n" +
-                "WHERE DISH_TO_MENU.menu_id = ?";
+        String sql = "SELECT Dish.id, Dish.name, Dish.description, Dish.cost, Dish.weight\n" +
+                "FROM (Dish_to_menu INNER JOIN Dish ON Dish_to_menu.dish_id = Dish.id)\n" +
+                "WHERE Dish_to_menu.menu_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, menuId);
 
         List<Dish> result = new ArrayList<>();
@@ -162,7 +160,7 @@ public class JdbcMenuDAO implements MenuDAO {
      */
     @Override
     public void deleteDish(Menu menu, Dish dish) {
-        String sql = "DELETE FROM dish_to_menu VALUES WHERE menu_id = ? AND dish_id = ?";
+        String sql = "DELETE FROM Dish_to_menu VALUES WHERE menu_id = ? AND dish_id = ?";
         template.update(sql, menu.getId(), dish.getId());
     }
 }

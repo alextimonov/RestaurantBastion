@@ -28,7 +28,7 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Dish dish) {
-        String sql = "INSERT INTO dish VALUES ((SELECT max(dish.id) FROM dish) + 1, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Dish VALUES ((SELECT max(Dish.id) FROM Dish) + 1, ?, ?, ?, ?)";
         template.update(sql,
                 dish.getName(),
                 dish.getDescription(),
@@ -45,7 +45,7 @@ public class JdbcDishDAO implements DishDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
         search(id);
-        String sql = "DELETE FROM dish WHERE id = ?";
+        String sql = "DELETE FROM Dish WHERE id = ?";
         template.update(sql, id);
     }
 
@@ -58,7 +58,7 @@ public class JdbcDishDAO implements DishDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String name) {
         search(name);
-        String sql = "DELETE FROM dish WHERE name = ?";
+        String sql = "DELETE FROM Dish WHERE name = ?";
         template.update(sql, name);
     }
 
@@ -71,7 +71,7 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Dish search(String name) {
-        String sql = "SELECT * FROM dish WHERE name = ?";
+        String sql = "SELECT * FROM Dish WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
         return getDishFromMap(map);
     }
@@ -85,7 +85,7 @@ public class JdbcDishDAO implements DishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Dish search(int id) {
-        String sql = "SELECT * FROM dish WHERE id = ?";
+        String sql = "SELECT * FROM Dish WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
         return getDishFromMap(map);
     }
@@ -94,7 +94,7 @@ public class JdbcDishDAO implements DishDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Dish> getAll() {
         List<Dish> result = new ArrayList<>();
-        String sql = "SELECT * FROM dish";
+        String sql = "SELECT * FROM Dish";
         List<Map<String, Object>> mapList = template.queryForList(sql);
         for (Map<String, Object> row : mapList) {
             Dish dish = getDishFromMap(row);

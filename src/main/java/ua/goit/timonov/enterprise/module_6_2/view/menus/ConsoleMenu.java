@@ -2,7 +2,6 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ua.goit.timonov.enterprise.module_6_2.view.console.ConsolePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +85,10 @@ public class ConsoleMenu {
             String itemFormatted = String.format(MENU_PATTERN, (i + 1), items.get(i).getTitle());
             menuLines.add(itemFormatted);
         }
-        ConsolePrinter.printList(menuLines);
+        printLines(menuLines);
+    }
+
+    private void printLines(List<String> menuLines) {
+        menuLines.forEach(System.out::println);
     }
 }

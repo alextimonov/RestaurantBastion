@@ -30,8 +30,8 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(Employee employee) {
         if (isValidPosition(employee.getPosition())) {
-            String sql = "INSERT INTO employee VALUES ((SELECT max(EMPLOYEE.id) FROM EMPLOYEE) + 1, ?, ?, ?, ?," +
-                    "(SELECT jobs.id FROM JOBS WHERE jobs.position = ?))";
+            String sql = "INSERT INTO Employee VALUES ((SELECT max(Employee.id) FROM Employee) + 1, ?, ?, ?, ?," +
+                    "(SELECT Jobs.id FROM Jobs WHERE Jobs.position = ?))";
             template.update(sql,
                     employee.getSurname(),
                     employee.getName(),
@@ -46,7 +46,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     // returns true if given position exists in table JOBS
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean isValidPosition(String position) {
-        String sql = "SELECT * FROM jobs WHERE position = ?";
+        String sql = "SELECT * FROM Jobs WHERE position = ?";
         List<Map<String, Object>> listMap= template.queryForList(sql, position);
         return !listMap.isEmpty();
     }
@@ -60,7 +60,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int id) {
             search(id);
-            String sql = "DELETE FROM employee WHERE id = ?";
+            String sql = "DELETE FROM Employee WHERE id = ?";
             template.update(sql, id);
     }
 
@@ -74,7 +74,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(String surname, String name) {
             search(surname, name);
-            String sql = "DELETE FROM employee WHERE surname = ? AND name = ?";
+            String sql = "DELETE FROM Employee WHERE surname = ? AND name = ?";
             template.update(sql, surname, name);
     }
 
@@ -87,8 +87,8 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Employee search(int id) {
-        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
-                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.id = ?";
+        String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary " +
+                "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee.id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
         Employee employee = getEmployeeFromMap(map);
         return employee;
@@ -104,8 +104,8 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Employee search(String surname, String name) {
-        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
-                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.surname = ? AND employee.name = ?";
+        String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary " +
+                "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee.surname = ? AND Employee.name = ?";
         Map<String, Object> map = template.queryForMap(sql, surname, name);
         Employee employee = getEmployeeFromMap(map);
         return employee;
@@ -133,8 +133,8 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Employee> getAll() {
         List<Employee> result = new ArrayList<>();
-        String sql = "SELECT EMPLOYEE.id, EMPLOYEE.surname, EMPLOYEE.name, JOBS.position, EMPLOYEE.birthday, EMPLOYEE.salary\n" +
-                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id";
+        String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary\n" +
+                "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id";
         List<Map<String, Object>> mapList = template.queryForList(sql);
         for (Map<String, Object> row : mapList) {
             Employee employee = getEmployeeFromMap(row);
@@ -142,5 +142,4 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
         }
         return result;
     }
-
 }

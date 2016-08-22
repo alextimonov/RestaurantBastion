@@ -30,7 +30,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<CookedDish> getAll() {
-        String sql = "SELECT * FROM cooked_dish";
+        String sql = "SELECT * FROM Cooked_dish";
         List<Map<String, Object>> mapList = template.queryForList(sql);
 
         List<CookedDish> result = new ArrayList<>();
@@ -52,8 +52,8 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     @Transactional(propagation = Propagation.MANDATORY)
     public void add(int orderId, String dishName, int cookId) {
         if (orderIsClosedByOrderId(orderId)) {
-            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, ?, ?, " +
-                    "(SELECT dish.id FROM dish WHERE dish.name = ?))";
+            String sql = "INSERT INTO Cooked_dish VALUES ((SELECT max(Cooked_dish.id) FROM Cooked_dish) + 1, ?, ?, " +
+                    "(SELECT Dish.id FROM Dish WHERE Dish.name = ?))";
             template.update(sql, orderId, dishName, cookId);
         }
         else {
@@ -73,7 +73,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         int dishId = cookedDish.getDish().getId();
         int cookId = cookedDish.getCook().getId();
         if (orderIsClosedByOrderId(orderId)) {
-            String sql = "INSERT INTO cooked_dish VALUES ((SELECT max(cooked_dish.id) FROM cooked_dish) + 1, ?, ?, ?)";
+            String sql = "INSERT INTO Cooked_dish VALUES ((SELECT max(Cooked_dish.id) FROM Cooked_dish) + 1, ?, ?, ?)";
             template.update(sql, orderId, cookId, dishId);
         }
         else {
@@ -84,7 +84,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // returns true if order is closed
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean orderIsClosedByOrderId(int orderedId) {
-        String sql = "SELECT closed FROM orders WHERE id = ?";
+        String sql = "SELECT closed FROM Orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderedId);
         return (boolean) map.get("closed");
     }
@@ -105,7 +105,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // gets dish by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Dish defineDishById(int dishId) {
-        String sql = "SELECT * FROM dish WHERE id = ?";
+        String sql = "SELECT * FROM Dish WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, dishId);
         Dish dish = new Dish();
         dish.setId((Integer) map.get("id"));
@@ -119,7 +119,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // gets order by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Order defineOrderById(int orderId) {
-        String sql = "SELECT * FROM orders WHERE id = ?";
+        String sql = "SELECT * FROM Orders WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, orderId);
         Order order = new Order();
         order.setId((Integer) map.get("id"));
@@ -133,8 +133,8 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     // gets employee (cook) by its ID
     @Transactional(propagation = Propagation.MANDATORY)
     private Employee defineCookById(int cookId) {
-        String sql = "SELECT employee.id, employee.surname, employee.name, JOBS.position, employee.birthday, employee.salary " +
-                "FROM EMPLOYEE INNER JOIN JOBS ON EMPLOYEE.position_id = JOBS.id WHERE employee.id = ?";
+        String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary " +
+                "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee .id = ?";
         Map<String, Object> map = template.queryForMap(sql, cookId);
 
         Employee cook = new Employee();

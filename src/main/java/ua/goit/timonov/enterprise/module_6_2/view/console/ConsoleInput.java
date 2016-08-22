@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.view.console;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
@@ -23,7 +24,7 @@ public class ConsoleInput {
     public static final int FOUR = 4;
     public static final int HUNDRED = 100;
     public static final int FOUR_HUNDRED = 400;
-    public static final String QUIT = "Q";
+    public static final String[] QUIT_COMBINATIONS = {"q", ":q", "quit", ":quit", "exit", ":exit", "escape", "leave", "out"};
 
     public static final Logger LOGGER = LoggerFactory.getLogger(ConsoleInput.class);
 
@@ -82,29 +83,38 @@ public class ConsoleInput {
                 LOGGER.info(e.getMessage());
             }
             catch (NumberFormatException e) {
-                LOGGER.info("Wrong input! Please, input proper value or input \"Q\" or \"q\" to quit");
+                LOGGER.info("Wrong input! Please, input proper value or input any next combination (chars' case does not mean) to quit:");
+                LOGGER.info(Arrays.toString(QUIT_COMBINATIONS));
             }
         }
     }
 
     private static void checkIfUserRefusesInput(String inputString) {
-        if (inputString.toUpperCase().equals(QUIT)) {
-            throw new UserRefuseInputException("User refused to input value");
+        CharSequence input = StringUtils.lowerCase(inputString);
+        for (String quitCombination : QUIT_COMBINATIONS) {
+            if (StringUtils.equals(input, quitCombination)) {
+                throw new UserRefuseInputException("User refused to input value");
+            }
         }
     }
 
     private static void tryToMakeParse(String inputString, DataType dataType, int... bounds) {
-        if (dataType == DataType.INTEGER) {
-            Integer.valueOf(inputString);
-        }
-        if (dataType == DataType.INTEGER_WITH_DIAPASON) {
-            int value = Integer.valueOf(inputString);
-            if (value < bounds[0] || value > bounds[1]) {
-                throw new ValueOutOfBoundsException("Value should be in diapason [" + bounds[0] + ".." + bounds[1] + "]");
+        switch (dataType) {
+            case INTEGER: {
+                Integer.valueOf(inputString);
+                break;
             }
-        }
-        if (dataType == DataType.FLOAT) {
-            Float.valueOf(inputString);
+            case INTEGER_WITH_DIAPASON: {
+                int value = Integer.valueOf(inputString);
+                if (value < bounds[0] || value > bounds[1]) {
+                    throw new ValueOutOfBoundsException("Value should be in diapason [" + bounds[0] + ".." + bounds[1] + "]");
+                }
+                break;
+            }
+            case FLOAT: {
+                Float.valueOf(inputString);
+                break;
+            }
         }
     }
 
