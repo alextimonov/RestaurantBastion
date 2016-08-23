@@ -5,14 +5,11 @@ import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DishController;
 import ua.goit.timonov.enterprise.module_6_2.controllers.OrderController;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component Orders
@@ -26,7 +23,7 @@ import java.util.stream.Collectors;
  * - add dish to open order
  * - delete dish from open order
  */
-public class OrdersHandler extends DbItemHandlerWithBaseMethods {
+public class OrdersHandler extends DbItemHandlerWithBaseMethods<Order> {
 
     public static final String ORDER = "Order";
     public static final String OPEN = "open";
@@ -155,28 +152,27 @@ public class OrdersHandler extends DbItemHandlerWithBaseMethods {
 
     // implementation of inherited methods from DbItemHandlerWithBaseMethods
     @Override
-    protected List<DbItem> getAllItems() {
-        List<Order> orders = orderController.getOpenOrders();
-        List<DbItem> items = orders.stream().collect(Collectors.toList());
-        return items;
+    protected List<Order> getAllItems() {
+        return orderController.getOpenOrders();
     }
 
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<Order> orders = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            orders.add((Order) dbItem);
-        }
+    protected void outputItemList(List<Order> orders) {
         ConsoleIO.outputOrders(OPEN, orders);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(Order order) {
+        return order.getName();
+    }
+
+    @Override
+    protected Order inputItem() {
         return ConsoleIO.inputOrder();
     }
 
     @Override
-    protected void addItem(DbItem newItem) {
-        orderController.add((Order) newItem);
+    protected void addItem(Order order) {
+        orderController.add(order);
     }
 }

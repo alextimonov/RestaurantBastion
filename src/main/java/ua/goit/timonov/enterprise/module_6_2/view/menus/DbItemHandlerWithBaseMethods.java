@@ -3,7 +3,6 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * - get from DB list of items
  * - add new item
  */
-public abstract class DbItemHandlerWithBaseMethods {
+public abstract class DbItemHandlerWithBaseMethods<T> {
 
     public static final String SUCCESS = "OPERATION SUCCEEDED!";
     public static final String ID = "id";
@@ -30,7 +29,6 @@ public abstract class DbItemHandlerWithBaseMethods {
     public ConsoleMenu getConsoleMenu() {
         return consoleMenu;
     }
-
 
     /**
      * Constructor with given DB component's name, builds console menu for this component
@@ -54,7 +52,7 @@ public abstract class DbItemHandlerWithBaseMethods {
      */
     public void getAllDbItems() {
         try {
-            List<DbItem> itemList = getAllItems();
+            List<T> itemList = getAllItems();
             outputItemList(itemList);
         } catch (RuntimeException e) {
             LOGGER.error("UNSUCCESSFUL! There's no " + dbItemName + "s in the base!");
@@ -65,13 +63,13 @@ public abstract class DbItemHandlerWithBaseMethods {
      * gets from DB list of all items for this component
      * @return      list of database items
      */
-    protected abstract List<DbItem> getAllItems();
+    protected abstract List<T> getAllItems();
 
     /**
      * outputs list of database items
      * @param itemList      list of database items
      */
-    protected abstract void outputItemList(List<DbItem> itemList);
+    protected abstract void outputItemList(List<T> itemList);
 
     // DB Method #2
     /**
@@ -79,7 +77,7 @@ public abstract class DbItemHandlerWithBaseMethods {
      * or outputs message about error
      */
     public void addDbItem() {
-        DbItem newItem = new DbItem();
+        T newItem = null;
         try {
             newItem = inputItem();
             ConsoleIO.outputItem(dbItemName + " to add: ", newItem.toString());
@@ -88,19 +86,21 @@ public abstract class DbItemHandlerWithBaseMethods {
         } catch (UserRefuseInputException e) {
             LOGGER.info(e.getMessage());
         } catch (RuntimeException e) {
-            ConsoleIO.outputItem(e.getMessage(), newItem.getName());
+            ConsoleIO.outputItem(e.getMessage(), getName(newItem));
         }
     }
+
+    protected abstract String getName(T item);
 
     /**
      * provides input DB item's data
      * @return      database item
      */
-    protected abstract DbItem inputItem();
+    protected abstract T inputItem();
 
     /**
      * adds new item to this DB component
      * @param newItem       database i
      */
-    protected abstract void addItem(DbItem newItem);
+    protected abstract void addItem(T newItem);
 }

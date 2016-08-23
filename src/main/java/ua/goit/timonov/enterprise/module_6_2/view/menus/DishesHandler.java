@@ -1,13 +1,10 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
 import ua.goit.timonov.enterprise.module_6_2.controllers.DishController;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component Dish
@@ -19,7 +16,7 @@ import java.util.stream.Collectors;
  * - delete dish from DB by ID
  * - delete dish from DB by name
  */
-public class DishesHandler extends DbItemHandler {
+public class DishesHandler extends DbItemHandler<Dish> {
 
     public static final String DISH = "dish";
 
@@ -39,38 +36,37 @@ public class DishesHandler extends DbItemHandler {
 
     // implementation of inherited methods from DbItemHandler
     @Override
-    protected List<DbItem> getAllItems() {
-        List<Dish> dishes = dishController.getAll();
-        List<DbItem> items = dishes.stream().collect(Collectors.toList());
-        return items;
+    protected List<Dish> getAllItems() {
+        return dishController.getAll();
     }
 
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<Dish> dishes = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            dishes.add((Dish) dbItem);
-        }
+    protected void outputItemList(List<Dish> dishes) {
         ConsoleIO.outputDishes(dishes);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(Dish dish) {
+        return dish.getName();
+    }
+
+    @Override
+    protected Dish inputItem() {
         return ConsoleIO.inputDish();
     }
 
     @Override
-    protected void addItem(DbItem newItem) {
-        dishController.add((Dish) newItem);
+    protected void addItem(Dish dish) {
+        dishController.add(dish);
     }
 
     @Override
-    protected DbItem searchItem(int id) {
+    protected Dish searchItem(int id) {
         return dishController.search(id);
     }
 
     @Override
-    protected DbItem searchItem(String... name) {
+    protected Dish searchItem(String... name) {
         return dishController.search(name[0]);
     }
 

@@ -3,7 +3,6 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
 /**
@@ -15,7 +14,7 @@ import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
  * - delete item from DB by ID
  * - search item from DB by name
  */
-public abstract class DbItemHandler extends DbItemHandlerWithBaseMethods {
+public abstract class DbItemHandler<T> extends DbItemHandlerWithBaseMethods<T> {
 
     public static final String SUCCESS = "OPERATION SUCCEEDED!";
     public static final String NO_SUCCESS = "UNSUCCESSFUL! There's no item with such ";
@@ -53,7 +52,7 @@ public abstract class DbItemHandler extends DbItemHandlerWithBaseMethods {
         int id = 0;
         try {
             id = ConsoleIO.inputInteger(dbItemName, ID);
-            DbItem foundItem = searchItem(id);
+            T foundItem = searchItem(id);
             ConsoleIO.outputItem(SUCCESS + " Found "+ dbItemName + COLON, foundItem.toString());
         }
         catch (UserRefuseInputException e) {
@@ -69,7 +68,7 @@ public abstract class DbItemHandler extends DbItemHandlerWithBaseMethods {
      * @param id        item's to search
      * @return          found DB item
      */
-    protected abstract DbItem searchItem(int id);
+    protected abstract T searchItem(int id);
 
     // DB Method #4
     /**
@@ -78,8 +77,8 @@ public abstract class DbItemHandler extends DbItemHandlerWithBaseMethods {
     public void searchDbItemByName() {
         String nameToSearch = "";
         try {
-            ConsoleIO.inputString(dbItemName, NAME);
-            DbItem foundItem = searchItem(nameToSearch);
+            nameToSearch = ConsoleIO.inputString(dbItemName, NAME);
+            T foundItem = searchItem(nameToSearch);
             ConsoleIO.outputItem(SUCCESS + " Found "+ dbItemName + COLON, foundItem.toString());
         }
         catch (UserRefuseInputException e) {
@@ -95,7 +94,7 @@ public abstract class DbItemHandler extends DbItemHandlerWithBaseMethods {
      * @param name      item's name (or a few names) to search
      * @return          found DB item
      */
-    protected abstract DbItem searchItem(String... name);
+    protected abstract T searchItem(String... name);
 
     // DB Method #5
     /**

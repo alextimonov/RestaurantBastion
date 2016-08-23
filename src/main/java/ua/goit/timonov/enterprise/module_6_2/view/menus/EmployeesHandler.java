@@ -1,13 +1,11 @@
 package ua.goit.timonov.enterprise.module_6_2.view.menus;
 
 import ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component Employee
@@ -19,9 +17,10 @@ import java.util.stream.Collectors;
  * - delete employee from DB by ID
  * - search employee from DB by full name (surname & name)
  */
-public class EmployeesHandler extends DbItemHandler {
+public class EmployeesHandler extends DbItemHandler<Employee> {
 
     public static final String EMPLOYEE = "Employee";
+    public static final String SURNAME = "surname";
 
     /**
      * Uses inherited constructor with setting component's name
@@ -38,38 +37,52 @@ public class EmployeesHandler extends DbItemHandler {
 
     // implementation of inherited methods from DbItemHandler
     @Override
-    protected List<DbItem> getAllItems() {
-        List<Employee> employees = employeeController.getAll();
-        List<DbItem> items = employees.stream().collect(Collectors.toList());
-        return items;
+    protected List<Employee> getAllItems() {
+        return employeeController.getAll();
     }
 
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<Employee> employees = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            employees.add((Employee) dbItem);
-        }
+    protected void outputItemList(List<Employee> employees) {
         ConsoleIO.outputEmployees(employees);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(Employee employee) {
+        return employee.getName();
+    }
+
+    @Override
+    protected Employee inputItem() {
         return ConsoleIO.inputEmployee();
     }
 
     @Override
-    protected void addItem(DbItem newItem) {
-        employeeController.add((Employee) newItem);
+    protected void addItem(Employee employee) {
+        employeeController.add(employee);
     }
 
     @Override
-    protected DbItem searchItem(int id) {
+    protected Employee searchItem(int id) {
         return employeeController.search(id);
     }
 
+    public void searchDbItemByName() {
+        try {
+            String name = ConsoleIO.inputString(dbItemName, NAME);
+            String surname = ConsoleIO.inputString(dbItemName, SURNAME);
+            Employee foundItem = searchItem(name, surname);
+            ConsoleIO.outputItem(SUCCESS + " Found "+ dbItemName + COLON, foundItem.toString());
+        }
+        catch (UserRefuseInputException e) {
+            LOGGER.info(e.getMessage());
+        }
+        catch (RuntimeException e) {
+            ConsoleIO.outputItem(NO_SUCCESS, NAME + " " + SURNAME);
+        }
+    }
+
     @Override
-    protected DbItem searchItem(String... name) {
+    protected Employee searchItem(String... name) {
         return employeeController.search(name[0], name[1]);
     }
 

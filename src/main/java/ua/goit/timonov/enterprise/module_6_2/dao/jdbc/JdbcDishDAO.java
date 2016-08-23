@@ -73,7 +73,8 @@ public class JdbcDishDAO implements DishDAO {
     public Dish search(String name) {
         String sql = "SELECT * FROM Dish WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
-        return getDishFromMap(map);
+        Dish dish = getDishFromMap(map);
+        return dish;
     }
 
     /**

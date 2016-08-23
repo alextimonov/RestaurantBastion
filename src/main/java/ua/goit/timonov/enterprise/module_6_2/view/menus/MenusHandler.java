@@ -5,14 +5,11 @@ import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DishController;
 import ua.goit.timonov.enterprise.module_6_2.controllers.MenuController;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component Menu (dish menu)
@@ -27,7 +24,7 @@ import java.util.stream.Collectors;
  * - add dish to menu
  * - delete dish from menu
  */
-public class MenusHandler extends DbItemHandler {
+public class MenusHandler extends DbItemHandler<Menu> {
 
     public static final String MENU = "Menu";
     public static final String DISH = "dish";
@@ -104,38 +101,37 @@ public class MenusHandler extends DbItemHandler {
 
     // implementation of inherited methods from DbItemHandler
     @Override
-    protected List<DbItem> getAllItems() {
-        List<Menu> menus = menuController.getAll();
-        List<DbItem> items = menus.stream().collect(Collectors.toList());
-        return items;
+    protected List<Menu> getAllItems() {
+        return menuController.getAll();
     }
 
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<Menu> menus = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            menus.add((Menu) dbItem);
-        }
+    protected void outputItemList(List<Menu> menus) {
         ConsoleIO.outputMenus(menus);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(Menu item) {
+        return null;
+    }
+
+    @Override
+    protected Menu inputItem() {
         return ConsoleIO.inputMenu();
     }
 
     @Override
-    protected void addItem(DbItem newItem) {
-        menuController.add((Menu) newItem);
+    protected void addItem(Menu menu) {
+        menuController.add(menu);
     }
 
     @Override
-    protected DbItem searchItem(int id) {
+    protected Menu searchItem(int id) {
         return menuController.search(id);
     }
 
     @Override
-    protected DbItem searchItem(String... name) {
+    protected Menu searchItem(String... name) {
         return menuController.search(name[0]);
     }
 

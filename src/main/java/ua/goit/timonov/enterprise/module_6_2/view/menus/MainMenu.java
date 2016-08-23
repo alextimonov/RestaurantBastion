@@ -41,11 +41,16 @@ public class MainMenu extends ConsoleMenu {
      * configures main menu's items
      */
     public MainMenu() {
-        addItem(new ConsoleMenuItem("Employees", () -> employeesHandler.getConsoleMenu().run()));
-        addItem(new ConsoleMenuItem("Dishes", () -> dishesHandler.getConsoleMenu().run()));
-        addItem(new ConsoleMenuItem("Menus", () -> menusHandler.getConsoleMenu().run()));
-        addItem(new ConsoleMenuItem("Orders", () -> ordersHandler.getConsoleMenu().run()));
-        addItem(new ConsoleMenuItem("Cooked Dishes", () -> cookedDishHandler.getConsoleMenu().run()));
-        addItem(new ConsoleMenuItem("Storage", () -> storageHandler.getConsoleMenu().run()));
+        addItem(new ConsoleMenuItem("Employees", () -> runConsoleMenu(employeesHandler)));
+        addItem(new ConsoleMenuItem("Dishes", () -> runConsoleMenu(dishesHandler)));
+        addItem(new ConsoleMenuItem("Menus", () -> runConsoleMenu(menusHandler)));
+        addItem(new ConsoleMenuItem("Orders", () -> runConsoleMenu(ordersHandler)));
+        addItem(new ConsoleMenuItem("Cooked Dishes", () -> runConsoleMenu(cookedDishHandler)));
+        addItem(new ConsoleMenuItem("Storage", () -> runConsoleMenu(storageHandler)));
+    }
+
+    private void runConsoleMenu(DbItemHandlerWithBaseMethods handler) {
+        ConsoleMenu consoleMenu = handler.getConsoleMenu();
+        consoleMenu.run();
     }
 }

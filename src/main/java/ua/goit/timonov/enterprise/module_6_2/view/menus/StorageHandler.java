@@ -4,13 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.controllers.StorageController;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
-import ua.goit.timonov.enterprise.module_6_2.model.DbItem;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component Ingredient
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
  * - change ingredient's amount in the storage
  * - get terminating ingredients in the storage
  */
-public class StorageHandler extends DbItemHandler {
+public class StorageHandler extends DbItemHandler<Ingredient> {
 
     public static final String INGREDIENT = "Ingredient";
     public static final String AMOUNT = "amount";
@@ -91,38 +88,37 @@ public class StorageHandler extends DbItemHandler {
 
     // implementation of inherited methods from DbItemHandler
     @Override
-    protected List<DbItem> getAllItems() {
-        List<Ingredient> ingredients = storageController.getAll();
-        List<DbItem> items = ingredients.stream().collect(Collectors.toList());
-        return items;
+    protected List<Ingredient> getAllItems() {
+        return storageController.getAll();
     }
 
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<Ingredient> ingredients = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            ingredients.add((Ingredient) dbItem);
-        }
+    protected void outputItemList(List<Ingredient> ingredients) {
         ConsoleIO.outputIngredients(ingredients);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(Ingredient ingredient) {
+        return ingredient.getName();
+    }
+
+    @Override
+    protected Ingredient inputItem() {
         return ConsoleIO.inputIngredient();
     }
 
     @Override
-    protected void addItem(DbItem newItem) {
-        storageController.add((Ingredient) newItem);
+    protected void addItem(Ingredient ingredient) {
+        storageController.add(ingredient);
     }
 
     @Override
-    protected DbItem searchItem(int id) {
+    protected Ingredient searchItem(int id) {
         return storageController.search(id);
     }
 
     @Override
-    protected DbItem searchItem(String... name) {
+    protected Ingredient searchItem(String... name) {
         return storageController.search(name[0]);
     }
 

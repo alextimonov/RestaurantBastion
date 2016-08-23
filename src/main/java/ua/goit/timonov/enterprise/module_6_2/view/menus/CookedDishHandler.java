@@ -7,9 +7,7 @@ import ua.goit.timonov.enterprise.module_6_2.controllers.OrderController;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 import ua.goit.timonov.enterprise.module_6_2.view.console.ConsoleIO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Handler for tasks with DB Restaurant's component CookedDish
@@ -17,7 +15,7 @@ import java.util.stream.Collectors;
  * - get from DB list of all cooked dishes
  * - add new cooked dish
  */
-public class CookedDishHandler extends DbItemHandlerWithBaseMethods {
+public class CookedDishHandler extends DbItemHandlerWithBaseMethods<CookedDish> {
 
     public static final String COOK = "cook's";
     public static final String ORDER = "order's";
@@ -55,23 +53,26 @@ public class CookedDishHandler extends DbItemHandlerWithBaseMethods {
 
     // implementation of inherited methods from DbItemHandlerWithBaseMethods
     @Override
-    protected List<DbItem> getAllItems() {
-        List<CookedDish> cookedDishes = cookedDishController.getAll();
-        List<DbItem> items = cookedDishes.stream().collect(Collectors.toList());
-        return items;
+    protected List<CookedDish> getAllItems() {
+        return cookedDishController.getAll();
+//        List<CookedDish> cookedDishes = cookedDishController.getAll();
+//        List<DbItem> items = cookedDishes.stream().collect(Collectors.toList());
+//        return items;
     }
 
+
     @Override
-    protected void outputItemList(List<DbItem> itemList) {
-        List<CookedDish> cookedDishes = new ArrayList<>();
-        for (DbItem dbItem : itemList) {
-            cookedDishes.add((CookedDish) dbItem);
-        }
+    protected void outputItemList(List<CookedDish> cookedDishes) {
         ConsoleIO.outputCookedDish(cookedDishes);
     }
 
     @Override
-    protected DbItem inputItem() {
+    protected String getName(CookedDish cookedDish) {
+        return cookedDish.getName();
+    }
+
+    @Override
+    protected CookedDish inputItem() {
         int orderId = ConsoleIO.inputInteger(ORDER, ID);
         String dishName = ConsoleIO.inputString(DISH_NAME, NAME);
         int cookId = ConsoleIO.inputInteger(COOK, ID);
@@ -83,9 +84,8 @@ public class CookedDishHandler extends DbItemHandlerWithBaseMethods {
         return cookedDish;
     }
 
-
     @Override
-    protected void addItem(DbItem newItem) {
-        cookedDishController.add((CookedDish) newItem);
+    protected void addItem(CookedDish newCookedDish) {
+        cookedDishController.add(newCookedDish);
     }
 }
