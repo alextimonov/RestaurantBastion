@@ -33,11 +33,15 @@ public class JdbcDishDAOTest {
         this.dbController = dbController;
     }
 
+    @Autowired
+    public void setDishDAO(DishDAO dishDAO) {
+        this.dishDAO = dishDAO;
+    }
+
     @Before
     public void setUp() throws Exception {
         dbController.deleteAllData();
         dbController.fillTableJobs();
-        dishDAO = dbController.getDishDAO();
     }
 
     @Test
@@ -58,8 +62,8 @@ public class JdbcDishDAOTest {
     @Test
     public void testGetAllAbnormal_2() throws Exception {
         List<Dish> createdDishes = new ArrayList<>();
-        List<Dish> gotFromDbDishs = dishDAO.getAll();
-        assertEquals(createdDishes, gotFromDbDishs);
+        List<Dish> gotFromDbDishes = dishDAO.getAll();
+        assertEqualsDishLists(createdDishes, gotFromDbDishes);
     }
 
     @Test

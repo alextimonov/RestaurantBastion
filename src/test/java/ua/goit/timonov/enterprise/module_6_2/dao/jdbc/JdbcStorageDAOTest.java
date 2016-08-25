@@ -33,11 +33,15 @@ public class JdbcStorageDAOTest {
         this.dbController = dbController;
     }
 
+    @Autowired
+    public void setStorageDAO(StorageDAO storageDAO) {
+        this.storageDAO = storageDAO;
+    }
+
     @Before
     public void setUp() throws Exception {
         dbController.deleteAllData();
         dbController.fillTableJobs();
-        storageDAO = dbController.getStorageDAO();
     }
 
     @Test
@@ -52,15 +56,15 @@ public class JdbcStorageDAOTest {
         List<Ingredient> createdIngredients = fillTableIngredient();
         Ingredient redPepper = new Ingredient("red pepper", 2000);
         storageDAO.add(redPepper);
-        List<Ingredient> gotFromDbIngredientes = storageDAO.getAll();
-        assertNotEqualsIngredientLists(createdIngredients, gotFromDbIngredientes);
+        List<Ingredient> gotFromDbIngredients = storageDAO.getAll();
+        assertNotEqualsIngredientLists(createdIngredients, gotFromDbIngredients);
     }
 
     @Test
     public void testGetAllAbnormal_2() throws Exception {
         List<Ingredient> createdIngredients = new ArrayList<>();
         List<Ingredient> gotFromDbIngredients = storageDAO.getAll();
-        assertEquals(createdIngredients, gotFromDbIngredients);
+        assertEqualsIngredientLists(createdIngredients, gotFromDbIngredients);
     }
 
     @Test

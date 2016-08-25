@@ -107,14 +107,4 @@ public class DbController {
         String[] insertQueries = readQueriesFromFile(PATH_TO_FILL_TABLE_JOBS);
         jdbcTemplate.batchUpdate(insertQueries);
     }
-
-//    public void createTablesJobEmployee() {
-//        String[] createTables = readQueriesFromFile(CREATE_TABLES_JOB_EMPLOYEE);
-//        jdbcTemplate.batchUpdate(createTables);
-//    }
-//
-//    public void dropTablesJobAndEmployee() {
-//        String[] dropTables = readQueriesFromFile(CREATE_TABLES_JOB_EMPLOYEE);
-//        jdbcTemplate.batchUpdate(dropTables);
-//    }
 }
