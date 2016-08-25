@@ -22,6 +22,27 @@ public class Employee extends DbItem {
     public Employee() {
     }
 
+    public Employee append(String name, String surname) {
+        setName(name);
+        setSurname(surname);
+        return this;
+    }
+
+    public Employee append(Date birthday) {
+        setBirthday(birthday);
+        return this;
+    }
+
+    public Employee append(float salary) {
+        setSalary(salary);
+        return this;
+    }
+
+    public Employee append(String position) {
+        setPosition(position);
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -81,4 +102,30 @@ public class Employee extends DbItem {
                 ", position='" + position + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        if (!super.equals(o)) return false;
+
+        Employee employee = (Employee) o;
+
+        if (Float.compare(employee.salary, salary) != 0) return false;
+        if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
+        if (birthday != null ? !birthday.equals(employee.birthday) : employee.birthday != null) return false;
+        return position != null ? position.equals(employee.position) : employee.position == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (salary != +0.0f ? Float.floatToIntBits(salary) : 0);
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        return result;
+    }
+
 }

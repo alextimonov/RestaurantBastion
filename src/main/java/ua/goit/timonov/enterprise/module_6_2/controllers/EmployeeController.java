@@ -50,14 +50,14 @@ public class EmployeeController {
 
     /**
      * searches employee in DB by its full name (surname & name)
-     * @param surname        surname of employee to find
      * @param name           name of employee to find
+     * @param surname        surname of employee to find
      * @return name          found employee
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Transactional
-    public Employee search(String surname, String name) {
-        return employeeDAO.search(surname, name);
+    public Employee search(String name, String surname) {
+        return employeeDAO.search(name, surname);
     }
 
     /**
@@ -72,12 +72,12 @@ public class EmployeeController {
 
     /**
      * deletes employee from DB by its full name (surname & name)
-     * @param surname        surname of employee to delete
      * @param name           name of employee to delete
+     * @param surname        surname of employee to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Transactional
-    public void delete(String surname, String name) {
-        employeeDAO.delete(surname, name);
+    public void delete(String name, String surname) {
+        employeeDAO.delete(name, surname);
     }
 }

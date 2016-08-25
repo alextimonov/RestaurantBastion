@@ -1,7 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
@@ -26,9 +25,9 @@ public class JdbcDishDAO implements DishDAO {
      * @param dish      given dish
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Dish dish) {
-        String sql = "INSERT INTO Dish VALUES ((SELECT max(Dish.id) FROM Dish) + 1, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Dish (name, description, cost, weight) VALUES (?, ?, ?, ?)";
         template.update(sql,
                 dish.getName(),
                 dish.getDescription(),
@@ -42,7 +41,7 @@ public class JdbcDishDAO implements DishDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
         search(id);
         String sql = "DELETE FROM Dish WHERE id = ?";
@@ -55,7 +54,7 @@ public class JdbcDishDAO implements DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(String name) {
         search(name);
         String sql = "DELETE FROM Dish WHERE name = ?";
@@ -69,7 +68,7 @@ public class JdbcDishDAO implements DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Dish search(String name) {
         String sql = "SELECT * FROM Dish WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
@@ -84,7 +83,7 @@ public class JdbcDishDAO implements DishDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Dish search(int id) {
         String sql = "SELECT * FROM Dish WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
@@ -92,7 +91,7 @@ public class JdbcDishDAO implements DishDAO {
     }
 
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Dish> getAll() {
         List<Dish> result = new ArrayList<>();
         String sql = "SELECT * FROM Dish";
@@ -104,7 +103,7 @@ public class JdbcDishDAO implements DishDAO {
         return result;
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     Dish getDishFromMap(Map<String, Object> map) {
         Dish dish = new Dish();
         dish.setId((Integer) map.get("id"));

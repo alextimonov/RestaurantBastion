@@ -5,12 +5,6 @@ package ua.goit.timonov.enterprise.module_6_2.model;
  */
 
 public class Dish extends DbItem {
-//    /* unique id in the DB table */
-//    private int id;
-//
-//    /* dish's name */
-//    private String name;
-
     /* dish' description */
     private String description;
 
@@ -45,6 +39,22 @@ public class Dish extends DbItem {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public Dish append(String name, String description) {
+        setName(name);
+        setDescription(description);
+        return this;
+    }
+
+    public Dish append(float cost) {
+        setCost(cost);
+        return this;
+    }
+
+    public Dish append(int weight) {
+        setCost(weight);
+        return this;
     }
 
     @Override

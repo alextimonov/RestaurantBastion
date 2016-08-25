@@ -11,6 +11,13 @@ public class DbItem {
     /* item's name */
     protected String name;
 
+    public DbItem() {
+    }
+
+    public DbItem(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -25,5 +32,21 @@ public class DbItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DbItem dbItem = (DbItem) o;
+
+        return name != null ? name.equals(dbItem.name) : dbItem.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

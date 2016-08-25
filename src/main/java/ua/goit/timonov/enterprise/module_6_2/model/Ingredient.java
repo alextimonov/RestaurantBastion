@@ -4,33 +4,15 @@ package ua.goit.timonov.enterprise.module_6_2.model;
  * Provides ingredient's data
  */
 public class Ingredient extends DbItem {
-
-    /* unique id in DB table */
-    private int id;
-
-    /* ingredient's name */
-    private String name;
-
     /* ingredient's amount */
     private int amount;
 
     public Ingredient() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Ingredient(String name, int amount) {
+        super(name);
+        this.amount = amount;
     }
 
     public int getAmount() {

@@ -1,7 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
@@ -27,24 +26,24 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
      * @param employee      given employee
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Employee employee) {
         if (isValidPosition(employee.getPosition())) {
-            String sql = "INSERT INTO Employee VALUES ((SELECT max(Employee.id) FROM Employee) + 1, ?, ?, ?, ?," +
-                    "(SELECT Jobs.id FROM Jobs WHERE Jobs.position = ?))";
+            String sql = "INSERT INTO Employee (surname, name, birthday, position_id, salary) VALUES (?, ?, ?," +
+                    "(SELECT Jobs.id FROM Jobs WHERE Jobs.position = ?), ?)";
             template.update(sql,
                     employee.getSurname(),
                     employee.getName(),
                     employee.getBirthday(),
-                    employee.getSalary(),
-                    employee.getPosition());
+                    employee.getPosition(),
+                    employee.getSalary());
         }
         else
             throw new IllegalArgumentException("UNSUCCESSFUL! Unable to add employee. Such position doesn't exist:");
     }
 
     // returns true if given position exists in table JOBS
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     private boolean isValidPosition(String position) {
         String sql = "SELECT * FROM Jobs WHERE position = ?";
         List<Map<String, Object>> listMap= template.queryForList(sql, position);
@@ -57,7 +56,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
             search(id);
             String sql = "DELETE FROM Employee WHERE id = ?";
@@ -66,16 +65,16 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     /**
      * deletes employee from DB by its full name (surname & name)
-     * @param surname        surname of employee to delete
      * @param name           name of employee to delete
+     * @param surname        surname of employee to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(String surname, String name) {
-            search(surname, name);
-            String sql = "DELETE FROM Employee WHERE surname = ? AND name = ?";
-            template.update(sql, surname, name);
+    @Transactional
+    public void delete(String name, String surname) {
+            search(name, surname);
+            String sql = "DELETE FROM Employee WHERE name = ? AND surname = ?";
+            template.update(sql, name, surname);
     }
 
     /**
@@ -85,7 +84,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Employee search(int id) {
         String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary " +
                 "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee.id = ?";
@@ -96,14 +95,14 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     /**
      * searches employee in DB by its full name (surname & name)
-     * @param surname        surname of employee to find
      * @param name           name of employee to find
+     * @param surname        surname of employee to find
      * @return name          found employee
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Employee search(String surname, String name) {
+    @Transactional
+    public Employee search(String name, String surname) {
         String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary " +
                 "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee.surname = ? AND Employee.name = ?";
         Map<String, Object> map = template.queryForMap(sql, surname, name);
@@ -112,7 +111,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     }
 
     // gets employee's data from SQL query's map
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     private Employee getEmployeeFromMap(Map<String, Object> map) {
         Employee employee = new Employee();
         employee.setId((Integer) map.get("id"));
@@ -130,7 +129,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Employee> getAll() {
         List<Employee> result = new ArrayList<>();
         String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary\n" +

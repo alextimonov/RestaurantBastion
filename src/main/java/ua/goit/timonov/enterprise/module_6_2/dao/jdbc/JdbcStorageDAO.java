@@ -1,7 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
@@ -27,7 +26,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Ingredient> getAll() {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT * FROM Ingredient";
@@ -44,9 +43,9 @@ public class JdbcStorageDAO implements StorageDAO {
      * @param ingredient      given ingredient
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Ingredient ingredient) {
-        String sql = "INSERT INTO Ingredient VALUES ((SELECT max(id) FROM Ingredient) + 1, ?, ?)";
+        String sql = "INSERT INTO Ingredient (name, amount) VALUES (?, ?)";
         template.update(sql, ingredient.getName(), ingredient.getAmount());
     }
 
@@ -57,7 +56,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Ingredient search(int id) {
         String sql = "SELECT * FROM Ingredient WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
@@ -72,7 +71,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws            EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Ingredient search(String name) {
         String sql = "SELECT * FROM Ingredient WHERE Ingredient.name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
@@ -86,7 +85,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
         search(id);
         String sql = "DELETE FROM Ingredient WHERE id = ?";
@@ -99,7 +98,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(String name) {
         search(name);
         String sql = "DELETE FROM Ingredient WHERE name = ?";
@@ -113,14 +112,14 @@ public class JdbcStorageDAO implements StorageDAO {
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void changeAmount(String name, int difference) {
         String sql = "UPDATE Ingredient SET amount = (SELECT amount FROM Ingredient WHERE name = ?) + ? WHERE name = ?";
         template.update(sql, name, difference, name);
     }
 
     // gets ingredient from SQL query's map
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     private Ingredient getIngredientFromMap(Map<String, Object> map) {
         Ingredient ingredient = new Ingredient();
         ingredient.setId((Integer) map.get("id"));
@@ -135,7 +134,7 @@ public class JdbcStorageDAO implements StorageDAO {
      * @return                      list of ingredient
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Ingredient> getTerminatingIngredients(int limit) {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT * FROM Ingredient WHERE amount <= ?";

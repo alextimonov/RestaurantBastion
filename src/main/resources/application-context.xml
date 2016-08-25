@@ -27,6 +27,7 @@
 
     <bean id="restaurantApp" class="ua.goit.timonov.enterprise.module_6_2.RestaurantApp">
         <property name="mainMenu" ref="mainMenu"/>
+        <property name="dbController" ref="dbController"/>
     </bean>
 
 
@@ -122,6 +123,13 @@
 
     <bean id="storageHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.StorageHandler">
         <property name="storageController" ref="storageController"/>
+    </bean>
+
+    <bean id="dbController" class="ua.goit.timonov.enterprise.module_6_2.controllers.DbController">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="employeeDAO" ref="employeeDAO"/>
+        <property name="dishDAO" ref="dishDAO"/>
+        <property name="storageDAO" ref="storageDAO"/>
     </bean>
 
 </beans>
