@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver.class}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="minPoolSize" value="${jdbc.min.connections}"/>
+        <property name="maxPoolSize" value="${jdbc.max.connections}"/>
+        <property name="acquireIncrement" value="${jdbc.acquire.increment}"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <bean id="restaurantApp" class="ua.goit.timonov.enterprise.module_6_2.RestaurantApp">
+        <property name="mainMenu" ref="mainMenu"/>
+        <property name="dbController" ref="dbController"/>
+    </bean>
+
+
+    <bean id="employeeController" class="ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController">
+        <property name="employeeDAO" ref="employeeDAO"/>
+    </bean>
+
+    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcEmployeeDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="dishController" class="ua.goit.timonov.enterprise.module_6_2.controllers.DishController">
+        <property name="dishDAO" ref="dishDAO"/>
+    </bean>
+
+    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcDishDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="menuController" class="ua.goit.timonov.enterprise.module_6_2.controllers.MenuController">
+        <property name="menuDAO" ref="menuDAO"/>
+    </bean>
+
+    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcMenuDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="jdbcDishDAO" ref="dishDAO"/>
+    </bean>
+
+    <bean id="orderController" class="ua.goit.timonov.enterprise.module_6_2.controllers.OrderController">
+        <property name="orderDAO" ref="orderDAO"/>
+    </bean>
+
+    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcOrderDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="jdbcDishDAO" ref="dishDAO"/>
+    </bean>
+
+    <bean id="cookedDishController" class="ua.goit.timonov.enterprise.module_6_2.controllers.CookedDishController">
+        <property name="cookedDishDAO" ref="cookedDishDAO"/>
+    </bean>
+
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcCookedDishDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="storageController" class="ua.goit.timonov.enterprise.module_6_2.controllers.StorageController" >
+        <property name="storageDAO" ref="storageDAO"/>
+    </bean>
+
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcStorageDAO" >
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="mainMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MainMenu">
+        <property name="menuName" value="Restaurant (main menu)"/>
+        <property name="employeesHandler" ref="employeesHandler"/>
+        <property name="dishesHandler" ref="dishesHandler"/>
+        <property name="ordersHandler" ref="ordersHandler"/>
+        <property name="menusHandler" ref="menusHandler"/>
+        <property name="cookedDishHandler" ref="cookedDishHandler"/>
+        <property name="storageHandler" ref="storageHandler"/>
+    </bean>
+
+    <bean id="employeesHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.EmployeesHandler">
+        <property name="employeeController" ref="employeeController"/>
+    </bean>
+
+    <bean id="dishesHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.DishesHandler">
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="menusHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MenusHandler">
+        <property name="menuController" ref="menuController"/>
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="ordersHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.OrdersHandler">
+        <property name="orderController" ref="orderController"/>
+        <property name="dishController" ref="dishController"/>
+    </bean>
+
+    <bean id="cookedDishHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.CookedDishHandler">
+        <property name="cookedDishController" ref="cookedDishController"/>
+        <property name="dishController" ref="dishController"/>
+        <property name="employeeController" ref="employeeController"/>
+        <property name="orderController" ref="orderController"/>
+     </bean>
+
+    <bean id="storageHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.StorageHandler">
+        <property name="storageController" ref="storageController"/>
+    </bean>
+
+    <bean id="dbController" class="ua.goit.timonov.enterprise.module_6_2.controllers.DbController">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="employeeDAO" ref="employeeDAO"/>
+        <property name="dishDAO" ref="dishDAO"/>
+        <property name="storageDAO" ref="storageDAO"/>
+    </bean>
+
+</beans>

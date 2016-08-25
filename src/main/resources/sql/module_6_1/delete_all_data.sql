@@ -1,0 +1,10 @@
+DELETE FROM Cooked_dish;
+DELETE FROM Dish_to_orders;
+DELETE FROM Orders;
+DELETE FROM Employee;
+DELETE FROM Jobs;
+DELETE FROM Dish_to_menu;
+DELETE FROM Menu;
+DELETE FROM Ingredient_to_dish;
+DELETE FROM Dish;
+DELETE FROM Ingredient;

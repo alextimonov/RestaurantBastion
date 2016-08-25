@@ -25,7 +25,7 @@ public interface Test {
     /**
      * makes once only one type of operation
      * @param index     index of element to add, remove etc.
-     * @param value     value of added element, element to find etc.
+     * @param value     value of added element, element to search etc.
      */
     void makeOperation(int index, int value);
 }

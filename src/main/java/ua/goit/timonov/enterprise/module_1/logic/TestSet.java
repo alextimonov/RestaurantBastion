@@ -55,7 +55,7 @@ abstract class TestSet implements Test {
     /**
      * makes once only one type of operation
      * @param index     index of element to add, remove etc.
-     * @param value     value of added element, element to find etc.
+     * @param value     value of added element, element to search etc.
      */
     public void makeOperation(int value, int index) {
         makeOperation(value);
@@ -63,7 +63,7 @@ abstract class TestSet implements Test {
 
     /**
      * makes once only one type of operation
-     * @param value     value of added element, element to find etc.
+     * @param value     value of added element, element to search etc.
      */
     protected void makeOperation(int value) {
     }
