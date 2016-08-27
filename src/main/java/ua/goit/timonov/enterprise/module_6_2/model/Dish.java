@@ -76,7 +76,21 @@ public class Dish {
         this.weight = weight;
     }
 
+    public Dish append(String name, String description) {
+        setName(name);
+        setDescription(description);
+        return this;
+    }
 
+    public Dish append(float cost) {
+        setCost(cost);
+        return this;
+    }
+
+    public Dish append(int weight) {
+        setCost(weight);
+        return this;
+    }
 
     @Override
     public String toString() {

@@ -96,6 +96,27 @@ public class Employee {
         this.job = job;
     }
 
+    public Employee append(String name, String surname) {
+        setName(name);
+        setSurname(surname);
+        return this;
+    }
+
+    public Employee append(Date birthday) {
+        setBirthday(birthday);
+        return this;
+    }
+
+    public Employee append(float salary) {
+        setSalary(salary);
+        return this;
+    }
+
+    public Employee append(Job job) {
+        setJob(job);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

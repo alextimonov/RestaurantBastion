@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DbController;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
+import ua.goit.timonov.enterprise.module_6_2.model.Job;
+import ua.goit.timonov.enterprise.module_6_2.model.Position;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -189,7 +191,7 @@ public class JdbcEmployeeDAOTest {
         mrWhite
                 .append("John", "White")
                 .append(new GregorianCalendar(1990, 4, 30).getTime())
-                .append("MANAGER")
+                .append(new Job(Position.MANAGER))
                 .append(75000F);
         return mrWhite;
     }
@@ -199,7 +201,7 @@ public class JdbcEmployeeDAOTest {
         mrBlack
                 .append("Steven", "Black")
                 .append(new GregorianCalendar(1998, 5, 20).getTime())
-                .append("WAITER")
+                .append(new Job(Position.WAITER))
                 .append(35000F);
         return mrBlack;
     }
@@ -207,9 +209,9 @@ public class JdbcEmployeeDAOTest {
     private Employee makeEmployeeRed() {
         Employee mrRed = new Employee();
         mrRed
-                .append("Piter", "Red")
+                .append("Peter", "Red")
                 .append(new GregorianCalendar(1999, 7, 12).getTime())
-                .append("COOK")
+                .append(new Job(Position.COOK))
                 .append(50000F);
         return mrRed;
     }

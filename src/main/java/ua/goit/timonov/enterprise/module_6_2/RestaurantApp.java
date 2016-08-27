@@ -30,7 +30,7 @@ public class RestaurantApp {
      * @param args      arguments are not expected
      */
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml", "hibernate-context.xml");
         RestaurantApp restaurantApp = context.getBean(RestaurantApp.class);
         restaurantApp.start();
     }

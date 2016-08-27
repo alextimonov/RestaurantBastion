@@ -29,6 +29,11 @@ public class Ingredient {
     public Ingredient() {
     }
 
+    public Ingredient(String name, int amount) {
+        this.name = name;
+        this.amount = amount;
+    }
+
     public int getId() {
         return id;
     }
