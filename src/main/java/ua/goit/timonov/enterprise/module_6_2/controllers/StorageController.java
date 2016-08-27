@@ -82,13 +82,13 @@ public class StorageController {
 
     /**
      * changes amount of ingredient
-     * @param name        ingredient's name
+     * @param ingredient            ingredient which amount to be changed
      * @param difference            difference to be added to current amount
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
     @Transactional
-    public void changeAmount(String name, int difference) {
-        storageDAO.changeAmount(name, difference);
+    public void changeAmount(Ingredient ingredient, int difference) {
+        storageDAO.changeAmount(ingredient, difference);
     }
 
     /**

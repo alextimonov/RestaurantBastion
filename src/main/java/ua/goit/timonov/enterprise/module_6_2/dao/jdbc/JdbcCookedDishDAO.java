@@ -61,12 +61,12 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         }
     }
 
-//     /*
-//     * adds new cooked dish to DB table
-//     * @param cookedDish        cooked dish to add
-//     * throws                   EmptyResultDataAccessException, DataAccessException
-//     */
-     /*@Override
+    /*
+     * adds new cooked dish to DB table
+     * @param cookedDish        cooked dish to add
+     * throws                   EmptyResultDataAccessException, DataAccessException
+     */
+     @Override
      @Transactional(propagation = Propagation.MANDATORY)
      public void add(CookedDish cookedDish) {
          int orderId = cookedDish.getOrder().getId();
@@ -80,7 +80,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
              throw new IllegalArgumentException("Order is not closed.");
          }
      }
-*/
+
     // returns true if order is closed
     @Transactional(propagation = Propagation.MANDATORY)
     private boolean orderIsClosedByOrderId(int orderedId) {

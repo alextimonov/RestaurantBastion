@@ -8,7 +8,7 @@
     <modules>
         <module>CalcLib</module>
         <module>AppCalc</module>
-        <module>ToDoList</module>
+        <!--<module>ToDoList</module>-->
     </modules>
     <packaging>pom</packaging>
 
