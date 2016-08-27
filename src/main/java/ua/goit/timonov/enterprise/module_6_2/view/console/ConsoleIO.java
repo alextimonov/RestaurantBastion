@@ -2,6 +2,7 @@ package ua.goit.timonov.enterprise.module_6_2.view.console;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
 import java.util.Date;
@@ -145,7 +146,7 @@ public class ConsoleIO {
         employee.setBirthday(date);
 
         LOGGER.info("Input employee's position: ");
-        employee.setPosition(ConsoleInput.inputString());
+        employee.setJob(ConsoleInput.inputJob());
 
         LOGGER.info("Input employee's salary: ");
         employee.setSalary(ConsoleInput.inputFloat());
@@ -191,14 +192,15 @@ public class ConsoleIO {
      * provides input order's data from console
      * @return      inputted order
      */
-    public static Order inputOrder() {
+    public static Order inputOrder(EmployeeController employeeController) {
         LOGGER.info("Please, input date of order: ");
         Date date = ConsoleInput.inputDate();
         LOGGER.info("Please, input table number: ");
         int nTable = ConsoleInput.inputInteger();
         LOGGER.info("Please, input waiter's id: ");
         int waiterId = ConsoleInput.inputInteger();
-        Order order = new Order(waiterId, nTable, date);
+        Employee waiter = employeeController.search(waiterId);
+        Order order = new Order(waiter, nTable, date);
         return order;
     }
 

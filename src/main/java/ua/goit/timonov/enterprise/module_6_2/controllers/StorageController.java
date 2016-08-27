@@ -15,7 +15,7 @@ public class StorageController {
 
     private StorageDAO storageDAO;
 
-    public void setStorageDAO(JdbcStorageDAO storageDAO) {
+    public void setStorageDAO(StorageDAO storageDAO) {
         this.storageDAO = storageDAO;
     }
 

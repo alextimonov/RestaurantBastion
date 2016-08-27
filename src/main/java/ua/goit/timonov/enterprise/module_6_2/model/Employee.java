@@ -1,46 +1,51 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Provides employee's data
  */
-public class Employee extends DbItem {
+@Entity
+@Table(name = "employee")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Employee {
+
+    /* unique id in the DB table */
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "id")
+    protected int id;
 
     /* employee's surname */
-    private String surname;
+    @Column(name = "surname")
+    protected String surname;
+
+    /* employee's name */
+    @Column(name = "name")
+    protected String name;
 
     /* employee's date of birthday */
+    @Column(name = "birthday")
     private Date birthday;
 
     /* employee's salary */
+    @Column(name = "salary")
     private float salary;
 
     /* employee's position */
-    private String position;
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    protected Job job;
 
     public Employee() {
-    }
-
-    public Employee append(String name, String surname) {
-        setName(name);
-        setSurname(surname);
-        return this;
-    }
-
-    public Employee append(Date birthday) {
-        setBirthday(birthday);
-        return this;
-    }
-
-    public Employee append(float salary) {
-        setSalary(salary);
-        return this;
-    }
-
-    public Employee append(String position) {
-        setPosition(position);
-        return this;
     }
 
     public int getId() {
@@ -83,12 +88,12 @@ public class Employee extends DbItem {
         this.salary = salary;
     }
 
-    public String getPosition() {
-        return position;
+    public Job getJob() {
+        return job;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     @Override
@@ -99,7 +104,7 @@ public class Employee extends DbItem {
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", salary=" + salary +
-                ", position='" + position + '\'' +
+                ", job=" + job +
                 '}';
     }
 
@@ -107,25 +112,25 @@ public class Employee extends DbItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
-        if (!super.equals(o)) return false;
 
         Employee employee = (Employee) o;
 
         if (Float.compare(employee.salary, salary) != 0) return false;
         if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
         if (birthday != null ? !birthday.equals(employee.birthday) : employee.birthday != null) return false;
-        return position != null ? position.equals(employee.position) : employee.position == null;
+        return job != null ? job.equals(employee.job) : employee.job == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        int result = surname != null ? surname.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (salary != +0.0f ? Float.floatToIntBits(salary) : 0);
-        result = 31 * result + (position != null ? position.hashCode() : 0);
+        result = 31 * result + (job != null ? job.hashCode() : 0);
         return result;
     }
-
 }
+
