@@ -22,7 +22,7 @@ public class HDishDao implements DishDAO {
     }
 
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Dish> getAll() {
         return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Dish.class);
     }
@@ -32,7 +32,7 @@ public class HDishDao implements DishDAO {
      * @param dish      given dish
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Dish dish) {
         Session session = sessionFactory.getCurrentSession();
         session.save(dish);
@@ -45,7 +45,7 @@ public class HDishDao implements DishDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Dish search(int id) {
         return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
     }
@@ -57,7 +57,7 @@ public class HDishDao implements DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Dish search(String name) {
         return hDaoCriteriaQueries.searchItemByName(sessionFactory, Dish.class, name);
     }
@@ -68,7 +68,7 @@ public class HDishDao implements DishDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
         Dish dish = search(id);
         sessionFactory.getCurrentSession().delete(dish);
@@ -80,7 +80,7 @@ public class HDishDao implements DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(String name) {
         Dish dish = search(name);
         sessionFactory.getCurrentSession().delete(dish);

@@ -4,6 +4,7 @@ import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class Employee {
 
     /* employee's date of birthday */
     @Column(name = "birthday")
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
 
     /* employee's salary */
@@ -41,7 +43,7 @@ public class Employee {
     private float salary;
 
     /* employee's position */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "position_id")
     protected Job job;
 

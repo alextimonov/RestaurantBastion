@@ -48,4 +48,20 @@ public class Job {
     public String toString() {
         return position.name();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Job)) return false;
+
+        Job job = (Job) o;
+
+        return position == job.position;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return position != null ? position.hashCode() : 0;
+    }
 }

@@ -6,10 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -59,12 +56,13 @@ public class HDaoCriteriaQueries<T> {
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
         Root<T> from = criteriaQuery.from(clazz);
         CriteriaQuery<T> select = criteriaQuery.select(from);
-        select.where(criteriaBuilder.like(from.get("name"), name[0]));
-        if (name.length > 1) {
-            select.where(criteriaBuilder.like(from.get("surname"), name[1]));
-        }
+        Predicate predicateName = criteriaBuilder.like(from.get("name"), name[0]);
+        if (name.length > 1)
+            select.where(predicateName, criteriaBuilder.like(from.get("surname"), name[1]));
+        else
+            select.where(predicateName);
         TypedQuery<T> typedQuery = session.createQuery(select);
-        return typedQuery.getSingleResult();
+        return typedQuery.getResultList().get(0);
     }
 
     @Transactional(propagation = Propagation.MANDATORY)

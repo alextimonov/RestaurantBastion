@@ -25,13 +25,13 @@ public class Dish {
     @Column(name = "description")
     private String description;
 
-    /* dish's cost */
-    @Column(name = "cost")
-    private float cost;
-
     /* dish's weight */
     @Column(name = "weight")
     private int weight;
+
+    /* dish's cost */
+    @Column(name = "cost")
+    private float cost;
 
     public Dish() {
     }

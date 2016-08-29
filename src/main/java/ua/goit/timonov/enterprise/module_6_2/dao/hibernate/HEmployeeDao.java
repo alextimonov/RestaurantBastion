@@ -31,7 +31,7 @@ public class HEmployeeDao implements EmployeeDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Employee> getAll() {
         return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Employee.class);
     }
@@ -41,7 +41,7 @@ public class HEmployeeDao implements EmployeeDAO {
      * @param employee      given employee
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
         session.save(employee);
@@ -54,7 +54,7 @@ public class HEmployeeDao implements EmployeeDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Employee search(int id) {
         return hDaoCriteriaQueries.searchItemById(sessionFactory, Employee.class, id);
     }
@@ -67,8 +67,8 @@ public class HEmployeeDao implements EmployeeDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public Employee search(String surname, String name) {
+    @Transactional
+    public Employee search(String name, String surname) {
         return hDaoCriteriaQueries.searchItemByName(sessionFactory, Employee.class, name, surname);
     }
 
@@ -78,7 +78,7 @@ public class HEmployeeDao implements EmployeeDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
         Employee employee = search(id);
         sessionFactory.getCurrentSession().remove(employee);
@@ -91,9 +91,9 @@ public class HEmployeeDao implements EmployeeDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void delete(String surname, String name) {
-        Employee employee = search(surname, name);
+    @Transactional
+    public void delete(String name, String surname) {
+        Employee employee = search(name, surname);
         sessionFactory.getCurrentSession().remove(employee);
     }
 }

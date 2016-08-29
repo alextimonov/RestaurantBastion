@@ -1,7 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
 import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
@@ -27,7 +26,7 @@ public class HStorageDao implements StorageDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Ingredient> getAll() {
         return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Ingredient.class);
     }
@@ -37,7 +36,7 @@ public class HStorageDao implements StorageDAO {
      * @param ingredient      given ingredient
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(Ingredient ingredient) {
         sessionFactory.getCurrentSession().save(ingredient);
     }
@@ -49,7 +48,7 @@ public class HStorageDao implements StorageDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Ingredient search(int id) {
         return hDaoCriteriaQueries.searchItemById(sessionFactory, Ingredient.class, id);
     }
@@ -61,7 +60,7 @@ public class HStorageDao implements StorageDAO {
      * throws            EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public Ingredient search(String name) {
         return hDaoCriteriaQueries.searchItemByName(sessionFactory, Ingredient.class, name);
     }
@@ -72,7 +71,7 @@ public class HStorageDao implements StorageDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(int id) {
         Ingredient ingredient = search(id);
         sessionFactory.getCurrentSession().delete(ingredient);
@@ -84,7 +83,7 @@ public class HStorageDao implements StorageDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void delete(String name) {
         Ingredient ingredient = search(name);
         sessionFactory.getCurrentSession().delete(ingredient);
@@ -97,7 +96,7 @@ public class HStorageDao implements StorageDAO {
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void changeAmount(Ingredient ingredient, int difference) {
         int newAmount = ingredient.getAmount() + difference;
 
@@ -110,7 +109,7 @@ public class HStorageDao implements StorageDAO {
      * @return                      list of ingredient
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<Ingredient> getTerminatingIngredients(int limit) {
         return hDaoCriteriaQueries.getItemsLimitedByMaxValue(sessionFactory, Ingredient.class, limit);
     }
