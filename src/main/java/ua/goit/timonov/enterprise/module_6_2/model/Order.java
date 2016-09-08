@@ -107,6 +107,15 @@ public class Order {
         this.dishes = dishes;
     }
 
+    public Employee getEmployee() {
+        Employee employee = new Employee();
+        employee.append(waiter.getBirthday());
+        employee.append(waiter.getName(), waiter.getSurname());
+        employee.append(waiter.getSalary());
+        employee.append(waiter.getJob());
+        return employee;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -121,5 +130,7 @@ public class Order {
     public String getName() {
         return toString();
     }
+
+
 }
 

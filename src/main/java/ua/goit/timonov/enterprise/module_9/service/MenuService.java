@@ -30,4 +30,9 @@ public class MenuService {
     public Menu getMenuByName(String menuName) {
         return menuDAO.search(menuName);
     }
+
+    @Transactional
+    public Menu getMenuById(Integer menuId) {
+        return menuDAO.search(menuId);
+    }
 }

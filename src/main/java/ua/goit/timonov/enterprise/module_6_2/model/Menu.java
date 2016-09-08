@@ -25,6 +25,7 @@ public class Menu {
 
     /* dishes in menu */
     @ManyToMany(fetch = FetchType.EAGER)
+//    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "dish_to_menu",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
