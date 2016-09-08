@@ -24,20 +24,20 @@ public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String parameter = request.getParameter("taskName");
-        if (isValid(parameter)) {
+        String attributeObject = request.getParameter("categoryName");
+        if (isValid(parameter) & isValid(attributeObject)) {
             String attributeName = ENABLED_TASK + parameter;
-            String attributeObject = request.getParameter("categoryName");
             session.setAttribute(attributeName, attributeObject);
         }
 
-        Enumeration<String> parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
+        for (Enumeration<String> parameterNames = request.getParameterNames(); parameterNames.hasMoreElements(); ) {
             String taskNameWithPrefix = parameterNames.nextElement();
             if (taskNameWithPrefix.startsWith(DELETED_TASK)) {
                 String taskName = taskNameWithPrefix.substring(DELETED_TASK.length(), taskNameWithPrefix.length());
                 session.removeAttribute(taskName);
             }
         }
+//        while (parameterNames.hasMoreElements()) {}
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
     }

@@ -5,19 +5,19 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name> Simple TODO List </display-name>
+    <display-name>Simple TODO List</display-name>
     <description>
         This is a simple web application
     </description>
 
     <servlet>
-        <servlet-name> Update </servlet-name>
-        <servlet-class> ua.goit.timonov.enterprise.module_8.UpdateServlet </servlet-class>
+        <servlet-name>Update</servlet-name>
+        <servlet-class>ua.goit.timonov.enterprise.module_8.UpdateServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name> Update </servlet-name>
-        <url-pattern> /update </url-pattern>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
 
 </web-app>
