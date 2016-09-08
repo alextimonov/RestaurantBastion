@@ -13,10 +13,10 @@ import java.util.List;
 /**
  * Hibernate implementation of MenuDao
  */
-public class HMenuDao implements MenuDAO {
+public class HibernateMenuDao implements MenuDAO {
 
     private SessionFactory sessionFactory;
-    private HDaoCriteriaQueries<Menu> hDaoCriteriaQueries = new HDaoCriteriaQueries();
+    private JpaCriteriaQueries<Menu> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -100,9 +100,8 @@ public class HMenuDao implements MenuDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(Menu menu, Dish dish) {
-        if (menu.getDishes().contains(dish)) {
+        if (menu.getDishes().contains(dish))
             throw new IllegalArgumentException("Menu " + menu.getName() + " already contains dish " + dish.getName());
-        }
         else {
             Session session = sessionFactory.getCurrentSession();
             session.delete(menu);
@@ -122,9 +121,8 @@ public class HMenuDao implements MenuDAO {
     public void deleteDish(Menu menu, Dish dish) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(menu);
-        if (!menu.getDishes().remove(dish)) {
+        if (!menu.getDishes().remove(dish))
             throw new IllegalArgumentException("Menu " + menu.getName() + " does not contain dish " + dish.getName());
-        }
         session.save(menu);
     }
 }

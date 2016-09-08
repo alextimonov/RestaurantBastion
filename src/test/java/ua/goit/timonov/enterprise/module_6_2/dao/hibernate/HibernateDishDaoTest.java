@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
-public class HDishDaoTest {
+public class HibernateDishDaoTest {
     private DbController dbController;
     private DishDAO dishDAO;
 

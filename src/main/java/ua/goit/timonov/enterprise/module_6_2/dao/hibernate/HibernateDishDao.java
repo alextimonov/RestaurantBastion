@@ -2,7 +2,6 @@ package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
@@ -12,10 +11,10 @@ import java.util.List;
 /**
  * Hibernate implementation of DishDAO
  */
-public class HDishDao implements DishDAO {
+public class HibernateDishDao implements DishDAO {
 
     private SessionFactory sessionFactory;
-    private HDaoCriteriaQueries<Dish> hDaoCriteriaQueries = new HDaoCriteriaQueries();
+    private JpaCriteriaQueries<Dish> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

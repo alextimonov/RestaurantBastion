@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Hibernate implementation of OrderDAO
  */
-public class HStorageDao implements StorageDAO {
+public class HibernateStorageDao implements StorageDAO {
 
     public static final String FIELD_AMOUNT = "amount";
     private SessionFactory sessionFactory;
-    private HDaoCriteriaQueries<Ingredient> hDaoCriteriaQueries = new HDaoCriteriaQueries();
+    private JpaCriteriaQueries<Ingredient> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

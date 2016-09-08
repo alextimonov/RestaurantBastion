@@ -3,8 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--default-autowire="byName">-->
-
     <bean id="restaurantApp" class="ua.goit.timonov.enterprise.module_6_2.RestaurantApp">
         <property name="mainMenu" ref="mainMenu"/>
     </bean>
@@ -13,7 +11,7 @@
         <property name="employeeDAO" ref="employeeDAO"/>
     </bean>
 
-    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HEmployeeDao">
+    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateEmployeeDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -21,7 +19,7 @@
         <property name="dishDAO" ref="dishDAO"/>
     </bean>
 
-    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HDishDao">
+    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateDishDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -29,7 +27,7 @@
         <property name="menuDAO" ref="menuDAO"/>
     </bean>
 
-    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HMenuDao">
+    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateMenuDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -37,7 +35,7 @@
         <property name="orderDAO" ref="orderDAO"/>
     </bean>
 
-    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HOrderDao">
+    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateOrderDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -45,7 +43,7 @@
         <property name="cookedDishDAO" ref="cookedDishDAO"/>
     </bean>
 
-    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HCookedDishDao">
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateCookedDishDao">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="hDishDao" ref="dishDAO"/>
         <property name="hOrderDao" ref="orderDAO"/>
@@ -57,7 +55,7 @@
         <property name="storageDAO" ref="storageDAO"/>
     </bean>
 
-    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HStorageDao" >
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateStorageDao" >
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

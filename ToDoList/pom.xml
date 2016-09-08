@@ -43,8 +43,8 @@
             <plugin>
                 <artifactId> maven-war-plugin </artifactId>
                 <configuration>
-                    <webXml> src/main/resources/WEB-INF/web.xml </webXml>
-                    <warName> ToDoList </warName>
+                    <webXml>src/main/resources/WEB-INF/web.xml</webXml>
+                    <warName>ToDoList</warName>
                 </configuration>
             </plugin>
         </plugins>

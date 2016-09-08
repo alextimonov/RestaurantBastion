@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Alex on 20.08.2016.
  */
-public class HDaoCriteriaQueries<T> {
+public class JpaCriteriaQueries<T> {
 
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> getAllEntityItems(SessionFactory sessionFactory, Class<T> clazz) {

@@ -13,11 +13,11 @@ import java.util.List;
 /**
  * Hibernate implementation of OrderDAO
  */
-public class HOrderDao implements OrderDAO {
+public class HibernateOrderDao implements OrderDAO {
 
     public static final String FIELD_CLOSED = "closed";
     private SessionFactory sessionFactory;
-    private HDaoCriteriaQueries<Order> hDaoCriteriaQueries = new HDaoCriteriaQueries();
+    private JpaCriteriaQueries<Order> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -76,9 +76,8 @@ public class HOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void delete(int orderId) {
-        if (orderIsClosed(orderId)) {
+        if (orderIsClosed(orderId))
             throw new IllegalArgumentException("Order is not open");
-        }
         Order order = search(orderId);
         sessionFactory.getCurrentSession().delete(order);
     }
@@ -99,9 +98,8 @@ public class HOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void addDish(int orderId, Dish dish) {
-        if (orderIsClosed(orderId)) {
+        if (orderIsClosed(orderId))
             throw new IllegalArgumentException("Order is not open");
-        }
         else {
             Order order = search(orderId);
             Session session = sessionFactory.getCurrentSession();
@@ -119,15 +117,13 @@ public class HOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void deleteDish(int orderId, Dish dish) {
-        if (orderIsClosed(orderId)) {
+        if (orderIsClosed(orderId))
             throw new IllegalArgumentException("Order is not open");
-        }
         else {
             Session session = sessionFactory.getCurrentSession();
             Order order = search(orderId);
-            if (!order.getDishes().remove(dish)) {
+            if (!order.getDishes().remove(dish))
                 throw new IllegalArgumentException("There's no dish " + dish.getName() + " in the order");
-            }
             session.save(order);
         }
     }
@@ -139,12 +135,9 @@ public class HOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public void setClosed(int orderId) {
-        if (orderIsClosed(orderId)) {
+        if (orderIsClosed(orderId))
             throw new IllegalArgumentException("Order is not open");
-        }
-        else {
+        else
             hDaoCriteriaQueries.updateValue(sessionFactory, Order.class, orderId, FIELD_CLOSED, true);
-        }
-
     }
 }
