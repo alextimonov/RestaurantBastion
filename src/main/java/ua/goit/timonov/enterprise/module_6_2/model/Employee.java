@@ -36,11 +36,11 @@ public class Employee {
     /* employee's date of birthday */
     @Column(name = "birthday")
 //    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthday;
+    protected Date birthday;
 
     /* employee's salary */
     @Column(name = "salary")
-    private float salary;
+    protected float salary;
 
     /* employee's position */
     @ManyToOne(cascade = CascadeType.ALL)

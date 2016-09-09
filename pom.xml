@@ -29,6 +29,7 @@
         <hibernateVersion>5.2.1.Final</hibernateVersion>
         <hibernateJpaApiVersion>1.0.0.Final</hibernateJpaApiVersion>
         <ehcasheVersion>2.10.2</ehcasheVersion>
+        <jstlVersion>1.2</jstlVersion>
     </properties>
 
     <dependencies>
@@ -119,6 +120,28 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernateVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstlVersion}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

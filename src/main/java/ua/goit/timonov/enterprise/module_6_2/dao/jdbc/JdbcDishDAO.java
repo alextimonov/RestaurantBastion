@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,14 @@ import java.util.Map;
 public class JdbcDishDAO implements DishDAO {
 
     private JdbcTemplate template;
+    private JdbcStorageDAO jdbcStorageDAO;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
+    }
+
+    public void setJdbcStorageDAO(JdbcStorageDAO jdbcStorageDAO) {
+        this.jdbcStorageDAO = jdbcStorageDAO;
     }
 
     /**
@@ -59,6 +65,20 @@ public class JdbcDishDAO implements DishDAO {
         search(name);
         String sql = "DELETE FROM Dish WHERE name = ?";
         template.update(sql, name);
+    }
+
+    @Override
+    public List<Ingredient> defineDishIngredients(Dish dish) {
+        List<Ingredient> result = new ArrayList<>();
+        String sql = "SELECT Ingredient.* \n" +
+                "FROM (Ingredient INNER JOIN Ingredient_to_dish ON Ingredient_to_dish.ingredient_id = Ingredient.id) \n" +
+                "WHERE Ingredient_to_dish.dish_id = ?";
+        List<Map<String, Object>> mapList = template.queryForList(sql, dish.getId());
+        for (Map<String, Object> row : mapList) {
+            Ingredient ingredient = jdbcStorageDAO.getIngredientFromMap(row);
+            result.add(ingredient);
+        }
+        return result;
     }
 
     /**

@@ -100,9 +100,10 @@ public class HibernateCookedDishDao implements CookedDishDAO {
         for (IngredientsInDish ingredientInDish : ingredientsInDish) {
             int weightForDish = ingredientInDish.getIngredientWeight();
             int amountInStorage = ingredientInDish.getIngredient().getAmount();
-            if (amountInStorage < weightForDish)
+            if (amountInStorage < weightForDish) {
                 throw new IllegalArgumentException("There's not enough ingredient " + ingredientInDish.getIngredient().getName() +
                         " for dish " + dish.getName());
+            }
         }
     }
 
@@ -119,12 +120,15 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     private void checkAbilityToAdd(CookedDish cookedDish) {
         Order order = cookedDish.getOrder();
         Dish dish = cookedDish.getDish();
-        if (!order.getClosed())
+        if (!order.getClosed()) {
             throw new IllegalArgumentException("Order is not closed.");
-        if (!order.getDishes().contains(dish))
+        }
+        if (!order.getDishes().contains(dish)) {
             throw new IllegalArgumentException("Order don't contain that dish");
+        }
         List<CookedDish> cookedDishes = getAll();
-        if (cookedDishes.contains(cookedDish))
+        if (cookedDishes.contains(cookedDish)) {
             throw new IllegalArgumentException("That cooked dish is already in list");
+        }
     }
 }

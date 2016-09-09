@@ -19,6 +19,18 @@ public class Waiter extends Employee {
     @Fetch(FetchMode.SELECT)
     private List<Order> orders;
 
+    public Waiter() {
+    }
+
+    public Waiter(Employee employee) {
+        id = employee.getId();
+        surname = employee.getSurname();
+        name = employee.getName();
+        birthday = employee.getBirthday();
+        salary = employee.getSalary();
+        job = employee.getJob();
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
@@ -31,14 +43,5 @@ public class Waiter extends Employee {
     public String toString() {
         return "Waiter{" + super.toString() +
                 " \n     orders=" + orders + "} ";
-    }
-
-    public String toStringWithoutOrders() {
-        return "Waiter{" +
-                "id=" + id +
-                ", surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", job=" + job +
-                '}';
     }
 }

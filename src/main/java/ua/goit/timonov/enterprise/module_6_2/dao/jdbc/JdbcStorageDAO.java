@@ -120,7 +120,7 @@ public class JdbcStorageDAO implements StorageDAO {
 
     // gets ingredient from SQL query's map
     @Transactional
-    private Ingredient getIngredientFromMap(Map<String, Object> map) {
+    public Ingredient getIngredientFromMap(Map<String, Object> map) {
         Ingredient ingredient = new Ingredient();
         ingredient.setId((Integer) map.get("id"));
         ingredient.setName((String) map.get("name"));

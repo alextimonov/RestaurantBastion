@@ -1,6 +1,7 @@
 package ua.goit.timonov.enterprise.module_6_2.dao;
 
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
+import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
 import java.util.List;
 
@@ -51,4 +52,11 @@ public interface DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     void delete(String name);
+
+    /**
+     * defines ingredients of given dish
+     * @param dish           given dish
+     * throws                EmptyResultDataAccessException, DataAccessException
+     */
+    List<Ingredient> defineDishIngredients(Dish dish);
 }

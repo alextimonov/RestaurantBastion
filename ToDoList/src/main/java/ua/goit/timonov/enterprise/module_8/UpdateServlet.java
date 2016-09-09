@@ -37,7 +37,6 @@ public class UpdateServlet extends HttpServlet {
                 session.removeAttribute(taskName);
             }
         }
-//        while (parameterNames.hasMoreElements()) {}
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
     }
