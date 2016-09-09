@@ -1,5 +1,7 @@
-package ua.goit.timonov.enterprise.module_6_2.controllers;
+package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
@@ -7,33 +9,32 @@ import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import java.util.List;
 
 /**
- * Controller for DishDAO
+ * Hibernate implementation of DishDAO
  */
-public class DishController {
+public class HibernateDishDao implements DishDAO {
 
-    private DishDAO dishDAO;
+    private SessionFactory sessionFactory;
+    private JpaCriteriaQueries<Dish> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
-    public void setDishDAO(DishDAO dishDAO) {
-        this.dishDAO = dishDAO;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    /**
-     * finds list of all dishes in DB
-     * @return          list of dishes
-     * throws               EmptyResultDataAccessException, DataAccessException
-     */
+    @Override
     @Transactional
     public List<Dish> getAll() {
-        return dishDAO.getAll();
+        return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Dish.class);
     }
 
     /**
      * adds new dish to DB
      * @param dish      given dish
      */
+    @Override
     @Transactional
     public void add(Dish dish) {
-        dishDAO.add(dish);
+        Session session = sessionFactory.getCurrentSession();
+        session.save(dish);
     }
 
     /**
@@ -42,9 +43,10 @@ public class DishController {
      * @return          found dish
      * throws           EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public Dish search(int id) {
-        return dishDAO.search(id);
+        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
     }
 
     /**
@@ -53,9 +55,10 @@ public class DishController {
      * @return name          found dish
      * throws                EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public Dish search(String name) {
-        return dishDAO.search(name);
+        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Dish.class, name);
     }
 
     /**
@@ -63,9 +66,11 @@ public class DishController {
      * @param id            dish's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public void delete(int id) {
-        dishDAO.delete(id);
+        Dish dish = search(id);
+        sessionFactory.getCurrentSession().delete(dish);
     }
 
     /**
@@ -73,8 +78,10 @@ public class DishController {
      * @param name           name of dish to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public void delete(String name) {
-        dishDAO.delete(name);
+        Dish dish = search(name);
+        sessionFactory.getCurrentSession().delete(dish);
     }
 }

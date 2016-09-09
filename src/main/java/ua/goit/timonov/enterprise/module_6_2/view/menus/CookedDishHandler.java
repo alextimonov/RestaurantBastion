@@ -55,9 +55,6 @@ public class CookedDishHandler extends DbItemHandlerWithBaseMethods<CookedDish> 
     @Override
     protected List<CookedDish> getAllItems() {
         return cookedDishController.getAll();
-//        List<CookedDish> cookedDishes = cookedDishController.getAll();
-//        List<DbItem> items = cookedDishes.stream().collect(Collectors.toList());
-//        return items;
     }
 
 

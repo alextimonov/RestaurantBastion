@@ -1,10 +1,9 @@
-package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
+package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +13,7 @@ import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.Job;
 import ua.goit.timonov.enterprise.module_6_2.model.Position;
 
-import java.io.FileNotFoundException;
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -23,12 +22,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Testing class for JdbcEmployeeDAO
+ * Testing class for HEmployeeDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
-public class JdbcEmployeeDAOTest {
-
+public class HibernateEmployeeDaoTest {
     private DbController dbController;
     private EmployeeDAO employeeDAO;
 
@@ -44,7 +42,8 @@ public class JdbcEmployeeDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        dbController.deleteAllData();
+        dbController.dropAllTables();
+        dbController.createAllTables();
         dbController.fillTableJobs();
     }
 
@@ -106,7 +105,7 @@ public class JdbcEmployeeDAOTest {
 
     @Test
     public void testSearchByIdNormal() throws Exception {
-        restoreAllData();
+        dbController.restoreAllData();
         Employee mrBlack = makeEmployeeBlack();
         employeeDAO.add(mrBlack);
 
@@ -124,15 +123,15 @@ public class JdbcEmployeeDAOTest {
         assertEquals(mrRed, foundEmployee);
     }
 
-    @Test(expected = EmptyResultDataAccessException.class)
+    @Test(expected = NoResultException.class)
     public void testSearchByIdAbnormal() throws Exception {
-        restoreAllData();
+        dbController.restoreAllData();
         employeeDAO.search(10);
     }
 
     @Test
     public void testSearchByNameNormal() throws Exception {
-        restoreAllData();
+        dbController.restoreAllData();
 
         Employee mrBlack = makeEmployeeBlack();
         employeeDAO.add(mrBlack);
@@ -148,12 +147,12 @@ public class JdbcEmployeeDAOTest {
 
     @Test
     public void testDeleteById() throws Exception {
-        restoreAllData();
+        dbController.restoreAllData();
 
         List<Employee> listBeforeAdd = employeeDAO.getAll();
         Employee mrBlack = makeEmployeeBlack();
         employeeDAO.add(mrBlack);
-        employeeDAO.delete(10);
+        employeeDAO.delete(42);
         List<Employee> listAfterDelete = employeeDAO.getAll();
 
         assertEqualsEmployeeLists(listBeforeAdd, listAfterDelete);
@@ -161,14 +160,14 @@ public class JdbcEmployeeDAOTest {
         listBeforeAdd = employeeDAO.getAll();
         Employee mrWhite = makeEmployeeWhite();
         employeeDAO.add(mrWhite );
-        employeeDAO.delete(11);
+        employeeDAO.delete(43);
         listAfterDelete = employeeDAO.getAll();
         assertEqualsEmployeeLists(listBeforeAdd, listAfterDelete);
     }
 
     @Test
     public void testDeleteByName() throws Exception {
-        restoreAllData();
+        dbController.restoreAllData();
 
         List<Employee> listBeforeAdd = employeeDAO.getAll();
         Employee mrBlack = makeEmployeeBlack();
@@ -235,14 +234,6 @@ public class JdbcEmployeeDAOTest {
         createdStaff.add(mrBlack);
         createdStaff.add(mrRed);
         return createdStaff;
-    }
-
-    @Transactional
-    private void restoreAllData() throws FileNotFoundException {
-        dbController.dropAllTables();
-        dbController.createAllTables();
-        dbController.fillTableJobs();
-        dbController.restoreAllData();
     }
 
     private void assertNotEqualsEmployeeLists(List<Employee> createdEmployees, List<Employee> gotFromDbEmployees) {

@@ -1,22 +1,23 @@
-package ua.goit.timonov.enterprise.module_6_2.controllers;
+package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
-import org.springframework.transaction.annotation.Propagation;
+import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
-import ua.goit.timonov.enterprise.module_6_2.dao.jdbc.JdbcStorageDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
 import java.util.List;
 
 /**
- * Controller for StorageDAO
+ * Hibernate implementation of OrderDAO
  */
-public class StorageController {
+public class HibernateStorageDao implements StorageDAO {
 
-    private StorageDAO storageDAO;
+    public static final String FIELD_AMOUNT = "amount";
+    private SessionFactory sessionFactory;
+    private JpaCriteriaQueries<Ingredient> hDaoCriteriaQueries = new JpaCriteriaQueries();
 
-    public void setStorageDAO(StorageDAO storageDAO) {
-        this.storageDAO = storageDAO;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     /**
@@ -24,18 +25,20 @@ public class StorageController {
      * @return              list of ingredients
      * throws               EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public List<Ingredient> getAll() {
-        return storageDAO.getAll();
+        return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Ingredient.class);
     }
 
     /**
      * adds new ingredient to DB
      * @param ingredient      given ingredient
      */
+    @Override
     @Transactional
     public void add(Ingredient ingredient) {
-        storageDAO.add(ingredient);
+        sessionFactory.getCurrentSession().save(ingredient);
     }
 
     /**
@@ -44,9 +47,10 @@ public class StorageController {
      * @return          found ingredient
      * throws           EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
-    public Ingredient search(Integer id) {
-        return storageDAO.search(id);
+    public Ingredient search(int id) {
+        return hDaoCriteriaQueries.searchItemById(sessionFactory, Ingredient.class, id);
     }
 
     /**
@@ -55,9 +59,10 @@ public class StorageController {
      * @return           found ingredient
      * throws            EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public Ingredient search(String name) {
-        return storageDAO.search(name);
+        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Ingredient.class, name);
     }
 
     /**
@@ -65,9 +70,11 @@ public class StorageController {
      * @param id            ingredient's ID to delete
      * throws               EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
-    public void delete(Integer id) {
-        storageDAO.delete(id);
+    public void delete(int id) {
+        Ingredient ingredient = search(id);
+        sessionFactory.getCurrentSession().delete(ingredient);
     }
 
     /**
@@ -75,20 +82,25 @@ public class StorageController {
      * @param name           name of ingredient to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public void delete(String name) {
-        storageDAO.delete(name);
+        Ingredient ingredient = search(name);
+        sessionFactory.getCurrentSession().delete(ingredient);
     }
 
     /**
      * changes amount of ingredient
-     * @param ingredient            ingredient which amount to be changed
+     * @param ingredient            ingredient to change its amount in storage
      * @param difference            difference to be added to current amount
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
+    @Override
     @Transactional
     public void changeAmount(Ingredient ingredient, int difference) {
-        storageDAO.changeAmount(ingredient, difference);
+        int newAmount = ingredient.getAmount() + difference;
+
+        hDaoCriteriaQueries.updateValue(sessionFactory, Ingredient.class, ingredient.getId(), FIELD_AMOUNT, newAmount);
     }
 
     /**
@@ -96,8 +108,9 @@ public class StorageController {
      * @param limit                 limit to chose an ingredient
      * @return                      list of ingredient
      */
+    @Override
     @Transactional
     public List<Ingredient> getTerminatingIngredients(int limit) {
-        return storageDAO.getTerminatingIngredients(limit);
+        return hDaoCriteriaQueries.getItemsLimitedByMaxValue(sessionFactory, Ingredient.class, limit);
     }
 }

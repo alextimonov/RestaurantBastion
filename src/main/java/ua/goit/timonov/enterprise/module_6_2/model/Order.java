@@ -1,5 +1,10 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,33 +12,50 @@ import java.util.List;
 /**
  * Provides order's data
  */
-public class Order extends DbItem {
+@Entity
+@Table(name = "orders")
+public class Order {
 
     /* unique id in DB table */
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "id")
     private int id;
 
     /* waiter's id who takes this order */
-    private int waiterId;
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "employee_id")
+    private Employee waiter;
 
     /* order's table number */
+    @Column(name = "table_number")
     private int tableNumber;
 
     /* order's date */
+    @Column(name = "date")
     private Date date;
 
     /* true if order is closed, false if one is open */
-    private Boolean  closed;
+    @Column(name = "closed")
+    private Boolean closed;
 
     /* dishes in this order */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @JoinTable(name = "dish_to_orders",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id"))
     private List<Dish> dishes;
 
     public Order() {
     }
 
-    public Order(int waiterId, int tableNumber, Date date) {
-        this.waiterId = waiterId;
+    public Order(Employee waiter, int tableNumber, Date date) {
+        this.waiter = waiter;
         this.tableNumber = tableNumber;
         this.date = date;
+        closed = false;
         dishes = new ArrayList<>();
     }
 
@@ -45,12 +67,12 @@ public class Order extends DbItem {
         this.id = id;
     }
 
-    public int getWaiterId() {
-        return waiterId;
+    public Employee getWaiter() {
+        return waiter;
     }
 
-    public void setWaiterId(int waiterId) {
-        this.waiterId = waiterId;
+    public void setWaiter(Employee waiter) {
+        this.waiter = waiter;
     }
 
     public int getTableNumber() {
@@ -89,12 +111,15 @@ public class Order extends DbItem {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", waiterId=" + waiterId +
+                ", waiter=" + waiter.getSurname() + " " + waiter.getName() +
                 ", tableNumber=" + tableNumber +
                 ", date=" + date +
                 ", closed=" + closed +
                 '}';
     }
-}
 
+    public String getName() {
+        return toString();
+    }
+}
 

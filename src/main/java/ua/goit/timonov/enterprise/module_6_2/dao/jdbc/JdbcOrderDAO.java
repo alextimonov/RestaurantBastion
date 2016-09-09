@@ -36,7 +36,7 @@ public class JdbcOrderDAO implements OrderDAO {
     public void add(Order order) {
         String sql = "INSERT INTO Orders VALUES ((SELECT max(Orders.id) FROM Orders) + 1, ?, ?, ?, false)";
         template.update(sql,
-                order.getWaiterId(),
+                order.getWaiter(),
                 order.getTableNumber(),
                 order.getDate());
     }
@@ -182,7 +182,7 @@ public class JdbcOrderDAO implements OrderDAO {
     private Order getOrderFromMap(Map<String, Object> map) {
         Order order = new Order();
         order.setId((Integer) map.get("id"));
-        order.setWaiterId((Integer) map.get("employee_id"));
+        order.setWaiter((Employee) map.get("employee_id"));
         order.setTableNumber((Integer) map.get("table_number"));
         order.setDate((Date) map.get("date"));
         order.setClosed((Boolean) map.get("closed"));

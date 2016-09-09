@@ -58,8 +58,8 @@ public class StorageHandler extends DbItemHandler<Ingredient> {
         try {
             String nameToChangeAmount = ConsoleIO.inputString(INGREDIENT, NAME);
             diff = ConsoleIO.inputInteger(INGREDIENT, DIFF);
-            storageController.changeAmount(nameToChangeAmount, diff);
             Ingredient ingredient = storageController.search(nameToChangeAmount);
+            storageController.changeAmount(ingredient, diff);
             ConsoleIO.outputItem(SUCCESS + AMOUNT, ingredient.toString());
         }
         catch (UserRefuseInputException e) {

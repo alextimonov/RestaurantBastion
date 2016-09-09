@@ -107,15 +107,15 @@ public class JdbcStorageDAO implements StorageDAO {
 
     /**
      * changes amount of ingredient
-     * @param name        ingredient's name
+     * @param ingredient            ingredient to change its amount
      * @param difference            difference to be added to current amount
      * throws                       EmptyResultDataAccessException, DataAccessException
      */
     @Override
     @Transactional
-    public void changeAmount(String name, int difference) {
+    public void changeAmount(Ingredient ingredient, int difference) {
         String sql = "UPDATE Ingredient SET amount = (SELECT amount FROM Ingredient WHERE name = ?) + ? WHERE name = ?";
-        template.update(sql, name, difference, name);
+        template.update(sql, ingredient.getId(), difference, ingredient.getId());
     }
 
     // gets ingredient from SQL query's map

@@ -54,11 +54,11 @@ public interface StorageDAO {
 
     /**
      * changes amount of ingredient
-     * @param name        ingredient's name
+     * @param ingredient            ingredient which amount to be changed
      * @param difference            difference to be added to current amount
      * throws                       EmptyResultDataAccessException, DataAccessException                              
      */
-    void changeAmount(String name, int difference);
+    void changeAmount(Ingredient ingredient, int difference);
 
     /**
      * finds list of terminating ingredients with amount less than given limit

@@ -1,14 +1,34 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Provides dish menu's data
  */
-public class Menu extends DbItem {
+@Entity
+@Table(name = "menu")
+public class Menu {
+    /* unique id in DB table */
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "id")
+    private int id;
+
+    /* dish menu's name */
+    @Column(name = "name")
+    private String name;
 
     /* dishes in menu */
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "dish_to_menu",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id")
+    )
     private List<Dish> dishes;
 
     public Menu() {

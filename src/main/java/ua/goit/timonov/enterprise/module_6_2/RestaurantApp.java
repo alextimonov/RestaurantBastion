@@ -5,8 +5,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DbController;
 import ua.goit.timonov.enterprise.module_6_2.view.menus.MainMenu;
 
-import java.io.FileNotFoundException;
-
 /**
  * Restaurant application, uses Spring and JDBC to access to database
  * Main executable class
@@ -30,7 +28,7 @@ public class RestaurantApp {
      * @param args      arguments are not expected
      */
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml", "hibernate-context.xml");
         RestaurantApp restaurantApp = context.getBean(RestaurantApp.class);
         restaurantApp.start();
     }

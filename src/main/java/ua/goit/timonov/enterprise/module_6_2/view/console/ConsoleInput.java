@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.ValueOutOfBoundsException;
+import ua.goit.timonov.enterprise.module_6_2.model.Job;
+import ua.goit.timonov.enterprise.module_6_2.model.Position;
 
 import java.util.*;
 
@@ -163,5 +165,21 @@ public class ConsoleInput {
                 return DAYS_IN_LONG_FEBRUARY;
         else
             return DAYS_IN_SHORT_FEBRUARY;
+    }
+
+    public static Job inputJob() {
+        while(true) {
+            try {
+                String inputtedString = ConsoleInput.inputString().toUpperCase();
+                Position position = Position.byName(inputtedString);
+                if (position == null) {
+                    throw new IllegalArgumentException();
+                }
+                return new Job(position);
+            }
+            catch (IllegalArgumentException e) {
+                LOGGER.info("There's no such position! Please, input existing position:");
+            }
+        }
     }
 }

@@ -61,25 +61,25 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         }
     }
 
-    /**
+    /*
      * adds new cooked dish to DB table
      * @param cookedDish        cooked dish to add
      * throws                   EmptyResultDataAccessException, DataAccessException
      */
-    @Override
-    @Transactional(propagation = Propagation.MANDATORY)
-    public void add(CookedDish cookedDish) {
-        int orderId = cookedDish.getOrder().getId();
-        int dishId = cookedDish.getDish().getId();
-        int cookId = cookedDish.getCook().getId();
-        if (orderIsClosedByOrderId(orderId)) {
-            String sql = "INSERT INTO Cooked_dish VALUES ((SELECT max(Cooked_dish.id) FROM Cooked_dish) + 1, ?, ?, ?)";
-            template.update(sql, orderId, cookId, dishId);
-        }
-        else {
-            throw new IllegalArgumentException("Order is not closed.");
-        }
-    }
+     @Override
+     @Transactional(propagation = Propagation.MANDATORY)
+     public void add(CookedDish cookedDish) {
+         int orderId = cookedDish.getOrder().getId();
+         int dishId = cookedDish.getDish().getId();
+         int cookId = cookedDish.getCook().getId();
+         if (orderIsClosedByOrderId(orderId)) {
+             String sql = "INSERT INTO Cooked_dish VALUES ((SELECT max(Cooked_dish.id) FROM Cooked_dish) + 1, ?, ?, ?)";
+             template.update(sql, orderId, cookId, dishId);
+         }
+         else {
+             throw new IllegalArgumentException("Order is not closed.");
+         }
+     }
 
     // returns true if order is closed
     @Transactional(propagation = Propagation.MANDATORY)
@@ -123,7 +123,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         Map<String, Object> map = template.queryForMap(sql, orderId);
         Order order = new Order();
         order.setId((Integer) map.get("id"));
-        order.setWaiterId((Integer) map.get("employee_id"));
+        order.setWaiter((Employee) map.get("employee_id"));
         order.setTableNumber((Integer) map.get("table_number"));
         order.setDate((Date) map.get("date"));
         order.setClosed((Boolean) map.get("closed"));
@@ -141,7 +141,7 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
         cook.setId(cookId);
         cook.setSurname((String) map.get("surname"));
         cook.setName((String) map.get("name"));
-        cook.setPosition((String) map.get("position"));
+        cook.setJob((Job) map.get("job"));
         cook.setBirthday((Date) map.get("birthday"));
         cook.setSalary((Float) map.get("salary"));
         return cook;

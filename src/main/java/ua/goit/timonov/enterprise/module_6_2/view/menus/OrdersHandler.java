@@ -3,6 +3,7 @@ package ua.goit.timonov.enterprise.module_6_2.view.menus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DishController;
+import ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController;
 import ua.goit.timonov.enterprise.module_6_2.controllers.OrderController;
 import ua.goit.timonov.enterprise.module_6_2.exceptions.UserRefuseInputException;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
@@ -36,6 +37,7 @@ public class OrdersHandler extends DbItemHandlerWithBaseMethods<Order> {
 
     private OrderController orderController;
     private DishController dishController;
+    private EmployeeController employeeController;
 
     public void setOrderController(OrderController orderController) {
         this.orderController = orderController;
@@ -43,6 +45,10 @@ public class OrdersHandler extends DbItemHandlerWithBaseMethods<Order> {
 
     public void setDishController(DishController dishController) {
         this.dishController = dishController;
+    }
+
+    public void setEmployeeController(EmployeeController employeeController) {
+        this.employeeController = employeeController;
     }
 
     /**
@@ -162,13 +168,13 @@ public class OrdersHandler extends DbItemHandlerWithBaseMethods<Order> {
     }
 
     @Override
-    protected String getName(Order order) {
-        return order.getName();
+    protected String getName(Order item) {
+        return item.getName();
     }
 
     @Override
     protected Order inputItem() {
-        return ConsoleIO.inputOrder();
+        return ConsoleIO.inputOrder(employeeController);
     }
 
     @Override
