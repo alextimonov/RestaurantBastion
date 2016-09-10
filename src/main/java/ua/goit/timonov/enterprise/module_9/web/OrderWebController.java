@@ -1,23 +1,27 @@
 package ua.goit.timonov.enterprise.module_9.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 import ua.goit.timonov.enterprise.module_9.service.OrderService;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Alex on 07.09.2016.
+ * Controller for mapping requests to Order pages
  */
 @RestController
 public class OrderWebController {
 
     private OrderService orderService;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     public void setOrderService(OrderService orderService) {
@@ -25,47 +29,44 @@ public class OrderWebController {
     }
 
     @RequestMapping(value = "/restOrders", method = RequestMethod.GET)
-    public List<Order> restOrders() {
-        List<Order> ordersFromDB = orderService.getAllOrders();
-        return getOrdersWithoutRecursion(ordersFromDB);
-    }
-
-    private List<Order> getOrdersWithoutRecursion(List<Order> ordersFromDB) {
-        List<Order> resultOrders = new ArrayList<>();
-        for (Order orderFromDB : ordersFromDB) {
-            Order order = getOrderWithoutRecursion(orderFromDB);
-            resultOrders.add(order);
-        }
-        return resultOrders;
-    }
-
-    private Order getOrderWithoutRecursion(Order orderFromDB) {
-        Order order = new Order();
-        order.setId(orderFromDB.getId());
-        order.setTableNumber(orderFromDB.getTableNumber());
-        order.setDate(orderFromDB.getDate());
-        order.setClosed(orderFromDB.getClosed());
-        order.setDishes(orderFromDB.getDishes());
-        order.setWaiter(orderFromDB.getEmployee());
-        return order;
+    public ModelAndView restOrders() throws IOException {
+        List<Order> orders = orderService.getAllOrders();
+        return createModelAndView(orders);
     }
 
     @RequestMapping(value = "/restOrders/open", method = RequestMethod.GET)
-    public List<Order> restOpenOrders() {
-        List<Order> ordersFromDB = orderService.getOpenOrders();
-        return getOrdersWithoutRecursion(ordersFromDB);
+    public ModelAndView restOpenOrders() throws IOException {
+        List<Order> orders = orderService.getOpenOrders();
+        return createModelAndView(orders);
     }
 
     @RequestMapping(value = "/restOrders/closed", method = RequestMethod.GET)
-    public List<Order> restClosedOrders() {
-        List<Order> ordersFromDB =  orderService.getClosedOrders();
-        return getOrdersWithoutRecursion(ordersFromDB);
+    public ModelAndView restClosedOrders() throws IOException {
+        List<Order> orders = orderService.getClosedOrders();
+        return createModelAndView(orders);
+    }
+
+    private ModelAndView createModelAndView(List<Order> orders) throws IOException {
+        ModelAndView modelAndView = new ModelAndView("restOrders");
+        modelAndView.addObject("orders", objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(orders));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/restOrders/{orderId}", method = RequestMethod.GET)
-    public Order getOrderById(@PathVariable Integer orderId) {
-        Order orderFromDB = orderService.searhById(orderId);
-        Order order = getOrderWithoutRecursion(orderFromDB);
-        return order;
+    public ModelAndView getOrderById(@PathVariable Integer orderId) throws JsonProcessingException {
+        String jsonOrder = getOrderFromDatabase(orderId);
+        ModelAndView modelAndView = new ModelAndView("restOrders");
+        modelAndView.addObject("orders", jsonOrder);
+        return modelAndView;
+    }
+
+    private String getOrderFromDatabase(int orderId) {
+        try {
+            Order order = orderService.searhById(orderId);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(order);
+        }
+        catch (RuntimeException | JsonProcessingException e) {
+            return "{Error:There's no order with id = " + orderId + " in database!}";
+        }
     }
 }

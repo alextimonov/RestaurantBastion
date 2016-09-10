@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,6 +27,7 @@ public class Order {
     /* waiter's id who takes this order */
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "employee_id")
+    @JsonIgnore
     private Employee waiter;
 
     /* order's table number */
@@ -46,9 +48,14 @@ public class Order {
     @JoinTable(name = "dish_to_orders",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id"))
+    @JsonIgnore
     private List<Dish> dishes;
 
     public Order() {
+    }
+
+    public Order(Employee waiter) {
+        this.waiter = waiter;
     }
 
     public Order(Employee waiter, int tableNumber, Date date) {

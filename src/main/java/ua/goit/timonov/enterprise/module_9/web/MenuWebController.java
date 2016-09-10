@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise.module_9.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
 import ua.goit.timonov.enterprise.module_9.service.MenuService;
+import ua.goit.timonov.enterprise.module_9.view.JsonMenuViews;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +28,7 @@ public class MenuWebController {
     public static final String SCHEME_PAGE = "scheme";
     public static final String MENU_PAGE = "menu";
     private MenuService menuService;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     public MenuWebController(MenuService menuService) {
@@ -53,30 +57,49 @@ public class MenuWebController {
 
     @RequestMapping(value = "/restMenus", method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> restMenus() {
-        List<Menu> menusFromDb = menuService.getAllMenus();
-        // TODO search another solution
-        List<Menu> restMenus = new ArrayList<>();
-        for (Menu menuFromDb : menusFromDb) {
-            Menu menu = new Menu();
-            menu.setId(menuFromDb.getId());
-            menu.setName(menuFromDb.getName());
-            restMenus.add(menu);
-        }
-        return restMenus;
+    public ModelAndView restMenus() throws IOException {
+        List<Menu> menus = menuService.getAllMenus();
+        ModelAndView modelAndView = new ModelAndView("restMenus");
+        String jsonMenus = objectMapper.writerWithView(JsonMenuViews.OnlyNames.class).writeValueAsString(menus);
+        Object json = objectMapper.readValue(jsonMenus, Object.class);
+        modelAndView.addObject("menus", objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/restMenus/{menuName}", method = RequestMethod.GET)
     @ResponseBody
-    public Menu getMenuByName(@PathVariable String menuName) {
+    public ModelAndView restMenu(@PathVariable String menuName) throws IOException {
+        ModelAndView modelAndView = new ModelAndView("restMenus");
+        String jsonMenu;
         try {
             int menuId = Integer.valueOf(menuName);
-            Menu menu = menuService.getMenuById(menuId);
-            return menu;
+            jsonMenu = getMenuFromDatabase(menuId);
         }
         catch(NumberFormatException e) {
+            jsonMenu = getMenuFromDatabase(menuName);
+        }
+        Object json = objectMapper.readValue(jsonMenu, Object.class);
+        modelAndView.addObject("menus", objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
+        return modelAndView;
+    }
+
+    private String getMenuFromDatabase(int menuId) {
+        try {
+            Menu menu = menuService.getMenuById(menuId);
+            return new ObjectMapper().writerWithView(JsonMenuViews.NamesWithDishes.class).writeValueAsString(menu);
+        }
+        catch (RuntimeException | JsonProcessingException e) {
+            return "{\"Error\":\"There's no menu with id = " + menuId + " in database!\"}";
+        }
+    }
+
+    private String getMenuFromDatabase(String menuName) {
+        try {
             Menu menu = menuService.getMenuByName(menuName);
-            return menu;
+            return new ObjectMapper().writerWithView(JsonMenuViews.NamesWithDishes.class).writeValueAsString(menu);
+        }
+        catch (RuntimeException | JsonProcessingException e) {
+            return "{\"Error\":\"There's no menu with id = " + menuName + " in database!\"}";
         }
     }
 }

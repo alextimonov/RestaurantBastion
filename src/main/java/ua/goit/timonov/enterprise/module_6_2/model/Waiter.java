@@ -1,5 +1,8 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -10,10 +13,11 @@ import java.util.List;
  */
 
 @Entity
+@JsonIgnoreType
 public class Waiter extends Employee {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "waiter")
-//    @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private List<Order> orders;
 
     public Waiter() {

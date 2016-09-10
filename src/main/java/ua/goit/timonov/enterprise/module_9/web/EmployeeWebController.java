@@ -1,5 +1,7 @@
 package ua.goit.timonov.enterprise.module_9.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_9.service.EmployeeService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Controller for mapping requests to Dish pages
+ * Controller for mapping requests to Employee pages
  */
 @Controller
 public class EmployeeWebController {
@@ -23,6 +24,7 @@ public class EmployeeWebController {
     public static final String EMPLOYEES_PAGE = "employees";
     public static final String WAITERS_PAGE = "waiters";
     public static final String EMPLOYEE_PAGE = "employee";
+    private ObjectMapper objectMapper = new ObjectMapper();
     private EmployeeService employeeService;
 
     @Autowired
@@ -51,57 +53,75 @@ public class EmployeeWebController {
 
     @RequestMapping(value = "/restEmployees", method = RequestMethod.GET)
     @ResponseBody
-    public List<Employee> restEmployees() {
-        List<Employee> employeesFromDB = employeeService.getAllEmployees();
-        // TODO search another solution
-        List<Employee> resultEmployees = new ArrayList<>();
-        for (Employee employeeFromDB : employeesFromDB) {
-            Employee employee = getEmployeeWithoutRecursion(employeeFromDB);
-            resultEmployees.add(employee);
-        }
-        return resultEmployees;
+    public ModelAndView restEmployees() throws JsonProcessingException {
+        List<Employee> employees = employeeService.getAllEmployees();
+        ModelAndView modelAndView = new ModelAndView("restEmployees");
+        modelAndView.addObject("employees", objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(employees));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/restEmployees/{employeeName}", method = RequestMethod.GET)
     @ResponseBody
-    public Employee getEmployeeByName(@PathVariable String employeeName) {
+    public ModelAndView getEmployeeByName(@PathVariable String employeeName) {
+        String jsonEmployee;
         try {
-            int menuId = Integer.valueOf(employeeName);
-            Employee employeeFromDB = employeeService.searchById(menuId);
-            // TODO search another solution
-            return getEmployeeWithoutRecursion(employeeFromDB);
+            int employeeId = Integer.valueOf(employeeName);
+            jsonEmployee = getEmployeeFromDatabase(employeeId);
         }
         catch(NumberFormatException e) {
-            return searchEmployeeByNameOrSurname(employeeName);
+            jsonEmployee = searchEmployeeByNameOrSurname(employeeName);
         }
+        ModelAndView modelAndView = new ModelAndView("restEmployees");
+        modelAndView.addObject("employees", jsonEmployee);
+        return modelAndView;
     }
 
-    private Employee searchEmployeeByNameOrSurname(String employeeName) {
+    private String getEmployeeFromDatabase(int employeeId) {
         try {
-            Employee employeeFromDB = employeeService.searchByName(employeeName);
-            return getEmployeeWithoutRecursion(employeeFromDB);
+            Employee employee = employeeService.searchById(employeeId);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(employee);
         }
-        catch (IndexOutOfBoundsException e) {
-            Employee employeeFromDB = employeeService.searchByName("", employeeName);
-            return getEmployeeWithoutRecursion(employeeFromDB);
+        catch (RuntimeException | JsonProcessingException e) {
+            return "There's no employee with id = " + employeeId + " in database!";
         }
     }
 
-    private Employee getEmployeeWithoutRecursion(Employee employeeFromDB) {
-        Employee employee = new Employee();
-        employee.setId(employeeFromDB.getId());
-        employee.setName(employeeFromDB.getName());
-        employee.setSurname(employeeFromDB.getSurname());
-        employee.setSalary(employeeFromDB.getSalary());
-        employee.setJob(employeeFromDB.getJob());
-        employee.setBirthday(employeeFromDB.getBirthday());
-        return employee;
+    private String searchEmployeeByNameOrSurname(String employeeName) {
+        try {
+            Employee employee = employeeService.searchByName(employeeName);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(employee);
+        }
+        catch (IndexOutOfBoundsException | JsonProcessingException e) {
+            return getEmployeeFromDatabase(employeeName);
+        }
+    }
+
+    private String getEmployeeFromDatabase(String employeeSurname) {
+        try {
+            Employee employee = employeeService.searchByName("", employeeSurname);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(employee);
+        }
+        catch (RuntimeException | JsonProcessingException e) {
+            return "There's no employee with name or surname " + employeeSurname + " in database!";
+        }
     }
 
     @RequestMapping(value = "/restEmployees/{employeeName}/{employeeSurname}", method = RequestMethod.GET)
     @ResponseBody
-    public Employee getEmployeeByFullName(@PathVariable String employeeName, @PathVariable String employeeSurname) {
-            Employee employeeFromDB = employeeService.searchByName(employeeName, employeeSurname);
-            return getEmployeeWithoutRecursion(employeeFromDB);
+    public ModelAndView getEmployeeByFullName(@PathVariable String employeeName, @PathVariable String employeeSurname) {
+        String jsonEmployee = getEmployeeFromDatabase(employeeName, employeeSurname);
+        ModelAndView modelAndView = new ModelAndView("restEmployees");
+        modelAndView.addObject("employees", jsonEmployee);
+        return modelAndView;
+    }
+
+    private String getEmployeeFromDatabase(String employeeName, String employeeSurname) {
+        try {
+            Employee employee = employeeService.searchByName(employeeName, employeeSurname);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(employee);
+        }
+        catch (RuntimeException | JsonProcessingException e) {
+            return "There's no employee with name " + employeeName + " and surname " + employeeSurname + " in database!";
+        }
     }
 }
