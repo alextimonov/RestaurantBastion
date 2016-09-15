@@ -3,7 +3,7 @@ package ua.goit.timonov.enterprise.module_1.logic;
 import java.util.List;
 
 /**
- * Implementation of operation remove(index) for list
+ * Implementation of operation delete(index) for list
  */
 public class TestListRemove extends TestList {
     public TestListRemove(List collection, int nElements) {

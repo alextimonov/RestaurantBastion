@@ -2,6 +2,7 @@ package ua.goit.timonov.enterprise.module_9.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
 
 import java.util.List;
@@ -32,7 +33,37 @@ public class MenuService {
     }
 
     @Transactional
-    public Menu getMenuById(Integer menuId) {
-        return menuDAO.search(menuId);
+    public void add(Menu menu) {
+        menuDAO.add(menu);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        menuDAO.delete(id);
+    }
+
+    @Transactional
+    public void delete(String name) {
+        menuDAO.delete(name);
+    }
+
+    @Transactional
+    public Menu searchMenuById(Integer id) {
+        return menuDAO.search(id);
+    }
+
+    @Transactional
+    public Menu searchMenuByName(String name) {
+        return menuDAO.search(name);
+    }
+
+    @Transactional
+    public void update(Menu menu) {
+        menuDAO.update(menu);
+    }
+
+    @Transactional
+    public void addDish(Menu menu, Dish dish) {
+        menuDAO.addDish(menu, dish);
     }
 }

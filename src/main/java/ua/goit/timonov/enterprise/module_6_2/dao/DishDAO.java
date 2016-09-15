@@ -59,4 +59,11 @@ public interface DishDAO {
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     List<Ingredient> defineDishIngredients(Dish dish);
+
+    /**
+     * updates edited dish in DB
+     * @param dish             given dish
+     * throws                  EmptyResultDataAccessException, DataAccessException
+     */
+    void update(Dish dish);
 }

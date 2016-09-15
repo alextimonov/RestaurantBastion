@@ -68,4 +68,6 @@ public interface MenuDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     void deleteDish(Menu menu, Dish dish);
+
+    void update(Menu menu);
 }

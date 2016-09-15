@@ -126,4 +126,11 @@ public class HibernateMenuDao implements MenuDAO {
         }
         session.save(menu);
     }
+
+    @Override
+    @Transactional
+    public void update(Menu menu) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update("Menu", menu);
+    }
 }

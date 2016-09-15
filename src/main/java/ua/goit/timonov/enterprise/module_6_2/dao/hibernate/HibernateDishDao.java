@@ -49,7 +49,9 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public Dish search(int id) {
-        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Dish.class, id);
+//        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
     }
 
     /**
@@ -94,5 +96,12 @@ public class HibernateDishDao implements DishDAO {
         List<IngredientsInDish> ingredientsInDishes =
                 hDaoCriteriaQueries.searchItemsByValue(sessionFactory, IngredientsInDish.class, "dish", dish);
         return ingredientsInDishes.stream().map(IngredientsInDish::getIngredient).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void update(Dish dish) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update("Dish", dish);
     }
 }

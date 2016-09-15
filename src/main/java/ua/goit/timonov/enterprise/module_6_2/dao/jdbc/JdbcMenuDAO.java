@@ -152,4 +152,9 @@ public class JdbcMenuDAO implements MenuDAO {
         String sql = "DELETE FROM Dish_to_menu VALUES WHERE menu_id = ? AND dish_id = ?";
         template.update(sql, menu.getId(), dish.getId());
     }
+
+    @Override
+    public void update(Menu menu) {
+        // TODO
+    }
 }
