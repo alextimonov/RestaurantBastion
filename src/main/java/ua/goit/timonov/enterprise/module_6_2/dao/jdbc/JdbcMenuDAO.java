@@ -3,11 +3,13 @@ package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
-import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of MenuDAO
@@ -35,17 +37,18 @@ public class JdbcMenuDAO implements MenuDAO {
     public List<Menu> getAll() {
         String sql = "SELECT * FROM Menu";
         List<Map<String, Object>> mapList = template.queryForList(sql);
+        return mapList.stream()
+                .map(row -> getMenuFromMap(row))
+                .collect(Collectors.toList());
+    }
 
-        List<Menu> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            Menu menu = new Menu();
-            menu.setId((Integer) row.get("id"));
-            menu.setName((String) row.get("name"));
-            List<Dish> dishes = findDishesByMenuId(menu.getId());
-            menu.setDishes(dishes);
-            result.add(menu);
-        }
-        return result;
+    private Menu getMenuFromMap(Map<String, Object> row) {
+        Menu menu = new Menu();
+        menu.setId((Integer) row.get("id"));
+        menu.setName((String) row.get("name"));
+        List<Dish> dishes = findDishesByMenuId(menu.getId());
+        menu.setDishes(dishes);
+        return menu;
     }
 
     /**
@@ -70,12 +73,7 @@ public class JdbcMenuDAO implements MenuDAO {
     public Menu search(int id) {
         String sql = "SELECT * FROM Menu WHERE id = ?";
         Map<String, Object> map = template.queryForMap(sql, id);
-        Menu menu = new Menu();
-        menu.setId((Integer) map.get("id"));
-        menu.setName((String) map.get("name"));
-        List<Dish> dishes = findDishesByMenuId(menu.getId());
-        menu.setDishes(dishes);
-        return menu;
+        return getMenuFromMap(map);
     }
 
     /**
@@ -89,12 +87,7 @@ public class JdbcMenuDAO implements MenuDAO {
     public Menu search(String name) {
         String sql = "SELECT * FROM Menu WHERE name = ?";
         Map<String, Object> map = template.queryForMap(sql, name);
-        Menu menu = new Menu();
-        menu.setId((Integer) map.get("id"));
-        menu.setName((String) map.get("name"));
-        List<Dish> dishes = findDishesByMenuId(menu.getId());
-        menu.setDishes(dishes);
-        return menu;
+        return getMenuFromMap(map);
     }
 
     /**
@@ -143,13 +136,9 @@ public class JdbcMenuDAO implements MenuDAO {
                 "FROM (Dish_to_menu INNER JOIN Dish ON Dish_to_menu.dish_id = Dish.id)\n" +
                 "WHERE Dish_to_menu.menu_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, menuId);
-
-        List<Dish> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            Dish dish = jdbcDishDAO.getDishFromMap(row);
-            result.add(dish);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> jdbcDishDAO.getDishFromMap(row))
+                .collect(Collectors.toList());
     }
 
     /**

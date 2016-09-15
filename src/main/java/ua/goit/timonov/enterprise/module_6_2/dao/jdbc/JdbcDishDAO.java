@@ -2,13 +2,14 @@ package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of DishDAO
@@ -69,16 +70,13 @@ public class JdbcDishDAO implements DishDAO {
 
     @Override
     public List<Ingredient> defineDishIngredients(Dish dish) {
-        List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT Ingredient.* \n" +
                 "FROM (Ingredient INNER JOIN Ingredient_to_dish ON Ingredient_to_dish.ingredient_id = Ingredient.id) \n" +
                 "WHERE Ingredient_to_dish.dish_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, dish.getId());
-        for (Map<String, Object> row : mapList) {
-            Ingredient ingredient = jdbcStorageDAO.getIngredientFromMap(row);
-            result.add(ingredient);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> jdbcStorageDAO.getIngredientFromMap(row))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -120,7 +118,9 @@ public class JdbcDishDAO implements DishDAO {
             Dish dish = getDishFromMap(row);
             result.add(dish);
         }
-        return result;
+        return mapList.stream()
+                .map(row -> getDishFromMap(row))
+                .collect(Collectors.toList());
     }
 
     @Transactional

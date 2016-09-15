@@ -1,17 +1,16 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.Job;
 import ua.goit.timonov.enterprise.module_6_2.model.Waiter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of EmployeeDAO
@@ -49,7 +48,7 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Transactional
     private boolean isValidPosition(String position) {
         String sql = "SELECT * FROM Jobs WHERE position = ?";
-        List<Map<String, Object>> listMap= template.queryForList(sql, position);
+        List<Map<String, Object>> listMap = template.queryForList(sql, position);
         return !listMap.isEmpty();
     }
 
@@ -82,16 +81,12 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     @Override
     public List<Waiter> getWaiters() {
-        List<Waiter> result = new ArrayList<>();
         String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary\n" +
                 "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id WHERE Employee.dtype = 'WAITER'";
         List<Map<String, Object>> mapList = template.queryForList(sql);
-        for (Map<String, Object> row : mapList) {
-            Employee employee = getEmployeeFromMap(row);
-            Waiter waiter = new Waiter(employee);
-            result.add(waiter);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> new Waiter(getEmployeeFromMap(row)))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -164,14 +159,11 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     @Override
     @Transactional
     public List<Employee> getAll() {
-        List<Employee> result = new ArrayList<>();
         String sql = "SELECT Employee.id, Employee.surname, Employee.name, Jobs.position, Employee.birthday, Employee.salary\n" +
                 "FROM Employee INNER JOIN Jobs ON Employee.position_id = Jobs.id";
         List<Map<String, Object>> mapList = template.queryForList(sql);
-        for (Map<String, Object> row : mapList) {
-            Employee employee = getEmployeeFromMap(row);
-            result.add(employee);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getEmployeeFromMap(row))
+                .collect(Collectors.toList());
     }
 }
