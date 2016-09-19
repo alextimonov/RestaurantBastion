@@ -10,15 +10,15 @@
 <table style="align-items: center" border="1">
     <thead>All dishes</thead>
     <tr>
-        <th> ID </th>
-        <th> Dish name </th>
-        <th> Cost </th>
+        <th>ID</th>
+        <th>Dish name</th>
+        <th>Cost</th>
     </tr>
     <c:forEach var="dish" items="${dishes}">
         <tr>
-            <td> ${dish.id} </td>
-            <td> <a href="${path}/dish/${dish.name}"> ${dish.name} </a> </td>
-            <td> ${dish.cost} </td>
+            <td>${dish.id}</td>
+            <td><a href="${path}/dish/${dish.name}">${dish.name}</a></td>
+            <td>${dish.cost}</td>
         </tr>
     </c:forEach>
 

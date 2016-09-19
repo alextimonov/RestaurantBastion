@@ -13,7 +13,7 @@
     <h4>Input dish's name to search:</h4>
     <br>
     <input type="text" name="dishName">
-    <input type="submit" value="Search" >
+    <input type="submit" value="Search">
 </form>
 
 

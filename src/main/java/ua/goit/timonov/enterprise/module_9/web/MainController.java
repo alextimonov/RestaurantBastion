@@ -14,20 +14,24 @@ import java.util.Map;
 @Controller
 public class MainController {
 
+    public static final String INDEX_PAGE = "index";
+    public static final String MAIN_PAGE = "main";
+    public static final String CONTACTS_PAGE = "contacts";
+
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Map<String, Object> model) {
         model.put("currentTime", new Date().toString());
-        return "index";
+        return INDEX_PAGE;
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainPage() {
-        return "main";
+        return MAIN_PAGE;
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String getPageContacts() {
-        return "contacts";
+        return CONTACTS_PAGE;
     }
 
 }

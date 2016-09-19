@@ -10,15 +10,15 @@
 <h3>Our personal</h3>
 <table style="align-items: center" border="1">
     <tr>
-        <th> First name </th>
-        <th> Last name </th>
-        <th> Position </th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Position</th>
     </tr>
     <c:forEach var="employee" items="${employees}">
         <tr>
-            <td> <a href="${path}/employee/${employee.name}"> ${employee.name} </a> </td>
-            <td> ${employee.surname} </td>
-            <td> ${employee.job.position} </td>
+            <td><a href="${path}/employee/${employee.name}">${employee.name}</a></td>
+            <td>${employee.surname}</td>
+            <td>${employee.job.position}</td>
         </tr>
     </c:forEach>
 

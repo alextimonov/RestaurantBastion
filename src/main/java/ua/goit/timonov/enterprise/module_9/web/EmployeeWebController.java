@@ -16,32 +16,32 @@ import java.util.Map;
 @Controller
 public class EmployeeWebController {
 
+    public static final String EMPLOYEES_PAGE = "employees";
+    public static final String WAITERS_PAGE = "waiters";
+    public static final String EMPLOYEE_PAGE = "employee";
     private EmployeeService employeeService;
 
     @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
+    public EmployeeWebController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public String employees(Map<String, Object> model) {
         model.put("employees", employeeService.getAllEmployees());
-        return "employees";
+        return EMPLOYEES_PAGE;
     }
 
     @RequestMapping(value = "/employee/{employeeName}", method = RequestMethod.GET)
     public ModelAndView employees(@PathVariable("employeeName") String employeeName) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView(EMPLOYEE_PAGE);
         modelAndView.addObject("employee", employeeService.getEmployeeByName(employeeName));
-        modelAndView.setViewName("employee");
         return modelAndView;
     }
 
     @RequestMapping(value = "/waiters", method = RequestMethod.GET)
     public String waiters(Map<String, Object> model) {
         model.put("waiters", employeeService.getWaiters());
-        return "waiters";
+        return WAITERS_PAGE;
     }
-
-
 }

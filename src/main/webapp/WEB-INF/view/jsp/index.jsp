@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title> My Restaurant </title>
+    <title>My Restaurant </title>
 </head>
 <body>
 <h2>Restaurant Bastion. Service page</h2>

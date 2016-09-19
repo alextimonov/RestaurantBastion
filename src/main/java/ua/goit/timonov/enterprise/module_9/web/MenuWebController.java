@@ -17,24 +17,26 @@ import java.util.Map;
 @Controller
 public class MenuWebController {
 
+    public static final String MENUS_PAGE = "menus";
+    public static final String SCHEME_PAGE = "scheme";
+    public static final String MENU_PAGE = "menu";
     private MenuService menuService;
 
     @Autowired
-    public void setMenuService(MenuService menuService) {
+    public MenuWebController(MenuService menuService) {
         this.menuService = menuService;
     }
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     public String menus(Map<String, Object> model) {
         model.put("menus", menuService.getAllMenus());
-        return "menus";
+        return MENUS_PAGE;
     }
 
     @RequestMapping(value = "/menu/{menuName}", method = RequestMethod.GET)
     public ModelAndView menu(@PathVariable("menuName") String menuName) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView(MENU_PAGE);
         modelAndView.addObject("menu", menuService.getMenuByName(menuName));
-        modelAndView.setViewName("menu");
         return modelAndView;
     }
 
@@ -42,7 +44,6 @@ public class MenuWebController {
     public String invokeSchemePage(Map<String, Object> model) {
         Object file = "";
         model.put("scheme", file);
-        return "scheme";
+        return SCHEME_PAGE;
     }
-
 }

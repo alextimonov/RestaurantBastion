@@ -9,18 +9,18 @@
 <table style="align-items: center" border="1">
     <thead>Dish. Detail info</thead>
     <tr>
-        <th> ID </th>
-        <th> Dish name </th>
-        <th> Description </th>
-        <th> Weight </th>
-        <th> Cost </th>
+        <th>ID</th>
+        <th>Dish name</th>
+        <th>Description</th>
+        <th>Weight</th>
+        <th>Cost</th>
     </tr>
     <tr>
-        <td> ${dish.id} </td>
-        <td> ${dish.name} </td>
-        <td> ${dish.description} </td>
-        <td> ${dish.weight} </td>
-        <td> ${dish.cost} </td>
+        <td>${dish.id}</td>
+        <td>${dish.name}</td>
+        <td>${dish.description}</td>
+        <td>${dish.weight}</td>
+        <td>${dish.cost}</td>
     </tr>
 </table>
 <br>
@@ -29,13 +29,13 @@
 <table style="align-items: center" border="1">
     <thead>Dish's ingredients</thead>
     <tr>
-        <th> ID </th>
-        <th> Ingredient name </th>
+        <th>ID</th>
+        <th>Ingredient name</th>
     </tr>
     <c:forEach var="ingredient" items="${ingredients}">
         <tr>
-            <td> ${ingredient.id} </td>
-            <td> ${ingredient.name} </td>
+            <td>${ingredient.id}</td>
+            <td>${ingredient.name}</td>
         </tr>
     </c:forEach>
 

@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <c:set var="path" value="${pageContext.request.contextPath}/Restaurant"/>
 
 <html>
@@ -13,17 +13,17 @@
     <h3>Menu ${menu.name}</h3>
     <table border="1">
         <tr>
-            <th> ID </th>
-            <th> Dish name </th>
-            <th> Weight </th>
-            <th> Cost </th>
+            <th>ID</th>
+            <th>Dish name</th>
+            <th>Weight</th>
+            <th>Cost</th>
         </tr>
         <c:forEach var="dish" items="${menu.dishes}">
             <tr>
-                <td> ${dish.id} </td>
-                <td> <a href="${path}/dish/${dish.name}"> ${dish.name} </a> </td>
-                <td> ${dish.weight}</td>
-                <td> ${dish.cost} </td>
+                <td>${dish.id}</td>
+                <td><a href="${path}/dish/${dish.name}">${dish.name}</a></td>
+                <td>${dish.weight}</td>
+                <td>${dish.cost} </td>
             </tr>
         </c:forEach>
     </table>

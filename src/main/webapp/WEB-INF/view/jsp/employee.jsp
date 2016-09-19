@@ -10,20 +10,20 @@
 <table style="align-items: center" border="1">
     <thead>Employee. Detail info</thead>
     <tr>
-        <th> ID </th>
-        <th> First name </th>
-        <th> Last name </th>
-        <th> Position </th>
-        <th> Salary </th>
-        <th> Birthday </th>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Position</th>
+        <th>Salary</th>
+        <th>Birthday</th>
     </tr>
     <tr>
-        <td> ${employee.id} </td>
-        <td> ${employee.name} </td>
-        <td> ${employee.surname} </td>
-        <td> ${employee.job.position} </td>
-        <td> ${employee.salary} </td>
-        <td> ${employee.birthday} </td>
+        <td>${employee.id}</td>
+        <td>${employee.name}</td>
+        <td>${employee.surname}</td>
+        <td>${employee.job.position}</td>
+        <td>${employee.salary}</td>
+        <td>${employee.birthday}</td>
     </tr>
 
 </table>
