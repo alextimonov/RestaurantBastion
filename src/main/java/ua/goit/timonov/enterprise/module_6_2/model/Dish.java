@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dish")
 public class Dish {
+
     /* unique id in the DB table */
     @Id
     @GeneratedValue(generator = "increment")
@@ -98,8 +99,8 @@ public class Dish {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", cost=" + cost +
                 ", weight=" + weight +
+                ", cost=" + cost +
                 '}';
     }
 

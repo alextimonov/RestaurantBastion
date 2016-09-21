@@ -2,12 +2,14 @@ package ua.goit.timonov.enterprise.module_6_2.dao.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
+import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of DishDAO
@@ -15,9 +17,14 @@ import java.util.Map;
 public class JdbcDishDAO implements DishDAO {
 
     private JdbcTemplate template;
+    private JdbcStorageDAO jdbcStorageDAO;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.template = jdbcTemplate;
+    }
+
+    public void setJdbcStorageDAO(JdbcStorageDAO jdbcStorageDAO) {
+        this.jdbcStorageDAO = jdbcStorageDAO;
     }
 
     /**
@@ -61,6 +68,17 @@ public class JdbcDishDAO implements DishDAO {
         template.update(sql, name);
     }
 
+    @Override
+    public List<Ingredient> defineDishIngredients(Dish dish) {
+        String sql = "SELECT Ingredient.* \n" +
+                "FROM (Ingredient INNER JOIN Ingredient_to_dish ON Ingredient_to_dish.ingredient_id = Ingredient.id) \n" +
+                "WHERE Ingredient_to_dish.dish_id = ?";
+        List<Map<String, Object>> mapList = template.queryForList(sql, dish.getId());
+        return mapList.stream()
+                .map(row -> jdbcStorageDAO.getIngredientFromMap(row))
+                .collect(Collectors.toList());
+    }
+
     /**
      * searches dish in DB by name
      * @param name           name of dish to find
@@ -100,7 +118,9 @@ public class JdbcDishDAO implements DishDAO {
             Dish dish = getDishFromMap(row);
             result.add(dish);
         }
-        return result;
+        return mapList.stream()
+                .map(row -> getDishFromMap(row))
+                .collect(Collectors.toList());
     }
 
     @Transactional

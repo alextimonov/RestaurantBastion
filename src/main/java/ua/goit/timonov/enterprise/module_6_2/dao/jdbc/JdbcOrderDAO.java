@@ -4,12 +4,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.OrderDAO;
-import ua.goit.timonov.enterprise.module_6_2.model.*;
+import ua.goit.timonov.enterprise.module_6_2.model.Dish;
+import ua.goit.timonov.enterprise.module_6_2.model.Employee;
+import ua.goit.timonov.enterprise.module_6_2.model.Order;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of OrderDAO
@@ -152,12 +154,9 @@ public class JdbcOrderDAO implements OrderDAO {
         String sql = "SELECT * FROM Orders WHERE closed = 'FALSE'";
         List<Map<String, Object>> mapList = template.queryForList(sql);
 
-        List<Order> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            Order order = getOrderFromMap(row);
-            result.add(order);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getOrderFromMap(row))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -170,13 +169,9 @@ public class JdbcOrderDAO implements OrderDAO {
     public List<Order> getClosedOrders() {
         String sql = "SELECT * FROM Orders WHERE closed = 'TRUE'";
         List<Map<String, Object>> mapList = template.queryForList(sql);
-
-        List<Order> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            Order order = getOrderFromMap(row);
-            result.add(order);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getOrderFromMap(row))
+                .collect(Collectors.toList());
     }
 
     private Order getOrderFromMap(Map<String, Object> map) {
@@ -198,11 +193,8 @@ public class JdbcOrderDAO implements OrderDAO {
                 "WHERE Dish_to_orders.order_id = ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, orderId);
 
-        List<Dish> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            Dish dish = jdbcDishDAO.getDishFromMap(row);
-            result.add(dish);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> jdbcDishDAO.getDishFromMap(row))
+                .collect(Collectors.toList());
     }
 }

@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
+import ua.goit.timonov.enterprise.module_6_2.model.Waiter;
 
 import java.util.List;
 
@@ -60,15 +61,14 @@ public class HibernateEmployeeDao implements EmployeeDAO {
 
     /**
      * searches employee in DB by its full name (surname & name)
-     * @param surname        surname of employee to find
-     * @param name           name of employee to find
+     * @param name           name, surname of employee to find
      * @return name          found employee
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
     @Transactional
-    public Employee search(String name, String surname) {
-        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Employee.class, name, surname);
+    public Employee search(String... name) {
+        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Employee.class, name);
     }
 
     /**
@@ -94,5 +94,13 @@ public class HibernateEmployeeDao implements EmployeeDAO {
     public void delete(String name, String surname) {
         Employee employee = search(name, surname);
         sessionFactory.getCurrentSession().remove(employee);
+    }
+
+    @Override
+    @Transactional
+    public List<Waiter> getWaiters() {
+        JpaCriteriaQueries<Waiter> hDaoCriteriaQueries = new JpaCriteriaQueries();
+        List<Waiter> waiters = hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Waiter.class);
+        return waiters;
     }
 }

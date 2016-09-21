@@ -8,6 +8,7 @@ import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of StorageDAO
@@ -31,11 +32,9 @@ public class JdbcStorageDAO implements StorageDAO {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT * FROM Ingredient";
         List<Map<String, Object>> mapList = template.queryForList(sql);
-        for (Map<String, Object> row : mapList) {
-            Ingredient ingredient = getIngredientFromMap(row);
-            result.add(ingredient);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getIngredientFromMap(row))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -120,7 +119,7 @@ public class JdbcStorageDAO implements StorageDAO {
 
     // gets ingredient from SQL query's map
     @Transactional
-    private Ingredient getIngredientFromMap(Map<String, Object> map) {
+    public Ingredient getIngredientFromMap(Map<String, Object> map) {
         Ingredient ingredient = new Ingredient();
         ingredient.setId((Integer) map.get("id"));
         ingredient.setName((String) map.get("name"));
@@ -139,10 +138,8 @@ public class JdbcStorageDAO implements StorageDAO {
         List<Ingredient> result = new ArrayList<>();
         String sql = "SELECT * FROM Ingredient WHERE amount <= ?";
         List<Map<String, Object>> mapList = template.queryForList(sql, limit);
-        for (Map<String, Object> row : mapList) {
-            Ingredient ingredient = getIngredientFromMap(row);
-            result.add(ingredient);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getIngredientFromMap(row))
+                .collect(Collectors.toList());
     }
 }

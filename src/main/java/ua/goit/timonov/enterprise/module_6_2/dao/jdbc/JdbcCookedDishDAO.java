@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.CookedDishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * JDBC implementation of CookedDishDAO
@@ -32,13 +32,9 @@ public class JdbcCookedDishDAO implements CookedDishDAO {
     public List<CookedDish> getAll() {
         String sql = "SELECT * FROM Cooked_dish";
         List<Map<String, Object>> mapList = template.queryForList(sql);
-
-        List<CookedDish> result = new ArrayList<>();
-        for (Map<String, Object> row : mapList) {
-            CookedDish cookedDish = getCookedDishFromMap(row);
-            result.add(cookedDish);
-        }
-        return result;
+        return mapList.stream()
+                .map(row -> getCookedDishFromMap(row))
+                .collect(Collectors.toList());
     }
 
     /**
