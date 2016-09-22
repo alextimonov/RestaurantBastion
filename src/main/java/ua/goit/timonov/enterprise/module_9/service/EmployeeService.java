@@ -33,4 +33,14 @@ public class EmployeeService {
         List<Waiter> waiters = employeeDAO.getWaiters();
         return waiters;
     }
+
+    @Transactional
+    public Employee searchById(Integer orderId) {
+        return employeeDAO.search(orderId);
+    }
+
+    @Transactional
+    public Employee searchByName(String... name) {
+        return employeeDAO.search(name);
+    }
 }

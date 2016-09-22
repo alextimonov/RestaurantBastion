@@ -1,6 +1,8 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.GenericGenerator;
+import ua.goit.timonov.enterprise.module_9.view.JsonMenuViews;
 
 import javax.persistence.*;
 
@@ -16,10 +18,12 @@ public class Dish {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
+    @JsonView(JsonMenuViews.OnlyNames.class)
     private int id;
 
     /* dish's name */
     @Column(name = "name")
+    @JsonView(JsonMenuViews.OnlyNames.class)
     private String name;
 
     /* dish' description */

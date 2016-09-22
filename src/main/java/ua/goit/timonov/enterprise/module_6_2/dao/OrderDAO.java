@@ -66,5 +66,12 @@ public interface OrderDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     List<Order> getClosedOrders();
+
+    /**
+     * finds list of all orders in DB
+     * @return          list of all orders
+     * throws           EmptyResultDataAccessException, DataAccessException
+     */
+    List<Order> getAllOrders();
 }
 

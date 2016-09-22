@@ -6,11 +6,11 @@
     <artifactId>GoITEnterprise</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>CalcLib</module>
-        <module>AppCalc</module>
-        <module>ToDoList</module>
+        <!--<module>CalcLib</module>-->
+        <!--<module>AppCalc</module>-->
+        <!--<module>ToDoList</module>-->
     </modules>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <name>GoITEnterprise</name>
     <url>http://maven.apache.org</url>
@@ -30,6 +30,7 @@
         <hibernateJpaApiVersion>1.0.0.Final</hibernateJpaApiVersion>
         <ehcasheVersion>2.10.2</ehcasheVersion>
         <jstlVersion>1.2</jstlVersion>
+        <jacksonVersion>2.8.2</jacksonVersion>
     </properties>
 
     <dependencies>
@@ -121,16 +122,19 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernateVersion}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${springVersion}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${springVersion}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
@@ -144,6 +148,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -154,6 +164,16 @@
                 <configuration>
                     <source>${javaVersion}</source>
                     <target>${javaVersion}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

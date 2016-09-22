@@ -1,12 +1,10 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -35,7 +33,6 @@ public class Employee {
 
     /* employee's date of birthday */
     @Column(name = "birthday")
-//    @Temporal(TemporalType.TIMESTAMP)
     protected Date birthday;
 
     /* employee's salary */
@@ -48,6 +45,10 @@ public class Employee {
     protected Job job;
 
     public Employee() {
+    }
+
+    public Employee(String name) {
+        this.name = name;
     }
 
     public int getId() {

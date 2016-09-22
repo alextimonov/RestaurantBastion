@@ -8,6 +8,7 @@ import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -172,6 +173,19 @@ public class JdbcOrderDAO implements OrderDAO {
         return mapList.stream()
                 .map(row -> getOrderFromMap(row))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        String sql = "SELECT * FROM Orders";
+        List<Map<String, Object>> mapList = template.queryForList(sql);
+
+        List<Order> result = new ArrayList<>();
+        for (Map<String, Object> row : mapList) {
+            Order order = getOrderFromMap(row);
+            result.add(order);
+        }
+        return result;
     }
 
     private Order getOrderFromMap(Map<String, Object> map) {

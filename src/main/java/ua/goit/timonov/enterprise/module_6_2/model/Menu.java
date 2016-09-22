@@ -1,6 +1,8 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.GenericGenerator;
+import ua.goit.timonov.enterprise.module_9.view.JsonMenuViews;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,10 +19,12 @@ public class Menu {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
+    @JsonView(JsonMenuViews.OnlyNames.class)
     private int id;
 
     /* dish menu's name */
     @Column(name = "name")
+    @JsonView(JsonMenuViews.OnlyNames.class)
     private String name;
 
     /* dishes in menu */
@@ -29,6 +33,7 @@ public class Menu {
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
+    @JsonView(JsonMenuViews.NamesWithDishes.class)
     private List<Dish> dishes;
 
     public Menu() {
