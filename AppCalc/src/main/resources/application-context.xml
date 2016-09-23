@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id = "appCalc" class = "ua.goit.timonov.enterprise.AppCalc">
+        <constructor-arg name="calc" ref="calc"/>
+        <constructor-arg name="inputOutput" ref="inputOutput"/>
+    </bean>
+
+    <bean id = "calc" class="ua.goit.timonov.enterprise.CalcNumbers">
+        <constructor-arg name="expressionTypeIdentifier" ref="expressionTypeIdentifier"/>
+        <constructor-arg name="stringParser" ref="stringParser"/>
+
+        <property name="expressionProvider" ref="expressionProvider"/>
+    </bean>
+
+    <bean id = "inputOutput" class="ua.goit.timonov.enterprise.InputOutput"/>
+
+    <bean id="expressionTypeIdentifier" class="ua.goit.timonov.enterprise.ExpressionTypeIdentifierForApp"/>
+    <bean id="stringParser" class="ua.goit.timonov.enterprise.ParserToStringExpressionForApp"/>
+
+    <bean id="expressionProvider" class="ua.goit.timonov.enterprise.ExpressionProvider">
+        <property name="expressionFactoryMap">
+        <util:map>
+            <entry key="IntegerPlus" value-ref="expressionFactoryIntegerPlus"/>
+            <entry key="IntegerMinus" value-ref="expressionFactoryIntegerMinus"/>
+            <entry key="LongPlus" value-ref="expressionFactoryLongPlus"/>
+            <entry key="LongMinus" value-ref="expressionFactoryLongMinus"/>
+            <entry key="FloatPlus" value-ref="expressionFactoryFloatPlus"/>
+            <entry key="FloatMinus" value-ref="expressionFactoryFloatMinus"/>
+            <entry key="DoublePlus" value-ref="expressionFactoryDoublePlus"/>
+            <entry key="DoubleMinus" value-ref="expressionFactoryDoubleMinus"/>
+            
+            <entry key="SquareRoot" value-ref="expressionFactorySquareRoot"/>
+            <entry key="Logarithm" value-ref="expressionFactoryLogarithm"/>
+            <entry key="Factorial" value-ref="expressionFactoryFactorial"/>
+
+            <entry key="IntegerMultiply" value-ref="expressionFactoryIntegerMultiply"/>
+            <entry key="IntegerDivide" value-ref="expressionFactoryIntegerDivide"/>
+            <entry key="LongMultiply" value-ref="expressionFactoryLongMultiply"/>
+            <entry key="LongDivide" value-ref="expressionFactoryLongDivide"/>
+            <entry key="FloatMultiply" value-ref="expressionFactoryFloatMultiply"/>
+            <entry key="FloatDivide" value-ref="expressionFactoryFloatDivide"/>
+            <entry key="DoubleMultiply" value-ref="expressionFactoryDoubleMultiply"/>
+            <entry key="DoubleDivide" value-ref="expressionFactoryDoubleDivide"/>
+        </util:map>
+        </property>
+    </bean>
+
+    <bean id="expressionIntegerPlus" class="ua.goit.timonov.enterprise.ExpressionIntegerPlus" />
+    <bean id="expressionIntegerMinus" class="ua.goit.timonov.enterprise.ExpressionIntegerMinus" />
+    <bean id="expressionLongPlus" class="ua.goit.timonov.enterprise.ExpressionLongPlus" />
+    <bean id="expressionLongMinus" class="ua.goit.timonov.enterprise.ExpressionLongMinus" />
+    <bean id="expressionFloatPlus" class="ua.goit.timonov.enterprise.ExpressionFloatPlus" />
+    <bean id="expressionFloatMinus" class="ua.goit.timonov.enterprise.ExpressionFloatMinus" />
+    <bean id="expressionDoublePlus" class="ua.goit.timonov.enterprise.ExpressionDoublePlus" />
+    <bean id="expressionDoubleMinus" class="ua.goit.timonov.enterprise.ExpressionDoublePlus" />
+    
+    <bean id="expressionSquareRoot" class="ua.goit.timonov.enterprise.ExpressionSquareRoot" />
+    <bean id="expressionLogarithm" class="ua.goit.timonov.enterprise.ExpressionLogarithm" />
+    <bean id="expressionFactorial" class="ua.goit.timonov.enterprise.ExpressionFactorial" />
+
+    <bean id="expressionIntegerMultiply" class="ua.goit.timonov.enterprise.ExpressionIntegerMultiply" />
+    <bean id="expressionIntegerDivide" class="ua.goit.timonov.enterprise.ExpressionIntegerDivide" />
+    <bean id="expressionLongMultiply" class="ua.goit.timonov.enterprise.ExpressionLongMultiply" />
+    <bean id="expressionLongDivide" class="ua.goit.timonov.enterprise.ExpressionLongDivide" />
+    <bean id="expressionFloatMultiply" class="ua.goit.timonov.enterprise.ExpressionFloatMultiply" />
+    <bean id="expressionFloatDivide" class="ua.goit.timonov.enterprise.ExpressionFloatDivide" />
+    <bean id="expressionDoubleMultiply" class="ua.goit.timonov.enterprise.ExpressionDoubleMultiply" />
+    <bean id="expressionDoubleDivide" class="ua.goit.timonov.enterprise.ExpressionDoubleMultiply" />
+    
+
+    <bean id="expressionFactoryIntegerPlus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionIntegerPlus"/>
+    </bean>
+    <bean id="expressionFactoryIntegerMinus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionIntegerMinus"/>
+    </bean>
+
+    <bean id="expressionFactoryLongPlus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionLongPlus"/>
+    </bean>
+    <bean id="expressionFactoryLongMinus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionLongMinus"/>
+    </bean>
+
+    <bean id="expressionFactoryFloatPlus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionFloatPlus"/>
+    </bean>
+    <bean id="expressionFactoryFloatMinus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionFloatMinus"/>
+    </bean>
+
+    <bean id="expressionFactoryDoublePlus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionDoublePlus"/>
+    </bean>
+    <bean id="expressionFactoryDoubleMinus" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionDoubleMinus"/>
+    </bean>
+
+    <bean id="expressionFactorySquareRoot" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionSquareRoot"/>
+    </bean>
+    <bean id="expressionFactoryLogarithm" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionLogarithm"/>
+    </bean>
+    <bean id="expressionFactoryFactorial" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionFactorial"/>
+    </bean>
+
+    <bean id="expressionFactoryIntegerMultiply" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionIntegerMultiply"/>
+    </bean>
+    <bean id="expressionFactoryIntegerDivide" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionIntegerDivide"/>
+    </bean>
+
+    <bean id="expressionFactoryLongMultiply" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionLongMultiply"/>
+    </bean>
+    <bean id="expressionFactoryLongDivide" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionLongDivide"/>
+    </bean>
+
+    <bean id="expressionFactoryFloatMultiply" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionFloatMultiply"/>
+    </bean>
+    <bean id="expressionFactoryFloatDivide" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionFloatDivide"/>
+    </bean>
+
+    <bean id="expressionFactoryDoubleMultiply" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionDoubleMultiply"/>
+    </bean>
+    <bean id="expressionFactoryDoubleDivide" class="ua.goit.timonov.enterprise.ExpressionFactory">
+        <lookup-method name="getExpression" bean="expressionDoubleDivide"/>
+    </bean>
+
+</beans>
+

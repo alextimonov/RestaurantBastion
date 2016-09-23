@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="employeeService" class="ua.goit.timonov.enterprise.module_9.service.EmployeeService"/>
+    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateEmployeeDao"/>
+
+    <bean id="dishService" class="ua.goit.timonov.enterprise.module_9.service.DishService"/>
+    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateDishDao"/>
+
+    <bean id="menuService" class="ua.goit.timonov.enterprise.module_9.service.MenuService"/>
+    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateMenuDao"/>
+
+    <bean id="orderService" class="ua.goit.timonov.enterprise.module_9.service.OrderService"/>
+    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateOrderDao"/>
+
+</beans>
+
+
