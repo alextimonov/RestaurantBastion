@@ -56,7 +56,7 @@ public abstract class TestList implements Test {
 
     /**
      * makes once only one type of operation
-     * @param index     index of element to add, remove etc.
+     * @param index     index of element to add, delete etc.
      * @param value     value of added element, element to search etc.
      */
     public void makeOperation(int index, int value) {

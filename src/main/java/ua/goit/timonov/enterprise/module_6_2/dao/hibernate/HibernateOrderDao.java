@@ -17,7 +17,7 @@ public class HibernateOrderDao implements OrderDAO {
 
     public static final String FIELD_CLOSED = "closed";
     private SessionFactory sessionFactory;
-    private JpaCriteriaQueries<Order> hDaoCriteriaQueries = new JpaCriteriaQueries();
+    private JpaCriteriaQueries<Order> jpaCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -31,7 +31,7 @@ public class HibernateOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getOpenOrders() {
-        return hDaoCriteriaQueries.getAllTypedOrders(sessionFactory, Order.class, false);
+        return jpaCriteriaQueries.getAllTypedOrders(sessionFactory, Order.class, false);
     }
 
     /**
@@ -42,7 +42,13 @@ public class HibernateOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Order> getClosedOrders() {
-        return hDaoCriteriaQueries.getAllTypedOrders(sessionFactory, Order.class, true);
+        return jpaCriteriaQueries.getAllTypedOrders(sessionFactory, Order.class, true);
+    }
+
+    @Override
+    @Transactional
+    public List<Order> getAllOrders() {
+        return jpaCriteriaQueries.getAllEntityItems(sessionFactory, Order.class);
     }
 
     /**
@@ -65,7 +71,7 @@ public class HibernateOrderDao implements OrderDAO {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public Order search(Integer orderId) {
-        return hDaoCriteriaQueries.searchItemById(sessionFactory, Order.class, orderId);
+        return jpaCriteriaQueries.searchItemById(sessionFactory, Order.class, orderId);
     }
 
     /**
@@ -86,7 +92,7 @@ public class HibernateOrderDao implements OrderDAO {
     // returns true if order (given by its ID) is open
     @Transactional(propagation = Propagation.MANDATORY)
     boolean orderIsClosed(int orderId) {
-        Order order = hDaoCriteriaQueries.searchItemById(sessionFactory, Order.class, orderId);
+        Order order = jpaCriteriaQueries.searchItemById(sessionFactory, Order.class, orderId);
         return order.getClosed();
     }
 
@@ -143,7 +149,7 @@ public class HibernateOrderDao implements OrderDAO {
             throw new IllegalArgumentException("Order is not open");
         }
         else {
-            hDaoCriteriaQueries.updateValue(sessionFactory, Order.class, orderId, FIELD_CLOSED, true);
+            jpaCriteriaQueries.updateValue(sessionFactory, Order.class, orderId, FIELD_CLOSED, true);
         }
 
     }

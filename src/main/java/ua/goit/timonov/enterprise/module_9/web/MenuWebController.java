@@ -85,7 +85,7 @@ public class MenuWebController {
 
     private String getMenuFromDatabase(int menuId) {
         try {
-            Menu menu = menuService.getMenuById(menuId);
+            Menu menu = menuService.searchMenuById(menuId);
             return new ObjectMapper().writerWithView(JsonMenuViews.NamesWithDishes.class).writeValueAsString(menu);
         }
         catch (RuntimeException | JsonProcessingException e) {

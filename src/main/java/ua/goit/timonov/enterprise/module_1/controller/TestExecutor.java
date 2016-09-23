@@ -63,7 +63,7 @@ public class TestExecutor <T> {
     }
 
     public void printToFrameTable(JTable table) {
-        String[] columnNames = {"Type", "populate", "add", "get", "remove", "contains", "iterator.add", "iterator.remove"};
+        String[] columnNames = {"Type", "populate", "add", "get", "delete", "contains", "iterator.add", "iterator.delete"};
         for (int j = 0; j < table.getColumnCount(); j++) {
             table.setValueAt(columnNames[j], 0, j);
         }

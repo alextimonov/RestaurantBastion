@@ -41,4 +41,30 @@ public class DishService {
     public Dish searchDishByName(String dishName) {
         return dishDAO.search(dishName);
     }
+
+
+    @Transactional
+    public void add(Dish dish) {
+        dishDAO.add(dish);
+    }
+
+    @Transactional
+    public void delete(int dishId) {
+        dishDAO.delete(dishId);
+    }
+
+    @Transactional
+    public void delete(String dishName) {
+        dishDAO.delete(dishName);
+    }
+
+    @Transactional
+    public Dish searchDishById(Integer dishId) {
+        return dishDAO.search(dishId);
+    }
+
+    @Transactional
+    public void update(Dish dish) {
+        dishDAO.update(dish);
+    }
 }

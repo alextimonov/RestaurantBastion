@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>My Restaurant|Menu</title>
+    <title>Bastion|Menu</title>
 </head>
 <table style="align-items: center" border="1">
     <thead>Menu</thead>

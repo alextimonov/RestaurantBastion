@@ -171,7 +171,7 @@ public class LinkedListSimple<E> implements List<E> {
      * @throws NullPointerException          if the specified element is null and this
      *                                       list does not permit null elements
      *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws UnsupportedOperationException if the <tt>remove</tt> operation
+     * @throws UnsupportedOperationException if the <tt>delete</tt> operation
      *                                       is not supported by this list
      */
     @Override
@@ -388,7 +388,7 @@ public class LinkedListSimple<E> implements List<E> {
      *
      * @param index the index of the element to be removed
      * @return the element previously at the specified position
-     * @throws UnsupportedOperationException if the <tt>remove</tt> operation
+     * @throws UnsupportedOperationException if the <tt>delete</tt> operation
      *                                       is not supported by this list
      * @throws IndexOutOfBoundsException     if the index is out of range
      *                                       (<tt>index &lt; 0 || index &gt;= size()</tt>)

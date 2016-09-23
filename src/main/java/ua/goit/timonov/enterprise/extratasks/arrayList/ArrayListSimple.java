@@ -303,7 +303,7 @@ public class ArrayListSimple<E> implements List<E>  {
         return (E) data[index];
     }
 
-    // checks if the index is in the appropriate range for get, set and remove operations
+    // checks if the index is in the appropriate range for get, set and delete operations
     private void rangeCheckForGetSetRemove(int index) {
         if (index < 0 || index >= currentSize) {
             int rightBound = currentSize - 1;

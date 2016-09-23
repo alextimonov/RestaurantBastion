@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.module_1.logic;
 
 /**
- * Class with "empty testLock" as there are no operations get(), iterator.add(), iterator.remove for Sets
+ * Class with "empty testLock" as there are no operations get(), iterator.add(), iterator.delete for Sets
  */
 public class EmptyTest implements Test {
     private long elapsedTime = 0;

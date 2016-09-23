@@ -80,7 +80,7 @@ public class TableToStrings {
     // prepares string with headers
     private String printColumnHeaders() {
         final StringBuilder sb = new StringBuilder();
-        String[] columnNames = {"Type", "populate", "add", "get", "remove", "contains", "iterator.add", "iterator.remove"};
+        String[] columnNames = {"Type", "populate", "add", "get", "delete", "contains", "iterator.add", "iterator.delete"};
         for (String columnName : columnNames) {
             sb.append(BORDER).append(SPACE).append(columnName).append(getSpaces(columnName, COLUMN_WIDTH));
         }

@@ -79,6 +79,12 @@ public class JdbcDishDAO implements DishDAO {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void update(Dish dish) {
+        String sql = "UPDATE Dish SET name = ?, description = ?, cost = ?, weight = ? WHERE id = ?";
+        template.update(sql, dish.getName(), dish.getDescription(), dish.getCost(), dish.getWeight(), dish.getId());
+    }
+
     /**
      * searches dish in DB by name
      * @param name           name of dish to find
