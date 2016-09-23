@@ -49,9 +49,7 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public Dish search(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(Dish.class, id);
-//        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
+        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
     }
 
     /**

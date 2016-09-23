@@ -3,10 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="restaurantApp" class="ua.goit.timonov.enterprise.module_6_2.RestaurantApp">
-        <property name="mainMenu" ref="mainMenu"/>
-    </bean>
-
     <bean id="employeeController" class="ua.goit.timonov.enterprise.module_6_2.controllers.EmployeeController">
         <property name="employeeDAO" ref="employeeDAO"/>
     </bean>
@@ -62,46 +58,6 @@
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean id="mainMenu" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MainMenu">
-        <property name="menuName" value="Restaurant (main menu)"/>
-        <property name="employeesHandler" ref="employeesHandler"/>
-        <property name="dishesHandler" ref="dishesHandler"/>
-        <property name="ordersHandler" ref="ordersHandler"/>
-        <property name="menusHandler" ref="menusHandler"/>
-        <property name="cookedDishHandler" ref="cookedDishHandler"/>
-        <property name="storageHandler" ref="storageHandler"/>
-    </bean>
-
-    <bean id="employeesHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.EmployeesHandler">
-        <property name="employeeController" ref="employeeController"/>
-    </bean>
-
-    <bean id="dishesHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.DishesHandler">
-        <property name="dishController" ref="dishController"/>
-    </bean>
-
-    <bean id="menusHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.MenusHandler">
-        <property name="menuController" ref="menuController"/>
-        <property name="dishController" ref="dishController"/>
-    </bean>
-
-    <bean id="ordersHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.OrdersHandler">
-        <property name="orderController" ref="orderController"/>
-        <property name="dishController" ref="dishController"/>
-        <property name="employeeController" ref="employeeController"/>
-    </bean>
-
-    <bean id="cookedDishHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.CookedDishHandler">
-        <property name="cookedDishController" ref="cookedDishController"/>
-        <property name="dishController" ref="dishController"/>
-        <property name="employeeController" ref="employeeController"/>
-        <property name="orderController" ref="orderController"/>
-    </bean>
-
-    <bean id="storageHandler" class="ua.goit.timonov.enterprise.module_6_2.view.menus.StorageHandler">
-        <property name="storageController" ref="storageController"/>
     </bean>
 
     <bean id="dbController" class="ua.goit.timonov.enterprise.module_6_2.controllers.DbController">
