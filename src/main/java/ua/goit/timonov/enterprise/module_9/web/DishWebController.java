@@ -7,60 +7,61 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.NoItemInDbException;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
+import ua.goit.timonov.enterprise.module_6_2.model.IngredientsInDish;
 import ua.goit.timonov.enterprise.module_9.service.DishService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Controller for mapping requests to Dish pages
  */
-
 @Controller
 public class DishWebController {
 
-    public static final String DISHES_PAGE = "dishes";
-    public static final String DISH_PAGE = "dish";
-    public static final String NOT_FOUND_PAGE = "itemNotFound";
-    public static final String FIND_BY_NAME_PAGE = "findDishByName";
     private DishService dishService;
 
     @Autowired
-    public DishWebController(DishService dishService) {
+    public void setDishService(DishService dishService) {
         this.dishService = dishService;
     }
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
     public String getDishes(Map<String, Object> model) {
         model.put("dishes", dishService.getAllDishes());
-        return DISHES_PAGE;
+        return "dishes";
     }
 
     @RequestMapping(value = "/dish/{dishName}", method = RequestMethod.GET)
     public ModelAndView getDish(@PathVariable("dishName") String dishName) {
-        ModelAndView modelAndView = new ModelAndView(DISH_PAGE);
+        ModelAndView modelAndView = new ModelAndView("dish");
         Dish dish = dishService.getDishByName(dishName);
         modelAndView.addObject("dish", dish);
-        modelAndView.addObject("ingredients", dishService.getIngredientsByDish(dish));
+//        modelAndView.addObject("ingredients", dishService.getIngredientsByDish(dish));
+        List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
+        modelAndView.addObject("itemsInDish", items);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/findDishByName", method = RequestMethod.GET)
+    @RequestMapping(value = "/findDish", method = RequestMethod.GET)
     public String findDish() {
-        return FIND_BY_NAME_PAGE;
+        return "findDish";
     }
 
     @RequestMapping(value = "/searchDish", method = RequestMethod.GET)
-    public String searchDishParam(@RequestParam("dishName") String dishName, Map<String, Object> model) {
+    public String searchDishParam(Map<String, Object> model, @RequestParam("dishName") String dishName) {
         try {
             Dish dish = dishService.searchDishByName(dishName);
             model.put("dish", dish);
             model.put("ingredients", dishService.getIngredientsByDish(dish));
-            return DISH_PAGE;
+            return "dish";
         }
-        catch (RuntimeException e) {
-            model.put("itemName", dishName);
-            return NOT_FOUND_PAGE;
+        catch (NoItemInDbException e) {
+            model.put("dishName", dishName);
+            model.put("errorMessage", e.getMessage());
+            return "dishNotFound";
         }
     }
 }

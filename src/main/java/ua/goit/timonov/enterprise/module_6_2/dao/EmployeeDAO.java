@@ -54,5 +54,15 @@ public interface EmployeeDAO {
      */
     void delete(String name, String surname);
 
+    /**
+     * returns list of waiters
+     * @return      list of waiters
+     */
     List<Waiter> getWaiters();
+
+    /**
+     * updates employee's data in DB
+     * @param employee      given employee with data
+     */
+    void update(Employee employee);
 }

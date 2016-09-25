@@ -1,8 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.GenericGenerator;
-import ua.goit.timonov.enterprise.module_9.view.JsonMenuViews;
 
 import javax.persistence.*;
 
@@ -18,12 +16,10 @@ public class Dish {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    @JsonView(JsonMenuViews.OnlyNames.class)
     private int id;
 
     /* dish's name */
     @Column(name = "name")
-    @JsonView(JsonMenuViews.OnlyNames.class)
     private String name;
 
     /* dish' description */
@@ -115,9 +111,8 @@ public class Dish {
 
         Dish dish = (Dish) o;
 
-        if (id != dish.id) return false;
-        if (Float.compare(dish.cost, cost) != 0) return false;
         if (weight != dish.weight) return false;
+        if (Float.compare(dish.cost, cost) != 0) return false;
         if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
         return description != null ? description.equals(dish.description) : dish.description == null;
 
@@ -125,11 +120,10 @@ public class Dish {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (cost != +0.0f ? Float.floatToIntBits(cost) : 0);
         result = 31 * result + weight;
+        result = 31 * result + (cost != +0.0f ? Float.floatToIntBits(cost) : 0);
         return result;
     }
 }

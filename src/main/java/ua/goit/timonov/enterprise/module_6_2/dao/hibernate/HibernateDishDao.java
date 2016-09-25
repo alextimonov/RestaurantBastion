@@ -1,13 +1,17 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.ForbidToDeleteException;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.NoItemInDbException;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 import ua.goit.timonov.enterprise.module_6_2.model.IngredientsInDish;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +21,7 @@ import java.util.stream.Collectors;
 public class HibernateDishDao implements DishDAO {
 
     private SessionFactory sessionFactory;
-    private JpaCriteriaQueries<Dish> hDaoCriteriaQueries = new JpaCriteriaQueries();
+    private JpaCriteriaQueries<Dish> jpaCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -26,7 +30,7 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public List<Dish> getAll() {
-        return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Dish.class);
+        return jpaCriteriaQueries.getAllEntityItems(sessionFactory, Dish.class);
     }
 
     /**
@@ -49,7 +53,14 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public Dish search(int id) {
-        return hDaoCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
+        try {
+            return jpaCriteriaQueries.searchItemById(sessionFactory, Dish.class, id);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            throw new NoItemInDbException("There's no dish with id=" + id + " in database!");
+        }
+//        Session session = sessionFactory.getCurrentSession();
+//        return session.get(Dish.class, id);
     }
 
     /**
@@ -61,7 +72,12 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public Dish search(String name) {
-        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Dish.class, name);
+        try {
+            return jpaCriteriaQueries.searchItemByName(sessionFactory, Dish.class, name);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            throw new NoItemInDbException("There's no dish with name \"" + name + "\" in database!");
+        }
     }
 
     /**
@@ -84,15 +100,19 @@ public class HibernateDishDao implements DishDAO {
     @Override
     @Transactional
     public void delete(String name) {
-        Dish dish = search(name);
-        sessionFactory.getCurrentSession().delete(dish);
+        try {
+            Dish dish = search(name);
+            sessionFactory.getCurrentSession().delete(dish);
+        } catch (HibernateException e) {
+            throw new ForbidToDeleteException("Dish with name \"" + name + "\" can not be deleted due to using in another tables", e.getMessage());
+        }
     }
 
     @Transactional
     public List<Ingredient> defineDishIngredients(Dish dish) {
-        JpaCriteriaQueries<IngredientsInDish> hDaoCriteriaQueries = new JpaCriteriaQueries();
+        JpaCriteriaQueries<IngredientsInDish> jpaCriteriaQueries = new JpaCriteriaQueries();
         List<IngredientsInDish> ingredientsInDishes =
-                hDaoCriteriaQueries.searchItemsByValue(sessionFactory, IngredientsInDish.class, "dish", dish);
+                jpaCriteriaQueries.searchItemsByValue(sessionFactory, IngredientsInDish.class, "dish", dish);
         return ingredientsInDishes.stream().map(IngredientsInDish::getIngredient).collect(Collectors.toList());
     }
 
@@ -101,5 +121,43 @@ public class HibernateDishDao implements DishDAO {
     public void update(Dish dish) {
         Session session = sessionFactory.getCurrentSession();
         session.update("Dish", dish);
+    }
+
+    @Override
+    @Transactional
+    public List<IngredientsInDish> getIngredientsInDish(Dish dish) {
+        JpaCriteriaQueries<IngredientsInDish> jpaCriteriaQueries = new JpaCriteriaQueries();
+        return jpaCriteriaQueries.searchItemsByValue(sessionFactory, IngredientsInDish.class, "dish", dish);
+    }
+
+    @Override
+    @Transactional
+    public void addItemToDish(IngredientsInDish item) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save("IngredientInDish", item);
+    }
+
+    @Override
+    @Transactional
+    public IngredientsInDish searchItemInDish(Integer id) {
+        JpaCriteriaQueries<IngredientsInDish> jpaCriteriaQueries = new JpaCriteriaQueries();
+        try {
+            return jpaCriteriaQueries.searchItemById(sessionFactory, IngredientsInDish.class, id);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            throw new NoItemInDbException("There's no such item in database!");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateItemInDish(IngredientsInDish item) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update("IngredientInDish", item);
+    }
+
+    @Override
+    public void deleteItemFromDish(Dish dish, IngredientsInDish item) {
+        sessionFactory.getCurrentSession().delete(item);
     }
 }

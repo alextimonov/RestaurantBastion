@@ -33,6 +33,7 @@ public class Employee {
 
     /* employee's date of birthday */
     @Column(name = "birthday")
+//    @Temporal(TemporalType.TIMESTAMP)
     protected Date birthday;
 
     /* employee's salary */
@@ -45,10 +46,6 @@ public class Employee {
     protected Job job;
 
     public Employee() {
-    }
-
-    public Employee(String name) {
-        this.name = name;
     }
 
     public int getId() {

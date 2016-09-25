@@ -6,11 +6,11 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-name> Dispatcher </servlet-name>
+        <servlet-class> org.springframework.web.servlet.DispatcherServlet </servlet-class>
         <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>WEB-INF/web-context.xml</param-value>
+            <param-name> contextConfigLocation </param-name>
+            <param-value> WEB-INF/web-context.xml </param-value>
         </init-param>
     </servlet>
 
@@ -33,4 +33,14 @@
         </param-value>
     </context-param>
 
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/jsp/errorPage.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/view/jsp/invalidInput.jsp</location>
+    </error-page>
 </web-app>

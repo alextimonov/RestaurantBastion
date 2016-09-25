@@ -4,9 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.MenuDAO;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.ForbidToAddException;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.ForbidToDeleteException;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.NoItemInDbException;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Menu;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -51,7 +55,12 @@ public class HibernateMenuDao implements MenuDAO {
     @Override
     @Transactional
     public Menu search(int id) {
-        return hDaoCriteriaQueries.searchItemById(sessionFactory, Menu.class, id);
+        try {
+            return hDaoCriteriaQueries.searchItemById(sessionFactory, Menu.class, id);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            throw new NoItemInDbException("There's no menu with id=" + id + " in database!");
+        }
     }
 
     /**
@@ -63,7 +72,12 @@ public class HibernateMenuDao implements MenuDAO {
     @Override
     @Transactional
     public Menu search(String name) {
-        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Menu.class, name);
+        try {
+            return hDaoCriteriaQueries.searchItemByName(sessionFactory, Menu.class, name);
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new NoItemInDbException("There's no menu with name \"" + name + "\" in database!");
+        }
     }
 
     /**
@@ -100,13 +114,14 @@ public class HibernateMenuDao implements MenuDAO {
     @Transactional
     public void addDish(Menu menu, Dish dish) {
         if (menu.getDishes().contains(dish)) {
-            throw new IllegalArgumentException("Menu " + menu.getName() + " already contains dish " + dish.getName());
+            throw new ForbidToAddException("Menu " + menu.getName() + " already contains dish " + dish.getName());
         }
         else {
             Session session = sessionFactory.getCurrentSession();
-            session.delete(menu);
-            menu.getDishes().add(dish);
-            session.save(menu);
+            List <Dish> dishes = menu.getDishes();
+            dishes.add(dish);
+            menu.setDishes(dishes);
+            session.update("Menu", menu);
         }
     }
 
@@ -120,11 +135,12 @@ public class HibernateMenuDao implements MenuDAO {
     @Transactional
     public void deleteDish(Menu menu, Dish dish) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(menu);
-        if (!menu.getDishes().remove(dish)) {
-            throw new IllegalArgumentException("Menu " + menu.getName() + " does not contain dish " + dish.getName());
+        List <Dish> dishes = menu.getDishes();
+        if (!dishes.remove(dish)) {
+            throw new ForbidToDeleteException("Menu " + menu.getName() + " does not contain dish " + dish.getName(), "");
         }
-        session.save(menu);
+        menu.setDishes(dishes);
+        session.update("Menu", menu);
     }
 
     @Override

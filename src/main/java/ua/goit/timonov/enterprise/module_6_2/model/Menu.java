@@ -1,8 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.annotations.GenericGenerator;
-import ua.goit.timonov.enterprise.module_9.view.JsonMenuViews;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,12 +17,10 @@ public class Menu {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    @JsonView(JsonMenuViews.OnlyNames.class)
     private int id;
 
     /* dish menu's name */
     @Column(name = "name")
-    @JsonView(JsonMenuViews.OnlyNames.class)
     private String name;
 
     /* dishes in menu */
@@ -33,7 +29,6 @@ public class Menu {
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    @JsonView(JsonMenuViews.NamesWithDishes.class)
     private List<Dish> dishes;
 
     public Menu() {
@@ -66,6 +61,38 @@ public class Menu {
 
     public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Menu)) return false;
+
+        Menu menu = (Menu) o;
+
+        if (name != null ? !name.equals(menu.name) : menu.name != null) return false;
+        return dishes != null ?
+                ( dishes.size() != 0 ? customDishEquals(dishes, menu.dishes) : menu.dishes.size() == 0) :
+                menu.dishes == null;
+
+    }
+
+    public boolean customDishEquals(List<Dish> dishes, List<Dish> menuDishes) {
+        if (dishes.size() != menuDishes.size())
+            return false;
+        List<Dish> dishesCopy = new ArrayList<>(menuDishes);
+        for (Dish dish : dishes) {
+            if (dishesCopy.contains(dish))
+                dishesCopy.remove(dish);
+        }
+        return dishesCopy.size() == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (dishes != null ? dishes.hashCode() : 0);
+        return result;
     }
 
     @Override

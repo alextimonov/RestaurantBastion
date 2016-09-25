@@ -9,16 +9,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.controllers.DbController;
 import ua.goit.timonov.enterprise.module_6_2.dao.StorageDAO;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.NoItemInDbException;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
 
-import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
- * Testing class for HStorageDAO
+ * Testing class for HibernateStorageDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
@@ -115,7 +116,7 @@ public class HibernateStorageDaoTest {
         assertEquals(garlic, foundIngredient);
     }
 
-    @Test(expected = NoResultException.class)
+    @Test(expected = NoItemInDbException.class)
     public void testSearchByIdAbnormal() throws Exception {
         dbController.restoreAllData();
         storageDAO.search(30);
