@@ -24,7 +24,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public Employee getEmployeeByName(String name) {
+    public Employee getEmployeeByName(String... name) {
         return employeeDAO.search(name);
     }
 
@@ -35,12 +35,17 @@ public class EmployeeService {
     }
 
     @Transactional
-    public Employee searchById(Integer orderId) {
-        return employeeDAO.search(orderId);
+    public void add(Employee employee) {
+        employeeDAO.add(employee);
     }
 
     @Transactional
-    public Employee searchByName(String... name) {
-        return employeeDAO.search(name);
+    public Employee getEmployeeById(Integer id) {
+        return employeeDAO.search(id);
+    }
+
+    @Transactional
+    public void update(Employee employee) {
+        employeeDAO.update(employee);
     }
 }

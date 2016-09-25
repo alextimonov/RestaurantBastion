@@ -13,6 +13,9 @@
     <bean id="menuService" class="ua.goit.timonov.enterprise.module_9.service.MenuService"/>
     <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateMenuDao"/>
 
+    <bean id="storageService" class="ua.goit.timonov.enterprise.module_9.service.StorageService"/>
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateStorageDao"/>
+
     <bean id="orderService" class="ua.goit.timonov.enterprise.module_9.service.OrderService"/>
     <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateOrderDao"/>
 

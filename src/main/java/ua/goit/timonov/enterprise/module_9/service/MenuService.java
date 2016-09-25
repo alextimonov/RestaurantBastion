@@ -66,4 +66,9 @@ public class MenuService {
     public void addDish(Menu menu, Dish dish) {
         menuDAO.addDish(menu, dish);
     }
+
+    @Transactional
+    public void deleteDish(Menu menu, Dish dish) {
+        menuDAO.deleteDish(menu, dish);
+    }
 }

@@ -96,6 +96,7 @@ public class CookedDish {
         CookedDish that = (CookedDish) o;
 
         if (order != null ? !order.equals(that.order) : that.order != null) return false;
+        if (cook != null ? !cook.equals(that.cook) : that.cook != null) return false;
         return dish != null ? dish.equals(that.dish) : that.dish == null;
 
     }
@@ -103,10 +104,9 @@ public class CookedDish {
     @Override
     public int hashCode() {
         int result = order != null ? order.hashCode() : 0;
+        result = 31 * result + (cook != null ? cook.hashCode() : 0);
         result = 31 * result + (dish != null ? dish.hashCode() : 0);
         return result;
     }
-
-
 }
 

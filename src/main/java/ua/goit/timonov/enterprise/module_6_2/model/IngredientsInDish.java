@@ -28,6 +28,16 @@ public class IngredientsInDish {
     @Column(name = "weight")
     private int ingredientWeight;
 
+    public IngredientsInDish() {
+
+    }
+
+    public IngredientsInDish(Dish dish, Ingredient ingredient, int ingredientWeight) {
+        this.dish = dish;
+        this.ingredient = ingredient;
+        this.ingredientWeight = ingredientWeight;
+    }
+
     public int getId() {
         return id;
     }

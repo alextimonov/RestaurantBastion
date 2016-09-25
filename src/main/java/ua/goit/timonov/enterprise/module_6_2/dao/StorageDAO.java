@@ -31,8 +31,8 @@ public interface StorageDAO {
     Ingredient search(int id);
 
     /**
-     * searches ingredient in DB by name
-     * @param name       name of ingredient to find
+     * searches ingredient in DB by startChars
+     * @param name       startChars of ingredient to find
      * @return           found ingredient
      * throws            EmptyResultDataAccessException, DataAccessException
      */
@@ -46,8 +46,8 @@ public interface StorageDAO {
     void delete(int id);
 
     /**
-     * deletes ingredient from DB by its name
-     * @param name           name of ingredient to delete
+     * deletes ingredient from DB by its startChars
+     * @param name           startChars of ingredient to delete
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     void delete(String name);
@@ -66,4 +66,17 @@ public interface StorageDAO {
      * @return                      list of ingredient
      */
     List<Ingredient> getTerminatingIngredients(int limit);
+
+    /**
+     * updates ingredient's data in DB
+     * @param ingredient      given ingredient with data
+     */
+    void update(Ingredient ingredient);
+
+    /**
+     * returns items with names starting from some characters
+     * @param startChars        starting charaters in the name
+     * @return                  founded ingredients
+     */
+    List<Ingredient> filterWithStartChars(String startChars);
 }

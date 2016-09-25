@@ -4,9 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.EmployeeDAO;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.NoItemInDbException;
 import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.Waiter;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -56,19 +58,34 @@ public class HibernateEmployeeDao implements EmployeeDAO {
     @Override
     @Transactional
     public Employee search(int id) {
-        return hDaoCriteriaQueries.searchItemById(sessionFactory, Employee.class, id);
+        try {
+            return hDaoCriteriaQueries.searchItemById(sessionFactory, Employee.class, id);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            throw new NoItemInDbException("There's no employee with id=" + id + " in database!");
+        }
     }
 
     /**
      * searches employee in DB by its full name (surname & name)
-     * @param name           name, surname of employee to find
+     * @param fullName           name, surname of employee to find
      * @return name          found employee
      * throws                EmptyResultDataAccessException, DataAccessException
      */
     @Override
     @Transactional
-    public Employee search(String... name) {
-        return hDaoCriteriaQueries.searchItemByName(sessionFactory, Employee.class, name);
+    public Employee search(String... fullName) {
+        try {
+            return hDaoCriteriaQueries.searchItemByName(sessionFactory, Employee.class, fullName);
+        }
+        catch (IndexOutOfBoundsException | NoResultException e) {
+            String message = "There's no employee with name \"" + fullName[0];
+            if (fullName.length > 1)
+                message += " " + fullName[1] + "\" in database";
+            else
+                message += "\" in database";
+            throw new NoItemInDbException(message);
+        }
     }
 
     /**
@@ -96,11 +113,26 @@ public class HibernateEmployeeDao implements EmployeeDAO {
         sessionFactory.getCurrentSession().remove(employee);
     }
 
+    /**
+     * returns list of waiters
+     * @return      list of waiters
+     */
     @Override
     @Transactional
     public List<Waiter> getWaiters() {
         JpaCriteriaQueries<Waiter> hDaoCriteriaQueries = new JpaCriteriaQueries();
         List<Waiter> waiters = hDaoCriteriaQueries.getAllEntityItems(sessionFactory, Waiter.class);
         return waiters;
+    }
+
+    /**
+     * updates employee's data in DB
+     * @param employee      given employee with data
+     */
+    @Override
+    @Transactional
+    public void update(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update("Employee", employee);
     }
 }

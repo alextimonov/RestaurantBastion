@@ -2,6 +2,7 @@ package ua.goit.timonov.enterprise.module_6_2.dao;
 
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
+import ua.goit.timonov.enterprise.module_6_2.model.IngredientsInDish;
 
 import java.util.List;
 
@@ -66,4 +67,14 @@ public interface DishDAO {
      * throws                  EmptyResultDataAccessException, DataAccessException
      */
     void update(Dish dish);
+
+    List<IngredientsInDish> getIngredientsInDish(Dish dish);
+
+    void addItemToDish(IngredientsInDish item);
+
+    IngredientsInDish searchItemInDish(Integer id);
+
+    void updateItemInDish(IngredientsInDish item);
+
+    void deleteItemFromDish(Dish dish, IngredientsInDish item);
 }

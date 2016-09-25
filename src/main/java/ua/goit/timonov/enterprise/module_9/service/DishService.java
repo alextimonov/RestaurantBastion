@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.DishDAO;
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
 import ua.goit.timonov.enterprise.module_6_2.model.Ingredient;
+import ua.goit.timonov.enterprise.module_6_2.model.IngredientsInDish;
 
 import java.util.List;
 
@@ -66,5 +67,30 @@ public class DishService {
     @Transactional
     public void update(Dish dish) {
         dishDAO.update(dish);
+    }
+
+    @Transactional
+    public List<IngredientsInDish> getIngredientsInDish(Dish dish) {
+        return dishDAO.getIngredientsInDish(dish);
+    }
+
+    @Transactional
+    public void addItemToDish(IngredientsInDish item) {
+        dishDAO.addItemToDish(item);
+    }
+
+    @Transactional
+    public IngredientsInDish searchItemInDish(Integer id) {
+        return dishDAO.searchItemInDish(id);
+    }
+
+    @Transactional
+    public void updateItemInDish(IngredientsInDish item) {
+        dishDAO.updateItemInDish(item);
+    }
+
+    @Transactional
+    public void deleteItemFromDish(Dish dish, IngredientsInDish item) {
+        dishDAO.deleteItemFromDish(dish, item);
     }
 }

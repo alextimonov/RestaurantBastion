@@ -1,6 +1,5 @@
 package ua.goit.timonov.enterprise.module_6_2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,7 +26,6 @@ public class Order {
     /* waiter's id who takes this order */
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "employee_id")
-    @JsonIgnore
     private Employee waiter;
 
     /* order's table number */
@@ -48,14 +46,11 @@ public class Order {
     @JoinTable(name = "dish_to_orders",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id"))
-    @JsonIgnore
     private List<Dish> dishes;
 
-    public Order() {
-    }
+//    private int nDishes;
 
-    public Order(Employee waiter) {
-        this.waiter = waiter;
+    public Order() {
     }
 
     public Order(Employee waiter, int tableNumber, Date date) {
@@ -64,6 +59,47 @@ public class Order {
         this.date = date;
         closed = false;
         dishes = new ArrayList<>();
+    }
+
+    public Order(Employee waiter, int tableNumber, Date date, Boolean closed) {
+        this.waiter = waiter;
+        this.tableNumber = tableNumber;
+        this.date = date;
+        this.closed = closed;
+        dishes = new ArrayList<>();
+    }
+
+    public Order(Employee waiter, int tableNumber, Date date, Boolean closed, List<Dish> dishes) {
+        this.waiter = waiter;
+        this.tableNumber = tableNumber;
+        this.date = date;
+        this.closed = closed;
+        this.dishes = dishes;
+    }
+
+    public Order append(Employee waiter) {
+        setWaiter(waiter);
+        return this;
+    }
+
+    public Order append(int tableNumber) {
+        setTableNumber(tableNumber);
+        return this;
+    }
+
+    public Order append(Date date) {
+        setDate(date);
+        return this;
+    }
+
+    public Order append(boolean closed) {
+        setClosed(closed);
+        return this;
+    }
+
+    public Order append(List<Dish> dishes) {
+        setDishes(dishes);
+        return this;
     }
 
     public int getId() {
@@ -114,15 +150,6 @@ public class Order {
         this.dishes = dishes;
     }
 
-    public Employee getEmployee() {
-        Employee employee = new Employee();
-        employee.append(waiter.getBirthday());
-        employee.append(waiter.getName(), waiter.getSurname());
-        employee.append(waiter.getSalary());
-        employee.append(waiter.getJob());
-        return employee;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -134,10 +161,53 @@ public class Order {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+
+        Order order = (Order) o;
+
+        if (dishes != null ?
+                ( dishes.size() != 0 ? !customDishEquals(dishes, order.dishes) : order.dishes.size() != 0) :
+                order.dishes != null) return false;
+        if (tableNumber != order.tableNumber) return false;
+        if (waiter != null ? !waiter.equals(order.waiter) : order.waiter != null) return false;
+        if (date != null ? !date.equals(order.date) : order.date != null) return false;
+        return (closed != null ? closed.equals(order.closed) : order.closed == null);
+    }
+
+    public boolean customDishEquals(List<Dish> dishes, List<Dish> menuDishes) {
+        if (dishes.size() != menuDishes.size())
+            return false;
+        List<Dish> dishesCopy = new ArrayList<>(menuDishes);
+        for (Dish dish : dishes) {
+            if (dishesCopy.contains(dish))
+                dishesCopy.remove(dish);
+        }
+        return dishesCopy.size() == 0;
+    }
+
+    private List<Dish> copyList(List<Dish> dishes) {
+        List<Dish> result = new ArrayList<>();
+        for (Dish dish : dishes) {
+            result.add(new Dish());
+        }
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = waiter != null ? waiter.hashCode() : 0;
+        result = 31 * result + tableNumber;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (closed != null ? closed.hashCode() : 0);
+        result = 31 * result + (dishes != null ? dishes.hashCode() : 0);
+        return result;
+    }
+
     public String getName() {
         return toString();
     }
-
-
 }
 

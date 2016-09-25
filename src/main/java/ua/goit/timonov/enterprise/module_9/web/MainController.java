@@ -8,30 +8,35 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Main Spring MVC controller for mapping pages main, index, contacts
+ * Main Spring MVC controller for mapping pages main, service, index & contacts
  */
-
 @Controller
 public class MainController {
-
-    public static final String INDEX_PAGE = "index";
-    public static final String MAIN_PAGE = "main";
-    public static final String CONTACTS_PAGE = "contacts";
-
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(Map<String, Object> model) {
-        model.put("currentTime", new Date().toString());
-        return INDEX_PAGE;
-    }
+    public static final String PATH_SERVICE = "service/service";
+    public static final String PATH_MAIN = "main";
+    public static final String PATH_SCHEME = "scheme";
+    public static final String PATH_CONTACTS = "contacts";
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainPage() {
-        return MAIN_PAGE;
+        return PATH_MAIN;
+    }
+
+    @RequestMapping(value = "/service/service", method = RequestMethod.GET)
+    public String service(Map<String, Object> model) {
+        model.put("currentTime", new Date().toString());
+        return PATH_SERVICE;
+    }
+
+    @RequestMapping(value = "/scheme", method = RequestMethod.GET)
+    public String invokeSchemePage(Map<String, Object> model) {
+        Object file = "";
+        model.put("scheme", file);
+        return PATH_SCHEME;
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String getPageContacts() {
-        return CONTACTS_PAGE;
+        return PATH_CONTACTS;
     }
-
 }

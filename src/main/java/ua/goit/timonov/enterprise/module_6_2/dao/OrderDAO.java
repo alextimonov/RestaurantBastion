@@ -1,8 +1,10 @@
 package ua.goit.timonov.enterprise.module_6_2.dao;
 
 import ua.goit.timonov.enterprise.module_6_2.model.Dish;
+import ua.goit.timonov.enterprise.module_6_2.model.Employee;
 import ua.goit.timonov.enterprise.module_6_2.model.Order;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,5 +75,13 @@ public interface OrderDAO {
      * throws           EmptyResultDataAccessException, DataAccessException
      */
     List<Order> getAllOrders();
+
+    List<Order> getOrdersByTableNumber(int tableNumber);
+
+    List<Order> getOrdersByWaiter(Employee waiter);
+
+    List<Order> getOrdersByDate(Date date);
+
+    Order getOrder(int id);
 }
 

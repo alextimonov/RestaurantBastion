@@ -2,9 +2,9 @@ package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.module_6_2.dao.CookedDishDAO;
+import ua.goit.timonov.enterprise.module_6_2.exceptions.ForbidToAddException;
 import ua.goit.timonov.enterprise.module_6_2.model.*;
 
 import java.util.List;
@@ -47,7 +47,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
      * throws               EmptyResultDataAccessException, DataAccessException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public List<CookedDish> getAll() {
         return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, CookedDish.class);
     }
@@ -60,7 +60,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
      * throws               EmptyResultDataAccessException, DataAccessException, IllegalArgumentException
      */
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void add(int orderId, String dishName, int cookId) {
         Dish dish = hDishDao.search(dishName);
         Employee cook = hEmployeeDao.search(cookId);
@@ -73,6 +73,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
         }
 
     @Override
+    @Transactional
     public void add(CookedDish cookedDish) {
         checkAbilityToAdd(cookedDish);
         takeIntoAccountIngredientAmounts(cookedDish.getDish());
@@ -81,7 +82,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     }
 
     // checks if there is enough amount of ingredients in the storage for chosen dish
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
         private void takeIntoAccountIngredientAmounts(Dish dish) {
         List<IngredientsInDish> ingredientsInDish = searchIngredientsInDishes(dish);
         validateIngredientAmounts(dish, ingredientsInDish);
@@ -89,13 +90,14 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     }
 
     // finds list of Ingredients in dish
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     private List<IngredientsInDish> searchIngredientsInDishes(Dish dish) {
         JpaCriteriaQueries<IngredientsInDish> hDaoCriteriaQueries = new JpaCriteriaQueries();
         return hDaoCriteriaQueries.searchItemsByValue(sessionFactory, IngredientsInDish.class, "dish", dish);
     }
 
     // checks if there is enough amount of ingredients in the storage for chosen dish
+    @Transactional
     private void validateIngredientAmounts(Dish dish, List<IngredientsInDish> ingredientsInDish) {
         for (IngredientsInDish ingredientInDish : ingredientsInDish) {
             int weightForDish = ingredientInDish.getIngredientWeight();
@@ -108,7 +110,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     }
 
     // reduces amounts of ingredients in the storage for cooking chosen dish
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     private void reduceIngredientAmount(List<IngredientsInDish> ingredientsInDish) {
         for (IngredientsInDish ingredientInDish : ingredientsInDish) {
             int weightForDish = ingredientInDish.getIngredientWeight();
@@ -117,18 +119,19 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     }
 
     // checks if it's possible to add given dish to list of cooked dishes
+    @Transactional
     private void checkAbilityToAdd(CookedDish cookedDish) {
         Order order = cookedDish.getOrder();
         Dish dish = cookedDish.getDish();
         if (!order.getClosed()) {
-            throw new IllegalArgumentException("Order is not closed.");
+            throw new ForbidToAddException("Order is not closed.");
         }
         if (!order.getDishes().contains(dish)) {
-            throw new IllegalArgumentException("Order don't contain that dish");
+            throw new ForbidToAddException("Order don't contain given dish");
         }
         List<CookedDish> cookedDishes = getAll();
         if (cookedDishes.contains(cookedDish)) {
-            throw new IllegalArgumentException("That cooked dish is already in list");
+            throw new ForbidToAddException("That cooked dish is already in list");
         }
     }
 }

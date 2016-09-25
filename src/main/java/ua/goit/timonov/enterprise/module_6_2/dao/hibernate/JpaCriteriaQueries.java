@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.module_6_2.dao.hibernate;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Propagation;
@@ -50,19 +51,33 @@ public class JpaCriteriaQueries<T> {
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
-    public T searchItemByName(SessionFactory sessionFactory, Class<T> clazz, String... name) {
+    public T searchItemByName(SessionFactory sessionFactory, Class<T> clazz, String... fullName) {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
         Root<T> from = criteriaQuery.from(clazz);
         CriteriaQuery<T> select = criteriaQuery.select(from);
-        Predicate predicateName = criteriaBuilder.like(from.get("name"), name[0]);
-        if (name.length > 1)
-            select.where(predicateName, criteriaBuilder.like(from.get("surname"), name[1]));
-        else
-            select.where(predicateName);
+        if (nameIsBlank(fullName)) {
+            if (fullName.length > 1 & !surnameIsBlank(fullName))
+                select.where(criteriaBuilder.like(from.get("surname"), fullName[1]));
+        }
+        else {
+            Predicate predicateName = criteriaBuilder.like(from.get("name"), fullName[0]);
+            if (fullName.length > 1 && !surnameIsBlank(fullName))
+                select.where(predicateName, criteriaBuilder.like(from.get("surname"), fullName[1]));
+            else
+                select.where(predicateName);
+        }
         TypedQuery<T> typedQuery = session.createQuery(select);
         return typedQuery.getResultList().get(0);
+    }
+
+    private boolean surnameIsBlank(String[] fullName) {
+        return StringUtils.isBlank(fullName[1]);
+    }
+
+    private boolean nameIsBlank(String[] fullName) {
+        return StringUtils.isBlank(fullName[0]);
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
@@ -96,6 +111,18 @@ public class JpaCriteriaQueries<T> {
         Root<T> from = criteriaQuery.from(clazz);
         CriteriaQuery<T> select = criteriaQuery.select(from);
         select.where(criteriaBuilder.equal(from.get(fieldName), value));
+        TypedQuery<T> typedQuery = session.createQuery(select);
+        return typedQuery.getResultList();
+    }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    public List<T> getItemsStartWithChars(SessionFactory sessionFactory, Class<T> clazz, String fieldName, String startChars) {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        Root<T> from = criteriaQuery.from(clazz);
+        CriteriaQuery<T> select = criteriaQuery.select(from);
+        select.where(criteriaBuilder.like(from.get(fieldName), startChars+"%"));
         TypedQuery<T> typedQuery = session.createQuery(select);
         return typedQuery.getResultList();
     }
