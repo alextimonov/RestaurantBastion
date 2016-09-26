@@ -22,7 +22,8 @@ import static org.junit.Assert.assertNotEquals;
  * Testing class for HibernateStorageDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
+        "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
 public class HibernateStorageDaoTest {
     private DbController dbController;
     private StorageDAO storageDAO;

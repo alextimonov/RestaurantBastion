@@ -20,10 +20,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Testing class for HEmployeeDAO
+ * Testing class for HibernateEmployeeDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
+        "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
 public class HibernateEmployeeDaoTest {
     private DbController dbController;
     private EmployeeDAO employeeDAO;

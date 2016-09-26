@@ -19,6 +19,25 @@
     <bean id="orderService" class="ua.goit.timonov.enterprise.module_9.service.OrderService"/>
     <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateOrderDao"/>
 
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateCookedDishDao">
+        <property name="hibernateEmployeeDao" ref="employeeDAO"/>
+        <property name="hibernateDishDao" ref="dishDAO"/>
+        <property name="hibernateStorageDao" ref="storageDAO"/>
+        <property name="hibernateOrderDao" ref="orderDAO"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dbController" class="ua.goit.timonov.enterprise.module_6_2.controllers.DbController">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="employeeDAO" ref="employeeDAO"/>
+        <property name="dishDAO" ref="dishDAO"/>
+        <property name="storageDAO" ref="storageDAO"/>
+    </bean>
+
 </beans>
 
 

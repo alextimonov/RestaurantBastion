@@ -42,7 +42,6 @@ import static ua.goit.timonov.enterprise.module_9.web.EmployeeServiceController.
 @WebAppConfiguration
 public class EmployeeServiceControllerTest {
     public static final String MAPPED_PATH = "/service/employee";
-    public static final String EMPTY = "";
     @Autowired
     WebApplicationContext wac;
 

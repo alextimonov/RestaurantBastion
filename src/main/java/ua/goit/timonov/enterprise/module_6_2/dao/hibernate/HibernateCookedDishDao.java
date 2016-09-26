@@ -15,30 +15,30 @@ import java.util.List;
 public class HibernateCookedDishDao implements CookedDishDAO {
 
     private SessionFactory sessionFactory;
-    private JpaCriteriaQueries<CookedDish> hDaoCriteriaQueries = new JpaCriteriaQueries();
-    private HibernateOrderDao hOrderDao;
-    private HibernateDishDao hDishDao;
-    private HibernateEmployeeDao hEmployeeDao;
-    private HibernateStorageDao hStorageDao;
+    private HibernateOrderDao hibernateOrderDao;
+    private HibernateDishDao hibernateDishDao;
+    private HibernateEmployeeDao hibernateEmployeeDao;
+    private HibernateStorageDao hibernateStorageDao;
+    private JpaCriteriaQueries<CookedDish> jpaCriteriaQueries = new JpaCriteriaQueries();
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public void sethOrderDao(HibernateOrderDao hOrderDao) {
-        this.hOrderDao = hOrderDao;
+    public void setHibernateOrderDao(HibernateOrderDao hibernateOrderDao) {
+        this.hibernateOrderDao = hibernateOrderDao;
     }
 
-    public void sethDishDao(HibernateDishDao hDishDao) {
-        this.hDishDao = hDishDao;
+    public void setHibernateDishDao(HibernateDishDao hibernateDishDao) {
+        this.hibernateDishDao = hibernateDishDao;
     }
 
-    public void sethEmployeeDao(HibernateEmployeeDao hEmployeeDao) {
-        this.hEmployeeDao = hEmployeeDao;
+    public void setHibernateEmployeeDao(HibernateEmployeeDao hibernateEmployeeDao) {
+        this.hibernateEmployeeDao = hibernateEmployeeDao;
     }
 
-    public void sethStorageDao(HibernateStorageDao hStorageDao) {
-        this.hStorageDao = hStorageDao;
+    public void setHibernateStorageDao(HibernateStorageDao hibernateStorageDao) {
+        this.hibernateStorageDao = hibernateStorageDao;
     }
 
     /**
@@ -49,7 +49,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     @Override
     @Transactional
     public List<CookedDish> getAll() {
-        return hDaoCriteriaQueries.getAllEntityItems(sessionFactory, CookedDish.class);
+        return jpaCriteriaQueries.getAllEntityItems(sessionFactory, CookedDish.class);
     }
 
     /**
@@ -62,9 +62,9 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     @Override
     @Transactional
     public void add(int orderId, String dishName, int cookId) {
-        Dish dish = hDishDao.search(dishName);
-        Employee cook = hEmployeeDao.search(cookId);
-        Order order = hOrderDao.search(orderId);
+        Employee cook = hibernateEmployeeDao.search(cookId);
+        Dish dish = hibernateDishDao.search(dishName);
+        Order order = hibernateOrderDao.search(orderId);
         CookedDish cookedDish = new CookedDish(order, dish, cook);
         checkAbilityToAdd(cookedDish);
         takeIntoAccountIngredientAmounts(dish);
@@ -114,7 +114,7 @@ public class HibernateCookedDishDao implements CookedDishDAO {
     private void reduceIngredientAmount(List<IngredientsInDish> ingredientsInDish) {
         for (IngredientsInDish ingredientInDish : ingredientsInDish) {
             int weightForDish = ingredientInDish.getIngredientWeight();
-            hStorageDao.changeAmount(ingredientInDish.getIngredient(), -weightForDish);
+            hibernateStorageDao.changeAmount(ingredientInDish.getIngredient(), -weightForDish);
         }
     }
 

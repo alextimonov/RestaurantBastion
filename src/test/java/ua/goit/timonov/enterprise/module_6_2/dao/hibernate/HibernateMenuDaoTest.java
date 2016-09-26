@@ -24,10 +24,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Alex on 22.09.2016.
+ * Testing class for HibernateMenuDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
+        "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
 public class HibernateMenuDaoTest {
     private DbController dbController;
     private DishDAO dishDAO;
