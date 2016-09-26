@@ -36,7 +36,7 @@
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <img src="${pageContext.request.contextPath}/images/oops.png" />
+            <img src="${pageContext.request.contextPath}/images/oops.jpg" />
         </div>
         <div class="col-sm-3"></div>
     </div>

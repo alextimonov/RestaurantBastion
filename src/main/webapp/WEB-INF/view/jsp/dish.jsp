@@ -29,7 +29,7 @@
 
 <div class="container">
     <table class="table table-striped">
-        <h2>Dish ${dish.name}<small>Detail info</small></h2>
+        <h2>Dish ${dish.name}<small> Detail info</small></h2>
         <tr>
             <th>ID</th>
             <th>Dish name</th>

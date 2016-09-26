@@ -6,7 +6,7 @@
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bastion|Dish not found</title>
+    <title>Bastion|Error page</title>
 </head>
 
 <body background="${pageContext.request.contextPath}/images/back.jpg">

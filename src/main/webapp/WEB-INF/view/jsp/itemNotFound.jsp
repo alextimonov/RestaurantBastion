@@ -13,7 +13,7 @@
 <h3>Sorry! Item with name "${itemName}" is not found!</h3>
 
 <br>
-<img src="${pageContext.request.contextPath}/images/error.jpg" />
+<img src="${pageContext.request.contextPath}/images/oops.jpg" />
 <br>
 <h3>Try to search another item</h3>
 <br>
