@@ -11,5 +11,5 @@
 <li>relational database management system PostgreSQL for data storage;</li>
 <li>object relational mapping framework Hibernate;</li> 
 <li>Spring MVC framework;</li>
-<li>Java Server pages (JSP) for viewing in web pages.</li></p>
+<li>Java Server pages (JSP) and Bootstrap framework for viewing in web pages.</li></p>
 <p>Also LogBack, Mockito, JUnit and Travis CI are utilized for logging and testing.</p>
