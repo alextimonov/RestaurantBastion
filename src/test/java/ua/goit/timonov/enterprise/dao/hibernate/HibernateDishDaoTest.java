@@ -123,13 +123,14 @@ public class HibernateDishDaoTest {
         dbController.restoreAllData();
         Dish salad = factory.makeDishSalad();
         dishDAO.add(salad);
-
-        Dish foundDish = dishDAO.search(9);
+        int id = salad.getId();
+        Dish foundDish = dishDAO.search(id);
         assertEquals(salad, foundDish);
 
         Dish soup = factory.makeDishRiceSoup();
         dishDAO.add(soup);
-        foundDish = dishDAO.search(10);
+        id = soup.getId();
+        foundDish = dishDAO.search(id);
         assertEquals(soup, foundDish);
     }
 
@@ -164,7 +165,8 @@ public class HibernateDishDaoTest {
         List<Dish> listBeforeAdd = dishDAO.getAll();
         Dish friedEggs = factory.makeDishFriedEggs();
         dishDAO.add(friedEggs);
-        dishDAO.delete(32);
+        int id = friedEggs.getId();
+        dishDAO.delete(id);
         List<Dish> listAfterDelete = dishDAO.getAll();
 
         assertEqualsDishLists(listBeforeAdd, listAfterDelete);
@@ -172,7 +174,8 @@ public class HibernateDishDaoTest {
         listBeforeAdd = dishDAO.getAll();
         Dish salmon = factory.makeDishSalmon();
         dishDAO.add(salmon );
-        dishDAO.delete(33);
+        id = salmon.getId();
+        dishDAO.delete(id);
         listAfterDelete = dishDAO.getAll();
         assertEqualsDishLists(listBeforeAdd, listAfterDelete);
     }
@@ -197,8 +200,6 @@ public class HibernateDishDaoTest {
         listAfterDelete = dishDAO.getAll();
         assertEqualsDishLists(listBeforeAdd, listAfterDelete);
     }
-
-
 
     @Transactional
     private List<Dish> fillTableDish() {

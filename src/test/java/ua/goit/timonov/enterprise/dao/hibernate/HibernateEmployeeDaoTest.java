@@ -116,18 +116,20 @@ public class HibernateEmployeeDaoTest {
         dbController.restoreAllData();
         Employee mrBlack = factory.makeEmployeeBlack();
         employeeDAO.add(mrBlack);
-
-        Employee foundEmployee = employeeDAO.search(10);
+        int id = mrBlack.getId();
+        Employee foundEmployee = employeeDAO.search(id);
         assertEquals(mrBlack, foundEmployee);
 
         Employee mrWhite = factory.makeEmployeeWhite();
         employeeDAO.add(mrWhite);
-        foundEmployee = employeeDAO.search(11);
+        id = mrWhite.getId();
+        foundEmployee = employeeDAO.search(id);
         assertEquals(mrWhite, foundEmployee);
 
         Employee mrRed = factory.makeEmployeeRed();
         employeeDAO.add(mrRed);
-        foundEmployee = employeeDAO.search(12);
+        id = mrRed.getId();
+        foundEmployee = employeeDAO.search(id);
         assertEquals(mrRed, foundEmployee);
     }
 
@@ -160,7 +162,8 @@ public class HibernateEmployeeDaoTest {
         List<Employee> listBeforeAdd = employeeDAO.getAll();
         Employee mrBlack = factory.makeEmployeeBlack();
         employeeDAO.add(mrBlack);
-        employeeDAO.delete(42);
+        int id = mrBlack.getId();
+        employeeDAO.delete(id);
         List<Employee> listAfterDelete = employeeDAO.getAll();
 
         assertEqualsEmployeeLists(listBeforeAdd, listAfterDelete);
@@ -168,7 +171,8 @@ public class HibernateEmployeeDaoTest {
         listBeforeAdd = employeeDAO.getAll();
         Employee mrWhite = factory.makeEmployeeWhite();
         employeeDAO.add(mrWhite );
-        employeeDAO.delete(43);
+        id = mrWhite.getId();
+        employeeDAO.delete(id);
         listAfterDelete = employeeDAO.getAll();
         assertEqualsEmployeeLists(listBeforeAdd, listAfterDelete);
     }
