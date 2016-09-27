@@ -10,7 +10,7 @@
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties"/>
+        <property name="location" value="classpath:jdbc_travis.properties"/>
     </bean>
 
     <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
