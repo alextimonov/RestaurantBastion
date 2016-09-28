@@ -9,7 +9,7 @@
     <title>Bastion|Item is not found</title>
 </head>
 
-<body background="${pageContext.request.contextPath}/images/back2.jpg">
+<body background="${pageContext.request.contextPath}/images/back.jpg">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <img src="${pageContext.request.contextPath}/images/oops.png" />
+            <img src="${pageContext.request.contextPath}/images/oops.jpg" />
         </div>
         <div class="col-sm-3"></div>
     </div>

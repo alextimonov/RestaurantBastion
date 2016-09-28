@@ -4,20 +4,39 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="byName">
 
-    <bean id="employeeService" class="ua.goit.timonov.enterprise.module_9.service.EmployeeService"/>
-    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateEmployeeDao"/>
+    <bean id="employeeService" class="ua.goit.timonov.enterprise.service.EmployeeService"/>
+    <bean id="employeeDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateEmployeeDao"/>
 
-    <bean id="dishService" class="ua.goit.timonov.enterprise.module_9.service.DishService"/>
-    <bean id="dishDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateDishDao"/>
+    <bean id="dishService" class="ua.goit.timonov.enterprise.service.DishService"/>
+    <bean id="dishDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateDishDao"/>
 
-    <bean id="menuService" class="ua.goit.timonov.enterprise.module_9.service.MenuService"/>
-    <bean id="menuDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateMenuDao"/>
+    <bean id="menuService" class="ua.goit.timonov.enterprise.service.MenuService"/>
+    <bean id="menuDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateMenuDao"/>
 
-    <bean id="storageService" class="ua.goit.timonov.enterprise.module_9.service.StorageService"/>
-    <bean id="storageDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateStorageDao"/>
+    <bean id="storageService" class="ua.goit.timonov.enterprise.service.StorageService"/>
+    <bean id="storageDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateStorageDao"/>
 
-    <bean id="orderService" class="ua.goit.timonov.enterprise.module_9.service.OrderService"/>
-    <bean id="orderDAO" class="ua.goit.timonov.enterprise.module_6_2.dao.hibernate.HibernateOrderDao"/>
+    <bean id="orderService" class="ua.goit.timonov.enterprise.service.OrderService"/>
+    <bean id="orderDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateOrderDao"/>
+
+    <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateCookedDishDao">
+        <property name="hibernateEmployeeDao" ref="employeeDAO"/>
+        <property name="hibernateDishDao" ref="dishDAO"/>
+        <property name="hibernateStorageDao" ref="storageDAO"/>
+        <property name="hibernateOrderDao" ref="orderDAO"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dbController" class="ua.goit.timonov.enterprise.controllers.DbController">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="employeeDAO" ref="employeeDAO"/>
+        <property name="dishDAO" ref="dishDAO"/>
+        <property name="storageDAO" ref="storageDAO"/>
+    </bean>
 
 </beans>
 

@@ -6,7 +6,7 @@
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bastion|Dish not found</title>
+    <title>Bastion|Error page</title>
 </head>
 
 <body background="${pageContext.request.contextPath}/images/back.jpg">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <img src="${pageContext.request.contextPath}/images/oops.png" />
+            <img src="${pageContext.request.contextPath}/images/oops.jpg" />
         </div>
         <div class="col-sm-3"></div>
     </div>

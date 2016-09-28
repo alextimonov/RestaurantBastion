@@ -1,1 +1,16 @@
 language: java
+jdk:
+- oraclejdk8
+addons:
+  postgresql: '9.4'
+  apt:
+    packages:
+    - oracle-java8-installer
+services:
+- postgresql
+before_script:
+- psql -c 'create database bastion;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: azSISH2796yjV3RmmzGvuZf0TyDiC4aaRHd+xOG41sN0zcmEuJScvWBYVZHacQWXhvQVGFiiB1309a+sxSgNZ1E8OfzC9i7Xhn2DCXlnhOsy3mVXrOcxFZmJMxBR58o7b8DCekQl7mlOgW7xQ5eGnpOdtMFskL2m/HILtww3qsS9LRpZf9dfXdZ9V+CFuCSf8ShB1CYALkjdx847HYRDnGrCk/Srpm/K4WY2hEipwG66VAUKSknGKQJQbM+GSq5gWzQg81PCmml2P3nX3pBLlHmybRTIvrsZPeDyp9xgIxcpGfOakrbAkAioPC7GiRiN/KvldZcXab3+ILGpNPEgscBgykuUTT+1nVwhwuw5cezUprYbOgGfBBgR3nYIAlGOGzoso4oWrcAvUttsYYt/UJGbkn4fSZhqaCa4J0tUvcsrKkfHs0uImdYqxKVe/Xk5oOiP8DN18HFC+qgAksUMYWIWy8mvIJ6/PEhguN6cMvWYhUM/R05/gVl6nyqpo/ahrNxCQwDQyTCjhuQK384NG68YYy1l8mfBxZ+j5bKz376Zar5I9Gxf9RLJH3PlKRR4Yc6IegIkHP0gTt3BFo0ujub8P7T+GDbODT4+bFYB72cH5EZlnxGLehAfxyBaFnAbxtxmPplbcXTX8VvolpqxQ9dUg13XdH290CjXj9Qb9ps=
