@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.dao.hibernate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,9 +43,15 @@ public class HibernateDishDaoTest {
     @Before
     @Transactional
     public void setUp() throws Exception {
-        dbController.dropAllTables();
         dbController.createAllTables();
         dbController.fillTableJobs();
+    }
+
+    @After
+    @Transactional
+    public void tearDown() throws Exception {
+        dbController.deleteAllData();
+        dbController.dropAllTables();
     }
 
     @Test

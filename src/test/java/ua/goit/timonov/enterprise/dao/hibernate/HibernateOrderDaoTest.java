@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.dao.hibernate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,7 +71,6 @@ public class HibernateOrderDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        dbController.dropAllTables();
         dbController.createAllTables();
         dbController.fillTableJobs();
 
@@ -90,6 +90,13 @@ public class HibernateOrderDaoTest {
         dishDAO.add(plov);
         dishDAO.add(salad);
         dishDAO.add(salmon);
+    }
+
+    @After
+    @Transactional
+    public void tearDown() throws Exception {
+        dbController.deleteAllData();
+        dbController.dropAllTables();
     }
 
     @Test

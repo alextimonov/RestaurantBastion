@@ -11,6 +11,7 @@
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc_travis.properties"/>
+        <!--<property name="location" value="classpath:jdbc.properties"/>-->
     </bean>
 
     <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">

@@ -20,7 +20,6 @@ public class DbController {
     public static final String PATH_TO_CREATE_ALL_TABLES    = "src/main/resources/sql/create_all_tables.sql";
     public static final String PATH_TO_DATA_POPULATION      = "src/main/resources/sql/fill_all_tables.sql";
     public static final String PATH_TO_FILL_TABLE_JOBS      = "src/main/resources/sql/fill_table_jobs.sql";
-    public static final String CREATE_TABLES_JOB_EMPLOYEE   = "src/main/resources/sql/create_tables_job_employee.sql";
     public static final String SEMICOLON = ";";
     public static final String EMPTY_STRING = "";
 

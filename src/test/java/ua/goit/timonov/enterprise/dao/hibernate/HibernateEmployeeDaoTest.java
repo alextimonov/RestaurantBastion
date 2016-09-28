@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.dao.hibernate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,17 +42,21 @@ public class HibernateEmployeeDaoTest {
     }
 
     @Before
+    @Transactional
     public void setUp() throws Exception {
-        dbController.dropAllTables();
         dbController.createAllTables();
         dbController.fillTableJobs();
     }
 
+    @After
+    @Transactional
+    public void tearDown() throws Exception {
+        dbController.deleteAllData();
+        dbController.dropAllTables();
+    }
+
     @Test
     public void dataPopulation() throws FileNotFoundException {
-        dbController.dropAllTables();
-        dbController.createAllTables();
-        dbController.fillTableJobs();
         dbController.restoreAllData();
     }
 

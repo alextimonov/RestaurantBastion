@@ -1,5 +1,6 @@
 package ua.goit.timonov.enterprise.dao.hibernate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,7 +81,6 @@ public class HibernateCookedDishDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        dbController.dropAllTables();
         dbController.createAllTables();
         dbController.fillTableJobs();
 
@@ -107,6 +107,13 @@ public class HibernateCookedDishDaoTest {
         orderDAO.add(orderFirst);
         orderDAO.add(orderSecond);
         orderDAO.add(orderThird);
+    }
+
+    @After
+    @Transactional
+    public void tearDown() throws Exception {
+        dbController.deleteAllData();
+        dbController.dropAllTables();
     }
 
     private void assertEqualsCookedDishLists(List<CookedDish> created, List<CookedDish> gotFromDb) {
