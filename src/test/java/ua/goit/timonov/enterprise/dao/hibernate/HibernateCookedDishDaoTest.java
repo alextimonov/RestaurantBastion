@@ -190,7 +190,7 @@ public class HibernateCookedDishDaoTest {
         List<CookedDish> createdCookedDishes = createCookedDishesFromClosedOrders();
         CookedDish newCookedDish = new CookedDish(orderSecond, salad, mrWhite);
         createdCookedDishes.add(newCookedDish);
-        cookedDishDAO.add(2, "salad", 2);
+        cookedDishDAO.add(orderSecond.getId(), salad.getName(), mrWhite.getId());
         List<CookedDish> gotFromDbDishes = cookedDishDAO.getAll();
         assertEqualsCookedDishLists(createdCookedDishes, gotFromDbDishes);
     }
