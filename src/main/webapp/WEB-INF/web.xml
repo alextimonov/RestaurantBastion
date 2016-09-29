@@ -9,8 +9,8 @@
         <servlet-name> Dispatcher </servlet-name>
         <servlet-class> org.springframework.web.servlet.DispatcherServlet </servlet-class>
         <init-param>
-            <param-name> contextConfigLocation </param-name>
-            <param-value> WEB-INF/web-context.xml </param-value>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>WEB-INF/web-context.xml</param-value>
         </init-param>
     </servlet>
 
@@ -32,7 +32,6 @@
             WEB-INF/hibernate-context.xml
         </param-value>
     </context-param>
-
 
     <error-page>
         <error-code>404</error-code>

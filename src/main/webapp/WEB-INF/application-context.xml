@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="byName">
 
+    <!--<bean id="main" class="ua.goit.timonov.enterprise.Main"/>-->
+
     <bean id="employeeService" class="ua.goit.timonov.enterprise.service.EmployeeService"/>
     <bean id="employeeDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateEmployeeDao"/>
 
@@ -18,6 +20,8 @@
 
     <bean id="orderService" class="ua.goit.timonov.enterprise.service.OrderService"/>
     <bean id="orderDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateOrderDao"/>
+
+    <bean id="mainController" class="ua.goit.timonov.enterprise.web.MainController"/>
 
     <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateCookedDishDao">
         <property name="hibernateEmployeeDao" ref="employeeDAO"/>

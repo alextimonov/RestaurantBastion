@@ -1,12 +1,17 @@
 package ua.goit.timonov.enterprise.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.timonov.enterprise.dao.DishDAO;
 import ua.goit.timonov.enterprise.dao.EmployeeDAO;
 import ua.goit.timonov.enterprise.dao.StorageDAO;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +32,7 @@ public class DbController {
     private EmployeeDAO employeeDAO;
     private DishDAO dishDAO;
     private StorageDAO storageDAO;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbController.class);
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -102,8 +108,20 @@ public class DbController {
         }
     }
 
+    @Transactional
     public void fillTableJobs() {
         String[] insertQueries = readQueriesFromFile(PATH_TO_FILL_TABLE_JOBS);
         jdbcTemplate.batchUpdate(insertQueries);
+    }
+
+    @Transactional
+    public void restoreDatabase() {
+        try {
+            createAllTables();
+            fillTableJobs();
+            restoreAllData();
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 }

@@ -27,6 +27,8 @@
         <mockitoVersion>1.10.19</mockitoVersion>
         <hamcrestVersion>1.3</hamcrestVersion>
         <servletApiVersion>3.1.0</servletApiVersion>
+        <assemblyPluginVersion>2.3</assemblyPluginVersion>
+        <webappRunnerVersion>8.0.33.2</webappRunnerVersion>
     </properties>
 
     <dependencies>
@@ -160,6 +162,12 @@
             <version>${servletApiVersion}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.jsimone</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>${webappRunnerVersion}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -171,6 +179,54 @@
                     <source>${javaVersion}</source>
                     <target>${javaVersion}</target>
                 </configuration>
+            </plugin>
+
+            <!--<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assemblyPluginVersion}</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <finalName>bastion</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <archive>
+                        <manifest>
+                            <mainClass>ua.goit.timonov.enterprise.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>copy</goal></goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>8.0.33.0</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -3,6 +3,7 @@ package ua.goit.timonov.enterprise.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ua.goit.timonov.enterprise.controllers.DbController;
 
 import java.util.Date;
 import java.util.Map;
@@ -17,8 +18,15 @@ public class MainController {
     public static final String PATH_SCHEME = "scheme";
     public static final String PATH_CONTACTS = "contacts";
 
+    private DbController dbController;
+
+    public void setDbController(DbController dbController) {
+        this.dbController = dbController;
+    }
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainPage() {
+//        dbController.restoreDatabase();
         return PATH_MAIN;
     }
 

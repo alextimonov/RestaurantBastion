@@ -13,7 +13,6 @@ DROP SEQUENCE employee_id;
 DROP SEQUENCE dish_id;
 DROP SEQUENCE ingr_to_dish_id;
 DROP SEQUENCE ingredient_id;
-DROP SEQUENCE jobs_id;
 DROP SEQUENCE menu_id;
 DROP SEQUENCE orders_id;
 DROP SEQUENCE cooked_dish_id;
