@@ -29,7 +29,7 @@
 
 <div class="container">
     <form class="form-horizontal">
-        <h2>Restaurant Bastion 30.09.2016 15:55<small> We make your free time unforgettable</small></h2>
+        <h2>Restaurant Bastion<small> We make your free time unforgettable</small></h2>
         <h4>Kyiv, Blvd. Buchmy, 10. Tel. 123-45-67, E-mail:bastion@bastion.kiev.ua</h4>
         <img src="${pageContext.request.contextPath}/images/photo_inside.jpg" class="img-rounded"/>
     </form>
