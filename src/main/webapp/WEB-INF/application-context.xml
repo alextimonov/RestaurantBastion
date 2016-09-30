@@ -21,7 +21,10 @@
     <bean id="orderService" class="ua.goit.timonov.enterprise.service.OrderService"/>
     <bean id="orderDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateOrderDao"/>
 
-    <bean id="mainController" class="ua.goit.timonov.enterprise.web.MainController"/>
+    <bean id="initRedirect" class="ua.goit.timonov.enterprise.web.InitRedirect">
+        <property name="dbController" ref="dbController"/>
+    </bean>
+
 
     <bean id="cookedDishDAO" class="ua.goit.timonov.enterprise.dao.hibernate.HibernateCookedDishDao">
         <property name="hibernateEmployeeDao" ref="employeeDAO"/>

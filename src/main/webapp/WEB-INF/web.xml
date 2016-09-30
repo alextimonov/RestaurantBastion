@@ -42,4 +42,15 @@
         <error-code>500</error-code>
         <location>/WEB-INF/view/jsp/invalidInput.jsp</location>
     </error-page>
+
+    <servlet>
+        <servlet-name>InitRedirect</servlet-name>
+        <servlet-class>ua.goit.timonov.enterprise.web.InitRedirect</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InitRedirect</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -10,19 +10,35 @@
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc_travis.properties"/>
+        <!--<property name="location" value="classpath:jdbc_travis.properties"/>-->
         <!--<property name="location" value="classpath:jdbc.properties"/>-->
+        <property name="location" value="classpath:remoteDb.properties"/>
     </bean>
 
-    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
-        <property name="driverClass" value="${jdbc.driver.class}" />
-        <property name="jdbcUrl" value="${jdbc.url}"/>
-        <property name="user" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-        <property name="minPoolSize" value="${jdbc.min.connections}"/>
-        <property name="maxPoolSize" value="${jdbc.max.connections}"/>
-        <property name="acquireIncrement" value="${jdbc.acquire.increment}"/>
+    <!--<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">-->
+        <!--<property name="driverClass" value="${jdbc.driver.class}" />-->
+        <!--<property name="jdbcUrl" value="${jdbc.url}"/>-->
+        <!--<property name="user" value="${jdbc.user}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="minPoolSize" value="${jdbc.min.connections}"/>-->
+        <!--<property name="maxPoolSize" value="${jdbc.max.connections}"/>-->
+        <!--<property name="acquireIncrement" value="${jdbc.acquire.increment}"/>-->
+    <!--</bean>-->
 
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="${DATABASE_URL}"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+        <property name="maxActive" value="10"/>
+        <property name="maxIdle" value="5"/>
+        <property name="minIdle" value="2"/>
+        <property name="initialSize" value="5"/>
+        <property name="removeAbandoned" value="true"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -36,9 +52,7 @@
                 <!--<prop key="hibernate.cache.provider_class"> net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory </prop>-->
                 <!--<prop key="hibernate.cache.region.factory_class"> org.hibernate.cache.ehcache.EhCacheRegionFactory </prop>-->
             </props>
-
         </property>
-
     </bean>
 
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

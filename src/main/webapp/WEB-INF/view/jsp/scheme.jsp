@@ -28,10 +28,12 @@
 </nav>
 
 <div class="container">
-    <h2>Restaurant Bastion <small>We make your free time unforgettable</small></h2>
-    <h4>Kyiv, Blvd. Buchmy, 10. Tel. 123-45-67, E-mail:bastion@bastion.kiev.ua</h4>
-    <h3>Restaurant scheme</h3>
-    <img src="${pageContext.request.contextPath}/images/scheme.jpg" />
+    <form class="form-horizontal">
+        <h2>Restaurant Bastion <small>We make your free time unforgettable</small></h2>
+        <h4>Kyiv, Blvd. Buchmy, 10. Tel. 123-45-67, E-mail:bastion@bastion.kiev.ua</h4>
+        <h3>Restaurant scheme</h3>
+        <img src="${pageContext.request.contextPath}/images/scheme.jpg"/>
+    </form>
 </div>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
