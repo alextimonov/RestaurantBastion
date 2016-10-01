@@ -30,8 +30,7 @@ import static org.junit.Assert.assertNotEquals;
  * Testing class for HibernateOrderDAO
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
-        "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
 public class HibernateOrderDaoTest {
     private DbController dbController;
     private OrderDAO orderDAO;

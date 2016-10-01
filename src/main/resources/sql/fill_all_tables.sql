@@ -6,8 +6,8 @@ INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUE
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Gray', 'Stew', '1990-09-10', 6, 40000.0, 'Waiter');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Orange', 'John', '1995-10-23', 6, 40000.0, 'Waiter');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Red', 'Marion', '1997-11-25', 7, 30000.0, 'Employee');
-INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Wright', 'Clif', '1998-07-20', 7, 30000.0, 'Employee');
-INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Blue', 'Stew', '1999-10-15', 6, 35000.0, 'Waiter');
+INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Wright', 'Clef', '1998-07-20', 7, 30000.0, 'Employee');
+INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Magenta', 'Tom', '1999-10-15', 6, 35000.0, 'Waiter');
 
 
 INSERT INTO INGREDIENT (name, amount) VALUES('potato', 10000);

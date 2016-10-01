@@ -35,8 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Testing class for EmployeeServiceController
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml",
-        "file:src/main/webapp/WEB-INF/hibernate-context.xml",
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml",
         "file:src/main/webapp/WEB-INF/web-context.xml"})
 @WebAppConfiguration
 public class EmployeeServiceControllerTest {

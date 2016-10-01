@@ -27,8 +27,7 @@ import static org.junit.Assert.assertEquals;
  * Testing class for HibernateCookedDishDao
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
-        "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:hibernate-context.xml"})
 public class HibernateCookedDishDaoTest {
     private DbController dbController;
     private OrderDAO orderDAO;
