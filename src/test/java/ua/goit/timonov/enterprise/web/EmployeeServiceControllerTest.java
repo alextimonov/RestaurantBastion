@@ -41,6 +41,11 @@ import static ua.goit.timonov.enterprise.web.EmployeeServiceController.*;
 @WebAppConfiguration
 public class EmployeeServiceControllerTest {
     public static final String MAPPED_PATH = "/service/employee";
+    public static final String NAME = "name";
+    public static final String SURNAME = "surname";
+    public static final String SALARY = "salary";
+    public static final String JOB = "job";
+    public static final String ID = "id";
     @Autowired
     WebApplicationContext wac;
 
@@ -78,18 +83,18 @@ public class EmployeeServiceControllerTest {
                 .andExpect(model().attribute(EMPLOYEES, hasSize(2)))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
-                                hasProperty("name", is("Steven")),
-                                hasProperty("surname", is("Black")),
-                                hasProperty("salary", is(35000F)),
-                                hasProperty("job", is(new Job(Position.WAITER)))
+                                hasProperty(NAME, is("Steven")),
+                                hasProperty(SURNAME, is("Black")),
+                                hasProperty(SALARY, is(35000F)),
+                                hasProperty(JOB, is(new Job(Position.WAITER)))
                         )
                 )))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
-                                hasProperty("name", is("John")),
-                                hasProperty("surname", is("White")),
-                                hasProperty("salary", is(75000F)),
-                                hasProperty("job", is(new Job(Position.MANAGER)))
+                                hasProperty(NAME, is("John")),
+                                hasProperty(SURNAME, is("White")),
+                                hasProperty(SALARY, is(75000F)),
+                                hasProperty(JOB, is(new Job(Position.MANAGER)))
                         )
                 )));
         verify(employeeService, times(1)).getAllEmployees();
@@ -115,10 +120,10 @@ public class EmployeeServiceControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(EmployeeServiceController.PATH_ADD))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(0))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", nullValue())))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", nullValue())))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(0F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(ID, is(0))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(NAME, nullValue())))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SURNAME, nullValue())))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SALARY, is(0F))))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("position", nullValue())))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", nullValue())));
         verifyZeroInteractions(employeeService);
@@ -140,18 +145,18 @@ public class EmployeeServiceControllerTest {
                 .andExpect(model().attribute(EMPLOYEES, hasSize(2)))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
-                                hasProperty("name", is("Steven")),
-                                hasProperty("surname", is("Black")),
-                                hasProperty("salary", is(35000F)),
-                                hasProperty("job", is(new Job(Position.WAITER)))
+                                hasProperty(NAME, is("Steven")),
+                                hasProperty(SURNAME, is("Black")),
+                                hasProperty(SALARY, is(35000F)),
+                                hasProperty(JOB, is(new Job(Position.WAITER)))
                         )
                 )))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
-                                hasProperty("name", is("John")),
-                                hasProperty("surname", is("White")),
-                                hasProperty("salary", is(75000F)),
-                                hasProperty("job", is(new Job(Position.MANAGER)))
+                                hasProperty(NAME, is("John")),
+                                hasProperty(SURNAME, is("White")),
+                                hasProperty(SALARY, is(75000F)),
+                                hasProperty(JOB, is(new Job(Position.MANAGER)))
                         )
                 )));
         verify(employeeService).add(mrBlack);
@@ -167,16 +172,16 @@ public class EmployeeServiceControllerTest {
         EmployeeView employeeView = new EmployeeView(mrBlack);
         when(employeeService.getEmployeeById(1)).thenReturn(mrBlack);
         mockMvc.perform(get(MAPPED_PATH + "/edit")
-                .param("id", "1")
+                .param(ID, "1")
                 .requestAttr(EMPLOYEE_VIEW, employeeView)
                 .requestAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_EDIT))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(1))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(ID, is(1))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(NAME, is("Steven"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SURNAME, is("Black"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SALARY, is(35000F))))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(
                         "position", is(new Job(Position.WAITER).toString().toLowerCase()))))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
@@ -192,17 +197,17 @@ public class EmployeeServiceControllerTest {
         EmployeeView employeeView = new EmployeeView(mrBlack);
         when(employeeService.getEmployeeByName("Steven", "Black")).thenReturn(mrBlack);
         mockMvc.perform(get(MAPPED_PATH + "/editByName")
-                .param("name", "Steven")
-                .param("surname", "Black")
+                .param(NAME, "Steven")
+                .param(SURNAME, "Black")
                 .requestAttr(EMPLOYEE_VIEW, employeeView)
                 .requestAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_EDIT))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(1))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
-                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(ID, is(1))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(NAME, is("Steven"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SURNAME, is("Black"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(SALARY, is(35000F))))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(
                         "position", is(new Job(Position.WAITER).toString().toLowerCase()))))
                 .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
@@ -219,7 +224,7 @@ public class EmployeeServiceControllerTest {
         EmployeeValidate employeeValidate = new EmployeeValidate();
         when(employeeService.getAllEmployees()).thenReturn(Arrays.asList(mrWhite, mrBlack));
         mockMvc.perform(post(MAPPED_PATH + "/edit")
-                .param("id", "1")
+                .param(ID, "1")
                 .sessionAttr(EMPLOYEE_VIEW, employeeView)
                 .sessionAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
@@ -227,10 +232,10 @@ public class EmployeeServiceControllerTest {
                 .andExpect(view().name(PATH_EMPLOYEES))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                 allOf(
-                        hasProperty("name", is("Steven")),
-                        hasProperty("surname", is("Black")),
-                        hasProperty("salary", is(35000F)),
-                        hasProperty("job", is(new Job(Position.WAITER)))
+                        hasProperty(NAME, is("Steven")),
+                        hasProperty(SURNAME, is("Black")),
+                        hasProperty(SALARY, is(35000F)),
+                        hasProperty(JOB, is(new Job(Position.WAITER)))
                     )
                 )));
         verify(employeeService).update(mrBlack);

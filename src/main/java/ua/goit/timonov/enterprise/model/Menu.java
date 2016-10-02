@@ -74,7 +74,6 @@ public class Menu {
         return dishes != null ?
                 ( dishes.size() != 0 ? customDishEquals(dishes, menu.dishes) : menu.dishes.size() == 0) :
                 menu.dishes == null;
-
     }
 
     public boolean customDishEquals(List<Dish> dishes, List<Dish> menuDishes) {

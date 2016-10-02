@@ -38,6 +38,13 @@ import static ua.goit.timonov.enterprise.web.DishServiceController.*;
 @WebAppConfiguration
 public class DishServiceControllerTest {
     public static final String MAPPED_PATH = "/service/dish";
+    public static final String NAME = "name";
+    public static final String DESCRIPTION = "description";
+    public static final String WEIGHT = "weight";
+    public static final String COST = "cost";
+    public static final String SALAD = "salad";
+    public static final String RICE_SOUP = "rice soup";
+    public static final String ID = "id";
     @Autowired
     WebApplicationContext wac;
 
@@ -75,26 +82,26 @@ public class DishServiceControllerTest {
                 .andExpect(model().attribute(DISHES, hasSize(3)))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("salad")),
-                                hasProperty("description", is("light salad with delicious vegetables")),
-                                hasProperty("weight", is(250)),
-                                hasProperty("cost", is(45.0F)))
+                                hasProperty(NAME, is(SALAD)),
+                                hasProperty(DESCRIPTION, is("light salad with delicious vegetables")),
+                                hasProperty(WEIGHT, is(250)),
+                                hasProperty(COST, is(45.0F)))
                         )
                 ))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("rice soup")),
-                                hasProperty("description", is("created by standard recipe")),
-                                hasProperty("weight", is(300)),
-                                hasProperty("cost", is(50.0F)))
+                                hasProperty(NAME, is(RICE_SOUP)),
+                                hasProperty(DESCRIPTION, is("created by standard recipe")),
+                                hasProperty(WEIGHT, is(300)),
+                                hasProperty(COST, is(50.0F)))
                         )
                 ))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("new plov")),
-                                hasProperty("description", is("rice with meat")),
-                                hasProperty("weight", is(350)),
-                                hasProperty("cost", is(60.0F)))
+                                hasProperty(NAME, is("new plov")),
+                                hasProperty(DESCRIPTION, is("rice with meat")),
+                                hasProperty(WEIGHT, is(350)),
+                                hasProperty(COST, is(60.0F)))
                         )
                 ));
         verify(dishService, times(1)).getAllDishes();
@@ -120,11 +127,11 @@ public class DishServiceControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_ADD))
-                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty("id", is(0))))
-                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty("name", nullValue())))
-                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty("description", nullValue())))
-                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty("weight", is(0))))
-                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty("cost", is(0F))));
+                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty(ID, is(0))))
+                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty(NAME, nullValue())))
+                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty(DESCRIPTION, nullValue())))
+                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty(WEIGHT, is(0))))
+                .andExpect(model().attribute(DISH_ATTRIBUTE, hasProperty(COST, is(0F))));
         verifyZeroInteractions(dishService);
     }
 
@@ -136,13 +143,13 @@ public class DishServiceControllerTest {
         Dish salad = objectsFactory.makeDishSalad();
         salad.setId(2);
         when(dishService.getAllDishes()).thenReturn(Arrays.asList(soup, salad));
-        when(dishService.searchDishByName("salad")).thenReturn(salad);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
         mockMvc.perform(post(MAPPED_PATH + "/add")
-                .param("id", "2")
-                .param("name", "salad")
-                .param("description", "light salad with delicious vegetables")
-                .param("weight", "250")
-                .param("cost", "45.0F")
+                .param(ID, "2")
+                .param(NAME, SALAD)
+                .param(DESCRIPTION, "light salad with delicious vegetables")
+                .param(WEIGHT, "250")
+                .param(COST, "45.0F")
                 .sessionAttr(DISH_VALIDATE, dishValidate)
         )
                 .andExpect(status().isOk())
@@ -150,22 +157,22 @@ public class DishServiceControllerTest {
                 .andExpect(model().attribute(DISHES, hasSize(2)))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("rice soup")),
-                                hasProperty("description", is("created by standard recipe")),
-                                hasProperty("weight", is(300)),
-                                hasProperty("cost", is(50.0F)))
+                                hasProperty(NAME, is(RICE_SOUP)),
+                                hasProperty(DESCRIPTION, is("created by standard recipe")),
+                                hasProperty(WEIGHT, is(300)),
+                                hasProperty(COST, is(50.0F)))
                         )
                 ))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("salad")),
-                                hasProperty("description", is("light salad with delicious vegetables")),
-                                hasProperty("weight", is(250)),
-                                hasProperty("cost", is(45.0F)))
+                                hasProperty(NAME, is(SALAD)),
+                                hasProperty(DESCRIPTION, is("light salad with delicious vegetables")),
+                                hasProperty(WEIGHT, is(250)),
+                                hasProperty(COST, is(45.0F)))
                         )
                 ));
         verify(dishService).add(salad);
-        verify(dishService).searchDishByName("salad");
+        verify(dishService).searchDishByName(SALAD);
         verify(dishService).getAllDishes();
         verifyNoMoreInteractions(dishService);
     }
@@ -178,16 +185,16 @@ public class DishServiceControllerTest {
         salad.setId(2);
         when(dishService.searchDishById(2)).thenReturn(salad);
         mockMvc.perform(get(MAPPED_PATH + "/delete")
-                .param("id", "2")
+                .param(ID, "2")
                 .requestAttr(DISH_TO_DELETE, salad)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_DELETE))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("id", is(2))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("name", is("salad"))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("description", is("light salad with delicious vegetables"))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("weight", is(250))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("cost", is(45.0F))));
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(ID, is(2))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(COST, is(45.0F))));
         verify(dishService).searchDishById(2);
         verifyNoMoreInteractions(dishService);
     }
@@ -198,19 +205,19 @@ public class DishServiceControllerTest {
         soup.setId(1);
         Dish salad = objectsFactory.makeDishSalad();
         salad.setId(2);
-        when(dishService.searchDishByName("salad")).thenReturn(salad);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
         mockMvc.perform(get(MAPPED_PATH + "/deleteByName")
-                .param("dishName", "salad")
+                .param("dishName", SALAD)
                 .requestAttr(DISH_TO_DELETE, salad)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_DELETE))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("id", is(2))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("name", is("salad"))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("description", is("light salad with delicious vegetables"))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("weight", is(250))))
-                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty("cost", is(45.0F))));
-        verify(dishService).searchDishByName("salad");
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(ID, is(2))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(COST, is(45.0F))));
+        verify(dishService).searchDishByName(SALAD);
         verifyNoMoreInteractions(dishService);
     }
 
@@ -225,25 +232,25 @@ public class DishServiceControllerTest {
         List<Dish> expectedDishes = Arrays.asList(soup, salad);
         when(dishService.getAllDishes()).thenReturn(expectedDishes);
         mockMvc.perform(post(MAPPED_PATH + "/deleteConfirmed")
-                .param("id", "2")
+                .param(ID, "2")
                 .requestAttr(DISHES, expectedDishes)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_DISHES))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("rice soup")),
-                                hasProperty("description", is("created by standard recipe")),
-                                hasProperty("weight", is(300)),
-                                hasProperty("cost", is(50.0F)))
+                                hasProperty(NAME, is(RICE_SOUP)),
+                                hasProperty(DESCRIPTION, is("created by standard recipe")),
+                                hasProperty(WEIGHT, is(300)),
+                                hasProperty(COST, is(50.0F)))
                         )
                 ))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("salad")),
-                                hasProperty("description", is("light salad with delicious vegetables")),
-                                hasProperty("weight", is(250)),
-                                hasProperty("cost", is(45.0F)))
+                                hasProperty(NAME, is(SALAD)),
+                                hasProperty(DESCRIPTION, is("light salad with delicious vegetables")),
+                                hasProperty(WEIGHT, is(250)),
+                                hasProperty(COST, is(45.0F)))
                         )
                 ));
         verify(dishService).delete(2);
@@ -259,21 +266,21 @@ public class DishServiceControllerTest {
         when(dishService.searchDishById(1)).thenReturn(salad);
         mockMvc.perform(get(MAPPED_PATH + "/edit")
                 .param("dishId", "1")
-                .param("id", "1")
-                .param("name", "salad")
-                .param("description", "light salad with delicious vegetables")
-                .param("weight", "250")
-                .param("cost", "45.0F")
+                .param(ID, "1")
+                .param(NAME, SALAD)
+                .param(DESCRIPTION, "light salad with delicious vegetables")
+                .param(WEIGHT, "250")
+                .param(COST, "45.0F")
                 .requestAttr(DISH_EXISTING, salad)
                 .requestAttr(DISH_VALIDATE, dishValidate)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_EDIT))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("id", is(1))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("name", is("salad"))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("description", is("light salad with delicious vegetables"))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("weight", is(250))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("cost", is(45.0F))));
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(ID, is(1))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(COST, is(45.0F))));
         verify(dishService).searchDishById(1);
         verify(dishService).getIngredientsInDish(salad);
         verifyNoMoreInteractions(dishService);
@@ -289,25 +296,25 @@ public class DishServiceControllerTest {
         DishValidate dishValidate = new DishValidate();
         Dish salad = objectsFactory.makeDishSalad();
         salad.setId(1);
-        when(dishService.searchDishByName("salad")).thenReturn(salad);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
         mockMvc.perform(get(MAPPED_PATH + "/editByName")
-                .param("dishName", "salad")
-                .param("id", "1")
-                .param("name", "salad")
-                .param("description", "light salad with delicious vegetables")
-                .param("weight", "250")
-                .param("cost", "45.0F")
+                .param("dishName", SALAD)
+                .param(ID, "1")
+                .param(NAME, SALAD)
+                .param(DESCRIPTION, "light salad with delicious vegetables")
+                .param(WEIGHT, "250")
+                .param(COST, "45.0F")
                 .requestAttr(DISH_EXISTING, salad)
                 .requestAttr(DISH_VALIDATE, dishValidate)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_EDIT))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("id", is(1))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("name", is("salad"))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("description", is("light salad with delicious vegetables"))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("weight", is(250))))
-                .andExpect(model().attribute(DISH_EXISTING, hasProperty("cost", is(45.0F))));
-        verify(dishService).searchDishByName("salad");
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(ID, is(1))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH_EXISTING, hasProperty(COST, is(45.0F))));
+        verify(dishService).searchDishByName(SALAD);
         verify(dishService).getIngredientsInDish(salad);
         verifyNoMoreInteractions(dishService);
     }
@@ -319,14 +326,14 @@ public class DishServiceControllerTest {
         salad.setId(1);
         DishValidate dishValidate = new DishValidate();
         when(dishService.getAllDishes()).thenReturn(Arrays.asList(soup, salad));
-        when(dishService.searchDishByName("salad")).thenReturn(salad);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
         mockMvc.perform(post(MAPPED_PATH + "/edit")
                 .param("dishId", "1")
-                .param("id", "1")
-                .param("name", "salad")
-                .param("description", "light salad with delicious vegetables")
-                .param("weight", "250")
-                .param("cost", "45.0F")
+                .param(ID, "1")
+                .param(NAME, SALAD)
+                .param(DESCRIPTION, "light salad with delicious vegetables")
+                .param(WEIGHT, "250")
+                .param(COST, "45.0F")
                 .sessionAttr(DISH_EXISTING, salad)
                 .sessionAttr(DISH_VALIDATE, dishValidate)
         )
@@ -334,13 +341,13 @@ public class DishServiceControllerTest {
                 .andExpect(view().name(PATH_DISHES))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(
-                                hasProperty("name", is("salad")),
-                                hasProperty("description", is("light salad with delicious vegetables")),
-                                hasProperty("weight", is(250)),
-                                hasProperty("cost", is(45.0F)))
+                                hasProperty(NAME, is(SALAD)),
+                                hasProperty(DESCRIPTION, is("light salad with delicious vegetables")),
+                                hasProperty(WEIGHT, is(250)),
+                                hasProperty(COST, is(45.0F)))
                         )
                 ));
-        verify(dishService).searchDishByName("salad");
+        verify(dishService).searchDishByName(SALAD);
         verify(dishService).update(salad);
         verify(dishService).getAllDishes();
         verifyNoMoreInteractions(dishService);

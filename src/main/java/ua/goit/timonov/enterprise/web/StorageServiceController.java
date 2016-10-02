@@ -12,6 +12,7 @@ import ua.goit.timonov.enterprise.service.StorageService;
 import ua.goit.timonov.enterprise.web.validate.IngredientValidate;
 
 import javax.persistence.PersistenceException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -115,14 +116,14 @@ public class StorageServiceController {
     }
 
     @RequestMapping(value = "/deleteConfirmed", method = RequestMethod.POST)
-    public String deleteIngredientById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id) {
+    public String deleteIngredientById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer itemId) {
         try {
-            storageService.delete(id);
+            storageService.delete(itemId);
             model.put(ITEMS, storageService.getAllIngredients());
             return PATH_INGREDIENTS;
         }
         catch (PersistenceException e) {
-            model.put(ERROR_MESSAGE, "Ingredient with id=" + id + " can not be deleted due to using in another tables");
+            model.put(ERROR_MESSAGE, "Ingredient with id=" + itemId + " can not be deleted due to using in another tables");
             model.put("additionalMessage", e.getMessage());
             return PATH_ERROR;
         }
@@ -143,9 +144,9 @@ public class StorageServiceController {
     }
 
     @RequestMapping(value = "/editByName", method = RequestMethod.GET)
-    public String editDishByName(Map<String, Object> model, @RequestParam(value="name", required=true) String name) {
+    public String editDishByName(Map<String, Object> model, @RequestParam(value="name", required=true) String itemName) {
         try {
-            Ingredient item = storageService.searchByName(name);
+            Ingredient item = storageService.searchByName(itemName);
             model.put(ONE_ITEM, item);
             model.put(ITEM_VALIDATE, new IngredientValidate());
             return PATH_EDIT;
@@ -157,10 +158,10 @@ public class StorageServiceController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String saveEditIngredient(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id,
+    public String saveEditIngredient(Map<String, Object> model, @RequestParam(value="id", required=true) Integer itemId,
                                      @ModelAttribute(ONE_ITEM) Ingredient item,
                                      @ModelAttribute(ITEM_VALIDATE) IngredientValidate itemValidate) {
-        item.setId(id);
+        item.setId(itemId);
         if (itemValidate.isValid(item)) {
             if (checkForItemWithSameName(model, item))
                 return PATH_ERROR;
@@ -177,7 +178,8 @@ public class StorageServiceController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public String filterByName(Map<String, Object> model, @RequestParam(value="name", required=true) String startChars) {
-        model.put(ITEMS, storageService.filterWithStartChars(startChars));
+        List<Ingredient> items = storageService.filterWithStartChars(startChars);
+        model.put(ITEMS, items);
         return PATH_INGREDIENTS;
     }
 }

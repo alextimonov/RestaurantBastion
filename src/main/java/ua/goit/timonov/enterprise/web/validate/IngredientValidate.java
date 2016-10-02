@@ -31,4 +31,23 @@ public class IngredientValidate {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IngredientValidate)) return false;
+
+        IngredientValidate that = (IngredientValidate) o;
+
+        if (nameLabel != null ? !nameLabel.equals(that.nameLabel) : that.nameLabel != null) return false;
+        return amountLabel != null ? amountLabel.equals(that.amountLabel) : that.amountLabel == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nameLabel != null ? nameLabel.hashCode() : 0;
+        result = 31 * result + (amountLabel != null ? amountLabel.hashCode() : 0);
+        return result;
+    }
 }

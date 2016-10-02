@@ -30,6 +30,8 @@ public class MenuServiceController {
     public static final String ERROR_MESSAGE = "errorMessage";
     public static final String MENU_ITEM = "menuAttribute";
     public static final String MENU_VALIDATE = "menuValidate";
+    public static final String MENUS = "menus";
+    public static final String MENU_TO_DELETE = "menuToDelete";
 
     private MenuService menuService;
     private DishService dishService;
@@ -46,7 +48,7 @@ public class MenuServiceController {
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     public String serviceMenus(Map<String, Object> model) {
-        model.put("menus", menuService.getAllMenus());
+        model.put(MENUS, menuService.getAllMenus());
         return PATH_MENUS;
     }
 
@@ -110,7 +112,7 @@ public class MenuServiceController {
     public String askForDeleteMenuByName(Map<String, Object> model, @RequestParam(value="name", required=true) String name) {
         try {
             Menu menu = menuService.searchMenuByName(name);
-            model.put("menuToDelete", menu);
+            model.put(MENU_TO_DELETE, menu);
             return PATH_DELETE;
         }
         catch (NoItemInDbException e) {
@@ -134,9 +136,9 @@ public class MenuServiceController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editMenuById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id) {
+    public String editMenuById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer menuId) {
         try {
-            Menu menu = menuService.searchMenuById(id);
+            Menu menu = menuService.searchMenuById(menuId);
             model.put(MENU_ITEM, menu);
             model.put(MENU_VALIDATE, new MenuValidate());
             return PATH_EDIT;
@@ -148,9 +150,9 @@ public class MenuServiceController {
     }
 
     @RequestMapping(value = "/editByName", method = RequestMethod.GET)
-    public String editMenuByName(Map<String, Object> model, @RequestParam(value="name", required=true) String name) {
+    public String editMenuByName(Map<String, Object> model, @RequestParam(value="name", required=true) String menuName) {
         try {
-            Menu menu = menuService.searchMenuByName(name);
+            Menu menu = menuService.searchMenuByName(menuName);
             model.put(MENU_ITEM, menu);
             model.put(MENU_VALIDATE, new MenuValidate());
             return PATH_EDIT;

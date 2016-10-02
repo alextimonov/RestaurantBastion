@@ -21,4 +21,20 @@ public class MenuValidate {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuValidate)) return false;
+
+        MenuValidate that = (MenuValidate) o;
+
+        return nameLabel != null ? nameLabel.equals(that.nameLabel) : that.nameLabel == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return nameLabel != null ? nameLabel.hashCode() : 0;
+    }
 }
