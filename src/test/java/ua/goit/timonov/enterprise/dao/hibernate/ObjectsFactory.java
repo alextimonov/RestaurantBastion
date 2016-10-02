@@ -16,8 +16,7 @@ public class ObjectsFactory {
         Dish salad = new Dish();
         salad
                 .append("salad", "light salad with delicious vegetables")
-                .append(250)
-                .append(45.0F);
+                .append(250, 45.0F);
         return salad;
     }
 
@@ -25,8 +24,7 @@ public class ObjectsFactory {
         Dish soup = new Dish();
         soup
                 .append("rice soup", "created by standard recipe")
-                .append(300)
-                .append(50.0F);
+                .append(300, 50.0F);
         return soup;
     }
 
@@ -34,8 +32,7 @@ public class ObjectsFactory {
         Dish plov = new Dish();
         plov
                 .append("new plov", "rice with meat")
-                .append(350)
-                .append(60.0F);
+                .append(350, 60.0F);
         return plov;
     }
 
@@ -43,8 +40,7 @@ public class ObjectsFactory {
         Dish salmon = new Dish();
         salmon
                 .append("salmon", "fried salmon")
-                .append(300)
-                .append(80.0F);
+                .append(300, 80.0F);
         return salmon;
     }
 
@@ -52,8 +48,7 @@ public class ObjectsFactory {
         Dish friedEggs = new Dish();
         friedEggs
                 .append("fried eggs", "fried eggs with bacon")
-                .append(175)
-                .append(40.0F);
+                .append(175, 40.0F);
         return friedEggs;
     }
 

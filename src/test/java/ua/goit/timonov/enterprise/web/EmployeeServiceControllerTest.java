@@ -30,6 +30,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static ua.goit.timonov.enterprise.web.EmployeeServiceController.*;
 
 /**
  * Testing class for EmployeeServiceController
@@ -74,8 +75,8 @@ public class EmployeeServiceControllerTest {
         when(employeeService.getAllEmployees()).thenReturn(expectedEmployees);
         mockMvc.perform(get(MAPPED_PATH + "/employees"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasSize(2)))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasItem(
+                .andExpect(model().attribute(EMPLOYEES, hasSize(2)))
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
                                 hasProperty("name", is("Steven")),
                                 hasProperty("surname", is("Black")),
@@ -83,7 +84,7 @@ public class EmployeeServiceControllerTest {
                                 hasProperty("job", is(new Job(Position.WAITER)))
                         )
                 )))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasItem(
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
                                 hasProperty("name", is("John")),
                                 hasProperty("surname", is("White")),
@@ -99,8 +100,8 @@ public class EmployeeServiceControllerTest {
     public void testGetEmployeeToAdd() throws Exception {
         mockMvc.perform(get(MAPPED_PATH + "/add"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VALIDATE, new EmployeeValidate()))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, new EmployeeView()))
+                .andExpect(model().attribute(EMPLOYEE_VALIDATE, new EmployeeValidate()))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, new EmployeeView()))
                 .andExpect(view().name(EmployeeServiceController.PATH_ADD));
     }
 
@@ -109,17 +110,17 @@ public class EmployeeServiceControllerTest {
         EmployeeValidate employeeValidate = new EmployeeValidate();
         EmployeeView employeeView = new EmployeeView();
         mockMvc.perform(post(MAPPED_PATH + "/add")
-                .sessionAttr(EmployeeServiceController.EMPLOYEE_VIEW, employeeView)
-                .sessionAttr(EmployeeServiceController.EMPLOYEE_VALIDATE, employeeValidate)
+                .sessionAttr(EMPLOYEE_VIEW, employeeView)
+                .sessionAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(EmployeeServiceController.PATH_ADD))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("id", is(0))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("name", nullValue())))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("surname", nullValue())))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("salary", is(0F))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("position", nullValue())))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("birthday", nullValue())));
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(0))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", nullValue())))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", nullValue())))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(0F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("position", nullValue())))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", nullValue())));
         verifyZeroInteractions(employeeService);
     }
 
@@ -131,13 +132,13 @@ public class EmployeeServiceControllerTest {
         EmployeeView mrBlackView = new EmployeeView(mrBlack);
         when(employeeService.getAllEmployees()).thenReturn(Arrays.asList(mrWhite, mrBlack));
         mockMvc.perform(post(MAPPED_PATH + "/add")
-                .sessionAttr(EmployeeServiceController.EMPLOYEE_VIEW, mrBlackView)
-                .requestAttr(EmployeeServiceController.EMPLOYEE_VALIDATE, employeeValidate)
+                .sessionAttr(EMPLOYEE_VIEW, mrBlackView)
+                .requestAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name(EmployeeServiceController.PATH_EMPLOYEES))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasSize(2)))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasItem(
+                .andExpect(view().name(PATH_EMPLOYEES))
+                .andExpect(model().attribute(EMPLOYEES, hasSize(2)))
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
                                 hasProperty("name", is("Steven")),
                                 hasProperty("surname", is("Black")),
@@ -145,7 +146,7 @@ public class EmployeeServiceControllerTest {
                                 hasProperty("job", is(new Job(Position.WAITER)))
                         )
                 )))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEES, hasItem(
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
                                 hasProperty("name", is("John")),
                                 hasProperty("surname", is("White")),
@@ -166,19 +167,19 @@ public class EmployeeServiceControllerTest {
         EmployeeView employeeView = new EmployeeView(mrBlack);
         when(employeeService.getEmployeeById(1)).thenReturn(mrBlack);
         mockMvc.perform(get(MAPPED_PATH + "/edit")
-                        .param("id", "1")
-                .requestAttr(EmployeeServiceController.EMPLOYEE_VIEW, employeeView)
-                .requestAttr(EmployeeServiceController.EMPLOYEE_VALIDATE, employeeValidate)
+                .param("id", "1")
+                .requestAttr(EMPLOYEE_VIEW, employeeView)
+                .requestAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name(EmployeeServiceController.PATH_EDIT))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("id", is(1))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty(
+                .andExpect(view().name(PATH_EDIT))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(1))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(
                         "position", is(new Job(Position.WAITER).toString().toLowerCase()))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
         verify(employeeService).getEmployeeById(1);
         verifyNoMoreInteractions(employeeService);
     }
@@ -193,19 +194,59 @@ public class EmployeeServiceControllerTest {
         mockMvc.perform(get(MAPPED_PATH + "/editByName")
                 .param("name", "Steven")
                 .param("surname", "Black")
-                .requestAttr(EmployeeServiceController.EMPLOYEE_VIEW, employeeView)
-                .requestAttr(EmployeeServiceController.EMPLOYEE_VALIDATE, employeeValidate)
+                .requestAttr(EMPLOYEE_VIEW, employeeView)
+                .requestAttr(EMPLOYEE_VALIDATE, employeeValidate)
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name(EmployeeServiceController.PATH_EDIT))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("id", is(1))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty(
+                .andExpect(view().name(PATH_EDIT))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("id", is(1))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("name", is("Steven"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("surname", is("Black"))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("salary", is(35000F))))
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty(
                         "position", is(new Job(Position.WAITER).toString().toLowerCase()))))
-                .andExpect(model().attribute(EmployeeServiceController.EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
+                .andExpect(model().attribute(EMPLOYEE_VIEW, hasProperty("birthday", is(new GregorianCalendar(1998, 5, 20).getTime()))));
         verify(employeeService).getEmployeeByName("Steven", "Black");
         verifyNoMoreInteractions(employeeService);
     }
+
+    @Test
+    public void testSaveEditDish() throws Exception {
+        Employee mrBlack = objectsFactory.makeEmployeeBlack();
+        Employee mrWhite = objectsFactory.makeEmployeeBlack();
+        mrBlack.setId(1);
+        EmployeeView employeeView = new EmployeeView(mrBlack);
+        EmployeeValidate employeeValidate = new EmployeeValidate();
+        when(employeeService.getAllEmployees()).thenReturn(Arrays.asList(mrWhite, mrBlack));
+        mockMvc.perform(post(MAPPED_PATH + "/edit")
+                .param("id", "1")
+                .sessionAttr(EMPLOYEE_VIEW, employeeView)
+                .sessionAttr(EMPLOYEE_VALIDATE, employeeValidate)
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name(PATH_EMPLOYEES))
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
+                allOf(
+                        hasProperty("name", is("Steven")),
+                        hasProperty("surname", is("Black")),
+                        hasProperty("salary", is(35000F)),
+                        hasProperty("job", is(new Job(Position.WAITER)))
+                    )
+                )));
+        verify(employeeService).update(mrBlack);
+        verify(employeeService).getAllEmployees();
+        verifyNoMoreInteractions(employeeService);
+    }
+
+//    @Test
+//    public void testSetEmployeeService() throws Exception {
+//
+//    }
+//
+//    @Test
+//    public void testAddEmployee() throws Exception {
+//
+//    }
+
+
 }

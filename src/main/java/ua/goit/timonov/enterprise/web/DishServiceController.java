@@ -32,11 +32,19 @@ public class DishServiceController {
     public static final String PATH_EDIT_ITEM = "service/dish/editItem";
     public static final String PATH_ADD_ITEM = "service/dish/addItem";
     public static final String PATH_DELETE_ITEM = "service/dish/deleteItem";
+    public static final String DISHES = "dishes";
+    public static final String DISH_VALIDATE = "dishValidate";
+    public static final String DISH_ATTRIBUTE = "dishAttribute";
+    public static final String DISH_EXISTING = "dishExisting";
+    public static final String DISH_TO_DELETE = "dishToDelete";
     private DishService dishService;
     private StorageService storageService;
 
     public DishServiceController(DishService dishService) {
         this.dishService = dishService;
+    }
+
+    public DishServiceController() {
     }
 
     @Autowired
@@ -47,14 +55,14 @@ public class DishServiceController {
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
     public String getAllDishes(Map<String, Object> model) {
-        model.put("dishes", dishService.getAllDishes());
+        model.put(DISHES, dishService.getAllDishes());
         return PATH_DISHES;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getDishToAdd(Map<String, Object> model) {
-        model.put("dishValidate", new DishValidate());
-        model.put("dishAttribute", new Dish());
+        model.put(DISH_VALIDATE, new DishValidate());
+        model.put(DISH_ATTRIBUTE, new Dish());
         return PATH_ADD;
     }
 
@@ -65,12 +73,12 @@ public class DishServiceController {
             if (checkForDishWithSameName(model, dish))
                 return PATH_ERROR;
             dishService.add(dish);
-            model.put("dishes", dishService.getAllDishes());
+            model.put(DISHES, dishService.getAllDishes());
             return PATH_DISHES;
         }
         else {
-            model.put("dishValidate", dishValidate);
-            model.put("dishAttribute", dish);
+            model.put(DISH_VALIDATE, dishValidate);
+            model.put(DISH_ATTRIBUTE, dish);
             return PATH_ADD;
         }
     }
@@ -114,7 +122,7 @@ public class DishServiceController {
     public String askForDeleteDishById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id) {
         try {
             Dish dish = dishService.searchDishById(id);
-            model.put("dishToDelete", dish);
+            model.put(DISH_TO_DELETE, dish);
             return PATH_DELETE;
         }
         catch (NoItemInDbException e) {
@@ -127,7 +135,7 @@ public class DishServiceController {
     public String askForDeleteDishByName(Map<String, Object> model, @RequestParam(value="name", required=true) String dishName) {
         try {
             Dish dish = dishService.searchDishByName(dishName);
-            model.put("dishToDelete", dish);
+            model.put(DISH_TO_DELETE, dish);
             return PATH_DELETE;
         }
         catch (NoItemInDbException e) {
@@ -140,7 +148,7 @@ public class DishServiceController {
     public String deleteDish(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id) {
         try {
             dishService.delete(id);
-            model.put("dishes", dishService.getAllDishes());
+            model.put(DISHES, dishService.getAllDishes());
             return PATH_DISHES;
         }
         catch (PersistenceException e) {
@@ -151,12 +159,12 @@ public class DishServiceController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editDishById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer id) {
+    public String editDishById(Map<String, Object> model, @RequestParam(value="id", required=true) Integer dishId) {
         try {
-            Dish dish = dishService.searchDishById(id);
+            Dish dish = dishService.searchDishById(dishId);
             List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
-            model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_EXISTING, dish);
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", items);
             return PATH_EDIT;
         }
@@ -172,7 +180,7 @@ public class DishServiceController {
             Dish dish = dishService.searchDishById(dishId);
             List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
             model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", items);
             return PATH_EDIT;
         }
@@ -183,12 +191,12 @@ public class DishServiceController {
     }
 
     @RequestMapping(value = "/editByName", method = RequestMethod.GET)
-    public String editDishByName(Map<String, Object> model, @RequestParam(value="name", required=true) String name) {
+    public String editDishByName(Map<String, Object> model, @RequestParam(value="name", required=true) String dishName) {
         try {
-            Dish dish = dishService.searchDishByName(name);
+            Dish dish = dishService.searchDishByName(dishName);
             List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
-            model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_EXISTING, dish);
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", items);
             return PATH_EDIT;
         }
@@ -200,20 +208,20 @@ public class DishServiceController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String saveEditDish(Map<String, Object> model,
-                               @RequestParam(value="id", required=true) int id,
-                               @ModelAttribute("dishExisting") Dish dish,
-                               @ModelAttribute("dishValidate") DishValidate dishValidate) {
-        dish.setId(id);
+                               @RequestParam(value="id", required=true) int dishId,
+                               @ModelAttribute(DISH_EXISTING) Dish dish,
+                               @ModelAttribute(DISH_VALIDATE) DishValidate dishValidate) {
+        dish.setId(dishId);
         if (dishValidate.isValid(dish)) {
             if (checkForDishWithSameName(model, dish))
                 return PATH_ERROR;
             dishService.update(dish);
-            model.put("dishes", dishService.getAllDishes());
+            model.put(DISHES, dishService.getAllDishes());
             return PATH_DISHES;
         }
         else {
-            model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_EXISTING, dish);
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", dishService.getIngredientsInDish(dish));
             return PATH_EDIT;
         }
@@ -245,7 +253,7 @@ public class DishServiceController {
                 return PATH_ERROR;
             }
             model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", dishService.getIngredientsInDish(dish));
             return PATH_EDIT;
         }
@@ -283,7 +291,7 @@ public class DishServiceController {
         if (itemValidate.isValid(itemInDb)) {
             dishService.updateItemInDish(itemInDb);
             model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", dishService.getIngredientsInDish(dish));
             return PATH_EDIT;
         }
@@ -317,7 +325,7 @@ public class DishServiceController {
             IngredientsInDish item = dishService.searchItemInDish(id);
             dishService.deleteItemFromDish(dish, item);
             model.put("dishExisting", dish);
-            model.put("dishValidate", new DishValidate());
+            model.put(DISH_VALIDATE, new DishValidate());
             model.put("itemsInDish", dishService.getIngredientsInDish(dish));
             return PATH_EDIT;
         }

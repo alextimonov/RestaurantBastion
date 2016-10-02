@@ -37,6 +37,25 @@ public class Dish {
     public Dish() {
     }
 
+    public Dish(Dish dish) {
+        this.setId(dish.getId());
+        this.setName(dish.getName());
+        this.setDescription(dish.getDescription());
+        this.setWeight(dish.getWeight());
+        this.setCost(dish.getCost());
+    }
+
+    public Dish(int id, String name, String description, int weight, float cost) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.weight = weight;
+        this.cost = cost;
+    }
+
+    //    public Dish(int id, String name, String description, int weight, float cost) {
+//    }
+
     public int getId() {
         return id;
     }
@@ -83,13 +102,9 @@ public class Dish {
         return this;
     }
 
-    public Dish append(float cost) {
+    public Dish append(int weight, float cost) {
+        setWeight(weight);
         setCost(cost);
-        return this;
-    }
-
-    public Dish append(int weight) {
-        setCost(weight);
         return this;
     }
 

@@ -49,4 +49,28 @@ public class DishValidate {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DishValidate)) return false;
+
+        DishValidate that = (DishValidate) o;
+
+        if (nameLabel != null ? !nameLabel.equals(that.nameLabel) : that.nameLabel != null) return false;
+        if (descriptionLabel != null ? !descriptionLabel.equals(that.descriptionLabel) : that.descriptionLabel != null)
+            return false;
+        if (weightLabel != null ? !weightLabel.equals(that.weightLabel) : that.weightLabel != null) return false;
+        return costLabel != null ? costLabel.equals(that.costLabel) : that.costLabel == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nameLabel != null ? nameLabel.hashCode() : 0;
+        result = 31 * result + (descriptionLabel != null ? descriptionLabel.hashCode() : 0);
+        result = 31 * result + (weightLabel != null ? weightLabel.hashCode() : 0);
+        result = 31 * result + (costLabel != null ? costLabel.hashCode() : 0);
+        return result;
+    }
 }
