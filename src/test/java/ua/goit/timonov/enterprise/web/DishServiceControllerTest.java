@@ -207,8 +207,7 @@ public class DishServiceControllerTest {
         salad.setId(2);
         when(dishService.searchDishByName(SALAD)).thenReturn(salad);
         mockMvc.perform(get(MAPPED_PATH + "/deleteByName")
-                .param("dishName", SALAD)
-                .requestAttr(DISH_TO_DELETE, salad)
+                .param(NAME, SALAD)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(PATH_DELETE))
@@ -286,11 +285,6 @@ public class DishServiceControllerTest {
         verifyNoMoreInteractions(dishService);
     }
 
-//    @Test
-//    public void testEditDish() throws Exception {
-//
-//    }
-
     @Test
     public void testEditDishByName() throws Exception {
         DishValidate dishValidate = new DishValidate();
@@ -352,34 +346,4 @@ public class DishServiceControllerTest {
         verify(dishService).getAllDishes();
         verifyNoMoreInteractions(dishService);
     }
-
-//    @Test
-//    public void testGetAllDishes1() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testAddItemToDish() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testEditItemInDish() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testSaveEditItemInDish() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testAskForDeleteItemInDish() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testDeleteItemFromDish() throws Exception {
-//
-//    }
 }

@@ -251,16 +251,4 @@ public class EmployeeServiceControllerTest {
         verify(employeeService).getAllEmployees();
         verifyNoMoreInteractions(employeeService);
     }
-
-//    @Test
-//    public void testSetEmployeeService() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testAddEmployee() throws Exception {
-//
-//    }
-
-
 }

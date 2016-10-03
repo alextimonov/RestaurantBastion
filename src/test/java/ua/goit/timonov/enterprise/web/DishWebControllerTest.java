@@ -69,6 +69,7 @@ public class DishWebControllerTest {
                 .build();
         objectsFactory = new ObjectsFactory();
     }
+
     @Test
     public void testGetDishes() throws Exception {
         Dish salad = objectsFactory.makeDishSalad();
@@ -78,6 +79,7 @@ public class DishWebControllerTest {
         when(dishService.getAllDishes()).thenReturn(expectedDishes);
         mockMvc.perform(get("/dishes"))
                 .andExpect(status().isOk())
+                .andExpect(view().name(DISHES))
                 .andExpect(model().attribute(DISHES, hasSize(3)))
                 .andExpect(model().attribute(DISHES, hasItem(
                         allOf(

@@ -101,9 +101,9 @@ public class HibernateMenuDaoTest {
     @Test
     public void testSearchByIdNormal() throws Exception {
         dbController.restoreAllData();
-        Menu testMenu= makeTestMenu();
+        Menu testMenu = makeTestMenu();
         menuDAO.add(testMenu);
-        Menu foundMenu = menuDAO.search(13);
+        Menu foundMenu = menuDAO.search(testMenu.getId());
         assertEquals(testMenu, foundMenu);
     }
 
@@ -261,5 +261,4 @@ public class HibernateMenuDaoTest {
         createdMenus.stream().filter(gotFromDbMenus::contains).forEach(gotFromDbMenus::remove);
         assertEquals(new ArrayList<Menu>(), gotFromDbMenus);
     }
-
 }

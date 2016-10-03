@@ -300,24 +300,4 @@ public class MenuServiceControllerTest {
         verify(menuService).getAllMenus();
         verifyNoMoreInteractions(menuService);
     }
-
-//    @Test
-//    public void testAddDishToMenu() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testAddDishToMenuByName() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testDeleteDishFromMenu() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void testDeleteDishByNameFromMenu() throws Exception {
-//
-//    }
 }

@@ -46,7 +46,7 @@ public class MenuServiceController {
         this.dishService = dishService;
     }
 
-    @RequestMapping(value = "/menus", method = RequestMethod.GET)
+    @RequestMapping(value =  "/menus", method = RequestMethod.GET)
     public String serviceMenus(Map<String, Object> model) {
         model.put(MENUS, menuService.getAllMenus());
         return PATH_MENUS;
