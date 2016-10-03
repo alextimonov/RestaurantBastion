@@ -24,9 +24,10 @@ import java.util.List;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ua.goit.timonov.enterprise.web.DishServiceController.DISHES;
+import static ua.goit.timonov.enterprise.web.DishWebController.DISH;
+import static ua.goit.timonov.enterprise.web.DishWebController.DISH_NAME;
 
 /**
  * Testing class for DishWebController
@@ -108,38 +109,45 @@ public class DishWebControllerTest {
 
     @Test
     public void testGetDish() throws Exception {
-//        Dish soup = objectsFactory.makeDishRiceSoup();
-//        soup.setId(1);
-//        Dish salad = objectsFactory.makeDishSalad();
-//        salad.setId(2);
-//        when(dishService.searchDishById(2)).thenReturn(salad);
-//        mockMvc.perform(get("/dish/{dishName}")
-//                .param(ID, "2")
-//                .requestAttr(DISH_TO_DELETE, salad)
-//        )
-//                .andExpect(status().isOk())
-//                .andExpect(view().name(PATH_DELETE))
-//                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(ID, is(2))))
-//                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(NAME, is(SALAD))))
-//                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
-//                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(WEIGHT, is(250))))
-//                .andExpect(model().attribute(DISH_TO_DELETE, hasProperty(COST, is(45.0F))));
-//        verify(dishService).searchDishById(2);
-//        verifyNoMoreInteractions(dishService);
+        Dish soup = objectsFactory.makeDishRiceSoup();
+        soup.setId(1);
+        Dish salad = objectsFactory.makeDishSalad();
+        salad.setId(2);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
+        mockMvc.perform(get("/dish/salad")
+                .param(DISH_NAME, SALAD)
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name(DISH))
+                .andExpect(model().attribute(DISH, hasProperty(ID, is(2))))
+                .andExpect(model().attribute(DISH, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH, hasProperty(COST, is(45.0F))));
+        verify(dishService).searchDishByName(SALAD);
+        verify(dishService).getIngredientsInDish(salad);
+        verifyNoMoreInteractions(dishService);
     }
-
-//    @RequestMapping(value = "/dish/{dishName}", method = RequestMethod.GET)
-//    public ModelAndView getDish(@PathVariable("dishName") String dishName) {
-//        ModelAndView modelAndView = new ModelAndView(DISH);
-//        Dish dish = dishService.getDishByName(dishName);
-//        modelAndView.addObject(DISH, dish);
-//        List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
-//        modelAndView.addObject("itemsInDish", items);
-//        return modelAndView;
-//    }
 
     @Test
     public void testSearchDishParam() throws Exception {
-
+        Dish soup = objectsFactory.makeDishRiceSoup();
+        soup.setId(1);
+        Dish salad = objectsFactory.makeDishSalad();
+        salad.setId(2);
+        when(dishService.searchDishByName(SALAD)).thenReturn(salad);
+        mockMvc.perform(get("/searchDish")
+                .param(DISH_NAME, SALAD)
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name(DISH))
+                .andExpect(model().attribute(DISH, hasProperty(ID, is(2))))
+                .andExpect(model().attribute(DISH, hasProperty(NAME, is(SALAD))))
+                .andExpect(model().attribute(DISH, hasProperty(DESCRIPTION, is("light salad with delicious vegetables"))))
+                .andExpect(model().attribute(DISH, hasProperty(WEIGHT, is(250))))
+                .andExpect(model().attribute(DISH, hasProperty(COST, is(45.0F))));
+        verify(dishService).searchDishByName(SALAD);
+        verify(dishService).getIngredientsInDish(salad);
+        verifyNoMoreInteractions(dishService);
     }
 }

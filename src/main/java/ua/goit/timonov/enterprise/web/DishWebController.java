@@ -23,6 +23,7 @@ public class DishWebController {
 
     public static final String DISHES = "dishes";
     public static final String DISH = "dish";
+    public static final String DISH_NAME = "dishName";
     private DishService dishService;
 
     @Autowired
@@ -37,9 +38,9 @@ public class DishWebController {
     }
 
     @RequestMapping(value = "/dish/{dishName}", method = RequestMethod.GET)
-    public ModelAndView getDish(@PathVariable("dishName") String dishName) {
+    public ModelAndView getDish(@PathVariable(DISH_NAME) String dishName) {
         ModelAndView modelAndView = new ModelAndView(DISH);
-        Dish dish = dishService.getDishByName(dishName);
+        Dish dish = dishService.searchDishByName(dishName);
         modelAndView.addObject(DISH, dish);
         List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
         modelAndView.addObject("itemsInDish", items);
@@ -47,7 +48,7 @@ public class DishWebController {
     }
 
     @RequestMapping(value = "/searchDish", method = RequestMethod.GET)
-    public String searchDishParam(Map<String, Object> model, @RequestParam("dishName") String dishName) {
+    public String searchDishParam(Map<String, Object> model, @RequestParam(DISH_NAME) String dishName) {
         try {
             Dish dish = dishService.searchDishByName(dishName);
             model.put(DISH, dish);
@@ -55,7 +56,7 @@ public class DishWebController {
             return DISH;
         }
         catch (NoItemInDbException e) {
-            model.put("dishName", dishName);
+            model.put(DISH_NAME, dishName);
             model.put("errorMessage", e.getMessage());
             return "dishNotFound";
         }

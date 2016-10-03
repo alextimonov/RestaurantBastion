@@ -1,9 +1,6 @@
 package ua.goit.timonov.enterprise.dao.hibernate;
 
-import ua.goit.timonov.enterprise.model.Dish;
-import ua.goit.timonov.enterprise.model.Employee;
-import ua.goit.timonov.enterprise.model.Job;
-import ua.goit.timonov.enterprise.model.Position;
+import ua.goit.timonov.enterprise.model.*;
 
 import java.util.GregorianCalendar;
 
@@ -80,5 +77,19 @@ public class ObjectsFactory {
                 .append(new Job(Position.COOK))
                 .append(50000F);
         return mrRed;
+    }
+
+    public Waiter makeWaiterBlack() {
+        return new Waiter(makeEmployeeBlack());
+    }
+
+    public Waiter makeWaiterGreen() {
+        Employee mrGreen = new Employee();
+        mrGreen
+                .append("Tom", "Green")
+                .append(new GregorianCalendar(1997, 5, 25).getTime())
+                .append(new Job(Position.WAITER))
+                .append(37000F);
+        return new Waiter(mrGreen);
     }
 }

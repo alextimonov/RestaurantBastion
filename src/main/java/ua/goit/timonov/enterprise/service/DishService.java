@@ -29,11 +29,6 @@ public class DishService {
     }
 
     @Transactional
-    public Dish getDishByName(String dishName) {
-        return dishDAO.search(dishName);
-    }
-
-    @Transactional
     public List<Ingredient> getIngredientsByDish(Dish dish) {
         return dishDAO.defineDishIngredients(dish);
     }

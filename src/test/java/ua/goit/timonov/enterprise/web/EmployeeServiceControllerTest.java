@@ -76,11 +76,12 @@ public class EmployeeServiceControllerTest {
     public void testServiceEmployees() throws Exception {
         Employee mrBlack = objectsFactory.makeEmployeeBlack();
         Employee mrWhite = objectsFactory.makeEmployeeWhite();
-        List<Employee> expectedEmployees = Arrays.asList(mrBlack, mrWhite);
+        Employee mrRed = objectsFactory.makeEmployeeRed();
+        List<Employee> expectedEmployees = Arrays.asList(mrBlack, mrWhite, mrRed);
         when(employeeService.getAllEmployees()).thenReturn(expectedEmployees);
         mockMvc.perform(get(MAPPED_PATH + "/employees"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute(EMPLOYEES, hasSize(2)))
+                .andExpect(model().attribute(EMPLOYEES, hasSize(3)))
                 .andExpect(model().attribute(EMPLOYEES, hasItem(
                         allOf(
                                 hasProperty(NAME, is("Steven")),
@@ -96,8 +97,16 @@ public class EmployeeServiceControllerTest {
                                 hasProperty(SALARY, is(75000F)),
                                 hasProperty(JOB, is(new Job(Position.MANAGER)))
                         )
+                )))
+                .andExpect(model().attribute(EMPLOYEES, hasItem(
+                        allOf(
+                                hasProperty(NAME, is("Peter")),
+                                hasProperty(SURNAME, is("Red")),
+                                hasProperty(SALARY, is(50000F)),
+                                hasProperty(JOB, is(new Job(Position.COOK)))
+                        )
                 )));
-        verify(employeeService, times(1)).getAllEmployees();
+        verify(employeeService).getAllEmployees();
         verifyNoMoreInteractions(employeeService);
     }
 

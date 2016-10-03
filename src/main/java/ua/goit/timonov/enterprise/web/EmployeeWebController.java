@@ -14,6 +14,8 @@ import java.util.Map;
 @Controller
 public class EmployeeWebController {
 
+    public static final String EMPLOYEES = "employees";
+    public static final String WAITERS = "waiters";
     private EmployeeService employeeService;
 
     @Autowired
@@ -22,14 +24,14 @@ public class EmployeeWebController {
     }
 
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
-    public String employees(Map<String, Object> model) {
-        model.put("employees", employeeService.getAllEmployees());
-        return "employees";
+    public String getEmployees(Map<String, Object> model) {
+        model.put(EMPLOYEES, employeeService.getAllEmployees());
+        return EMPLOYEES;
     }
 
     @RequestMapping(value = "/waiters", method = RequestMethod.GET)
-    public String waiters(Map<String, Object> model) {
-        model.put("waiters", employeeService.getWaiters());
-        return "waiters";
+    public String getWaiters(Map<String, Object> model) {
+        model.put(WAITERS, employeeService.getWaiters());
+        return WAITERS;
     }
 }
