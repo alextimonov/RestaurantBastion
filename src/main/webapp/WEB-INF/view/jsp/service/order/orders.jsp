@@ -48,7 +48,7 @@
                 <td>${item.tableNumber}</td>
                 <td><fmt:formatDate pattern="dd-MM-yyyy" value="${item.date}"/></td>
                 <td>${item.closed}</td>
-                <td> <a href="${pathOrder}/dishes?order=${item.id}">${nDishes} dishes</a></td>
+                <td> <a href="${pathOrder}/dishes?orderId=${item.id}">${nDishes} dishes</a></td>
             </tr>
         </c:forEach>
 

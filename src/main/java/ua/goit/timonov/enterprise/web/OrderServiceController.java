@@ -45,22 +45,24 @@ public class OrderServiceController {
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
-    public String getAllIngredients(Map<String, Object> model) {
+    public String getAllOrders(Map<String, Object> model) {
         model.put(ITEMS, orderService.getAllOrders());
         return PATH_ORDERS;
     }
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
-    public String getOrderDishes(Map<String, Object> model, @RequestParam(value="order", required=true) Integer id) {
-        model.put("order", orderService.getOrder(id));
+    public String getOrderDishes(Map<String, Object> model, @RequestParam(value="orderId", required=true) Integer orderId) {
+        model.put("order", orderService.getOrder(orderId));
         return PATH_DISHES;
     }
 
     @RequestMapping(value = "/filterByDate", method = RequestMethod.GET)
-    public String filterByDate(Map<String, Object> model, @RequestParam(value="date", required=true) Date date) {
+    public String filterByDate(Map<String, Object> model,
+                               @RequestParam(value="date", required=true) Date date) {
         model.put(ITEMS, orderService.filterByDate(date));
         return PATH_ORDERS;
     }
+//    @DateTimeFormat(pattern="dd/MM/yyyy")
 
     @RequestMapping(value = "/filterByWaiter", method = RequestMethod.GET)
     public String filterByName(Map<String, Object> model, @RequestParam(value="waiterName", required=true) String waiterName) {
@@ -75,7 +77,7 @@ public class OrderServiceController {
     }
 
     @RequestMapping(value = "/filterByTableNumber", method = RequestMethod.GET)
-    public String filterByName(Map<String, Object> model, @RequestParam(value="tableNumber", required=true) Integer tableNumber) {
+    public String filterByTableNumber(Map<String, Object> model, @RequestParam(value="tableNumber", required=true) Integer tableNumber) {
         model.put(ITEMS, orderService.filterByTableNumber(tableNumber));
         return PATH_ORDERS;
     }

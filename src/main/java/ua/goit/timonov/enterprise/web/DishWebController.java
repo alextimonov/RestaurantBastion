@@ -21,6 +21,8 @@ import java.util.Map;
 @Controller
 public class DishWebController {
 
+    public static final String DISHES = "dishes";
+    public static final String DISH = "dish";
     private DishService dishService;
 
     @Autowired
@@ -30,15 +32,15 @@ public class DishWebController {
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
     public String getDishes(Map<String, Object> model) {
-        model.put("dishes", dishService.getAllDishes());
-        return "dishes";
+        model.put(DISHES, dishService.getAllDishes());
+        return DISHES;
     }
 
     @RequestMapping(value = "/dish/{dishName}", method = RequestMethod.GET)
     public ModelAndView getDish(@PathVariable("dishName") String dishName) {
-        ModelAndView modelAndView = new ModelAndView("dish");
+        ModelAndView modelAndView = new ModelAndView(DISH);
         Dish dish = dishService.getDishByName(dishName);
-        modelAndView.addObject("dish", dish);
+        modelAndView.addObject(DISH, dish);
         List<IngredientsInDish> items = dishService.getIngredientsInDish(dish);
         modelAndView.addObject("itemsInDish", items);
         return modelAndView;
@@ -48,9 +50,9 @@ public class DishWebController {
     public String searchDishParam(Map<String, Object> model, @RequestParam("dishName") String dishName) {
         try {
             Dish dish = dishService.searchDishByName(dishName);
-            model.put("dish", dish);
+            model.put(DISH, dish);
             model.put("itemsInDish", dishService.getIngredientsInDish(dish));
-            return "dish";
+            return DISH;
         }
         catch (NoItemInDbException e) {
             model.put("dishName", dishName);

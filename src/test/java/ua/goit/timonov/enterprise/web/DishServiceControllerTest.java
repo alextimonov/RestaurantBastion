@@ -104,7 +104,7 @@ public class DishServiceControllerTest {
                                 hasProperty(COST, is(60.0F)))
                         )
                 ));
-        verify(dishService, times(1)).getAllDishes();
+        verify(dishService).getAllDishes();
         verifyNoMoreInteractions(dishService);
     }
 
