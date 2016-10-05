@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import ua.goit.timonov.enterprise.model.Dish;
 
 /**
- * Created by Alex on 19.09.2016.
+ * Validator for Dish class
  */
 public class DishValidate {
 

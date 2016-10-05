@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.model;
 
 /**
- * Created by Alex on 09.08.2016.
+ * Available positions for employees
  */
 public enum Position {
     DIRECTOR,

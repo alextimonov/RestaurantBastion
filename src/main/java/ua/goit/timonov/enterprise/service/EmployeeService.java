@@ -8,7 +8,7 @@ import ua.goit.timonov.enterprise.model.Waiter;
 import java.util.List;
 
 /**
- * Service for EmployeeDAO
+ * Web service for EmployeeDAO
  */
 public class EmployeeService {
 

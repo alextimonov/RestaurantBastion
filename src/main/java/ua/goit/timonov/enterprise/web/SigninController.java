@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by Alex on 04.10.2016.
+ * Controller for mapping security pages
  */
 @Controller
 public class SigninController {

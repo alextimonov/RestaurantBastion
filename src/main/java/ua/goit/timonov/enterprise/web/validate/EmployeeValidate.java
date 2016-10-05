@@ -5,7 +5,7 @@ import ua.goit.timonov.enterprise.model.Position;
 import ua.goit.timonov.enterprise.web.EmployeeView;
 
 /**
- * Created by Alex on 20.09.2016.
+ * Validator for Employee class
  */
 public class EmployeeValidate {
 

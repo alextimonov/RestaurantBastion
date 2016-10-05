@@ -9,7 +9,7 @@ import ua.goit.timonov.enterprise.service.EmployeeService;
 import java.util.Map;
 
 /**
- * Controller for mapping requests to Employee pages
+ * Spring MVC controller for mapping common pages for Employee pages
  */
 @Controller
 public class EmployeeWebController {

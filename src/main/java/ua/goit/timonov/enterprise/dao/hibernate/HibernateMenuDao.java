@@ -143,6 +143,10 @@ public class HibernateMenuDao implements MenuDAO {
         session.update("Menu", menu);
     }
 
+    /**
+     * updates menu in database
+     * @param menu      menu to update in database
+     */
     @Override
     @Transactional
     public void update(Menu menu) {

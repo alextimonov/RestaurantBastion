@@ -7,7 +7,7 @@ import ua.goit.timonov.enterprise.model.Ingredient;
 import java.util.List;
 
 /**
- * Created by Alex on 17.09.2016.
+ * Web service for StorageDAO
  */
 public class StorageService {
 

@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by Alex on 13.08.2016.
+ * Provides job positions in database
  */
 @Entity
 @Table(name = "jobs")
