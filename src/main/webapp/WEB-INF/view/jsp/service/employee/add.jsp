@@ -74,10 +74,12 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Save new employee</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save new employee</button>
     </form:form>
     <form class="form-inline" action="${pathEmployee}/employees" method="GET">
-        <button class="btn btn-primary" type="submit">Return to employees</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to employees</button>
     </form>
 </div>
 

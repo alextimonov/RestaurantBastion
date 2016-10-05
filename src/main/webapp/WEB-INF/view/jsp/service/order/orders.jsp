@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="pathOrder" value="${pageContext.request.contextPath}/Restaurant/service/order"/>
 <c:set var="pathService" value="${pageContext.request.contextPath}/Restaurant/service"/>
@@ -24,6 +25,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li class="active"><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>
@@ -63,7 +69,8 @@
                 <input class="form-control" type="number" name="tableNumber">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by table number</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-sort-by-order-alt"></span> Filter by table number</button>
             </div>
         </div>
     </form>
@@ -77,7 +84,8 @@
                 <input class="form-control" type="text" name="waiterName">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by waiter's name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-font"></span> Filter by waiter's name</button>
             </div>
         </div>
     </form>
@@ -91,7 +99,8 @@
                 <input class="form-control" type="date" name="date">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by date</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-equalizer"></span> Filter by date</button>
             </div>
         </div>
     </form>
@@ -103,7 +112,8 @@
             </div>
             <div class="col-sm-4"></div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Show all orders</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-repeat"></span> Show all orders</button>
             </div>
         </div>
     </form>
@@ -121,6 +131,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li class="active"><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>

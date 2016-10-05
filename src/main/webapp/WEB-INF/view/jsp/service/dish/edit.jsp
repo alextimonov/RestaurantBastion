@@ -97,11 +97,13 @@
             </c:forEach>
         </table>
 
-        <button class="btn btn-primary" type="submit">Save changes</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save changes</button>
     </form:form>
 
     <form class="form-inline" action="${pathDish}/dishes" method="GET">
-        <button class="btn btn-primary" type="submit">Return to dishes</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to dishes</button>
     </form>
 </div>
 

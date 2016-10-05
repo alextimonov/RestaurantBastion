@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.exceptions;
 
 /**
- * Created by Alex on 19.09.2016.
+ * Exception that can be thrown if there is no item in database
  */
 public class NoItemInDbException extends RuntimeException {
 

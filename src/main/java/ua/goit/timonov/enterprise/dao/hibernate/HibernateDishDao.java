@@ -59,8 +59,6 @@ public class HibernateDishDao implements DishDAO {
         catch (IndexOutOfBoundsException | NoResultException e) {
             throw new NoItemInDbException("There's no dish with id=" + id + " in database!");
         }
-//        Session session = sessionFactory.getCurrentSession();
-//        return session.get(Dish.class, id);
     }
 
     /**

@@ -64,11 +64,13 @@
             </table>
         </div>
         <div class="container">
-            <button class="btn btn-primary" type="submit">Save changes</button>
+            <button class="btn btn-primary" type="submit">
+                <span class="glyphicon glyphicon-floppy-disk"></span> Save changes</button>
         </div>
     </form:form>
     <form class="form-inline" action="${pathMenu}/menus" method="GET">
-        <button class="btn btn-primary" type="submit">Return to menus</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to menus</button>
     </form>
 
     <form class="form-horizontal" action="${pathMenu}/${menuAttribute.id}/addDish" method="GET">
@@ -80,7 +82,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Add dish (by ID) to menu</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add dish (by ID) to menu</button>
             </div>
         </div>
     </form>
@@ -94,7 +97,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Add dish (by name) to menu</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add dish (by name) to menu</button>
             </div>
         </div>
     </form>
@@ -108,7 +112,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete dish by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete dish by id</button>
             </div>
         </div>
     </form>
@@ -122,7 +127,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete by name</button>
             </div>
         </div>
     </form>

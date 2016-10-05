@@ -11,10 +11,16 @@ import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
- * Created by Alex on 20.08.2016.
+ * Processes operations with database generic items using JPA criteria queries
  */
 public class JpaCriteriaQueries<T> {
 
+    /**
+     * returns list of all elements in database by given item's type
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @return                      found list of elements in database
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> getAllEntityItems(SessionFactory sessionFactory, Class<T> clazz) {
         Session session = sessionFactory.getCurrentSession();
@@ -26,6 +32,14 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getResultList();
     }
 
+    /**
+     * finds list of all typed order in database by given item's type;
+     * order's type can be open or closed
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param closed                order's type (true if closed)
+     * @return                      found list of order in database
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> getAllTypedOrders(SessionFactory sessionFactory, Class<T> clazz, boolean closed) {
         Session session = sessionFactory.getCurrentSession();
@@ -38,6 +52,13 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getResultList();
     }
 
+    /**
+     * finds element by given item's type and it's ID in database
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param id                    element's ID
+     * @return                      element by given item's type and it's ID
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public T searchItemById(SessionFactory sessionFactory, Class<T> clazz, int id) {
         Session session = sessionFactory.getCurrentSession();
@@ -50,6 +71,13 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getSingleResult();
     }
 
+    /**
+     * finds element by given item's type and it's name or full name for employees
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param fullName              element's name or full name for employees
+     * @return                      element by given item's type and it's name
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public T searchItemByName(SessionFactory sessionFactory, Class<T> clazz, String... fullName) {
         Session session = sessionFactory.getCurrentSession();
@@ -72,14 +100,23 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getResultList().get(0);
     }
 
+    // returns true if given surname is blank
     private boolean surnameIsBlank(String[] fullName) {
         return StringUtils.isBlank(fullName[1]);
     }
 
+    // returns true if given name is blank
     private boolean nameIsBlank(String[] fullName) {
         return StringUtils.isBlank(fullName[0]);
     }
 
+    /**
+     * finds elements by given item's type and limited by max value (elements that less than given max value)
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param limit                 max value
+     * @return
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> getItemsLimitedByMaxValue(SessionFactory sessionFactory, Class<T> clazz, int limit) {
         Session session = sessionFactory.getCurrentSession();
@@ -92,6 +129,14 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getResultList();
     }
 
+    /**
+     * updates value in database by item, field name and value in database
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param id                    element's ID
+     * @param fieldName             field's name
+     * @param newValue              new value to be stored
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public void updateValue(SessionFactory sessionFactory, Class<T> clazz, int id, String fieldName, Object newValue) {
         Session session = sessionFactory.getCurrentSession();
@@ -103,6 +148,14 @@ public class JpaCriteriaQueries<T> {
         session.createQuery(criteriaUpdate).executeUpdate();
     }
 
+    /**
+     * searches elements by given value
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param fieldName             field's name
+     * @param value                 given new value
+     * @return                      found list of elements
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> searchItemsByValue(SessionFactory sessionFactory, Class<T> clazz, String fieldName, Object value) {
         Session session = sessionFactory.getCurrentSession();
@@ -115,6 +168,14 @@ public class JpaCriteriaQueries<T> {
         return typedQuery.getResultList();
     }
 
+    /**
+     * searches elements by starting characters in name
+     * @param sessionFactory        session factory to access to database
+     * @param clazz                 class of database item's type
+     * @param fieldName             field's name
+     * @param startChars            starting characters
+     * @return                      found list of elements
+     */
     @Transactional(propagation = Propagation.MANDATORY)
     public List<T> getItemsStartWithChars(SessionFactory sessionFactory, Class<T> clazz, String fieldName, String startChars) {
         Session session = sessionFactory.getCurrentSession();

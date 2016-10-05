@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="pathEmployee" value="${pageContext.request.contextPath}/Restaurant/service/employee"/>
 <c:set var="pathService" value="${pageContext.request.contextPath}/Restaurant/service"/>
 
@@ -23,6 +24,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>
@@ -64,7 +70,8 @@
             </div>
             <div class="col-sm-6"></div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Add new employee</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add new employee</button>
             </div>
         </div>
     </form>
@@ -78,7 +85,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Edit by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by id</button>
             </div>
         </div>
     </form>
@@ -95,7 +103,8 @@
                 <input class="form-control" type="text" name="surname" title="surname">
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Edit by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by name</button>
             </div>
         </div>
     </form>
@@ -114,6 +123,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>

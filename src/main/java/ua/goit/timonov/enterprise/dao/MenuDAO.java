@@ -69,5 +69,9 @@ public interface MenuDAO {
      */
     void deleteDish(Menu menu, Dish dish);
 
+    /**
+     * updates menu in database
+     * @param menu      menu to update in database
+     */
     void update(Menu menu);
 }

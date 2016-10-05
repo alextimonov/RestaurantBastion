@@ -8,7 +8,7 @@ import ua.goit.timonov.enterprise.model.Menu;
 import java.util.List;
 
 /**
- * Service for MenuDAO
+ * Web service for MenuDAO
  */
 public class MenuService {
 

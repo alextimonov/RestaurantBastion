@@ -11,7 +11,7 @@ import ua.goit.timonov.enterprise.service.MenuService;
 import java.util.Map;
 
 /**
- * Controller for mapping requests to Menu pages
+ * Spring MVC controller for mapping menu's common pages
  */
 
 @Controller

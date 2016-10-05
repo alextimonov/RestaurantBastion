@@ -25,5 +25,9 @@ public interface CookedDishDAO {
      */
     void add(int orderId, String dishName, int cookId);
 
+    /**
+     * adds cooked dish to database
+     * @param cookedDish        cooked dish to add
+     */
     void add(CookedDish cookedDish);
 }

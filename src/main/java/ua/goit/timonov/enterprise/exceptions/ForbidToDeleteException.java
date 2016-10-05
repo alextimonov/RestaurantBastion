@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.exceptions;
 
 /**
- * Created by Alex on 19.09.2016.
+ * Exception that can be thrown if it's forbidden to delete item from database
  */
 public class ForbidToDeleteException extends RuntimeException {
 

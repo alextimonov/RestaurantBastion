@@ -5,7 +5,7 @@ import ua.goit.timonov.enterprise.model.*;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Alex on 21.09.2016.
+ * Object's factory for tests
  */
 public class ObjectsFactory {
 

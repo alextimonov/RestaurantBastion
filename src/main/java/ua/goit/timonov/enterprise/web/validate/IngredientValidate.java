@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import ua.goit.timonov.enterprise.model.Ingredient;
 
 /**
- * Created by Alex on 20.09.2016.
+ * Validator for Ingredient class
  */
 public class IngredientValidate {
 

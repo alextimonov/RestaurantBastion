@@ -61,7 +61,7 @@ public class HibernateOrderDao implements OrderDAO {
 
     /**
      * returns orders in DB with given table number
-     * @param tableNumber       give table number
+     * @param tableNumber       given table number
      * @return                  list of orders
      */
     @Override
@@ -70,18 +70,33 @@ public class HibernateOrderDao implements OrderDAO {
         return jpaCriteriaQueries.searchItemsByValue(sessionFactory, Order.class, "tableNumber", tableNumber);
     }
 
+    /**
+     * finds orders by waiter
+     * @param waiter        given waiter
+     * @return              list of orders by waiter
+     */
     @Override
     @Transactional
     public List<Order> getOrdersByWaiter(Employee waiter) {
         return jpaCriteriaQueries.searchItemsByValue(sessionFactory, Order.class, "waiter", waiter);
     }
 
+    /**
+     * finds orders by date
+     * @param date          given date
+     * @return              list of orders by date
+     */
     @Override
     @Transactional
     public List<Order> getOrdersByDate(Date date) {
         return jpaCriteriaQueries.searchItemsByValue(sessionFactory, Order.class, "date", date);
     }
 
+    /**
+     * searches order by ID
+     * @param id            given ID
+     * @return              order by given ID
+     */
     @Override
     @Transactional
     public Order getOrder(int id) {

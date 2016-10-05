@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="pathDish" value="${pageContext.request.contextPath}/Restaurant/service/dish"/>
 <c:set var="pathService" value="${pageContext.request.contextPath}/Restaurant/service"/>
@@ -23,6 +24,11 @@
             <li class="active"><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>
@@ -67,7 +73,8 @@
             </div>
             <div class="col-sm-4"></div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Add new dish</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add new dish</button>
             </div>
         </div>
     </form>
@@ -81,7 +88,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Edit by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by id</button>
             </div>
         </div>
     </form>
@@ -95,7 +103,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Edit by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by name</button>
             </div>
         </div>
     </form>
@@ -109,7 +118,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete by id</button>
             </div>
         </div>
     </form>
@@ -123,7 +133,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete by name</button>
             </div>
         </div>
     </form>
@@ -141,6 +152,11 @@
             <li class="active"><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>
