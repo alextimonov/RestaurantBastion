@@ -64,7 +64,8 @@
             </div>
             <div class="col-sm-6"></div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Add new employee</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add new employee</button>
             </div>
         </div>
     </form>
@@ -78,7 +79,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Edit by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by id</button>
             </div>
         </div>
     </form>
@@ -95,7 +97,8 @@
                 <input class="form-control" type="text" name="surname" title="surname">
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Edit by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by name</button>
             </div>
         </div>
     </form>

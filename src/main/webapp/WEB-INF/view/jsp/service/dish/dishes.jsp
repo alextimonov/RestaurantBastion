@@ -67,7 +67,8 @@
             </div>
             <div class="col-sm-4"></div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Add new dish</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add new dish</button>
             </div>
         </div>
     </form>
@@ -81,7 +82,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Edit by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by id</button>
             </div>
         </div>
     </form>
@@ -95,7 +97,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Edit by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-edit"></span> Edit by name</button>
             </div>
         </div>
     </form>
@@ -109,7 +112,8 @@
                 <input class="form-control" type="number" name="id" title="id">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete by id</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete by id</button>
             </div>
         </div>
     </form>
@@ -123,7 +127,8 @@
                 <input class="form-control" type="text" name="name" title="name">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Delete by name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span> Delete by name</button>
             </div>
         </div>
     </form>

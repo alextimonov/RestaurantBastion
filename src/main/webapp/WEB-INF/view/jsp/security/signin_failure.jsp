@@ -1,14 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="path" value="${pageContext.request.contextPath}/Restaurant"/>
+<%@ page session="true"%>
 
+<c:set var="path" value="${pageContext.request.contextPath}/Restaurant"/>
+<c:url value="/j_spring_security_check" var="loginUrl" />
 <html>
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Restaurant Bastion</title>
+    <title>Bastion|Sign in failure</title>
 </head>
 <body background="${pageContext.request.contextPath}/images/back.jpg">
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,27 +33,20 @@
 </nav>
 
 <div class="container">
-    <form class="form-horizontal">
-        <h2>Restaurant Bastion<small> We make your free time unforgettable</small></h2>
-        <h4>Kyiv, Blvd. Buchmy, 10. Tel. 123-45-67, E-mail:bastion@bastion.kiev.ua</h4>
-        <img src="${pageContext.request.contextPath}/images/photo_inside.jpg" class="img-rounded"/>
-    </form>
-    <hr>
-    <form class="form-horizontal" action="${path}/searchDish" method="GET">
-        <div class="form-group">
-            <div class="col-sm-3">
-                <label class="control-label">Find your favorite dish:</label>
-            </div>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="dishName" title="input dish name">
-            </div>
-            <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">
-                    <span class="glyphicon glyphicon-search"></span> Search!</button>
-            </div>
+    <div class="form-group">
+        <div class="alert alert-danger">
+            <h2>Security page: Sign in failure</h2>
+            <h3>Incorrect username or password!</h3>
         </div>
+    </div>
+
+    <form class="form-inline" action="${path}/signin" method="GET">
+        <button class="btn btn-primary" type="submit">Return to sign in</button>
+    </form>
+
+    <form class="form-inline" action="${path}/main" method="GET">
+        <button class="btn btn-primary" type="submit">Return to main page</button>
     </form>
 </div>
-
 </body>
 </html>

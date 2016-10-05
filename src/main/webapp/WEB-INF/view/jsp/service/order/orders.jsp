@@ -63,7 +63,8 @@
                 <input class="form-control" type="number" name="tableNumber">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by table number</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-sort-by-order-alt"></span> Filter by table number</button>
             </div>
         </div>
     </form>
@@ -77,7 +78,8 @@
                 <input class="form-control" type="text" name="waiterName">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by waiter's name</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-font"></span> Filter by waiter's name</button>
             </div>
         </div>
     </form>
@@ -91,7 +93,8 @@
                 <input class="form-control" type="date" name="date">
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Filter by date</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-equalizer"></span> Filter by date</button>
             </div>
         </div>
     </form>
@@ -103,7 +106,8 @@
             </div>
             <div class="col-sm-4"></div>
             <div class="col-sm-5">
-                <button class="btn btn-primary" type="submit">Show all orders</button>
+                <button class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-repeat"></span> Show all orders</button>
             </div>
         </div>
     </form>

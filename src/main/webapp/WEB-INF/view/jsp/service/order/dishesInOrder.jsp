@@ -52,7 +52,8 @@
     </table>
 
     <form action="${pathOrder}/orders" method="GET" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Back to all orders</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Back to all orders</button>
     </form>
 
 </div>
