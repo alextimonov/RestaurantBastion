@@ -39,10 +39,12 @@
                 <label class="label-warning">${itemValidate.amountLabel}</label>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Save new ingredient</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save new ingredient</button>
     </form:form>
     <form class="form-inline" action="${pathStorage}/ingredients" method="GET">
-        <button class="btn btn-primary" type="submit">Return to ingredients</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to ingredients</button>
     </form>
 </div>
 </body>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="pathOrder" value="${pageContext.request.contextPath}/Restaurant/service/order"/>
 <c:set var="pathService" value="${pageContext.request.contextPath}/Restaurant/service"/>
@@ -24,6 +25,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li class="active"><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>
@@ -125,6 +131,11 @@
             <li><a href="${pathService}/dish/dishes">Dishes</a></li>
             <li><a href="${pathService}/storage/ingredients">Storage</a></li>
             <li class="active"><a href="${pathService}/order/orders">Orders</a></li>
+            <li>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="<c:url value="/logout"/>">Logout</a>
+                </sec:authorize>
+            </li>
         </ul>
     </div>
 </nav>

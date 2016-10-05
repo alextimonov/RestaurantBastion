@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bastion|Sign in</title>
 </head>
-<body background="${pageContext.request.contextPath}/images/back.jpg">
+<body>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -39,7 +39,7 @@
     </div>
 
     <form:form  class="form-horizontal" method="POST" action="${loginUrl}">
-        <div class="alert alert-info">
+        <div class="alert alert-success">
             <div class="form-group">
                 <div class="col-sm-3">
                     <label for="j_username">Username: </label>
@@ -61,11 +61,13 @@
         </div>
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-hand-right"></span> Login</button>
     </form:form>
 
     <form class="form-inline" action="${path}/main" method="GET">
-        <button class="btn btn-primary" type="submit">Return to main page</button>
+        <button  class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-hand-left"></span> Return to main page</button>
     </form>
 </div>
 </body>

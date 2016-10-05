@@ -15,11 +15,11 @@ public class MainController {
     public static final String MAIN = "main";
     public static final String SERVICE = "service/service";
     public static final String SCHEME = "scheme";
-    public static final String CONTACTS = "common/contacts";
+    public static final String CONTACTS = "contacts";
     public static final String SLASH_MAIN = "/main";
     public static final String SLASH_SERVICE = "/service/service";
     public static final String SLASH_SCHEME = "/scheme";
-    public static final String SLASH_CONTACTS = "/common/contacts";
+    public static final String SLASH_CONTACTS = "/contacts";
     public static final String CURRENT_TIME = "currentTime";
 
     @RequestMapping(value = SLASH_MAIN, method = RequestMethod.GET)

@@ -53,10 +53,12 @@
     </form>
 
     <form action="${pathDish}/deleteConfirmed?id=${dishToDelete.id}" method="POST" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Delete this dish</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-trash"></span> Delete this dish</button>
     </form>
     <form class="form-inline" action="${pathDish}/dishes" method="GET">
-        <button class="btn btn-primary" type="submit">Return to dishes</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to dishes</button>
     </form>
 </div>
 

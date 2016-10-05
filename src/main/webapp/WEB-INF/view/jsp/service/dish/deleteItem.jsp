@@ -42,10 +42,12 @@
     </form>
 
     <form action="${deleteItemUrl}" method="POST" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Delete this ingredient</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-trash"></span> Delete this ingredient</button>
     </form>
     <form class="form-inline" action="${editDishUrl}" method="GET">
-        <button class="btn btn-primary" type="submit">Return to edit dish</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to edit dish</button>
     </form>
 </div>
 

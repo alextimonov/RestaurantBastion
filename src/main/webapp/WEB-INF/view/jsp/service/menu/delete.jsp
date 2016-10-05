@@ -49,10 +49,12 @@
     </form>
 
     <form action="${pathMenu}/deleteConfirmed?id=${menuToDelete.id}" method="POST" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Delete this menu</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-trash"></span> Delete this menu</button>
     </form>
     <form action="${pathMenu}/menus" method="GET" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Return to menus</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to menus</button>
     </form>
 </div>
 

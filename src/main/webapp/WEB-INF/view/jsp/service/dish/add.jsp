@@ -62,10 +62,12 @@
                 <label class="label-info">${dishValidate.costLabel}</label>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Save new dish</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save new dish</button>
     </form:form>
     <form class="form-inline" action="${pathDish}/dishes" method="GET">
-        <button class="btn btn-primary" type="submit">Return to dishes</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to dishes</button>
     </form>
 </div>
 

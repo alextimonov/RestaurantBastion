@@ -39,10 +39,12 @@
     </form>
 
     <form action="${pathStorage}/deleteConfirmed?id=${ingredient.id}" method="POST" class="form-horizontal">
-        <button class="btn btn-primary" type="submit">Delete this ingredient</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-trash"></span> Delete this ingredient</button>
     </form>
     <form class="form-inline" action="${pathStorage}/ingredients" method="GET">
-        <button class="btn btn-primary" type="submit">Return to ingredients</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to ingredients</button>
     </form>
 </div>
 

@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bastion|Sign in failure</title>
 </head>
-<body background="${pageContext.request.contextPath}/images/back.jpg">
+<body>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -41,11 +41,13 @@
     </div>
 
     <form class="form-inline" action="${path}/signin" method="GET">
-        <button class="btn btn-primary" type="submit">Return to sign in</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-hand-right"></span> Return to sign in</button>
     </form>
 
     <form class="form-inline" action="${path}/main" method="GET">
-        <button class="btn btn-primary" type="submit">Return to main page</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-hand-left"></span> Return to main page</button>
     </form>
 </div>
 </body>
