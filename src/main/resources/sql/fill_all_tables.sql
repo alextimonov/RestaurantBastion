@@ -1,8 +1,8 @@
 
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('White', 'Davis', '1965-06-20', 1, 90000.0, 'Employee');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Black', 'Sarah', '1975-09-10', 2, 75000.0, 'Employee');
-INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Green', 'Piter', '1980-10-05', 3, 60000.0, 'Cook');
-INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Brown', 'Steven', '1985-08-08', 4, 50000.0, 'Cook');
+INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Green', 'Piter', '1980-10-05', 3, 60000.0, 'Employee');
+INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Brown', 'Steven', '1985-08-08', 4, 50000.0, 'Employee');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Gray', 'Stew', '1990-09-10', 6, 40000.0, 'Waiter');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Orange', 'John', '1995-10-23', 6, 40000.0, 'Waiter');
 INSERT INTO EMPLOYEE (surname, name, birthday, position_id, salary, dtype) VALUES('Red', 'Marion', '1997-11-25', 7, 30000.0, 'Employee');
