@@ -9,7 +9,7 @@ import ua.goit.timonov.enterprise.model.IngredientsInDish;
 import java.util.List;
 
 /**
- * Service for DishDAO
+ * Web service for DishDAO
  */
 public class DishService {
 

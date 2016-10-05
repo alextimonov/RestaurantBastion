@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Alex on 23.08.2016.
+ * Class for manage database (create, restore, delete data)
  */
 public class DbController {
 
@@ -112,16 +112,5 @@ public class DbController {
     public void fillTableJobs() {
         String[] insertQueries = readQueriesFromFile(PATH_TO_FILL_TABLE_JOBS);
         jdbcTemplate.batchUpdate(insertQueries);
-    }
-
-    @Transactional
-    public void restoreDatabase() {
-        try {
-            createAllTables();
-            fillTableJobs();
-            restoreAllData();
-        } catch (FileNotFoundException e) {
-            LOGGER.error(e.getMessage());
-        }
     }
 }

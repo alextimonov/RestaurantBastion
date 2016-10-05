@@ -8,7 +8,7 @@ import ua.goit.timonov.enterprise.model.CookedDish;
 import java.util.List;
 
 /**
- * Created by Alex on 01.10.2016.
+ * Web service for CookedDishDAO
  */
 public class CookedDishService {
 
@@ -40,6 +40,10 @@ public class CookedDishService {
         cookedDishDAO.add(orderId, dishName, cookId);
     }
 
+    /**
+     * adds cooked dish to database
+     * @param cookedDish        cooked dish to add
+     */
     @Transactional
     public void add(CookedDish cookedDish) {
         cookedDishDAO.add(cookedDish);

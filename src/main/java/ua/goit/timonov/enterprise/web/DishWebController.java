@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Controller for mapping requests to Dish pages
+ * Spring MVC controller for mapping common pages for Dish pages
  */
 @Controller
 public class DishWebController {

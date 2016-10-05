@@ -39,10 +39,12 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Add new ingredient</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Add new ingredient</button>
     </form:form>
     <form class="form-inline" action="${editDishUrl}" method="GET">
-        <button class="btn btn-primary" type="submit">Return to edit dish</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to edit dish</button>
     </form>
 </div>
 

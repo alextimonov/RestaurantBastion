@@ -72,6 +72,10 @@ public class HibernateCookedDishDao implements CookedDishDAO {
         session.save(cookedDish);
         }
 
+    /**
+     * adds cooked dish to database
+     * @param cookedDish        cooked dish to add
+     */
     @Override
     @Transactional
     public void add(CookedDish cookedDish) {

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import ua.goit.timonov.enterprise.model.IngredientsInDish;
 
 /**
- * Created by Alex on 25.09.2016.
+ * Validator for ingredients in dish
  */
 public class ItemInDishValidate {
     private String nameLabel;

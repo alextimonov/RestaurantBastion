@@ -76,12 +76,32 @@ public interface OrderDAO {
      */
     List<Order> getAllOrders();
 
+    /**
+     * returns orders in DB with given table number
+     * @param tableNumber       given table number
+     * @return                  list of orders
+     */
     List<Order> getOrdersByTableNumber(int tableNumber);
 
+    /**
+     * finds orders by waiter
+     * @param waiter        given waiter
+     * @return              list of orders by waiter
+     */
     List<Order> getOrdersByWaiter(Employee waiter);
 
+    /**
+     * finds orders by date
+     * @param date          given date
+     * @return              list of orders by date
+     */
     List<Order> getOrdersByDate(Date date);
 
+    /**
+     * searches order by ID
+     * @param id            given ID
+     * @return              order by given ID
+     */
     Order getOrder(int id);
 }
 

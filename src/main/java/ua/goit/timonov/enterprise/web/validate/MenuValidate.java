@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import ua.goit.timonov.enterprise.model.Menu;
 
 /**
- * Created by Alex on 20.09.2016.
+ * Validator for Menu class
  */
 public class MenuValidate {
     private String nameLabel;

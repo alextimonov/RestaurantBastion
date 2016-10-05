@@ -32,6 +32,7 @@
         <tomcatJdbcVersion>9.0.0.M9</tomcatJdbcVersion>
         <mavenPluginVersion>2.5</mavenPluginVersion>
         <webappRunnerVersion>8.0.33.0</webappRunnerVersion>
+        <springSecurityVersion>3.1.0.RELEASE</springSecurityVersion>
     </properties>
 
     <dependencies>
@@ -175,6 +176,31 @@
             <version>${tomcatJdbcVersion}</version>
         </dependency>
 
+        <!--Spring security-->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${springSecurityVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springSecurityVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springSecurityVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springSecurityVersion}</version>
+        </dependency>
     </dependencies>
 
     <build>

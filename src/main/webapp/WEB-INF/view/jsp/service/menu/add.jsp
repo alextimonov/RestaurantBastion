@@ -26,10 +26,12 @@
                 <label class="label-info">${menuValidate.nameLabel}</label>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="Save new menu"/>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save new menu</button>
     </form:form>
     <form class="form-inline" action="${pathMenu}/menus" method="GET">
-        <button class="btn btn-primary" type="submit">Return to menus</button>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-triangle-left"></span> Return to menus</button>
     </form>
 </div>
 

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Alex on 17.09.2016.
+ * Web service for OrderDAO
  */
 public class OrderService {
 

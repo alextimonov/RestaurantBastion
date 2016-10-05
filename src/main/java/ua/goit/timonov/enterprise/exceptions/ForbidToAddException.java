@@ -1,7 +1,7 @@
 package ua.goit.timonov.enterprise.exceptions;
 
 /**
- * Created by Alex on 20.09.2016.
+ * Exception that can be thrown if it's forbidden to add item to database
  */
 public class ForbidToAddException extends RuntimeException {
 

@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
- * Created by Alex on 18.08.2016.
+ * Provides ingredients in dishes
  */
 @Entity
 @Table(name = "ingredient_to_dish")

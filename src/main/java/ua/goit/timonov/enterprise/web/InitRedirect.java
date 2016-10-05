@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet for mapping requests to root url
+ * Servlet for mapping requests to root URL
  */
 public class InitRedirect extends HttpServlet {
 

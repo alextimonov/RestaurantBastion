@@ -137,6 +137,11 @@ public class HibernateStorageDao implements StorageDAO {
         session.update("Ingredient", ingredient);
     }
 
+    /**
+     * finds ingredients by starting characters in the name
+     * @param startChars        starting charaters in the name
+     * @return                  list of ingredients
+     */
     @Override
     @Transactional
     public List<Ingredient> filterWithStartChars(String startChars) {
