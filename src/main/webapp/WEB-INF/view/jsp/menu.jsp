@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bastion|Menu</title>
+    <style>
+        table{
+            background-color: #e7eeee;
+        }
+    </style>
 </head>
 
 <body background="${pageContext.request.contextPath}/images/back.jpg">
@@ -32,20 +37,8 @@
     <h2>Menu ${menu.name}<small> Click on dish names for details</small></h2>
 
     <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Menu name</th>
-        </tr>
-        <tr>
-            <td>${menu.id}</td>
-            <td>${menu.name}</td>
-        </tr>
-    </table>
-    <hr>
-    <table class="table table-striped">
         <h3>Dishes</h3>
         <tr>
-            <th>ID</th>
             <th>Dish name</th>
             <th>Description</th>
             <th>View</th>
@@ -54,7 +47,6 @@
         </tr>
         <c:forEach var="dish" items="${menu.dishes}">
             <tr>
-                <td>${dish.id}</td>
                 <td><a href="${path}/dish/${dish.name}">${dish.name}</a></td>
                 <td>${dish.description}</td>
                 <td><img src="${pageContext.request.contextPath}/images/dish_${dish.id}.jpg"/></td>

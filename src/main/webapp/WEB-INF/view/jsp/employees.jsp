@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bastion|Personal</title>
+    <style>
+        table{
+            background-color: #e7eeee;
+        }
+    </style>
 </head>
 <body background="${pageContext.request.contextPath}/images/back.jpg">
 <nav class="navbar navbar-default">

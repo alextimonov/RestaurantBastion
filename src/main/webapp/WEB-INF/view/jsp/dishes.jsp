@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bastion|Dishes</title>
+    <style>
+        table{
+            background-color: #e7eeee;
+        }
+    </style>
 </head>
 <body background="${pageContext.request.contextPath}/images/back.jpg">
 <nav class="navbar navbar-default">
@@ -31,7 +36,6 @@
     <table class="table table-striped">
         <h2>All our dishes<small> Click on dish names for details</small></h2>
         <tr>
-            <th>ID</th>
             <th>Dish name</th>
             <th>View</th>
             <th>Weight</th>
@@ -39,7 +43,6 @@
         </tr>
         <c:forEach var="dish" items="${dishes}">
             <tr>
-                <td>${dish.id}</td>
                 <td><a href="${path}/dish/${dish.name}">${dish.name}</a></td>
                 <td><img src="${pageContext.request.contextPath}/images/dish_${dish.id}.jpg"/></td>
                 <td>${dish.weight}</td>

@@ -55,7 +55,16 @@
                 <label class="control-label" for="position">Position:</label>
             </div>
             <div class="col-sm-4">
-                <form:input class="form-control" path="position" type="text"/>
+                <form:select path="position" class="form-control">
+                    <option value="director">director</option>
+                    <option value="manager">manager</option>
+                    <option value="cook">cook</option>
+                    <option value="cook_assistant">cook assistant</option>
+                    <option value="head_waiter">head waiter</option>
+                    <option value="waiter">waiter</option>
+                    <option value="security">security</option>
+                    <option value="cleaner">cleaner</option>
+                </form:select>
             </div>
             <div class="col-sm-4">
                 <label class="label-info">${employeeValidate.positionLabel}</label>
