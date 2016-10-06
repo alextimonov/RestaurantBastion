@@ -52,7 +52,7 @@ public class EmployeeValidate {
         String inputtedPosition = employeeView.getPosition();
         if (isNotInPositionValues(inputtedPosition)) {
             result = false;
-            positionLabel = "You should input some existing position";
+            positionLabel = "You should choose some available position";
         }
         if (employeeView.getSalary() <= 0) {
             result = false;

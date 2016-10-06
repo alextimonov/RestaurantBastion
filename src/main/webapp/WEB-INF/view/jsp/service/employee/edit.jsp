@@ -64,7 +64,9 @@
                 <label class="control-label" for="position">Position:</label>
             </div>
             <div class="col-sm-4">
-                <form:select path="position" class="form-control">
+                <form:select path="position" class="form-control"
+                             title="${employeeView.position}" onfocus="${employeeView.position}">
+                    <option selected disabled hidden>Choose if need to change</option>
                     <option value="director">director</option>
                     <option value="manager">manager</option>
                     <option value="cook">cook</option>

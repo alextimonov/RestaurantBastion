@@ -56,6 +56,7 @@
             </div>
             <div class="col-sm-4">
                 <form:select path="position" class="form-control">
+                    <option selected disabled hidden>Choose from available positions</option>
                     <option value="director">director</option>
                     <option value="manager">manager</option>
                     <option value="cook">cook</option>
