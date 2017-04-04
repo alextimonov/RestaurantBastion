@@ -42,7 +42,7 @@
         <div class="alert alert-success">
             <div class="form-group">
                 <div class="col-sm-3">
-                    <label for="j_username">Username: </label>
+                    <label for="j_username">Username (input "admin"):</label>
                 </div>
                 <div class="col-sm-4">
                     <input class="form-control" id="j_username" name="j_username" type="text" placeholder="Enter username"/>
@@ -51,7 +51,7 @@
 
             <div class="form-group" >
                 <div class="col-sm-3">
-                    <label for="j_password">Password: </label>
+                    <label for="j_password">Password (input "admin"):</label>
                 </div>
 
                 <div class="col-sm-4">
